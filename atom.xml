@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-09T21:53:02.542Z</updated>
+  <updated>2016-07-09T21:53:35.558Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -14,22 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://iceziyao.github.io/2016/07/10/php/"/>
-    <id>https://iceziyao.github.io/2016/07/10/php/</id>
-    <published>2016-07-09T21:53:02.542Z</published>
-    <updated>2016-07-09T21:53:02.542Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Python的内存管理机制</title>
@@ -349,6 +333,183 @@ server {
     
     
       <category term="缓存 加速" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98-%E5%8A%A0%E9%80%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP编译出错</title>
+    <link href="https://iceziyao.github.io/2016/01/01/php/"/>
+    <id>https://iceziyao.github.io/2016/01/01/php/</id>
+    <published>2015-12-31T16:00:00.000Z</published>
+    <updated>2016-07-09T21:55:23.922Z</updated>
+    
+    <content type="html">&lt;pre&gt;&lt;code&gt;
+   /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS=&#39;-liconv&#39;
+   　　错误一、编译php出错
+   　　/php-5.3.2/ext/fileinfo/libmagic/apprentice.c:147:internal compiler
+   error:Segmentation fault
+   　　Please submit a full bug report,
+   　　with preprocessed source if appropriate.
+   　　See &lt;url:http: bugzilla.redhat.com=&quot;&quot; bugzilla=&quot;&quot;&gt; for instructions.
+   　　The bug is not reproducible,so it is likely a hardware or OS problem.
+   　　make:*** [ext/fileinfo/libmagic/apprentice.lo] Error 1
+   　　解决方法：内存大于1G即可，这是php5.3.2的一个bug
+    或者在./configure加上选项:--disable-fileinfo
+    　　--------------------------------------------------------------------
+    　　错误二、重新构造configure文件出错
+    　　./buildconf --force
+    　　Forcing buildconf
+    　　buildconf:checking installation…
+    　　buildconf:autoconf version 2.59 （ok）
+    　　buildconf:Your version of autoconf likely contains buggy cache code.
+    　　Running vcsclean for you.
+    　　To avoid this,install autoconf-2.13.
+    　　Can&#39;t figure out your VCS, not cleaning.
+    　　解决方法：编译安装autoconf-2.13
+    　　再将autoconf-2.13的auotconf文件至/usr/local/autoconf
+    　　--------------------------------------------------------------------
+    　　错误三、编译时缺少库
+    　　configure: error: libXpm.（a|so） not found.
+    　　解决方法：yum install libXpm-devel
+    　　--------------------------------------------------------------------
+    　　错误四、编译时缺少gmp.h文件
+    　　configure: error: Unable to locate gmp.h
+    　　解决方法：yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误五
+    　　Configure: error: xml2-config not found. Please check your libxml2
+    installation.
+    　　解决方法：
+    　　#yum install libxml2 libxml2-devel （For Redhat &amp; Fedora）
+    　　# aptitude install libxml2-dev      （For ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误六
+    　　Checking for pkg-config… /usr/bin/pkg-config
+    　　configure: error: Cannot find OpenSSL’s &lt;evp.h&gt;
+    　　解决方法：
+    　　#yum install openssl openssl-devel
+    　　--------------------------------------------------------------------
+    　　错误七
+    　　Configure: error: Please reinstall the BZip2 distribution
+    　　解决方法：
+    　　# yum install bzip2 bzip2-devel
+    　　--------------------------------------------------------------------
+    　　错误八
+    　　Configure: error: Please reinstall the libcurl distribution -
+    　　easy.h should be in &lt;curl-dir&gt;/include/curl/
+    　　解决方法：
+    　　# yum install curl curl-devel   （For Redhat &amp; Fedora）
+    　　# install libcurl4-gnutls-dev    （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误九：
+    　　Configure: error: libjpeg.（also） not found.
+    　　解决方法：
+    　　# yum install libjpeg libjpeg-devel
+    　　--------------------------------------------------------------------
+    　　错误十
+    　　Configure: error: libpng.（also） not found.
+    　　--------------------------------------------------------------------
+    　　解决方法：
+    　　# yum install libpng libpng-devel
+    　　--------------------------------------------------------------------
+    　　错误十一
+    　　Configure: error: freetype.h not found.
+    　　解决方法：
+    　　#yum install freetype-devel
+    　　--------------------------------------------------------------------
+    　　错误十二
+    　　Configure: error: Unable to locate gmp.h
+    　　解决方法：
+    　　# yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十三
+    　　Configure: error: Cannot find MySQL header files under /usr.
+    　　Note that the MySQL client library is not bundled anymore!
+    　　解决方法：
+    　　# yum install mysql-devel            （For Redhat &amp; Fedora）
+    　　# apt-get install libmysql++-dev      （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误十四
+    　　Configure: error: Please reinstall the ncurses distribution
+    　　解决方法：
+    　　# yum install ncurses ncurses-devel
+    　　--------------------------------------------------------------------
+    　　错误十五
+    　　Checking for unixODBC support… configure: error: ODBC header file ‘
+    /usr/include/sqlext.h’ not found!
+    　　解决方法：
+    　　# yum install unixODBC-devel
+    　　--------------------------------------------------------------------
+    　　错误十六
+    　　Configure: error: Cannot find pspell
+    　　解决方法：
+    　　# yum install pspell-devel
+    　　--------------------------------------------------------------------
+    　　错误十七
+    　　configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+    　　解决方法：
+    　　# yum install libmcrypt libmcrypt-devel    （For Redhat &amp; Fedora）
+    　　# apt-get install libmcrypt-dev
+    　　--------------------------------------------------------------------
+    　　错误十八
+    　　Configure: error: snmp.h not found. Check your SNMP installation.
+    　　解决方法：
+    　　# yum install net-snmp net-snmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十九
+    　　configure:error:Cannot find ldap.h
+    　　解决方法：
+    　　#yum install openldap-devel openldap
+    　　错误二十
+    　　configure:error:xslt-config not found. Please reinstall the libxslt
+    &gt;= 1.1.0 distribution
+    　　解决方法：
+    　　#yum install libxslt libxslt-devel
+    　　错误二十一
+    　　checking for libevent &gt;=1.4.11 install prefix… configure: error:
+    Could not find libevent &gt;=1.4.11 in /usr/local/php
+    　　解决方法：
+    　　安装libevent-1.4.11以上版本至/usr/local
+    　　tar xzvf libevent-1.4.14-stable.tar.gz
+    　　cd libevent-1.4.14-stable
+    　　./configure --prefix=/usr/local
+    　　make&amp;&amp;make install
+    　　在编译。/configure时添加--with-libevent-dir=/usr/local即可
+    　　错误二十二
+    　　cc1: out of memory allocating 2036 bytes after a total of 81846272
+    bytes
+    　　make: *** [ext/date/lib/parse_date.lo] Error 1
+    　　报错：
+    　　/usr/bin/ld: cannot find -lltdl
+    　　collect2: ld returned 1 exit status
+    　　make:*** [sapi/fpm/php-fpm] Error 1
+    　　解决方法：
+    　　安装ltdl
+    　　#cd /libmcrypt-2.5.7/libltdl/
+    　　#./configure --enable-ltdl-install
+    　　#ldconfig
+    　　#cd php-5.3.6
+    　　#make ZEND_EXTRA_LIBS=&#39;-liconv&#39;
+&lt;/curl-dir&gt;&lt;/evp.h&gt;&lt;/url:http:&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;
+   /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sap
+    
+    </summary>
+    
+      <category term="lnmp" scheme="https://iceziyao.github.io/categories/lnmp/"/>
+    
+    
+      <category term="php" scheme="https://iceziyao.github.io/tags/php/"/>
     
   </entry>
   
