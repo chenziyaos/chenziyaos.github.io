@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>Linux基础 | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux基础</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Linux基础</h1><div class="post-meta">Oct 6, 2015<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="如何在linux上活下去"><a href="#如何在linux上活下去" class="headerlink" title="如何在linux上活下去"></a>如何在linux上活下去</h3><p>1.cd 命令<br>用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。</p>
+<blockquote>
+<p>cd /mnt          进入/mnt<br>cd ~           进入用户家目录<br>cd 绝对路径 or 相对路径  </p>
+</blockquote>
+<p>2.ls 命令<br>查看文件与目录的命令，list之意,常用如下:</p>
+<blockquote>
+<p>-l ：列出长数据串，包含文件的属性与权限数据等<br><br>-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用)<br><br>-d ：仅列出目录本身，而不是列出目录的文件数据<br><br>-h ：将文件容量以较易读的方式（GB，kB等）列出来<br>-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  </p>
+</blockquote>
+<p>注：这些参数也可以组合使用  </p>
+<blockquote>
+<p>ls -l #以长数据串的形式列出当前目录下的数据文件和目录<br>ls -lR #以长数据串的形式列出当前目录下的所有文件   </p>
+</blockquote>
+<p>3.mkdir 命令<br>创建目录</p>
+<blockquote>
+<p>mkdir dir</p>
+</blockquote>
+<p>参数：</p>
+<blockquote>
+<p>-p 递归创建<br>-m 给于权限</p>
+</blockquote>
+<p>4.touch 命令<br>创建文件</p>
+<blockquote>
+<p>touch filename</p>
+</blockquote>
+<p>5.grep 命令<br>命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等等</p>
+<blockquote>
+<p>grep [-acinv] [–color=auto] ‘查找字符串’ filename</p>
+</blockquote>
+<p>它的常用参数如下：</p>
+<blockquote>
+<p>-a ：将binary文件以text文件的方式查找数据<br>-c ：计算找到‘查找字符串’的次数<br>-i ：忽略大小写的区别，即把大小写视为相同<br>-v ：反向选择，即显示出没有‘查找字符串’内容的那一行<br> 例如：<br> 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色<br>grep –color=auto ‘MANPATH’ /etc/man.config<br>把ls -l的输出中包含字母file（不区分大小写）的内容输出<br>ls -l | grep -i file</p>
+</blockquote>
+<p>6.find 命令<br>find是一个基于查找的功能非常强大的命令，相对而言，它的使用也相对较为复杂，参数也比较多，所以在这里将给把它们分类列出，它的基本语法如下：</p>
+<blockquote>
+<p>find [PATH] [option] [action]<br>与时间有关的参数：<br>-mtime n : n为数字，意思为在n天之前的“一天内”被更改过的文件；<br>-mtime +n : 列出在n天之前（不含n天本身）被更改过的文件名；<br>-mtime -n : 列出在n天之内（含n天本身）被更改过的文件名；<br>-newer file : 列出比file还要新的文件名<br>例如：<br>find /root -mtime 0 # 在当前目录下查找今天之内有改动的文件<br>与用户或用户组名有关的参数：<br>-user name : 列出文件所有者为name的文件<br>-group name : 列出文件所属用户组为name的文件<br>-uid n : 列出文件所有者为用户ID为n的文件<br>-gid n : 列出文件所属用户组为用户组ID为n的文件<br>例如：<br>find /home/ljianhui -user ljianhui # 在目录/home/ljianhui中找出所有者为ljianhui的文件<br>与文件权限及名称有关的参数：<br>-name filename ：找出文件名为filename的文件<br>-size [+-]SIZE ：找出比SIZE还要大（+）或小（-）的文件<br>-tpye TYPE ：查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件（f)、设备文件（b、c）、<br>             目录（d）、连接文件（l）、socket（s）、FIFO管道文件（p）；<br>-perm mode ：查找文件权限刚好等于mode的文件，mode用数字表示，如0755；<br>-perm -mode ：查找文件权限必须要全部包括mode权限的文件，mode用数字表示<br>-perm +mode ：查找文件权限包含任一mode的权限的文件，mode用数字表示<br>例如：<br>find / -name passwd # 查找文件名为passwd的文件<br>find . -perm 0755 # 查找当前目录中文件权限的0755的文件<br>find . -size +12k # 查找当前目录中大于12KB的文件，注意c表示byte</p>
+</blockquote>
+<p>7.cp 命令<br>拷贝命令,命令用于复制文件，copy:</p>
+<blockquote>
+<p>   -a ：将文件的特性一起复制<br>    -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份<br>    -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行<br>    -r ：递归持续复制，用于目录的复制行为<br>    -u ：目标文件与源文件有差异时才会复制  </p>
+</blockquote>
+<p>8.mv 命令</p>
+<blockquote>
+<p>mv oldname newname<br>9.ps 命令<br>命令用于将某个时间点的进程运行情况选取下来并输出，process之意:<br>-A ：所有的进程均显示出来<br>-a ：不与terminal有关的所有进程<br>-u ：有效用户的相关进程<br>-x ：一般与a参数一起使用，可列出较完整的信息<br>-l ：较长，较详细地将PID的信息列出</p>
+</blockquote>
+<p>常用如下:</p>
+<blockquote>
+<p>ps aux # 查看系统所有的进程数据<br>ps ax # 查看不与terminal有关的所有进程<br>ps -lA # 查看系统所有的进程数据<br>ps axjf # 查看连同一部分进程树状态  </p>
+</blockquote>
+<p>10.kill 命令<br>该命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号:</p>
+<blockquote>
+<p><code>kill -signal PID</code></p>
+</blockquote>
+<p>signal的常用参数如下：</p>
+<blockquote>
+<p>1：SIGHUP，启动被终止的进程<br> 2：SIGINT，相当于输入ctrl+c，中断一个程序的进行<br> 9：SIGKILL，强制中断一个进程的进行<br> 15：SIGTERM，以正常的结束进程方式来终止进程<br> 17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行  </p>
+</blockquote>
+<p>11.killall 命令<br>命令用于向一个命令启动的进程发送一个信号，它的一般语法如下</p>
+<blockquote>
+<p>killall [-iIe] [command name]</p>
+</blockquote>
+<p>具体参数解释:</p>
+<blockquote>
+<p>-i ：交互式的意思，若需要删除时，会询问用户<br>-e ：表示后面接的command name要一致，但command name不能超过15个字符<br>-I ：命令名称忽略大小写</p>
+</blockquote>
+<p>12.file 命令<br>用于判断接在file命令后的文件的基本数据</p>
+<blockquote>
+<p><code>file filename</code></p>
+</blockquote>
+<p>13.tar 命令<br>该命令用于对文件进行打包，默认情况并不会压缩，如果指定了相应的参数，它还会调用相应的压缩程序:</p>
+<blockquote>
+<p>   -c ：新建打包文件<br>    -t ：查看打包文件的内容含有哪些文件名<br>    -x ：解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中<br>    -j ：通过bzip2的支持进行压缩/解压缩<br>    -z ：通过gzip的支持进行压缩/解压缩<br>    -v ：在压缩/解压缩过程中，将正在处理的文件名显示出来<br>    -f filename ：filename为要处理的文件<br>    -C dir ：指定压缩/解压缩的目录dir  </p>
+</blockquote>
+<p>14.cat 命令<br>用于查看文本文件的内容</p>
+<blockquote>
+<p><code>cat filename</code></p>
+</blockquote>
+<p>15.gcc 命令</p>
+<blockquote>
+<p>-o ：output之意，用于指定生成一个可执行文件的文件名<br>-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序<br>-I ：增加编译时搜索头文件的路径<br>-L ：增加编译时搜索静态连接库的路径<br>-S ：把源文件生成汇编代码文件<br>-lm：表示标准库的目录中名为libm.a的函数库<br>-lpthread ：连接NPTL实现的线程库<br>-std= ：用于指定把使用的C语言的版本<br># 把源文件test.c按照c99标准编译成可执行程序test<br><code>gcc -o test test.c -lm -std=c99</code><br>#把源文件test.c转换为相应的汇编程序源文件test.s<br><code>gcc -S test.c</code></p>
+</blockquote>
+<p>16.rm 命令<br>用于删除文件或目录，remove</p>
+<blockquote>
+<p>-f ：就是force的意思，忽略不存在的文件，不会出现警告消息<br>-i ：互动模式，在删除前会询问用户是否操作<br>-r ：递归删除，最常用于目录删除，它是一个非常危险的参数</p>
+</blockquote>
+<p>例如</p>
+<blockquote>
+<p><code>rm -i file</code> #删除文件file，在删除之前会询问是否进行该操作<br><code>rm -fr dir</code> # 强制删除目录dir中的所有文件</p>
+</blockquote>
+<p>17.chgrp命令<br>用于改变文件所属用户组，它的使用非常简单，它的基本用法如下：</p>
+<blockquote>
+<p>chgrp [-R] dirname/filename<br>-R ：进行递归的持续对所有文件和子目录更改</p>
+</blockquote>
+<p>18.chown命令<br>该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同，不再详述。</p>
+<p>19.chmod命令<br>该命令用于改变文件的权限，一般的用法如下：</p>
+<blockquote>
+<p>chmod [-R] xyz 文件或目录<br>-R：进行递归的持续更改，即连同子目录下的所有文件都会更改</p>
+</blockquote>
+<p>20.time命令<br>该命令用于测算一个命令（即程序）的执行时间。</p>
+<blockquote>
+<p>time ./process<br>time ps aux</p>
+</blockquote>
+<p>在程序或命令运行结束后，在最后输出了三个时间，它们分别是：<br>user：用户CPU时间，命令执行完成花费的用户CPU时间，即命令在用户态中执行时间总和；<br>system：系统CPU时间，命令执行完成花费的系统CPU时间，即命令在核心态中执行时间总和；<br>real：实际时间，从command命令行开始执行到运行终止的消逝时间；</p>
+<p>注：用户CPU时间和系统CPU时间之和为CPU时间，即命令占用CPU执行的时间总和。实际时间要大于CPU时间，因为Linux是多任务操作系统，往往在执行一条命令时，系统还要处理其它任务。另一个需要注意的问题是即使每次执行相同命令，但所花费的时间也是不一样，其花费时间是与系统运行相关的。</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2015/10/06/linux基础/" data-id="ciqfsewic0000116gbpym7h8a" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a href="/2015/11/24/ftp+mysql/" class="pre">ftp+mysql搭建ftp认证</a><a href="/2015/01/02/ajax/" class="next">ajax初探</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/linux基础/">Linux基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

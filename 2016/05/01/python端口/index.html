@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>python编写一个端口扫描器 | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">python编写一个端口扫描器</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">python编写一个端口扫描器</h1><div class="post-meta">May 1, 2016<span> | </span><span class="category"><a href="/categories/Python-编程语言/">Python 编程语言</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="编写一个端口扫描器"><a href="#编写一个端口扫描器" class="headerlink" title="编写一个端口扫描器"></a>编写一个端口扫描器</h3><ul>
+<li>任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器</li>
+<li>端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  <ul>
+<li>处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  </li>
+<li>将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)</li>
+<li>端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现端口扫描器"><a href="#实现端口扫描器" class="headerlink" title="实现端口扫描器"></a>实现端口扫描器</h3><ol>
+<li>main函数<pre><code>
+def main():
+ parser = optparse.OptionParser("usage: %prog" + \
+ "-H <tgthost host=""> -P <tgtport>" ,version="%prog 1.0")
+ ''' 添加命令行参 '''
+ parser.add_option('-H',dest='Host',type='string',help='specify target host')
+ parser.add_option('-P',dest='Port',type='string',\
+ help='specify target port[s] separated by command')
+ (options ,args) = parser.parse_args()
+ tgtHost = options.Host
+ tgtPorts = str(options.Port).split(",")
+ if (tgtHost == None) or (tgtPorts[0] == None):
+     print '[-] You must specify a target host and port[s]'
+     exit(0)
+ portScan(tgtHost,tgtPorts)
+</tgtport></tgthost></code></pre>  </li>
+<li>portScan(tgtHost,tgtPorts)<pre><code>
+def portScan(tgtHost,tgtPorts):
+ try:
+   tgtIP = gethostbyname(tgtHost)
+ except:
+   print "[-] cannot resolve '%s':Unknown host" %(tgtHost)
+ try:
+   tgtName = gethostbyaddr(tgtIP)
+   print '\n[+] Scan Reselts for:' + tgtName[0]
+ except:
+   print '\n[+] Scan Results for: '+ tgtIP
+ setdefaulttimeout(1)
+ for tgtPort in tgtPorts:
+   connScan(tgtHost,tgtPort)  
+</code></pre></li>
+<li><p>connScan(tgtHost, tgtPort)  </p>
+<pre><code>
+def connScan(tgtHost, tgtPort):
+ try:
+     connSkt = socket(AF_INET,SOCK_STREAM)
+     connSkt.connect((tgtHost,tgtPort))
+     connSkt.send('Hello\r\n')
+     results = connSkt.recv(100)
+     lock.acquire()
+     print "[+]%d/TCP open" %(tgtPort)
+     print "[+] "+str(results)
+ except:
+     lock.acquire()
+     print "[-]%d/TCP closed" %(tgtPort)
+ finally:
+     lock.release()
+     connSkt.close()
+</code></pre>
+</li>
+<li><p>使用<br>运行后如下结果  </p>
+<blockquote>
+<p>python portscanner.py -H localhost -P 21,22<br>[+] Scan Reselts for:localhost<br>[+]22/TCP open<br>[+] SSH-2.0-OpenSSH_6.4<br>[+]21/TCP open<br>[+] 220 (vsFTPd 3.0.2)  </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
+<li>线程优化<br>采用多线程扫描<br><pre><code><br>for tgtPort in tgtPorts:<br> t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))<br> t.start()<br></code></pre><br>这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：<br><pre><code><br>import threading<br>import multiprocessing<br>lock = multiprocessing.Semaphore(value=1) #锁<br>def connScan(tgtHost, tgtPort):<br> try:<pre><code>connSkt = socket(AF_INET,SOCK_STREAM)
+connSkt.connect((tgtHost,tgtPort))
+connSkt.send(&apos;Hello\r\n&apos;)
+results = connSkt.recv(100)
+lock.acquire()
+print &quot;[+]%d/TCP open&quot; %(tgtPort)
+print &quot;[+] &quot;+str(results)
+</code></pre> except:<pre><code>lock.acquire()
+print &quot;[-]%d/TCP closed&quot; %(tgtPort)
+</code></pre> finally:<pre><code>lock.release()
+connSkt.close()
+</code></pre>def portScan(tgtHost,tgtPorts):<br> try:<pre><code>tgtIP = gethostbyname(tgtHost)
+</code></pre> except:<pre><code>print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)
+</code></pre> try:<pre><code>tgtName = gethostbyaddr(tgtIP)
+print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]
+</code></pre> except:<pre><code>print &apos;\n[+] Scan Results for: &apos;+ tgtIP
+</code></pre> setdefaulttimeout(1)<br> for tgtPort in tgtPorts:<pre><code>#print &apos;Scanning port &apos; + tgtPort
+t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))
+t.start()
+</code></pre></code></pre><br>完整代码请参考<a href="https://github.com/iceziYao/Grocery/blob/master/portscanner.py" target="_blank" rel="external">portscanner.py</a></li>
+<li>使用nmap端口扫描代码<br>2.1 下载Python-Nmap<br><code>pip install Python-Nmap</code><br>2.2 实现<br><pre><code><br>import nmap<br>import optparse<br>from socket import *<br>import os,sys<br>def nmapScan(tgtHost,tgtPort):<br>   nmScan = nmap.PortScanner()<br>   nmScan.scan(tgtHost,tgtPort)<br>   status = nmScan[tgtHost][‘tcp’][int(tgtPort)][‘state’]<br>   print ‘[!] %s tcp/%s %s’ %(tgtHost,tgtPort,status)<br></code></pre><br>详细代码查看<a href="https://github.com/iceziYao/Grocery/blob/master/nmapport.py" target="_blank" rel="external">nmapport.py</a></li>
+</ol>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2016/05/01/python端口/" data-id="ciqfsewj50004116go727awia" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Python-黑客编程/">Python 黑客编程</a></div><div class="post-nav"><a href="/2016/05/06/nodejs/" class="pre">初探node.js</a><a href="/2016/01/16/haproxy/" class="next">Haproxy负载均衡</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/linux基础/">Linux基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

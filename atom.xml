@@ -103,6 +103,198 @@
   </entry>
   
   <entry>
+    <title>初探node.js</title>
+    <link href="https://iceziyao.github.io/2016/05/06/nodejs/"/>
+    <id>https://iceziyao.github.io/2016/05/06/nodejs/</id>
+    <published>2016-05-06T13:49:33.000Z</published>
+    <updated>2016-07-09T23:12:03.819Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是node-js&quot;&gt;&lt;a href=&quot;#什么是node-js&quot; class=&quot;headerlink&quot; title=&quot;什么是node.js&quot;&gt;&lt;/a&gt;什么是node.js&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js 是构建于Chrome的JavaScript引擎的&lt;br&gt;Google的浏览器Chrome，有一个非常快速的JavaScript引擎，叫做V8。这个JS引擎可以被独立出来，该解释器拥有另一个独特特征；可以下载该引擎并将其嵌入任何 应用程序。Node.js就是建立在V8之上的。这也是为什么Node.js会运行的如此之快。对于开发者来说，有几个好处：&lt;ul&gt;
+&lt;li&gt;js完全通用&lt;/li&gt;
+&lt;li&gt;v8的发展影响着node.js&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Node.js 不仅仅是一个网页服务器或者平台&lt;br&gt;Node.js 不是以网页为中心的。Node.js 是通用目的的JS运行时，带有很多功能强大的库。其中有一个库提供了 HTTP/HTTPS 的实现。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Node.js是面向对象的&lt;br&gt;Node.js的实质就是用Javascript的代码规范通过C++进行了实现和封装。一般在前端用js时，无非是ajax以及特效，仅仅针对一个页面。所以，不用面向对象也可以完成，但在后台，我们常用一些代码，所以进行封装，等用的时候新建一个对象。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;node.js能做什么？&lt;br&gt;正如 JavaScript 为客户端而生，Node.js 为网络而生。Node.js 能做的远不止开发一个网站那么简单，使用 Node.js，你可以轻松地开发：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 具有复杂逻辑的网站；&lt;br&gt; 基于社交网络的大规模 Web 应用；&lt;br&gt; Web Socket 服务器；&lt;br&gt; TCP/UDP 套接字应用程序；&lt;br&gt; 命令行工具；&lt;br&gt; 交互式终端程序；&lt;br&gt; 带有图形用户界面的本地应用程序；&lt;br&gt; 单元测试工具；&lt;br&gt; 客户端 JavaScript 编译器。  &lt;/p&gt;
+&lt;p&gt;Node.js 内建了 HTTP 服务器支持，也就是说你可以轻而易举地实现一个网站和服务器的组合。这和 PHP、Perl 不一样，因为在使用 PHP 的时候，必须先搭建一个 Apache 之类的HTTP 服务器，然后通过 HTTP 服务器的模块加载或 CGI 调用，才能将 PHP 脚本的执行结果呈现给用户。而当你使用 Node.js 时，不用额外搭建一个 HTTP 服务器，因为 Node.js 本身就内建了一个。这个服务器不仅可以用来调试代码，而且它本身就可以部署到产品环境，它的性能足以满足要求。&lt;br&gt;Node.js 还可以部署到非网络应用的环境下，比如一个命令行工具  。Node.js 还可以调用C/C++ 的代码，这样可以充分利用已有的诸多函数库，也可以将对性能要求非常高的部分用C/C++ 来实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;node.js的原理  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单线程&lt;/li&gt;
+&lt;li&gt;异步非阻塞&lt;/li&gt;
+&lt;li&gt;事件驱动&lt;br&gt;用高并发解释  &lt;blockquote&gt;
+&lt;p&gt;一般来说，高并发解决方案会提供多线程模型，为每个业务逻辑提供一个线程，通过系统线程切换来来弥补同步I/O调用的时间开销。node.js使用的是单线程模型，对所有I/O都采用异步的请求方式，避免频繁的上下文切换，在node.js执行的时候维护着一个事件队列；程序在执行时进入事件循环等待下一个事件到来，每个异步I/O请求完成后都会被推送到事件队列中的等待执行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;例子：&lt;br&gt;对于一个简单的数据库访问操作，传统方式是这样实现的   &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;res = db.query(&amp;apos;SELECT * from some_table&amp;apos;);
+res.output();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;代码执行到第一行的时候线程会阻塞，等待query返回结果，然后继续处理。由于数据库查询、磁盘读写、网络通信等原因（所谓的I/O）阻塞时间会非常大（相对于CPU始终频率）。对于高并发的访问，一方面线程长期阻塞等待，另一方面为了应付新情求而不断添加新线程，会浪费大量系统资源，同时线程的增加也会也会占用大量的CPU时间来处理内存上下文切换。&lt;br&gt;node.js的处理方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;db.query(&amp;apos;SELECT * from some_table&amp;apos;，function(res) {   
+        res.output();  
+});  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;query的第二个参数是一个回调函数，进程执行到db.query的时候不会等待结果返回，而是直接继续执行下面的语句，直到进入事件循环。当数据库执行结果返回的时候会将事件发送到事件队列，等到线程进入事件循环后才会调用之前的回调函数。&lt;br&gt;node.js的异步机制是基于事件的，所有的I/O、网络通信、数据库查询都以非阻塞的方式执行，返回结果由事件循环来处理。node.js在同一时刻只会处理一个事件，完成后立即进入事件循环检查后面事件。这样CPU和内存在同一时间集中处理一件事，同时尽量让耗时的I/O等操作并行执行。   &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;事件循环机制&lt;br&gt;所谓事件循环是指node.js会把所有的异步操作使用事件机制解决，有个线程在不断地循环检测事件队列。&lt;br&gt;node.js中所有的逻辑都是事件的回调函数，所以node.js始终在事件循环中，程序入口就是事件循环第一个事件的回调函数。事件的回调函数中可能会发出I/O请求或直接发射（ emit）事件，执行完毕后返回事件循环。事件循环会检查事件队列中有没有未处理的事件，直到程序结束。node.js的事件循环对开发者不可见，由libev库实现，libev不断检查是否有活动的、可供检测的事件监听器，直到检查不到时才退出事件循环，程序结束。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;node.js的优缺点&lt;ul&gt;
+&lt;li&gt;优点：&lt;ul&gt;
+&lt;li&gt;简单&lt;/li&gt;
+&lt;li&gt;高性能，避免了频繁的线程切换开销，一个线程而已&lt;/li&gt;
+&lt;li&gt;占用资源小，因为是单线程，在大负荷情况下，对内存占用仍然很低&lt;/li&gt;
+&lt;li&gt;线程安全，没有加锁、解锁、死锁这些问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：&lt;ul&gt;
+&lt;li&gt;CPU密集型任务存在短板&lt;br&gt;  事件循环机制，处理所有的请求。在事件处理过程中，它会智能地将一些涉及到IO、网络通信等耗时比较长的操作，交由worker threads去执行，执行完了再回调。但是，那些非IO操作，只用CPU计算的操作，就只能自己抗了。&lt;/li&gt;
+&lt;li&gt;无法利用CPU的多核&lt;br&gt;  Node.js是单线程程序，它只有一个event loop，也只占用一个CPU/内核。&lt;/li&gt;
+&lt;li&gt;如果有异常抛出，因为是单线程，整个项目将不可用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是node-js&quot;&gt;&lt;a href=&quot;#什么是node-js&quot; class=&quot;headerlink&quot; title=&quot;什么是node.js&quot;&gt;&lt;/a&gt;什么是node.js&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，
+    
+    </summary>
+    
+      <category term="后台" scheme="https://iceziyao.github.io/categories/%E5%90%8E%E5%8F%B0/"/>
+    
+    
+      <category term="js node.js" scheme="https://iceziyao.github.io/tags/js-node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python编写一个端口扫描器</title>
+    <link href="https://iceziyao.github.io/2016/05/01/python%E7%AB%AF%E5%8F%A3/"/>
+    <id>https://iceziyao.github.io/2016/05/01/python端口/</id>
+    <published>2016-04-30T16:00:00.000Z</published>
+    <updated>2016-07-09T23:07:33.198Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器&lt;/li&gt;
+&lt;li&gt;端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  &lt;ul&gt;
+&lt;li&gt;处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  &lt;/li&gt;
+&lt;li&gt;将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)&lt;/li&gt;
+&lt;li&gt;端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;实现端口扫描器&quot;&gt;&lt;a href=&quot;#实现端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;实现端口扫描器&quot;&gt;&lt;/a&gt;实现端口扫描器&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;main函数&lt;pre&gt;&lt;code&gt;
+def main():
+ parser = optparse.OptionParser(&quot;usage: %prog&quot; + \
+ &quot;-H &lt;tgthost host=&quot;&quot;&gt; -P &lt;tgtport&gt;&quot; ,version=&quot;%prog 1.0&quot;)
+ &#39;&#39;&#39; 添加命令行参 &#39;&#39;&#39;
+ parser.add_option(&#39;-H&#39;,dest=&#39;Host&#39;,type=&#39;string&#39;,help=&#39;specify target host&#39;)
+ parser.add_option(&#39;-P&#39;,dest=&#39;Port&#39;,type=&#39;string&#39;,\
+ help=&#39;specify target port[s] separated by command&#39;)
+ (options ,args) = parser.parse_args()
+ tgtHost = options.Host
+ tgtPorts = str(options.Port).split(&quot;,&quot;)
+ if (tgtHost == None) or (tgtPorts[0] == None):
+     print &#39;[-] You must specify a target host and port[s]&#39;
+     exit(0)
+ portScan(tgtHost,tgtPorts)
+&lt;/tgtport&gt;&lt;/tgthost&gt;&lt;/code&gt;&lt;/pre&gt;  &lt;/li&gt;
+&lt;li&gt;portScan(tgtHost,tgtPorts)&lt;pre&gt;&lt;code&gt;
+def portScan(tgtHost,tgtPorts):
+ try:
+   tgtIP = gethostbyname(tgtHost)
+ except:
+   print &quot;[-] cannot resolve &#39;%s&#39;:Unknown host&quot; %(tgtHost)
+ try:
+   tgtName = gethostbyaddr(tgtIP)
+   print &#39;\n[+] Scan Reselts for:&#39; + tgtName[0]
+ except:
+   print &#39;\n[+] Scan Results for: &#39;+ tgtIP
+ setdefaulttimeout(1)
+ for tgtPort in tgtPorts:
+   connScan(tgtHost,tgtPort)  
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;connScan(tgtHost, tgtPort)  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+def connScan(tgtHost, tgtPort):
+ try:
+     connSkt = socket(AF_INET,SOCK_STREAM)
+     connSkt.connect((tgtHost,tgtPort))
+     connSkt.send(&#39;Hello\r\n&#39;)
+     results = connSkt.recv(100)
+     lock.acquire()
+     print &quot;[+]%d/TCP open&quot; %(tgtPort)
+     print &quot;[+] &quot;+str(results)
+ except:
+     lock.acquire()
+     print &quot;[-]%d/TCP closed&quot; %(tgtPort)
+ finally:
+     lock.release()
+     connSkt.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用&lt;br&gt;运行后如下结果  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;python portscanner.py -H localhost -P 21,22&lt;br&gt;[+] Scan Reselts for:localhost&lt;br&gt;[+]22/TCP open&lt;br&gt;[+] SSH-2.0-OpenSSH_6.4&lt;br&gt;[+]21/TCP open&lt;br&gt;[+] 220 (vsFTPd 3.0.2)  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;优化&quot;&gt;&lt;a href=&quot;#优化&quot; class=&quot;headerlink&quot; title=&quot;优化&quot;&gt;&lt;/a&gt;优化&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;线程优化&lt;br&gt;采用多线程扫描&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;for tgtPort in tgtPorts:&lt;br&gt; t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))&lt;br&gt; t.start()&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;import threading&lt;br&gt;import multiprocessing&lt;br&gt;lock = multiprocessing.Semaphore(value=1) #锁&lt;br&gt;def connScan(tgtHost, tgtPort):&lt;br&gt; try:&lt;pre&gt;&lt;code&gt;connSkt = socket(AF_INET,SOCK_STREAM)
+connSkt.connect((tgtHost,tgtPort))
+connSkt.send(&amp;apos;Hello\r\n&amp;apos;)
+results = connSkt.recv(100)
+lock.acquire()
+print &amp;quot;[+]%d/TCP open&amp;quot; %(tgtPort)
+print &amp;quot;[+] &amp;quot;+str(results)
+&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;lock.acquire()
+print &amp;quot;[-]%d/TCP closed&amp;quot; %(tgtPort)
+&lt;/code&gt;&lt;/pre&gt; finally:&lt;pre&gt;&lt;code&gt;lock.release()
+connSkt.close()
+&lt;/code&gt;&lt;/pre&gt;def portScan(tgtHost,tgtPorts):&lt;br&gt; try:&lt;pre&gt;&lt;code&gt;tgtIP = gethostbyname(tgtHost)
+&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;print &amp;quot;[-] cannot resolve &amp;apos;%s&amp;apos;:Unknown host&amp;quot; %(tgtHost)
+&lt;/code&gt;&lt;/pre&gt; try:&lt;pre&gt;&lt;code&gt;tgtName = gethostbyaddr(tgtIP)
+print &amp;apos;\n[+] Scan Reselts for:&amp;apos; + tgtName[0]
+&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;print &amp;apos;\n[+] Scan Results for: &amp;apos;+ tgtIP
+&lt;/code&gt;&lt;/pre&gt; setdefaulttimeout(1)&lt;br&gt; for tgtPort in tgtPorts:&lt;pre&gt;&lt;code&gt;#print &amp;apos;Scanning port &amp;apos; + tgtPort
+t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))
+t.start()
+&lt;/code&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;完整代码请参考&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/portscanner.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;portscanner.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使用nmap端口扫描代码&lt;br&gt;2.1 下载Python-Nmap&lt;br&gt;&lt;code&gt;pip install Python-Nmap&lt;/code&gt;&lt;br&gt;2.2 实现&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;import nmap&lt;br&gt;import optparse&lt;br&gt;from socket import *&lt;br&gt;import os,sys&lt;br&gt;def nmapScan(tgtHost,tgtPort):&lt;br&gt;   nmScan = nmap.PortScanner()&lt;br&gt;   nmScan.scan(tgtHost,tgtPort)&lt;br&gt;   status = nmScan[tgtHost][‘tcp’][int(tgtPort)][‘state’]&lt;br&gt;   print ‘[!] %s tcp/%s %s’ %(tgtHost,tgtPort,status)&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;详细代码查看&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/nmapport.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nmapport.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的
+    
+    </summary>
+    
+      <category term="Python 编程语言" scheme="https://iceziyao.github.io/categories/Python-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Python 黑客编程" scheme="https://iceziyao.github.io/tags/Python-%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Haproxy负载均衡</title>
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>
@@ -1298,6 +1490,131 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     
       <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础</title>
+    <link href="https://iceziyao.github.io/2015/10/06/linux%E5%9F%BA%E7%A1%80/"/>
+    <id>https://iceziyao.github.io/2015/10/06/linux基础/</id>
+    <published>2015-10-05T16:00:00.000Z</published>
+    <updated>2016-07-09T23:06:20.144Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;如何在linux上活下去&quot;&gt;&lt;a href=&quot;#如何在linux上活下去&quot; class=&quot;headerlink&quot; title=&quot;如何在linux上活下去&quot;&gt;&lt;/a&gt;如何在linux上活下去&lt;/h3&gt;&lt;p&gt;1.cd 命令&lt;br&gt;用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cd /mnt          进入/mnt&lt;br&gt;cd ~           进入用户家目录&lt;br&gt;cd 绝对路径 or 相对路径  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2.ls 命令&lt;br&gt;查看文件与目录的命令，list之意,常用如下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-l ：列出长数据串，包含文件的属性与权限数据等&lt;br&gt;&lt;br&gt;-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用)&lt;br&gt;&lt;br&gt;-d ：仅列出目录本身，而不是列出目录的文件数据&lt;br&gt;&lt;br&gt;-h ：将文件容量以较易读的方式（GB，kB等）列出来&lt;br&gt;-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注：这些参数也可以组合使用  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ls -l #以长数据串的形式列出当前目录下的数据文件和目录&lt;br&gt;ls -lR #以长数据串的形式列出当前目录下的所有文件   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.mkdir 命令&lt;br&gt;创建目录&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mkdir dir&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-p 递归创建&lt;br&gt;-m 给于权限&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;4.touch 命令&lt;br&gt;创建文件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;touch filename&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;5.grep 命令&lt;br&gt;命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等等&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;grep [-acinv] [–color=auto] ‘查找字符串’ filename&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;它的常用参数如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-a ：将binary文件以text文件的方式查找数据&lt;br&gt;-c ：计算找到‘查找字符串’的次数&lt;br&gt;-i ：忽略大小写的区别，即把大小写视为相同&lt;br&gt;-v ：反向选择，即显示出没有‘查找字符串’内容的那一行&lt;br&gt; 例如：&lt;br&gt; 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色&lt;br&gt;grep –color=auto ‘MANPATH’ /etc/man.config&lt;br&gt;把ls -l的输出中包含字母file（不区分大小写）的内容输出&lt;br&gt;ls -l | grep -i file&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;6.find 命令&lt;br&gt;find是一个基于查找的功能非常强大的命令，相对而言，它的使用也相对较为复杂，参数也比较多，所以在这里将给把它们分类列出，它的基本语法如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;find [PATH] [option] [action]&lt;br&gt;与时间有关的参数：&lt;br&gt;-mtime n : n为数字，意思为在n天之前的“一天内”被更改过的文件；&lt;br&gt;-mtime +n : 列出在n天之前（不含n天本身）被更改过的文件名；&lt;br&gt;-mtime -n : 列出在n天之内（含n天本身）被更改过的文件名；&lt;br&gt;-newer file : 列出比file还要新的文件名&lt;br&gt;例如：&lt;br&gt;find /root -mtime 0 # 在当前目录下查找今天之内有改动的文件&lt;br&gt;与用户或用户组名有关的参数：&lt;br&gt;-user name : 列出文件所有者为name的文件&lt;br&gt;-group name : 列出文件所属用户组为name的文件&lt;br&gt;-uid n : 列出文件所有者为用户ID为n的文件&lt;br&gt;-gid n : 列出文件所属用户组为用户组ID为n的文件&lt;br&gt;例如：&lt;br&gt;find /home/ljianhui -user ljianhui # 在目录/home/ljianhui中找出所有者为ljianhui的文件&lt;br&gt;与文件权限及名称有关的参数：&lt;br&gt;-name filename ：找出文件名为filename的文件&lt;br&gt;-size [+-]SIZE ：找出比SIZE还要大（+）或小（-）的文件&lt;br&gt;-tpye TYPE ：查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件（f)、设备文件（b、c）、&lt;br&gt;             目录（d）、连接文件（l）、socket（s）、FIFO管道文件（p）；&lt;br&gt;-perm mode ：查找文件权限刚好等于mode的文件，mode用数字表示，如0755；&lt;br&gt;-perm -mode ：查找文件权限必须要全部包括mode权限的文件，mode用数字表示&lt;br&gt;-perm +mode ：查找文件权限包含任一mode的权限的文件，mode用数字表示&lt;br&gt;例如：&lt;br&gt;find / -name passwd # 查找文件名为passwd的文件&lt;br&gt;find . -perm 0755 # 查找当前目录中文件权限的0755的文件&lt;br&gt;find . -size +12k # 查找当前目录中大于12KB的文件，注意c表示byte&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;7.cp 命令&lt;br&gt;拷贝命令,命令用于复制文件，copy:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;   -a ：将文件的特性一起复制&lt;br&gt;    -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份&lt;br&gt;    -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行&lt;br&gt;    -r ：递归持续复制，用于目录的复制行为&lt;br&gt;    -u ：目标文件与源文件有差异时才会复制  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;8.mv 命令&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mv oldname newname&lt;br&gt;9.ps 命令&lt;br&gt;命令用于将某个时间点的进程运行情况选取下来并输出，process之意:&lt;br&gt;-A ：所有的进程均显示出来&lt;br&gt;-a ：不与terminal有关的所有进程&lt;br&gt;-u ：有效用户的相关进程&lt;br&gt;-x ：一般与a参数一起使用，可列出较完整的信息&lt;br&gt;-l ：较长，较详细地将PID的信息列出&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;常用如下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ps aux # 查看系统所有的进程数据&lt;br&gt;ps ax # 查看不与terminal有关的所有进程&lt;br&gt;ps -lA # 查看系统所有的进程数据&lt;br&gt;ps axjf # 查看连同一部分进程树状态  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;10.kill 命令&lt;br&gt;该命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;kill -signal PID&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;signal的常用参数如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1：SIGHUP，启动被终止的进程&lt;br&gt; 2：SIGINT，相当于输入ctrl+c，中断一个程序的进行&lt;br&gt; 9：SIGKILL，强制中断一个进程的进行&lt;br&gt; 15：SIGTERM，以正常的结束进程方式来终止进程&lt;br&gt; 17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;11.killall 命令&lt;br&gt;命令用于向一个命令启动的进程发送一个信号，它的一般语法如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;killall [-iIe] [command name]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;具体参数解释:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-i ：交互式的意思，若需要删除时，会询问用户&lt;br&gt;-e ：表示后面接的command name要一致，但command name不能超过15个字符&lt;br&gt;-I ：命令名称忽略大小写&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;12.file 命令&lt;br&gt;用于判断接在file命令后的文件的基本数据&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;file filename&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;13.tar 命令&lt;br&gt;该命令用于对文件进行打包，默认情况并不会压缩，如果指定了相应的参数，它还会调用相应的压缩程序:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;   -c ：新建打包文件&lt;br&gt;    -t ：查看打包文件的内容含有哪些文件名&lt;br&gt;    -x ：解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中&lt;br&gt;    -j ：通过bzip2的支持进行压缩/解压缩&lt;br&gt;    -z ：通过gzip的支持进行压缩/解压缩&lt;br&gt;    -v ：在压缩/解压缩过程中，将正在处理的文件名显示出来&lt;br&gt;    -f filename ：filename为要处理的文件&lt;br&gt;    -C dir ：指定压缩/解压缩的目录dir  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;14.cat 命令&lt;br&gt;用于查看文本文件的内容&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;cat filename&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;15.gcc 命令&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-o ：output之意，用于指定生成一个可执行文件的文件名&lt;br&gt;-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序&lt;br&gt;-I ：增加编译时搜索头文件的路径&lt;br&gt;-L ：增加编译时搜索静态连接库的路径&lt;br&gt;-S ：把源文件生成汇编代码文件&lt;br&gt;-lm：表示标准库的目录中名为libm.a的函数库&lt;br&gt;-lpthread ：连接NPTL实现的线程库&lt;br&gt;-std= ：用于指定把使用的C语言的版本&lt;br&gt;# 把源文件test.c按照c99标准编译成可执行程序test&lt;br&gt;&lt;code&gt;gcc -o test test.c -lm -std=c99&lt;/code&gt;&lt;br&gt;#把源文件test.c转换为相应的汇编程序源文件test.s&lt;br&gt;&lt;code&gt;gcc -S test.c&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;16.rm 命令&lt;br&gt;用于删除文件或目录，remove&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-f ：就是force的意思，忽略不存在的文件，不会出现警告消息&lt;br&gt;-i ：互动模式，在删除前会询问用户是否操作&lt;br&gt;-r ：递归删除，最常用于目录删除，它是一个非常危险的参数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例如&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;rm -i file&lt;/code&gt; #删除文件file，在删除之前会询问是否进行该操作&lt;br&gt;&lt;code&gt;rm -fr dir&lt;/code&gt; # 强制删除目录dir中的所有文件&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;17.chgrp命令&lt;br&gt;用于改变文件所属用户组，它的使用非常简单，它的基本用法如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;chgrp [-R] dirname/filename&lt;br&gt;-R ：进行递归的持续对所有文件和子目录更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;18.chown命令&lt;br&gt;该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同，不再详述。&lt;/p&gt;
+&lt;p&gt;19.chmod命令&lt;br&gt;该命令用于改变文件的权限，一般的用法如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;chmod [-R] xyz 文件或目录&lt;br&gt;-R：进行递归的持续更改，即连同子目录下的所有文件都会更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;20.time命令&lt;br&gt;该命令用于测算一个命令（即程序）的执行时间。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;time ./process&lt;br&gt;time ps aux&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在程序或命令运行结束后，在最后输出了三个时间，它们分别是：&lt;br&gt;user：用户CPU时间，命令执行完成花费的用户CPU时间，即命令在用户态中执行时间总和；&lt;br&gt;system：系统CPU时间，命令执行完成花费的系统CPU时间，即命令在核心态中执行时间总和；&lt;br&gt;real：实际时间，从command命令行开始执行到运行终止的消逝时间；&lt;/p&gt;
+&lt;p&gt;注：用户CPU时间和系统CPU时间之和为CPU时间，即命令占用CPU执行的时间总和。实际时间要大于CPU时间，因为Linux是多任务操作系统，往往在执行一条命令时，系统还要处理其它任务。另一个需要注意的问题是即使每次执行相同命令，但所花费的时间也是不一样，其花费时间是与系统运行相关的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;如何在linux上活下去&quot;&gt;&lt;a href=&quot;#如何在linux上活下去&quot; class=&quot;headerlink&quot; title=&quot;如何在linux上活下去&quot;&gt;&lt;/a&gt;如何在linux上活下去&lt;/h3&gt;&lt;p&gt;1.cd 命令&lt;br&gt;用于切换当前目录，它的参数是要切换到的
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/tags/Linux/"/>
     
   </entry>
   

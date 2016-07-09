@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>初探node.js | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">初探node.js</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">初探node.js</h1><div class="post-meta">May 6, 2016<span> | </span><span class="category"><a href="/categories/后台/">后台</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="什么是node-js"><a href="#什么是node-js" class="headerlink" title="什么是node.js"></a>什么是node.js</h3><ol>
+<li><p>node.js != Javascript<br>事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  </p>
+<ul>
+<li>Node.js 是构建于Chrome的JavaScript引擎的<br>Google的浏览器Chrome，有一个非常快速的JavaScript引擎，叫做V8。这个JS引擎可以被独立出来，该解释器拥有另一个独特特征；可以下载该引擎并将其嵌入任何 应用程序。Node.js就是建立在V8之上的。这也是为什么Node.js会运行的如此之快。对于开发者来说，有几个好处：<ul>
+<li>js完全通用</li>
+<li>v8的发展影响着node.js</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Node.js 不仅仅是一个网页服务器或者平台<br>Node.js 不是以网页为中心的。Node.js 是通用目的的JS运行时，带有很多功能强大的库。其中有一个库提供了 HTTP/HTTPS 的实现。</p>
+</li>
+<li><p>Node.js是面向对象的<br>Node.js的实质就是用Javascript的代码规范通过C++进行了实现和封装。一般在前端用js时，无非是ajax以及特效，仅仅针对一个页面。所以，不用面向对象也可以完成，但在后台，我们常用一些代码，所以进行封装，等用的时候新建一个对象。</p>
+</li>
+<li><p>node.js能做什么？<br>正如 JavaScript 为客户端而生，Node.js 为网络而生。Node.js 能做的远不止开发一个网站那么简单，使用 Node.js，你可以轻松地开发：  </p>
+<blockquote>
+<p> 具有复杂逻辑的网站；<br> 基于社交网络的大规模 Web 应用；<br> Web Socket 服务器；<br> TCP/UDP 套接字应用程序；<br> 命令行工具；<br> 交互式终端程序；<br> 带有图形用户界面的本地应用程序；<br> 单元测试工具；<br> 客户端 JavaScript 编译器。  </p>
+<p>Node.js 内建了 HTTP 服务器支持，也就是说你可以轻而易举地实现一个网站和服务器的组合。这和 PHP、Perl 不一样，因为在使用 PHP 的时候，必须先搭建一个 Apache 之类的HTTP 服务器，然后通过 HTTP 服务器的模块加载或 CGI 调用，才能将 PHP 脚本的执行结果呈现给用户。而当你使用 Node.js 时，不用额外搭建一个 HTTP 服务器，因为 Node.js 本身就内建了一个。这个服务器不仅可以用来调试代码，而且它本身就可以部署到产品环境，它的性能足以满足要求。<br>Node.js 还可以部署到非网络应用的环境下，比如一个命令行工具  。Node.js 还可以调用C/C++ 的代码，这样可以充分利用已有的诸多函数库，也可以将对性能要求非常高的部分用C/C++ 来实现。</p>
+</blockquote>
+</li>
+<li><p>node.js的原理  </p>
+<ul>
+<li>单线程</li>
+<li>异步非阻塞</li>
+<li>事件驱动<br>用高并发解释  <blockquote>
+<p>一般来说，高并发解决方案会提供多线程模型，为每个业务逻辑提供一个线程，通过系统线程切换来来弥补同步I/O调用的时间开销。node.js使用的是单线程模型，对所有I/O都采用异步的请求方式，避免频繁的上下文切换，在node.js执行的时候维护着一个事件队列；程序在执行时进入事件循环等待下一个事件到来，每个异步I/O请求完成后都会被推送到事件队列中的等待执行。</p>
+</blockquote>
+</li>
+<li><p>例子：<br>对于一个简单的数据库访问操作，传统方式是这样实现的   </p>
+<pre><code>res = db.query(&apos;SELECT * from some_table&apos;);
+res.output();
+</code></pre><p>代码执行到第一行的时候线程会阻塞，等待query返回结果，然后继续处理。由于数据库查询、磁盘读写、网络通信等原因（所谓的I/O）阻塞时间会非常大（相对于CPU始终频率）。对于高并发的访问，一方面线程长期阻塞等待，另一方面为了应付新情求而不断添加新线程，会浪费大量系统资源，同时线程的增加也会也会占用大量的CPU时间来处理内存上下文切换。<br>node.js的处理方式：</p>
+<pre><code>db.query(&apos;SELECT * from some_table&apos;，function(res) {   
+        res.output();  
+});  
+</code></pre><p>query的第二个参数是一个回调函数，进程执行到db.query的时候不会等待结果返回，而是直接继续执行下面的语句，直到进入事件循环。当数据库执行结果返回的时候会将事件发送到事件队列，等到线程进入事件循环后才会调用之前的回调函数。<br>node.js的异步机制是基于事件的，所有的I/O、网络通信、数据库查询都以非阻塞的方式执行，返回结果由事件循环来处理。node.js在同一时刻只会处理一个事件，完成后立即进入事件循环检查后面事件。这样CPU和内存在同一时间集中处理一件事，同时尽量让耗时的I/O等操作并行执行。   </p>
+</li>
+<li>事件循环机制<br>所谓事件循环是指node.js会把所有的异步操作使用事件机制解决，有个线程在不断地循环检测事件队列。<br>node.js中所有的逻辑都是事件的回调函数，所以node.js始终在事件循环中，程序入口就是事件循环第一个事件的回调函数。事件的回调函数中可能会发出I/O请求或直接发射（ emit）事件，执行完毕后返回事件循环。事件循环会检查事件队列中有没有未处理的事件，直到程序结束。node.js的事件循环对开发者不可见，由libev库实现，libev不断检查是否有活动的、可供检测的事件监听器，直到检查不到时才退出事件循环，程序结束。   </li>
+</ul>
+</li>
+<li>node.js的优缺点<ul>
+<li>优点：<ul>
+<li>简单</li>
+<li>高性能，避免了频繁的线程切换开销，一个线程而已</li>
+<li>占用资源小，因为是单线程，在大负荷情况下，对内存占用仍然很低</li>
+<li>线程安全，没有加锁、解锁、死锁这些问题</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>CPU密集型任务存在短板<br>  事件循环机制，处理所有的请求。在事件处理过程中，它会智能地将一些涉及到IO、网络通信等耗时比较长的操作，交由worker threads去执行，执行完了再回调。但是，那些非IO操作，只用CPU计算的操作，就只能自己抗了。</li>
+<li>无法利用CPU的多核<br>  Node.js是单线程程序，它只有一个event loop，也只占用一个CPU/内核。</li>
+<li>如果有异常抛出，因为是单线程，整个项目将不可用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2016/05/06/nodejs/" data-id="ciqfsewin0001116ginrrqviz" class="article-share-link">分享到</a><div class="tags"><a href="/tags/js-node-js/">js node.js</a></div><div class="post-nav"><a href="/2016/05/21/python01/" class="pre">Python的内存管理机制</a><a href="/2016/05/01/python端口/" class="next">python编写一个端口扫描器</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/linux基础/">Linux基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
