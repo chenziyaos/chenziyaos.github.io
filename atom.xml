@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-09T15:46:50.804Z</updated>
+  <updated>2016-07-09T17:12:40.021Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python的内存管理机制</title>
+    <link href="https://iceziyao.github.io/2016/05/21/python01/"/>
+    <id>https://iceziyao.github.io/2016/05/21/python01/</id>
+    <published>2016-05-20T16:00:00.000Z</published>
+    <updated>2016-07-09T17:12:40.021Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;浅析引用计数&lt;br&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;引用计数减少情况  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&gt;&gt; import sys
+&gt;&gt; x = 1
+&gt;&gt; sys.getrefcount(x)
+599
+&gt;&gt; y = x
+&gt;&gt; sys.getrefcount(x)
+600
+&gt;&gt; del y
+&gt;&gt; sys.getrefcount(x)
+599
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;垃圾回收&lt;br&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1 引用计数  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2.2 标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2.3 分代回收  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;2.3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;内存池机制&lt;br&gt;&lt;img src=&quot;/blog/img/python内存.x-png&quot; alt=&quot;python内存分层图&quot;&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;3.1 内存分配层次：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Python的内存机制以金字塔层次：&lt;br&gt;　　   -1，-2层主要有操作系统进行操作，&lt;br&gt;　　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；&lt;br&gt;　　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.2 原因  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.3 具现化  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;　　Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Memcached简介</title>
@@ -685,6 +770,102 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     
       <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ajax初探</title>
+    <link href="https://iceziyao.github.io/2015/01/02/ajax/"/>
+    <id>https://iceziyao.github.io/2015/01/02/ajax/</id>
+    <published>2015-01-01T16:00:00.000Z</published>
+    <updated>2016-07-09T17:14:09.372Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  &lt;/li&gt;
+&lt;li&gt;AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  &lt;/li&gt;
+&lt;li&gt;AJAX 是一种用于创建快速动态网页的技术。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;发展  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。&lt;/li&gt;
+&lt;li&gt;在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。&lt;br&gt;2.1 如何更改页面信息呢？&lt;br&gt;可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。&lt;br&gt;2.2 如何与后台进行交互？&lt;br&gt;那么，我们必须向后台进行请求，可以用个超链接&lt;code&gt;&amp;lt;a href=&amp;#39;#&amp;#39; title=&amp;#39;&amp;#39; target=_blank&amp;lt;/a&amp;gt;&lt;/code&gt;,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。&lt;br&gt;可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;工作原理&lt;br&gt;Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。&lt;br&gt;XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所以我们先从XMLHttpRequest讲起，来看看它的工作原理。&lt;br&gt;　  首先，我们先来看看XMLHttpRequest这个对象的属性。&lt;br&gt;　　它的属性有:  &lt;ul&gt;
+&lt;li&gt;onreadystatechange  每次状态改变所触发事件的事件处理程序。&lt;/li&gt;
+&lt;li&gt;responseText     从服务器进程返回数据的字符串形式。&lt;/li&gt;
+&lt;li&gt;responseXML    从服务器进程返回的DOM兼容的文档数据对象。&lt;/li&gt;
+&lt;li&gt;status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）&lt;/li&gt;
+&lt;li&gt;status Text       伴随状态码的字符串信息&lt;/li&gt;
+&lt;li&gt;readyState       对象状态值  &lt;blockquote&gt;
+&lt;p&gt;0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）&lt;br&gt;　　 1 (初始化) 对象已建立，尚未调用send方法&lt;br&gt;　　 2 (发送数据) send方法已调用，但是当前的状态及http头未知&lt;br&gt;　　 3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，&lt;br&gt;　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ajax的使用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建XMLHTTPReq&lt;/li&gt;
+&lt;li&gt;发送数据&lt;/li&gt;
+&lt;li&gt;接受回调数据&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;var XMLHttpReq=null;&lt;br&gt;//创建Ajax引擎对象&lt;br&gt;function createXMLHttpRequest() {&lt;br&gt; try {&lt;pre&gt;&lt;code&gt;   XMLHttpReq = new ActiveXObject(&amp;quot;Msxml2.XMLHTTP&amp;quot;);//IE高版本创建XMLHTTP
+}
+catch(E) {
+   try {
+          XMLHttpReq = new ActiveXObject(&amp;quot;Microsoft.XMLHTTP&amp;quot;);//IE低版本创建XMLHTTP
+   }
+   catch(E) {
+          XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;/向后台发送数据&lt;br&gt;unction sendGetAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);&lt;br&gt;            XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;            XMLHttpReq.send(null);&lt;/p&gt;
+&lt;p&gt;unction sendPOSTAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“post”, url, true);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-length”, text.length);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Connection”, “close”);&lt;br&gt;             XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;             XMLHttpReq.send(null);&lt;/p&gt;
+&lt;p&gt;unction doResult() {&lt;br&gt;          if (XMLHttpReq.readyState == 4 &amp;amp;&amp;amp; XMLHttpReq.status == 200) {&lt;br&gt;            //4代表执行完成&lt;br&gt;            //200代表执行成功，删除当前表格&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ajax的优缺点&lt;ul&gt;
+&lt;li&gt;优点：&lt;ul&gt;
+&lt;li&gt;就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。&lt;/li&gt;
+&lt;li&gt;异步非阻塞&lt;/li&gt;
+&lt;li&gt;可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。&lt;/li&gt;
+&lt;li&gt;基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：&lt;ul&gt;
+&lt;li&gt;用户不知道数据是否更新&lt;/li&gt;
+&lt;li&gt;无法回退&lt;/li&gt;
+&lt;li&gt;安全问题&lt;br&gt;任何数据处理在前端，都会暴露后台&lt;/li&gt;
+&lt;li&gt;对串流媒体的支持没有FLASH、Java Applet好;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  &lt;/li&gt;
+&lt;li&gt;AJAX = 异步 JavaSc
+    
+    </summary>
+    
+    
+      <category term="ajax" scheme="https://iceziyao.github.io/tags/ajax/"/>
     
   </entry>
   

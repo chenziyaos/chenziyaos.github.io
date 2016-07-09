@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>ajax初探 | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ajax初探</h1><a id="logo" href="/.">非衣</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ajax初探</h1><div class="post-meta">Jan 2, 2015<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><ul>
+<li><p>ajax简介  </p>
+<ul>
+<li>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </li>
+<li>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </li>
+<li>AJAX 是一种用于创建快速动态网页的技术。  </li>
+</ul>
+</li>
+<li><p>发展  </p>
+<ol>
+<li>在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。</li>
+<li>在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。<br>2.1 如何更改页面信息呢？<br>可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。<br>2.2 如何与后台进行交互？<br>那么，我们必须向后台进行请求，可以用个超链接<code>&lt;a href=&#39;#&#39; title=&#39;&#39; target=_blank&lt;/a&gt;</code>,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。<br>可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。</li>
+</ol>
+</li>
+<li><p>工作原理<br>Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。<br>XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    </p>
+<ul>
+<li>所以我们先从XMLHttpRequest讲起，来看看它的工作原理。<br>　  首先，我们先来看看XMLHttpRequest这个对象的属性。<br>　　它的属性有:  <ul>
+<li>onreadystatechange  每次状态改变所触发事件的事件处理程序。</li>
+<li>responseText     从服务器进程返回数据的字符串形式。</li>
+<li>responseXML    从服务器进程返回的DOM兼容的文档数据对象。</li>
+<li>status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）</li>
+<li>status Text       伴随状态码的字符串信息</li>
+<li>readyState       对象状态值  <blockquote>
+<p>0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）<br>　　 1 (初始化) 对象已建立，尚未调用send方法<br>　　 2 (发送数据) send方法已调用，但是当前的状态及http头未知<br>　　 3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，<br>　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据  </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ajax的使用</p>
+<ol>
+<li>创建XMLHTTPReq</li>
+<li>发送数据</li>
+<li>接受回调数据<br><pre><code><br>var XMLHttpReq=null;<br>//创建Ajax引擎对象<br>function createXMLHttpRequest() {<br> try {<pre><code>   XMLHttpReq = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);//IE高版本创建XMLHTTP
+}
+catch(E) {
+   try {
+          XMLHttpReq = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE低版本创建XMLHTTP
+   }
+   catch(E) {
+          XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
+   }
+ }
+</code></pre></code></pre></li>
+</ol>
+</li>
+</ul>
+<p>/向后台发送数据<br>unction sendGetAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);<br>            XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>            XMLHttpReq.send(null);</p>
+<p>unction sendPOSTAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“post”, url, true);<br>             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);<br>             XMLHttpReq.setRequestHeader(“Content-length”, text.length);<br>             XMLHttpReq.setRequestHeader(“Connection”, “close”);<br>             XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>             XMLHttpReq.send(null);</p>
+<p>unction doResult() {<br>          if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {<br>            //4代表执行完成<br>            //200代表执行成功，删除当前表格</p>
+<pre><code>}
+</code></pre><p></p>
+<ul>
+<li>ajax的优缺点<ul>
+<li>优点：<ul>
+<li>就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。</li>
+<li>异步非阻塞</li>
+<li>可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。</li>
+<li>基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>用户不知道数据是否更新</li>
+<li>无法回退</li>
+<li>安全问题<br>任何数据处理在前端，都会暴露后台</li>
+<li>对串流媒体的支持没有FLASH、Java Applet好;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2015/01/02/ajax/" data-id="ciqffku9q0001v26g1obv7h79" class="article-share-link">Aktie</a><div class="tags"><a href="/tags/ajax/">ajax</a></div><div class="post-nav"><a href="/2015/11/24/ftp+mysql/" class="pre">ftp+mysql搭建ftp认证</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/缓存/" style="font-size: 15px;">缓存</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/lnmp-nginx/" style="font-size: 15px;">lnmp,nginx</a> <a href="/tags/python/" style="font-size: 15px;">python</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/ajax/">ajax初探</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
