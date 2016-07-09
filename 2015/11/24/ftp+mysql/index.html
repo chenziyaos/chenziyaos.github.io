@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>ftp+mysql搭建ftp认证 | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ftp+mysql搭建ftp认证</h1><a id="logo" href="/.">非衣</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ftp+mysql搭建ftp认证</h1><div class="post-meta">Nov 24, 2015<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>一、安装所需要程序</p>
+<ol>
+<li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
+<li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
+# cd  pam_mysql-0.7RC1
+# ./configure --with-mysql=/usr --with-openssl
+# make
+# make install  
+</code></pre></li>
+<li>安装vsftpd<blockquote>
+<p><code>yum -y install vsftpd</code></p>
+</blockquote>
+</li>
+</ol>
+<p>二、创建虚拟用户账号  </p>
+<ol>
+<li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
+<blockquote>
+<p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
+</blockquote>
+</li>
+<li><p>添加测试的虚拟用户<br>根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.</p>
+<pre><code>mysql&gt; insert into users(name,password) values(&apos;tom&apos;,&apos;magedu&apos;);
+mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
+</code></pre></li>
+</ol>
+<p>三、配置vsftpd</p>
+<ol>
+<li><p>建立pam认证所需文件</p>
+<pre><code>#vi /etc/pam.d/vsftpd.mysql
+添加如下两行
+auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+account required /lib/security/pam_mysql.so user=vsftpd
+passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+</code></pre></li>
+<li><p>修改vsftpd的配置文件，使其适应mysql认证<br>建立虚拟用户映射的系统用户及对应的目录  </p>
+<pre><code>#useradd -s /sbin/nologin -d /var/ftproot vuser
+#chmod go+rx /var/ftproot
+</code></pre><p>请确保/etc/vsftpd.conf中已经启用了以下选项  </p>
+<blockquote>
+<p>anonymous_enable=YES<br>local_enable=YES<br>write_enable=YES<br>anon_upload_enable=NO<br>anon_mkdir_write_enable=NO<br>chroot_local_user=YES<br>而后添加以下选项<br>guest_enable=YES<br>guest_username=vuser<br>并确保pam_service_name选项的值如下所示<br>pam_service_name=vsftpd.mysql  </p>
+</blockquote>
+</li>
+</ol>
+<p>四、启动vsftpd服务</p>
+<pre><code># service vsftpd start
+# chkconfig vsftpd on
+</code></pre><p>查看端口开启情况  </p>
+<pre><code># netstat -tnlp |grep :21
+tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
+</code></pre><p>使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  </p>
+<pre><code># ftp localhost
+</code></pre><p>五、配置虚拟用户具有不同的访问权限<br>vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  </p>
+<ol>
+<li><p>配置vsftpd为虚拟用户使用配置文件目录</p>
+<pre><code># vim vsftpd.conf
+添加如下选项
+user_config_dir=/etc/vsftpd/vusers_dir
+</code></pre></li>
+<li><p>创建所需要目录，并为虚拟用户提供配置文件</p>
+<pre><code># mkdir /etc/vsftpd/vusers_dir/
+# cd /etc/vsftpd/vusers_dir/
+# touch tom jerry
+</code></pre></li>
+<li>配置虚拟用户的访问权限<br>虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。<br><code>anon_upload_enable=YES</code></li>
+</ol>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2015/11/24/ftp+mysql/" data-id="ciqffdnoi0001kx6goo6afnkd" class="article-share-link">Share</a><div class="tags"><a href="/tags/ftp/">ftp</a></div><div class="post-nav"><a href="/2015/12/23/nginx配置文件详解/" class="pre">nginx配置文件详解</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/缓存/" style="font-size: 15px;">缓存</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/lnmp-nginx/" style="font-size: 15px;">lnmp,nginx</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

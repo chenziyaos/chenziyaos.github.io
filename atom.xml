@@ -588,4 +588,104 @@ http {
     
   </entry>
   
+  <entry>
+    <title>ftp+mysql搭建ftp认证</title>
+    <link href="https://iceziyao.github.io/2015/11/24/ftp+mysql/"/>
+    <id>https://iceziyao.github.io/2015/11/24/ftp+mysql/</id>
+    <published>2015-11-24T03:49:33.000Z</published>
+    <updated>2016-07-09T17:08:28.877Z</updated>
+    
+    <content type="html">&lt;p&gt;一、安装所需要程序&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y install mysql-server mysql-devel&lt;/code&gt;&lt;br&gt;&lt;code&gt;# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;安装pam_mysql-0.7RC1  &lt;pre&gt;&lt;code&gt;# tar zxvf  pam_mysql-0.7RC1.tar.gz
+# cd  pam_mysql-0.7RC1
+# ./configure --with-mysql=/usr --with-openssl
+# make
+# make install  
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;安装vsftpd&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;yum -y install vsftpd&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;二、创建虚拟用户账号  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;准备数据库及相关表&lt;br&gt;首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;create database vsftpd;&lt;br&gt;grant select on vsftpd.&lt;em&gt; to vsftpd@localhost identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; grant select on vsftpd.&lt;/em&gt; to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; flush privileges;&lt;br&gt;mysql&amp;gt; use vsftpd;&lt;br&gt;mysql&amp;gt; create table users (&lt;br&gt; -&amp;gt; id int AUTO_INCREMENT NOT NULL,&lt;br&gt; -&amp;gt; name char(20) binary NOT NULL,&lt;br&gt; -&amp;gt; password char(48) binary NOT NULL,&lt;br&gt; -&amp;gt; primary key(id)&lt;br&gt; -&amp;gt; );  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加测试的虚拟用户&lt;br&gt;根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; insert into users(name,password) values(&amp;apos;tom&amp;apos;,&amp;apos;magedu&amp;apos;);
+mysql&amp;gt; insert into users(name,password) values(&amp;apos;jerry&amp;apos;,&amp;apos;magedu&amp;apos;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;三、配置vsftpd&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;建立pam认证所需文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#vi /etc/pam.d/vsftpd.mysql
+添加如下两行
+auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+account required /lib/security/pam_mysql.so user=vsftpd
+passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改vsftpd的配置文件，使其适应mysql认证&lt;br&gt;建立虚拟用户映射的系统用户及对应的目录  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#useradd -s /sbin/nologin -d /var/ftproot vuser
+#chmod go+rx /var/ftproot
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;请确保/etc/vsftpd.conf中已经启用了以下选项  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;anonymous_enable=YES&lt;br&gt;local_enable=YES&lt;br&gt;write_enable=YES&lt;br&gt;anon_upload_enable=NO&lt;br&gt;anon_mkdir_write_enable=NO&lt;br&gt;chroot_local_user=YES&lt;br&gt;而后添加以下选项&lt;br&gt;guest_enable=YES&lt;br&gt;guest_username=vuser&lt;br&gt;并确保pam_service_name选项的值如下所示&lt;br&gt;pam_service_name=vsftpd.mysql  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;四、启动vsftpd服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# service vsftpd start
+# chkconfig vsftpd on
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看端口开启情况  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# netstat -tnlp |grep :21
+tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# ftp localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;五、配置虚拟用户具有不同的访问权限&lt;br&gt;vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;配置vsftpd为虚拟用户使用配置文件目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# vim vsftpd.conf
+添加如下选项
+user_config_dir=/etc/vsftpd/vusers_dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建所需要目录，并为虚拟用户提供配置文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mkdir /etc/vsftpd/vusers_dir/
+# cd /etc/vsftpd/vusers_dir/
+# touch tom jerry
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;配置虚拟用户的访问权限&lt;br&gt;虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。&lt;br&gt;&lt;code&gt;anon_upload_enable=YES&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一、安装所需要程序&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y install mysql-server mysql-devel&lt;/code&gt;&lt;br&gt;&lt;code&gt;# yum -y groupinstall &amp;quot
+    
+    </summary>
+    
+    
+      <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
+    
+  </entry>
+  
 </feed>
