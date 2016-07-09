@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>非衣</title>
-  
+  <subtitle>心静如水</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-09T17:12:40.021Z</updated>
+  <updated>2016-07-09T21:00:02.325Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://iceziyao.github.io/2016/05/21/python01/"/>
     <id>https://iceziyao.github.io/2016/05/21/python01/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-07-09T17:12:40.021Z</updated>
+    <updated>2016-07-09T21:00:02.325Z</updated>
     
     <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
@@ -69,7 +69,7 @@
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;内存池机制&lt;br&gt;&lt;img src=&quot;/blog/img/python内存.x-png&quot; alt=&quot;python内存分层图&quot;&gt;  &lt;/p&gt;
+&lt;li&gt;&lt;p&gt;内存池机制    &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;3.1 内存分配层次：  &lt;/p&gt;
 &lt;blockquote&gt;
@@ -778,7 +778,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
     <link href="https://iceziyao.github.io/2015/01/02/ajax/"/>
     <id>https://iceziyao.github.io/2015/01/02/ajax/</id>
     <published>2015-01-01T16:00:00.000Z</published>
-    <updated>2016-07-09T17:14:09.372Z</updated>
+    <updated>2016-07-09T20:57:32.073Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
@@ -814,26 +814,49 @@ user_config_dir=/etc/vsftpd/vusers_dir
 &lt;ol&gt;
 &lt;li&gt;创建XMLHTTPReq&lt;/li&gt;
 &lt;li&gt;发送数据&lt;/li&gt;
-&lt;li&gt;接受回调数据&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;var XMLHttpReq=null;&lt;br&gt;//创建Ajax引擎对象&lt;br&gt;function createXMLHttpRequest() {&lt;br&gt; try {&lt;pre&gt;&lt;code&gt;   XMLHttpReq = new ActiveXObject(&amp;quot;Msxml2.XMLHTTP&amp;quot;);//IE高版本创建XMLHTTP
+&lt;li&gt;&lt;p&gt;接受回调数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+var XMLHttpReq=null;
+//创建Ajax引擎对象
+function createXMLHttpRequest() {
+ try {
+        XMLHttpReq = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);//IE高版本创建XMLHTTP
+     }
+     catch(E) {
+        try {
+               XMLHttpReq = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE低版本创建XMLHTTP
+        }
+        catch(E) {
+               XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
+        }
+      }
 }
-catch(E) {
-   try {
-          XMLHttpReq = new ActiveXObject(&amp;quot;Microsoft.XMLHTTP&amp;quot;);//IE低版本创建XMLHTTP
+//向后台发送数据
+function sendGetAjaxRequest(url,text) {
+      createXMLHttpRequest();                                //创建XMLHttpRequest对象
+      XMLHttpReq.open(&quot;get&quot;, url+&quot;?&quot;+encodeURI(text), true);
+     XMLHttpReq.onreadystatechange = doResult; //指定响应函数
+     XMLHttpReq.send(null);
+}
+function sendPOSTAjaxRequest(url,text) {
+      createXMLHttpRequest();                                //创建XMLHttpRequest对象
+      XMLHttpReq.open(&quot;post&quot;, url, true);
+      XMLHttpReq.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+      XMLHttpReq.setRequestHeader(&quot;Content-length&quot;, text.length);
+      XMLHttpReq.setRequestHeader(&quot;Connection&quot;, &quot;close&quot;);
+      XMLHttpReq.onreadystatechange = doResult; //指定响应函数
+      XMLHttpReq.send(null);
+}
+function doResult() {
+   if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {
+     //4代表执行完成                
+     //200代表执行成功，删除当前表格
+
    }
-   catch(E) {
-          XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
-   }
- }
-&lt;/code&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;/向后台发送数据&lt;br&gt;unction sendGetAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);&lt;br&gt;            XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;            XMLHttpReq.send(null);&lt;/p&gt;
-&lt;p&gt;unction sendPOSTAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“post”, url, true);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-length”, text.length);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Connection”, “close”);&lt;br&gt;             XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;             XMLHttpReq.send(null);&lt;/p&gt;
-&lt;p&gt;unction doResult() {&lt;br&gt;          if (XMLHttpReq.readyState == 4 &amp;amp;&amp;amp; XMLHttpReq.status == 200) {&lt;br&gt;            //4代表执行完成&lt;br&gt;            //200代表执行成功，删除当前表格&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
-&lt;ul&gt;
 &lt;li&gt;ajax的优缺点&lt;ul&gt;
 &lt;li&gt;优点：&lt;ul&gt;
 &lt;li&gt;就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。&lt;/li&gt;
