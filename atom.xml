@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-09T21:00:02.325Z</updated>
+  <updated>2016-07-09T21:53:02.542Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -16,11 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://iceziyao.github.io/2016/07/10/php/"/>
+    <id>https://iceziyao.github.io/2016/07/10/php/</id>
+    <published>2016-07-09T21:53:02.542Z</published>
+    <updated>2016-07-09T21:53:02.542Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Python的内存管理机制</title>
     <link href="https://iceziyao.github.io/2016/05/21/python01/"/>
     <id>https://iceziyao.github.io/2016/05/21/python01/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-07-09T21:00:02.325Z</updated>
+    <updated>2016-07-09T21:53:35.558Z</updated>
     
     <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
@@ -95,6 +111,8 @@
     
     </summary>
     
+      <category term="python" scheme="https://iceziyao.github.io/categories/python/"/>
+    
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
     
@@ -105,7 +123,7 @@
     <link href="https://iceziyao.github.io/2016/01/01/Memcached/"/>
     <id>https://iceziyao.github.io/2016/01/01/Memcached/</id>
     <published>2016-01-01T13:49:33.000Z</published>
-    <updated>2016-07-09T15:46:50.804Z</updated>
+    <updated>2016-07-09T21:41:02.589Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
@@ -327,8 +345,10 @@ server {
     
     </summary>
     
+      <category term="缓存" scheme="https://iceziyao.github.io/categories/%E7%BC%93%E5%AD%98/"/>
     
-      <category term="缓存" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98/"/>
+    
+      <category term="缓存 加速" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98-%E5%8A%A0%E9%80%9F/"/>
     
   </entry>
   
@@ -337,7 +357,7 @@ server {
     <link href="https://iceziyao.github.io/2015/12/23/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     <id>https://iceziyao.github.io/2015/12/23/nginx负载均衡/</id>
     <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T15:47:21.221Z</updated>
+    <updated>2016-07-09T21:35:22.277Z</updated>
     
     <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -457,7 +477,7 @@ http {
     </summary>
     
     
-      <category term="lnmp,nginx" scheme="https://iceziyao.github.io/tags/lnmp-nginx/"/>
+      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
     
   </entry>
   
@@ -466,10 +486,9 @@ http {
     <link href="https://iceziyao.github.io/2015/12/23/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>https://iceziyao.github.io/2015/12/23/nginx配置文件详解/</id>
     <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T15:48:20.029Z</updated>
+    <updated>2016-07-09T21:39:06.930Z</updated>
     
-    <content type="html">&lt;hr&gt;
-&lt;pre&gt;&lt;code&gt;
+    <content type="html">&lt;pre&gt;&lt;code&gt;
 
 
     #运行用户
@@ -654,8 +673,7 @@ http {
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;pre&gt;&lt;code&gt;
+      &lt;pre&gt;&lt;code&gt;
 
 
     #运行用户
@@ -664,12 +682,14 @@ http {
     worker_processes  1;
 
     #全局错误日志及PID文件
-    error_log  /var/log
+    error_log  /var/log/ngin
     
     </summary>
     
+      <category term="nginx" scheme="https://iceziyao.github.io/categories/nginx/"/>
     
-      <category term="lnmp,nginx" scheme="https://iceziyao.github.io/tags/lnmp-nginx/"/>
+    
+      <category term="nginx lnmp" scheme="https://iceziyao.github.io/tags/nginx-lnmp/"/>
     
   </entry>
   
@@ -678,7 +698,7 @@ http {
     <link href="https://iceziyao.github.io/2015/11/24/ftp+mysql/"/>
     <id>https://iceziyao.github.io/2015/11/24/ftp+mysql/</id>
     <published>2015-11-24T03:49:33.000Z</published>
-    <updated>2016-07-09T17:08:28.877Z</updated>
+    <updated>2016-07-09T21:38:52.331Z</updated>
     
     <content type="html">&lt;p&gt;一、安装所需要程序&lt;/p&gt;
 &lt;ol&gt;
@@ -768,6 +788,8 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     </summary>
     
+      <category term="ftp" scheme="https://iceziyao.github.io/categories/ftp/"/>
+    
     
       <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
     
@@ -778,7 +800,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
     <link href="https://iceziyao.github.io/2015/01/02/ajax/"/>
     <id>https://iceziyao.github.io/2015/01/02/ajax/</id>
     <published>2015-01-01T16:00:00.000Z</published>
-    <updated>2016-07-09T20:57:32.073Z</updated>
+    <updated>2016-07-09T21:38:45.334Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
@@ -886,6 +908,8 @@ function doResult() {
 &lt;li&gt;AJAX = 异步 JavaSc
     
     </summary>
+    
+      <category term="前端" scheme="https://iceziyao.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
       <category term="ajax" scheme="https://iceziyao.github.io/tags/ajax/"/>
