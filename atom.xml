@@ -295,6 +295,227 @@ t.start()
   </entry>
   
   <entry>
+    <title>浅析docker实现思想</title>
+    <link href="https://iceziyao.github.io/2016/04/04/docker02/"/>
+    <id>https://iceziyao.github.io/2016/04/04/docker02/</id>
+    <published>2016-04-03T16:00:00.000Z</published>
+    <updated>2016-07-09T23:18:38.215Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu虚拟化：可以模拟不同CPU，例如bochs&lt;/li&gt;
+&lt;li&gt;完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware&lt;/li&gt;
+&lt;li&gt;半虚拟化&lt;/li&gt;
+&lt;li&gt;硬件虚拟化：可以当作获得硬件加速的完全虚拟化&lt;/li&gt;
+&lt;li&gt;系统虚拟化：host和guest共享一样的内核，例如Openvz&lt;/li&gt;
+&lt;li&gt;语言沙盒：只能在语言的范围内使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在&lt;/li&gt;
+&lt;li&gt;半虚拟化时，guest内核必须存在补丁&lt;ul&gt;
+&lt;li&gt;系统虚拟化时，用户不能控制自己的内核&lt;/li&gt;
+&lt;li&gt;语言沙盒时，用户没有使用api的自由&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;docker的原理&quot;&gt;&lt;a href=&quot;#docker的原理&quot; class=&quot;headerlink&quot; title=&quot;docker的原理&quot;&gt;&lt;/a&gt;docker的原理&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;doceker实现结构&lt;br&gt;–&amp;gt;lxc&lt;br&gt;–&amp;gt;namespace: 仅沙盒隔离，不限制资源。&lt;br&gt;–&amp;gt;cgroup: 仅限制资源，不沙盒隔离。&lt;br&gt;–&amp;gt;aufs&lt;br&gt;–&amp;gt;image管理  &lt;/li&gt;
+&lt;li&gt;底层技术&lt;blockquote&gt;
+&lt;p&gt;Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;lxc&lt;blockquote&gt;
+&lt;p&gt;LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;命名空间(Namespaces)&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    &lt;/li&gt;
+&lt;li&gt;这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。&lt;br&gt;通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一些Docker使用到的命名空间有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pid命名空间: 使用在进程隔离(PID: Process ID)。&lt;/li&gt;
+&lt;li&gt;net命名空间: 使用在管理网络接口(NET: Networking&lt;/li&gt;
+&lt;li&gt;ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)&lt;/li&gt;
+&lt;li&gt;mnt命名空间: 使用在管理挂载点 (MNT: Mount)。&lt;/li&gt;
+&lt;li&gt;uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;群组控制(cgroup)&lt;blockquote&gt;
+&lt;p&gt;Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;联合文件系统(UnionFS)&lt;blockquote&gt;
+&lt;p&gt;联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;为什么使用go语言实现docker&lt;br&gt;部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  &lt;/li&gt;
+&lt;li&gt;docker与LXC的联系&lt;br&gt;在我理解，docker是LXC的一个高速引擎&lt;/li&gt;
+&lt;li&gt;为什么我只解析了docker实现思想&lt;br&gt;我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu虚拟化：可以模拟
+    
+    </summary>
+    
+      <category term="docker 容器" scheme="https://iceziyao.github.io/categories/docker-%E5%AE%B9%E5%99%A8/"/>
+    
+    
+      <category term="docker linux" scheme="https://iceziyao.github.io/tags/docker-linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅析docker使用</title>
+    <link href="https://iceziyao.github.io/2016/04/03/docker01/"/>
+    <id>https://iceziyao.github.io/2016/04/03/docker01/</id>
+    <published>2016-04-02T16:00:00.000Z</published>
+    <updated>2016-07-09T23:18:19.582Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
+&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  &lt;/li&gt;
+&lt;li&gt;每个container拥有自己独立的各种命名空间(亦即资源)包括:&lt;br&gt;PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等&lt;br&gt;与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  &lt;/li&gt;
+&lt;li&gt;虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker 概念及相互作用&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;主机， 运行容器的机器。&lt;/li&gt;
+&lt;li&gt;镜像，文件的层次结构，以及包含如何运行容器的元数据&lt;/li&gt;
+&lt;li&gt;容器，一个从镜像中启动，包含正在运行的程序的进程&lt;/li&gt;
+&lt;li&gt;Registry， 镜像仓库&lt;/li&gt;
+&lt;li&gt;卷，容器外的存储  &lt;/li&gt;
+&lt;li&gt;Dockerfile， 用于创建镜像的脚本  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;docker能用来干什么？&quot;&gt;&lt;a href=&quot;#docker能用来干什么？&quot; class=&quot;headerlink&quot; title=&quot;docker能用来干什么？&quot;&gt;&lt;/a&gt;docker能用来干什么？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;快速交付你的应用程序&lt;br&gt;Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。&lt;/li&gt;
+&lt;li&gt;开发和拓展更加简单&lt;br&gt;Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。&lt;br&gt;Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。&lt;/li&gt;
+&lt;li&gt;达到高密度和更多负载&lt;br&gt;Docker轻巧快速，它提供了一个可行的、 符合成本效益的替代基于虚拟机管理程序的虚拟机。这在高密度的环境下尤其有用。例如，构建你自己的云平台或者PaaS，在中小的部署环境下同样可以获取到更多的资源性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;docker主要组成有哪些？&quot;&gt;&lt;a href=&quot;#docker主要组成有哪些？&quot; class=&quot;headerlink&quot; title=&quot;docker主要组成有哪些？&quot;&gt;&lt;/a&gt;docker主要组成有哪些？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Docker有两个主要的部件：  &lt;blockquote&gt;
+&lt;p&gt;Docker: 开源的容器虚拟化平台。&lt;br&gt;Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker的内部&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker镜像 (Docker images)。&lt;/li&gt;
+&lt;li&gt;Docker仓库 (Docker registeries)。&lt;/li&gt;
+&lt;li&gt;Docker容器(Docker containers)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker镜像&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker镜像是一个只读的模板。举个例子，一个镜像可以包含一个运行在Apache上的Web应用和其使用的Ubuntu操作系统。&lt;/li&gt;
+&lt;li&gt;镜像是用来创建容器的。Docker提供了简单的放来来建立新的镜像或者升级现有的镜像，你也可以下载别人已经创建好的镜像。Docker镜像是Docker的 构造 部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker仓库&lt;blockquote&gt;
+&lt;p&gt;Docker仓库用来保存镜像。可以理解为代码控制中的代码仓库。同样的，Docker仓库也有公有和私有的概念。公有的Docker仓库名字是Docker Hub。Docker Hub提供了庞大的镜像集合供使用。这些镜像可以是你自己创建的，或者你也可以在别人的镜像基础上创建。Docker仓库是Docker的 分发 部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker容器&lt;blockquote&gt;
+&lt;p&gt;Docker容器和文件夹很类似。一个Docker容器包含了所有的某个应用运行所需要的环境。每一个Docker容器都是从Docker镜像创建 的。Docker容器可以运行、开始、停止、移动和删除。每一个Docker容器都是独立和安全的应用平台。Docker容器是Docker的 运行 部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;安装docker&quot;&gt;&lt;a href=&quot;#安装docker&quot; class=&quot;headerlink&quot; title=&quot;安装docker&quot;&gt;&lt;/a&gt;安装docker&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;首先更新yum源，添加rhel7.1的iso镜像，来更新内核kernel(因为docker对内核有要求，rhel7.0时启动慢)  &lt;blockquote&gt;
+&lt;p&gt;1.自己下载cestos7.1的镜像，构建本地yum&lt;br&gt;2.使用163或者网易的yum源&lt;br&gt;yum update kernel -y&lt;br&gt;rpm -q kernel&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;kernel-3.10.0-123.el7.x86_64&lt;br&gt;kernel-3.10.0-229.el7.x86_64  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;重启，选择kernel-3.10.0-229.el7.x86_64进入系统&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;更新相关组件  &lt;blockquote&gt;
+&lt;p&gt;yum update device-mapper -y&lt;br&gt;rpm -qa | grep device-mapper&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;device-mapper-persistent-data-0.3.2-1.el7.x86_64&lt;br&gt;device-mapper-libs-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-multipath-0.4.9-66.el7.x86_64&lt;br&gt;device-mapper-event-libs-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-multipath-libs-0.4.9-66.el7.x86_64&lt;br&gt;device-mapper-event-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-1.02.93-3.el7.x86_64  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;安装docker  &lt;blockquote&gt;
+&lt;p&gt;3.1 执行Docker安装脚本&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; curl -sSL &lt;a href=&quot;https://get.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://get.docker.com/&lt;/a&gt; | sh&lt;br&gt;yum install -y docker-selinux&lt;br&gt;这个脚本会添加 docker.repo 配置并安装Docker。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.2 自动添加添加yum仓库&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;cat &amp;gt;/etc/yum.repos.d/docker.repo &amp;lt;&amp;lt;-EOF&lt;br&gt;[dockerrepo]&lt;br&gt;name=Docker Repository&lt;br&gt;baseurl=&lt;a href=&quot;https://yum.dockerproject.org/repo/main/centos/7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://yum.dockerproject.org/repo/main/centos/7&lt;/a&gt;&lt;br&gt;enabled=1&lt;br&gt;gpgcheck=1&lt;br&gt;gpgkey=&lt;a href=&quot;https://yum.dockerproject.org/gpg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://yum.dockerproject.org/gpg&lt;/a&gt;&lt;br&gt;EOF&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;安装Docker包&lt;br&gt;yum install -y docker-engine&lt;br&gt;yum install -y docker-selinux&lt;br&gt;yum list installed | grep docker  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker-engine.x86_64             1.8.1-1.el7.centos                    @dockerrepo&lt;br&gt;docker-selinux.x86_64            1.7.1-108.el7.centos                  @extras  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.3 rpm安装&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yum install docker-engine-1.8.3-1.el7.centos.x86_64.rpm  -y&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;启动docker&lt;blockquote&gt;
+&lt;p&gt;systemctl start docker&lt;br&gt;docker version   &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Client:&lt;br&gt;Version:      1.8.1&lt;br&gt;API version:  1.20&lt;br&gt;Go version:   go1.4.2&lt;br&gt;Git commit:   d12ea79&lt;br&gt;Built:        Thu Aug 13 02:19:43 UTC 2015&lt;br&gt;OS/Arch:      linux/amd64  &lt;/p&gt;
+&lt;p&gt;Server:&lt;br&gt;Version:      1.8.1&lt;br&gt;API version:  1.20&lt;br&gt;Go version:   go1.4.2&lt;br&gt;Git commit:   d12ea79&lt;br&gt;Built:        Thu Aug 13 02:19:43 UTC 2015&lt;br&gt;OS/Arch:      linux/amd64  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;docker使用&quot;&gt;&lt;a href=&quot;#docker使用&quot; class=&quot;headerlink&quot; title=&quot;docker使用&quot;&gt;&lt;/a&gt;docker使用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;有关镜像的操作  &lt;blockquote&gt;
+&lt;p&gt;$ docker images  # 查看所有镜像.&lt;br&gt;$ docker import  # 从tarball创建镜像&lt;br&gt;$ docker build   # 通过Dockerfile创建镜像&lt;br&gt;$ docker commit  # 从容器中创建镜像&lt;br&gt;$ docker rmi     # 删除镜像&lt;br&gt;$ docker history # 列出镜像的变更历史  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;运行的容器  &lt;blockquote&gt;
+&lt;p&gt;$ docker create  # 创建一个容器，但不启动它&lt;br&gt;$ docker run     #  创建并启动一个容器&lt;br&gt;$ docker stop    # 停止容器&lt;br&gt;$ docker start   #  启动容器&lt;br&gt;$ docker restart # 重启容器&lt;br&gt;$ docker rm      # 删除容器&lt;br&gt;$ docker kill    #  给容器发送kill信号&lt;br&gt;$ docker attach  # 连接到正在运行的容器中&lt;br&gt;$ docker wait    # 阻塞直到容器停止为止&lt;br&gt;$ docker exec    # 在运行的容器中执行一条命令  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;检查容器  &lt;blockquote&gt;
+&lt;p&gt;$ docker ps      # 显示运行的容器&lt;br&gt;$ docker inspect # 显示容器信息（包括ip地址）&lt;br&gt;$ docker logs    # 获取容器中的日志&lt;br&gt;$ docker events  # 获取容器事件&lt;br&gt;$ docker port    # 显示容器的公开端口&lt;br&gt;$ docker top     # 显示容器中运行的进程&lt;br&gt;$ docker diff    # 查看容器文件系统中改变的文件&lt;br&gt;$ docker stats   # 查看各种纬度数据、内存、CPU、文件系统等  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之后的会继续更新博客&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Pr
+    
+    </summary>
+    
+      <category term="docker 容器" scheme="https://iceziyao.github.io/categories/docker-%E5%AE%B9%E5%99%A8/"/>
+    
+    
+      <category term="docker linux" scheme="https://iceziyao.github.io/tags/docker-linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Haproxy负载均衡</title>
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>

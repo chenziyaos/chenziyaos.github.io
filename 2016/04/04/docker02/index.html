@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>浅析docker实现思想 | 非衣</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">浅析docker实现思想</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">浅析docker实现思想</h1><div class="post-meta">Apr 4, 2016<span> | </span><span class="category"><a href="/categories/docker-容器/">docker 容器</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote>
+<ul>
+<li>cpu虚拟化：可以模拟不同CPU，例如bochs</li>
+<li>完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware</li>
+<li>半虚拟化</li>
+<li>硬件虚拟化：可以当作获得硬件加速的完全虚拟化</li>
+<li>系统虚拟化：host和guest共享一样的内核，例如Openvz</li>
+<li>语言沙盒：只能在语言的范围内使用</li>
+</ul>
+<p>虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？</p>
+<ul>
+<li>cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在</li>
+<li>半虚拟化时，guest内核必须存在补丁<ul>
+<li>系统虚拟化时，用户不能控制自己的内核</li>
+<li>语言沙盒时，用户没有使用api的自由</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="docker的原理"><a href="#docker的原理" class="headerlink" title="docker的原理"></a>docker的原理</h2><ul>
+<li>doceker实现结构<br>–&gt;lxc<br>–&gt;namespace: 仅沙盒隔离，不限制资源。<br>–&gt;cgroup: 仅限制资源，不沙盒隔离。<br>–&gt;aufs<br>–&gt;image管理  </li>
+<li>底层技术<blockquote>
+<p>Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。</p>
+</blockquote>
+</li>
+<li>lxc<blockquote>
+<p>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.</p>
+<ul>
+<li>XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。</li>
+</ul>
+</blockquote>
+</li>
+<li>命名空间(Namespaces)<blockquote>
+<ul>
+<li>Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    </li>
+<li>这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。<br>通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  </li>
+</ul>
+<p>一些Docker使用到的命名空间有：</p>
+<ul>
+<li>pid命名空间: 使用在进程隔离(PID: Process ID)。</li>
+<li>net命名空间: 使用在管理网络接口(NET: Networking</li>
+<li>ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)</li>
+<li>mnt命名空间: 使用在管理挂载点 (MNT: Mount)。</li>
+<li>uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。</li>
+</ul>
+</blockquote>
+</li>
+<li>群组控制(cgroup)<blockquote>
+<p>Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用</p>
+</blockquote>
+</li>
+<li>联合文件系统(UnionFS)<blockquote>
+<p>联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><ul>
+<li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
+<li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
+<li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://iceziyao.github.io/2016/04/04/docker02/" data-id="ciqfsndcz0006ca6gim5tb23x" class="article-share-link">分享到</a><div class="tags"><a href="/tags/docker-linux/">docker linux</a></div><div class="post-nav"><a href="/2016/05/01/python端口/" class="pre">python编写一个端口扫描器</a><a href="/2016/04/03/docker01/" class="next">浅析docker使用</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker-容器/">docker 容器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/docker-linux/" style="font-size: 15px;">docker linux</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
