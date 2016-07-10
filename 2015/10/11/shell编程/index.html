@@ -178,6 +178,7 @@ echo &amp;quot;hello world!&amp;quot;
 
   
     <ul id="menu" class="menu">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=442760&auto=1&height=66"></iframe>
       
         
         <li class="menu-item menu-item-home">
@@ -242,22 +243,20 @@ echo &amp;quot;hello world!&amp;quot;
 
       
       <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
-    function c() {
+      function c() {
         var e = document.createElement("link");
         e.setAttribute("type", "text/css");
         e.setAttribute("rel", "stylesheet");
         e.setAttribute("href", f);
         e.setAttribute("class", l);
         document.body.appendChild(e)
-    }
-
-    function h() {
+        }
+        function h() {
         var e = document.getElementsByClassName(l);
         for (var t = 0; t < e.length; t++) {
             document.body.removeChild(e[t])
         }
     }
-
     function p() {
         var e = document.createElement("div");
         e.setAttribute("class", a);
@@ -266,14 +265,12 @@ echo &amp;quot;hello world!&amp;quot;
             document.body.removeChild(e)
         }, 100)
     }
-
     function d(e) {
         return {
             height : e.offsetHeight,
             width : e.offsetWidth
         }
     }
-
     function v(i) {
         var s = d(i);
         return s.height > e && s.height < n && s.width > t && s.width < r
@@ -288,7 +285,6 @@ echo &amp;quot;hello world!&amp;quot;
         }
         return n
     }
-
     function g() {
         var e = document.documentElement;
         if (!!window.innerWidth) {
@@ -298,19 +294,16 @@ echo &amp;quot;hello world!&amp;quot;
         }
         return 0
     }
-
     function y() {
         if (window.pageYOffset) {
             return window.pageYOffset
         }
         return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
     }
-
     function E(e) {
         var t = m(e);
         return t >= w && t <= b + w
     }
-
     function S() {
         var e = document.createElement("audio");
         e.setAttribute("class", l);
@@ -336,15 +329,12 @@ echo &amp;quot;hello world!&amp;quot;
         document.body.appendChild(e);
         e.play()
     }
-
     function x(e) {
         e.className += " " + s + " " + o
     }
-
     function T(e) {
         e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
     }
-
     function N() {
         var e = document.getElementsByClassName(s);
         var t = new RegExp("\\b" + s + "\\b");
@@ -352,7 +342,6 @@ echo &amp;quot;hello world!&amp;quot;
             e[n].className = e[n].className.replace(t, "")
         }
     }
-
     var e = 30;
     var t = 30;
     var n = 350;
@@ -390,7 +379,7 @@ echo &amp;quot;hello world!&amp;quot;
             O.push(A)
         }
     }
-})()    '>High起来</a> </li>
+    })()    '>High起来</a> </li>
     </ul>
   
 
@@ -819,7 +808,7 @@ test.sh
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/upload/avar.jpg"
                alt="陈子瑶" />
           <p class="site-author-name" itemprop="name">陈子瑶</p>
           <p class="site-description motion-element" itemprop="description">linux运维,python</p>

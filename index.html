@@ -170,6 +170,7 @@
 
   
     <ul id="menu" class="menu">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=442760&auto=1&height=66"></iframe>
       
         
         <li class="menu-item menu-item-home">
@@ -234,22 +235,20 @@
 
       
       <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
-    function c() {
+      function c() {
         var e = document.createElement("link");
         e.setAttribute("type", "text/css");
         e.setAttribute("rel", "stylesheet");
         e.setAttribute("href", f);
         e.setAttribute("class", l);
         document.body.appendChild(e)
-    }
-
-    function h() {
+        }
+        function h() {
         var e = document.getElementsByClassName(l);
         for (var t = 0; t < e.length; t++) {
             document.body.removeChild(e[t])
         }
     }
-
     function p() {
         var e = document.createElement("div");
         e.setAttribute("class", a);
@@ -258,14 +257,12 @@
             document.body.removeChild(e)
         }, 100)
     }
-
     function d(e) {
         return {
             height : e.offsetHeight,
             width : e.offsetWidth
         }
     }
-
     function v(i) {
         var s = d(i);
         return s.height > e && s.height < n && s.width > t && s.width < r
@@ -280,7 +277,6 @@
         }
         return n
     }
-
     function g() {
         var e = document.documentElement;
         if (!!window.innerWidth) {
@@ -290,19 +286,16 @@
         }
         return 0
     }
-
     function y() {
         if (window.pageYOffset) {
             return window.pageYOffset
         }
         return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
     }
-
     function E(e) {
         var t = m(e);
         return t >= w && t <= b + w
     }
-
     function S() {
         var e = document.createElement("audio");
         e.setAttribute("class", l);
@@ -328,15 +321,12 @@
         document.body.appendChild(e);
         e.play()
     }
-
     function x(e) {
         e.className += " " + s + " " + o
     }
-
     function T(e) {
         e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
     }
-
     function N() {
         var e = document.getElementsByClassName(s);
         var t = new RegExp("\\b" + s + "\\b");
@@ -344,7 +334,6 @@
             e[n].className = e[n].className.replace(t, "")
         }
     }
-
     var e = 30;
     var t = 30;
     var n = 350;
@@ -382,7 +371,7 @@
             O.push(A)
         }
     }
-})()    '>High起来</a> </li>
+    })()    '>High起来</a> </li>
     </ul>
   
 
@@ -1514,6 +1503,137 @@ t.start()
             
               
                 
+                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
+                  高可用集群系列之基础01
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/集群/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群?"></a>什么是集群?</h3><blockquote>
+<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
+</blockquote>
+<h3 id="集群系统的主要优点"><a href="#集群系统的主要优点" class="headerlink" title="集群系统的主要优点:"></a>集群系统的主要优点:</h3><blockquote>
+<p>(1)高可扩展性：<br>    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br>    (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br>    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
+</blockquote>
+<h3 id="集群系统的分类"><a href="#集群系统的分类" class="headerlink" title="集群系统的分类"></a>集群系统的分类</h3><blockquote>
+<p>1)、高可用(High Availability)集群,简称HA集群。<br>    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br>    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br>    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br>    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br>    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br>    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
+<h3 id="什么是高可用性-HA"><a href="#什么是高可用性-HA" class="headerlink" title="什么是高可用性 (HA)"></a>什么是高可用性 (HA)</h3><p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
+<ul>
+<li>HA的容错备援运作过程  <blockquote>
+<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h3 id="HA三种工作方式："><a href="#HA三种工作方式：" class="headerlink" title="HA三种工作方式："></a>HA三种工作方式：</h3><blockquote>
+<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/16/haproxy/" itemprop="url">
                   Haproxy负载均衡
                 </a>
@@ -1998,137 +2118,6 @@ backend mysqlservers
     server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
 </code></pre>
 </backend></backend></conns></conns></level></facility></ipv4_address:port></address></minlevel></level></facility></address></method></interface></address:port></port_range></address></interface></port_range></address></port_range></address></max_wait></arguments></algorithm></number></number></number></number></number></number></number></0..50,></number></number></number></string></facility></address></group></number></jail>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
-                  高可用集群系列之基础01
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
-              2016-01-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/集群/" itemprop="url" rel="index">
-                    <span itemprop="name">集群</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群?"></a>什么是集群?</h3><blockquote>
-<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
-</blockquote>
-<h3 id="集群系统的主要优点"><a href="#集群系统的主要优点" class="headerlink" title="集群系统的主要优点:"></a>集群系统的主要优点:</h3><blockquote>
-<p>(1)高可扩展性：<br>    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br>    (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br>    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
-</blockquote>
-<h3 id="集群系统的分类"><a href="#集群系统的分类" class="headerlink" title="集群系统的分类"></a>集群系统的分类</h3><blockquote>
-<p>1)、高可用(High Availability)集群,简称HA集群。<br>    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br>    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br>    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br>    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br>    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br>    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
-<h3 id="什么是高可用性-HA"><a href="#什么是高可用性-HA" class="headerlink" title="什么是高可用性 (HA)"></a>什么是高可用性 (HA)</h3><p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
-<ul>
-<li>HA的容错备援运作过程  <blockquote>
-<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h3 id="HA三种工作方式："><a href="#HA三种工作方式：" class="headerlink" title="HA三种工作方式："></a>HA三种工作方式：</h3><blockquote>
-<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
-</blockquote>
-
           
         
       
@@ -2780,7 +2769,7 @@ server {
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/upload/avar.jpg"
                alt="陈子瑶" />
           <p class="site-author-name" itemprop="name">陈子瑶</p>
           <p class="site-description motion-element" itemprop="description">linux运维,python</p>
