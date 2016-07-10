@@ -1,1 +1,2888 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>非衣 | 心静如水</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">非衣</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/2016/05/21/python01/">Python的内存管理机制</a></h2><div class="post-meta">2016-05-21</div><div class="post-content"><h2 id="python的内存管理分为三个方面："><a href="#python的内存管理分为三个方面：" class="headerlink" title="python的内存管理分为三个方面："></a>python的内存管理分为三个方面：</h2><ul></div><p class="readmore"><a href="/2016/05/21/python01/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/05/06/nodejs/">初探node.js</a></h2><div class="post-meta">2016-05-06</div><div class="post-content"><h3 id="什么是node-js"><a href="#什么是node-js" class="headerlink" title="什么是node.js"></a>什么是node.js</h3><ol></div><p class="readmore"><a href="/2016/05/06/nodejs/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/05/01/python端口/">python编写一个端口扫描器</a></h2><div class="post-meta">2016-05-01</div><div class="post-content"><h3 id="编写一个端口扫描器"><a href="#编写一个端口扫描器" class="headerlink" title="编写一个端口扫描器"></a>编写一个端口扫描器</h3><ul></div><p class="readmore"><a href="/2016/05/01/python端口/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/04/04/docker02/">浅析docker实现思想</a></h2><div class="post-meta">2016-04-04</div><div class="post-content"><h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote></div><p class="readmore"><a href="/2016/04/04/docker02/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/04/03/docker01/">浅析docker使用</a></h2><div class="post-meta">2016-04-03</div><div class="post-content"><h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul></div><p class="readmore"><a href="/2016/04/03/docker01/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/16/高可用集群01/">高可用系列1</a></h2><div class="post-meta">2016-01-16</div><div class="post-content"><ol></div><p class="readmore"><a href="/2016/01/16/高可用集群01/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/16/haproxy/">Haproxy负载均衡</a></h2><div class="post-meta">2016-01-16</div><div class="post-content"><ol></div><p class="readmore"><a href="/2016/01/16/haproxy/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/01/Memcached/">Memcached简介</a></h2><div class="post-meta">2016-01-01</div><div class="post-content"><ul></div><p class="readmore"><a href="/2016/01/01/Memcached/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/01/php/">PHP编译出错</a></h2><div class="post-meta">2016-01-01</div><div class="post-content"><pre><code></div><p class="readmore"><a href="/2016/01/01/php/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></h2><div class="post-meta">2015-12-23</div><div class="post-content"><pre><code></div><p class="readmore"><a href="/2015/12/23/nginx配置文件详解/">阅读更多</a></p></div><nav class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a></nav></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-集群/">Linux 集群</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker-容器/">docker 容器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/docker-linux/" style="font-size: 15px;">docker linux</a> <a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/集群/" style="font-size: 15px;">集群</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/高可用集群01/">高可用系列1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="非衣" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="linux运维,python">
+<meta property="og:type" content="website">
+<meta property="og:title" content="非衣">
+<meta property="og:url" content="https://iceziyao.github.io/index.html">
+<meta property="og:site_name" content="非衣">
+<meta property="og:description" content="linux运维,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非衣">
+<meta name="twitter:description" content="linux运维,python">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://iceziyao.github.io/"/>
+
+  <title> 非衣 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">非衣</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">心静如水</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            非衣
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/21/python01/" itemprop="url">
+                  Python的内存管理机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T00:00:00+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="python的内存管理分为三个方面："><a href="#python的内存管理分为三个方面：" class="headerlink" title="python的内存管理分为三个方面："></a>python的内存管理分为三个方面：</h2><ul>
+<li><em>引用计数</em></li>
+<li><em>垃圾回收</em></li>
+<li><em>内存池机制</em></li>
+</ul>
+<ol>
+<li><p>浅析引用计数<br>python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  </p>
+<blockquote>
+<p>引用计数增加的情况：  </p>
+<blockquote>
+<p>1.对象被创建：x=4<br>2.另外的别人被创建：y=x<br>3.被作为参数传递给函数：foo(x)<br>4.作为容器对象的一个元素：a=[1,x,’33’]  </p>
+</blockquote>
+<p>引用计数减少情况  </p>
+<blockquote>
+<p>1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。<br>2.对象的别名被显式的销毁：del x ；或者del y<br>3.对象的一个别名被赋值给其他对象：x=789<br>4.对象从一个窗口对象中移除：myList.remove(x)<br>5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  </p>
+</blockquote>
+<p>如何获取一个变量的引用计数</p>
+<pre><code>
+>> import sys
+>> x = 1
+>> sys.getrefcount(x)
+599
+>> y = x
+>> sys.getrefcount(x)
+600
+>> del y
+>> sys.getrefcount(x)
+599
+</code></pre>
+</blockquote>
+</li>
+<li><p>垃圾回收<br>python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  </p>
+<blockquote>
+<p>2.1 引用计数  </p>
+<blockquote>
+<p>优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。<br>缺点：<br>(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。<br>(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  </p>
+</blockquote>
+<p>2.2 标记-清除<br>标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。  </p>
+<blockquote>
+<p>2.2.1 假设<br>如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。<br>案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。<br>问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。<br>2.2.2 标记-清除的原理<br>原理：<br>我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。<br>这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。<br>效率分析：<br>从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  </p>
+</blockquote>
+<p>2.3 分代回收  </p>
+<blockquote>
+<p>2.3.1 理论：<br>无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。<br>2.3.2 原理：<br>将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>内存池机制    </p>
+<blockquote>
+<p>3.1 内存分配层次：  </p>
+<blockquote>
+<p>Python的内存机制以金字塔层次：<br>　　   -1，-2层主要有操作系统进行操作，<br>　　第0层是C中的malloc，free等内存分配和释放函数进行操作；<br>　　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；<br>　　第3层是最上层，也就是我们对Python对象的直接操作；  </p>
+</blockquote>
+<p>3.2 原因  </p>
+<blockquote>
+<p>在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。</p>
+</blockquote>
+<p>3.3 具现化  </p>
+<blockquote>
+<p>　　Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。<br>　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。<br>　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。<br>　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。<br>　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。<br><a href="http://nodefe.com/implement-of-pymalloc-from-source/" target="_blank" rel="external">需要了解Pymalloc的看这篇博文</a></p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/06/nodejs/" itemprop="url">
+                  初探node.js
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T21:49:33+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/后台/" itemprop="url" rel="index">
+                    <span itemprop="name">后台</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是node-js"><a href="#什么是node-js" class="headerlink" title="什么是node.js"></a>什么是node.js</h3><ol>
+<li><p>node.js != Javascript<br>事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  </p>
+<ul>
+<li>Node.js 是构建于Chrome的JavaScript引擎的<br>Google的浏览器Chrome，有一个非常快速的JavaScript引擎，叫做V8。这个JS引擎可以被独立出来，该解释器拥有另一个独特特征；可以下载该引擎并将其嵌入任何 应用程序。Node.js就是建立在V8之上的。这也是为什么Node.js会运行的如此之快。对于开发者来说，有几个好处：<ul>
+<li>js完全通用</li>
+<li>v8的发展影响着node.js</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Node.js 不仅仅是一个网页服务器或者平台<br>Node.js 不是以网页为中心的。Node.js 是通用目的的JS运行时，带有很多功能强大的库。其中有一个库提供了 HTTP/HTTPS 的实现。</p>
+</li>
+<li><p>Node.js是面向对象的<br>Node.js的实质就是用Javascript的代码规范通过C++进行了实现和封装。一般在前端用js时，无非是ajax以及特效，仅仅针对一个页面。所以，不用面向对象也可以完成，但在后台，我们常用一些代码，所以进行封装，等用的时候新建一个对象。</p>
+</li>
+<li><p>node.js能做什么？<br>正如 JavaScript 为客户端而生，Node.js 为网络而生。Node.js 能做的远不止开发一个网站那么简单，使用 Node.js，你可以轻松地开发：  </p>
+<blockquote>
+<p> 具有复杂逻辑的网站；<br> 基于社交网络的大规模 Web 应用；<br> Web Socket 服务器；<br> TCP/UDP 套接字应用程序；<br> 命令行工具；<br> 交互式终端程序；<br> 带有图形用户界面的本地应用程序；<br> 单元测试工具；<br> 客户端 JavaScript 编译器。  </p>
+<p>Node.js 内建了 HTTP 服务器支持，也就是说你可以轻而易举地实现一个网站和服务器的组合。这和 PHP、Perl 不一样，因为在使用 PHP 的时候，必须先搭建一个 Apache 之类的HTTP 服务器，然后通过 HTTP 服务器的模块加载或 CGI 调用，才能将 PHP 脚本的执行结果呈现给用户。而当你使用 Node.js 时，不用额外搭建一个 HTTP 服务器，因为 Node.js 本身就内建了一个。这个服务器不仅可以用来调试代码，而且它本身就可以部署到产品环境，它的性能足以满足要求。<br>Node.js 还可以部署到非网络应用的环境下，比如一个命令行工具  。Node.js 还可以调用C/C++ 的代码，这样可以充分利用已有的诸多函数库，也可以将对性能要求非常高的部分用C/C++ 来实现。</p>
+</blockquote>
+</li>
+<li><p>node.js的原理  </p>
+<ul>
+<li>单线程</li>
+<li>异步非阻塞</li>
+<li>事件驱动<br>用高并发解释  <blockquote>
+<p>一般来说，高并发解决方案会提供多线程模型，为每个业务逻辑提供一个线程，通过系统线程切换来来弥补同步I/O调用的时间开销。node.js使用的是单线程模型，对所有I/O都采用异步的请求方式，避免频繁的上下文切换，在node.js执行的时候维护着一个事件队列；程序在执行时进入事件循环等待下一个事件到来，每个异步I/O请求完成后都会被推送到事件队列中的等待执行。</p>
+</blockquote>
+</li>
+<li><p>例子：<br>对于一个简单的数据库访问操作，传统方式是这样实现的   </p>
+<pre><code>res = db.query(&apos;SELECT * from some_table&apos;);
+res.output();
+</code></pre><p>代码执行到第一行的时候线程会阻塞，等待query返回结果，然后继续处理。由于数据库查询、磁盘读写、网络通信等原因（所谓的I/O）阻塞时间会非常大（相对于CPU始终频率）。对于高并发的访问，一方面线程长期阻塞等待，另一方面为了应付新情求而不断添加新线程，会浪费大量系统资源，同时线程的增加也会也会占用大量的CPU时间来处理内存上下文切换。<br>node.js的处理方式：</p>
+<pre><code>db.query(&apos;SELECT * from some_table&apos;，function(res) {   
+        res.output();  
+});  
+</code></pre><p>query的第二个参数是一个回调函数，进程执行到db.query的时候不会等待结果返回，而是直接继续执行下面的语句，直到进入事件循环。当数据库执行结果返回的时候会将事件发送到事件队列，等到线程进入事件循环后才会调用之前的回调函数。<br>node.js的异步机制是基于事件的，所有的I/O、网络通信、数据库查询都以非阻塞的方式执行，返回结果由事件循环来处理。node.js在同一时刻只会处理一个事件，完成后立即进入事件循环检查后面事件。这样CPU和内存在同一时间集中处理一件事，同时尽量让耗时的I/O等操作并行执行。   </p>
+</li>
+<li>事件循环机制<br>所谓事件循环是指node.js会把所有的异步操作使用事件机制解决，有个线程在不断地循环检测事件队列。<br>node.js中所有的逻辑都是事件的回调函数，所以node.js始终在事件循环中，程序入口就是事件循环第一个事件的回调函数。事件的回调函数中可能会发出I/O请求或直接发射（ emit）事件，执行完毕后返回事件循环。事件循环会检查事件队列中有没有未处理的事件，直到程序结束。node.js的事件循环对开发者不可见，由libev库实现，libev不断检查是否有活动的、可供检测的事件监听器，直到检查不到时才退出事件循环，程序结束。   </li>
+</ul>
+</li>
+<li>node.js的优缺点<ul>
+<li>优点：<ul>
+<li>简单</li>
+<li>高性能，避免了频繁的线程切换开销，一个线程而已</li>
+<li>占用资源小，因为是单线程，在大负荷情况下，对内存占用仍然很低</li>
+<li>线程安全，没有加锁、解锁、死锁这些问题</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>CPU密集型任务存在短板<br>  事件循环机制，处理所有的请求。在事件处理过程中，它会智能地将一些涉及到IO、网络通信等耗时比较长的操作，交由worker threads去执行，执行完了再回调。但是，那些非IO操作，只用CPU计算的操作，就只能自己抗了。</li>
+<li>无法利用CPU的多核<br>  Node.js是单线程程序，它只有一个event loop，也只占用一个CPU/内核。</li>
+<li>如果有异常抛出，因为是单线程，整个项目将不可用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/01/python端口/" itemprop="url">
+                  python编写一个端口扫描器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-01T00:00:00+08:00" content="2016-05-01">
+              2016-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="编写一个端口扫描器"><a href="#编写一个端口扫描器" class="headerlink" title="编写一个端口扫描器"></a>编写一个端口扫描器</h3><ul>
+<li>任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器</li>
+<li>端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  <ul>
+<li>处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  </li>
+<li>将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)</li>
+<li>端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现端口扫描器"><a href="#实现端口扫描器" class="headerlink" title="实现端口扫描器"></a>实现端口扫描器</h3><ol>
+<li>main函数<pre><code>
+def main():
+ parser = optparse.OptionParser("usage: %prog" + \
+ "-H <tgthost host=""> -P <tgtport>" ,version="%prog 1.0")
+ ''' 添加命令行参 '''
+ parser.add_option('-H',dest='Host',type='string',help='specify target host')
+ parser.add_option('-P',dest='Port',type='string',\
+ help='specify target port[s] separated by command')
+ (options ,args) = parser.parse_args()
+ tgtHost = options.Host
+ tgtPorts = str(options.Port).split(",")
+ if (tgtHost == None) or (tgtPorts[0] == None):
+     print '[-] You must specify a target host and port[s]'
+     exit(0)
+ portScan(tgtHost,tgtPorts)
+</tgtport></tgthost></code></pre>  </li>
+<li>portScan(tgtHost,tgtPorts)<pre><code>
+def portScan(tgtHost,tgtPorts):
+ try:
+   tgtIP = gethostbyname(tgtHost)
+ except:
+   print "[-] cannot resolve '%s':Unknown host" %(tgtHost)
+ try:
+   tgtName = gethostbyaddr(tgtIP)
+   print '\n[+] Scan Reselts for:' + tgtName[0]
+ except:
+   print '\n[+] Scan Results for: '+ tgtIP
+ setdefaulttimeout(1)
+ for tgtPort in tgtPorts:
+   connScan(tgtHost,tgtPort)  
+</code></pre></li>
+<li><p>connScan(tgtHost, tgtPort)  </p>
+<pre><code>
+def connScan(tgtHost, tgtPort):
+ try:
+     connSkt = socket(AF_INET,SOCK_STREAM)
+     connSkt.connect((tgtHost,tgtPort))
+     connSkt.send('Hello\r\n')
+     results = connSkt.recv(100)
+     lock.acquire()
+     print "[+]%d/TCP open" %(tgtPort)
+     print "[+] "+str(results)
+ except:
+     lock.acquire()
+     print "[-]%d/TCP closed" %(tgtPort)
+ finally:
+     lock.release()
+     connSkt.close()
+</code></pre>
+</li>
+<li><p>使用<br>运行后如下结果  </p>
+<blockquote>
+<p>python portscanner.py -H localhost -P 21,22<br>[+] Scan Reselts for:localhost<br>[+]22/TCP open<br>[+] SSH-2.0-OpenSSH_6.4<br>[+]21/TCP open<br>[+] 220 (vsFTPd 3.0.2)  </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
+<li>线程优化<br>采用多线程扫描<br><pre><code><br>for tgtPort in tgtPorts:<br> t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))<br> t.start()<br></code></pre><br>这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：<br><pre><code><br>import threading<br>import multiprocessing<br>lock = multiprocessing.Semaphore(value=1) #锁<br>def connScan(tgtHost, tgtPort):<br> try:<pre><code>connSkt = socket(AF_INET,SOCK_STREAM)
+connSkt.connect((tgtHost,tgtPort))
+connSkt.send(&apos;Hello\r\n&apos;)
+results = connSkt.recv(100)
+lock.acquire()
+print &quot;[+]%d/TCP open&quot; %(tgtPort)
+print &quot;[+] &quot;+str(results)
+</code></pre> except:<pre><code>lock.acquire()
+print &quot;[-]%d/TCP closed&quot; %(tgtPort)
+</code></pre> finally:<pre><code>lock.release()
+connSkt.close()
+</code></pre>def portScan(tgtHost,tgtPorts):<br> try:<pre><code>tgtIP = gethostbyname(tgtHost)
+</code></pre> except:<pre><code>print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)
+</code></pre> try:<pre><code>tgtName = gethostbyaddr(tgtIP)
+print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]
+</code></pre> except:<pre><code>print &apos;\n[+] Scan Results for: &apos;+ tgtIP
+</code></pre> setdefaulttimeout(1)<br> for tgtPort in tgtPorts:<pre><code>#print &apos;Scanning port &apos; + tgtPort
+t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))
+t.start()
+</code></pre></code></pre><br>完整代码请参考<a href="https://github.com/iceziYao/Grocery/blob/master/portscanner.py" target="_blank" rel="external">portscanner.py</a></li>
+<li>使用nmap端口扫描代码<br>2.1 下载Python-Nmap<br><code>pip install Python-Nmap</code><br>2.2 实现<br><pre><code><br>import nmap<br>import optparse<br>from socket import *<br>import os,sys<br>def nmapScan(tgtHost,tgtPort):<br>   nmScan = nmap.PortScanner()<br>   nmScan.scan(tgtHost,tgtPort)<br>   status = nmScan[tgtHost][‘tcp’][int(tgtPort)][‘state’]<br>   print ‘[!] %s tcp/%s %s’ %(tgtHost,tgtPort,status)<br></code></pre><br>详细代码查看<a href="https://github.com/iceziYao/Grocery/blob/master/nmapport.py" target="_blank" rel="external">nmapport.py</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/04/docker02/" itemprop="url">
+                  浅析docker实现思想
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-04T00:00:00+08:00" content="2016-04-04">
+              2016-04-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote>
+<ul>
+<li>cpu虚拟化：可以模拟不同CPU，例如bochs</li>
+<li>完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware</li>
+<li>半虚拟化</li>
+<li>硬件虚拟化：可以当作获得硬件加速的完全虚拟化</li>
+<li>系统虚拟化：host和guest共享一样的内核，例如Openvz</li>
+<li>语言沙盒：只能在语言的范围内使用</li>
+</ul>
+<p>虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？</p>
+<ul>
+<li>cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在</li>
+<li>半虚拟化时，guest内核必须存在补丁<ul>
+<li>系统虚拟化时，用户不能控制自己的内核</li>
+<li>语言沙盒时，用户没有使用api的自由</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="docker的原理"><a href="#docker的原理" class="headerlink" title="docker的原理"></a>docker的原理</h2><ul>
+<li>doceker实现结构<br>–&gt;lxc<br>–&gt;namespace: 仅沙盒隔离，不限制资源。<br>–&gt;cgroup: 仅限制资源，不沙盒隔离。<br>–&gt;aufs<br>–&gt;image管理  </li>
+<li>底层技术<blockquote>
+<p>Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。</p>
+</blockquote>
+</li>
+<li>lxc<blockquote>
+<p>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.</p>
+<ul>
+<li>XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。</li>
+</ul>
+</blockquote>
+</li>
+<li>命名空间(Namespaces)<blockquote>
+<ul>
+<li>Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    </li>
+<li>这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。<br>通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  </li>
+</ul>
+<p>一些Docker使用到的命名空间有：</p>
+<ul>
+<li>pid命名空间: 使用在进程隔离(PID: Process ID)。</li>
+<li>net命名空间: 使用在管理网络接口(NET: Networking</li>
+<li>ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)</li>
+<li>mnt命名空间: 使用在管理挂载点 (MNT: Mount)。</li>
+<li>uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。</li>
+</ul>
+</blockquote>
+</li>
+<li>群组控制(cgroup)<blockquote>
+<p>Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用</p>
+</blockquote>
+</li>
+<li>联合文件系统(UnionFS)<blockquote>
+<p>联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><ul>
+<li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
+<li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
+<li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/03/docker01/" itemprop="url">
+                  浅析docker使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-03T00:00:00+08:00" content="2016-04-03">
+              2016-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul>
+<li>简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案<br>Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器</li>
+<li>Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   <blockquote>
+<ul>
+<li>普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  </li>
+<li>每个container拥有自己独立的各种命名空间(亦即资源)包括:<br>PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等<br>与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  </li>
+<li>虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker 概念及相互作用<blockquote>
+<ul>
+<li>主机， 运行容器的机器。</li>
+<li>镜像，文件的层次结构，以及包含如何运行容器的元数据</li>
+<li>容器，一个从镜像中启动，包含正在运行的程序的进程</li>
+<li>Registry， 镜像仓库</li>
+<li>卷，容器外的存储  </li>
+<li>Dockerfile， 用于创建镜像的脚本  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="docker能用来干什么？"><a href="#docker能用来干什么？" class="headerlink" title="docker能用来干什么？"></a>docker能用来干什么？</h2><ul>
+<li>快速交付你的应用程序<br>Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。</li>
+<li>开发和拓展更加简单<br>Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。<br>Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。</li>
+<li>达到高密度和更多负载<br>Docker轻巧快速，它提供了一个可行的、 符合成本效益的替代基于虚拟机管理程序的虚拟机。这在高密度的环境下尤其有用。例如，构建你自己的云平台或者PaaS，在中小的部署环境下同样可以获取到更多的资源性能。</li>
+</ul>
+<h2 id="docker主要组成有哪些？"><a href="#docker主要组成有哪些？" class="headerlink" title="docker主要组成有哪些？"></a>docker主要组成有哪些？</h2><ul>
+<li>Docker有两个主要的部件：  <blockquote>
+<p>Docker: 开源的容器虚拟化平台。<br>Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。</p>
+</blockquote>
+</li>
+<li>Docker的内部<blockquote>
+<ul>
+<li>Docker镜像 (Docker images)。</li>
+<li>Docker仓库 (Docker registeries)。</li>
+<li>Docker容器(Docker containers)。</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker镜像<blockquote>
+<ul>
+<li>Docker镜像是一个只读的模板。举个例子，一个镜像可以包含一个运行在Apache上的Web应用和其使用的Ubuntu操作系统。</li>
+<li>镜像是用来创建容器的。Docker提供了简单的放来来建立新的镜像或者升级现有的镜像，你也可以下载别人已经创建好的镜像。Docker镜像是Docker的 构造 部分</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker仓库<blockquote>
+<p>Docker仓库用来保存镜像。可以理解为代码控制中的代码仓库。同样的，Docker仓库也有公有和私有的概念。公有的Docker仓库名字是Docker Hub。Docker Hub提供了庞大的镜像集合供使用。这些镜像可以是你自己创建的，或者你也可以在别人的镜像基础上创建。Docker仓库是Docker的 分发 部分。</p>
+</blockquote>
+</li>
+<li>Docker容器<blockquote>
+<p>Docker容器和文件夹很类似。一个Docker容器包含了所有的某个应用运行所需要的环境。每一个Docker容器都是从Docker镜像创建 的。Docker容器可以运行、开始、停止、移动和删除。每一个Docker容器都是独立和安全的应用平台。Docker容器是Docker的 运行 部分。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ol>
+<li>首先更新yum源，添加rhel7.1的iso镜像，来更新内核kernel(因为docker对内核有要求，rhel7.0时启动慢)  <blockquote>
+<p>1.自己下载cestos7.1的镜像，构建本地yum<br>2.使用163或者网易的yum源<br>yum update kernel -y<br>rpm -q kernel</p>
+<blockquote>
+<p>kernel-3.10.0-123.el7.x86_64<br>kernel-3.10.0-229.el7.x86_64  </p>
+</blockquote>
+<p>重启，选择kernel-3.10.0-229.el7.x86_64进入系统</p>
+</blockquote>
+</li>
+<li>更新相关组件  <blockquote>
+<p>yum update device-mapper -y<br>rpm -qa | grep device-mapper</p>
+<blockquote>
+<p>device-mapper-persistent-data-0.3.2-1.el7.x86_64<br>device-mapper-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-0.4.9-66.el7.x86_64<br>device-mapper-event-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-libs-0.4.9-66.el7.x86_64<br>device-mapper-event-1.02.93-3.el7.x86_64<br>device-mapper-1.02.93-3.el7.x86_64  </p>
+</blockquote>
+</blockquote>
+</li>
+<li>安装docker  <blockquote>
+<p>3.1 执行Docker安装脚本</p>
+<blockquote>
+<p> curl -sSL <a href="https://get.docker.com/" target="_blank" rel="external">https://get.docker.com/</a> | sh<br>yum install -y docker-selinux<br>这个脚本会添加 docker.repo 配置并安装Docker。</p>
+</blockquote>
+<p>3.2 自动添加添加yum仓库<br><pre><code><br>cat &gt;/etc/yum.repos.d/docker.repo &lt;&lt;-EOF<br>[dockerrepo]<br>name=Docker Repository<br>baseurl=<a href="https://yum.dockerproject.org/repo/main/centos/7" target="_blank" rel="external">https://yum.dockerproject.org/repo/main/centos/7</a><br>enabled=1<br>gpgcheck=1<br>gpgkey=<a href="https://yum.dockerproject.org/gpg" target="_blank" rel="external">https://yum.dockerproject.org/gpg</a><br>EOF<br></code></pre><br>安装Docker包<br>yum install -y docker-engine<br>yum install -y docker-selinux<br>yum list installed | grep docker  </p>
+<blockquote>
+<p>docker-engine.x86_64             1.8.1-1.el7.centos                    @dockerrepo<br>docker-selinux.x86_64            1.7.1-108.el7.centos                  @extras  </p>
+</blockquote>
+<p>3.3 rpm安装</p>
+<blockquote>
+<p>yum install docker-engine-1.8.3-1.el7.centos.x86_64.rpm  -y</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>启动docker<blockquote>
+<p>systemctl start docker<br>docker version   </p>
+<blockquote>
+<p>Client:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+<p>Server:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="docker使用"><a href="#docker使用" class="headerlink" title="docker使用"></a>docker使用</h2><ol>
+<li>有关镜像的操作  <blockquote>
+<p>$ docker images  # 查看所有镜像.<br>$ docker import  # 从tarball创建镜像<br>$ docker build   # 通过Dockerfile创建镜像<br>$ docker commit  # 从容器中创建镜像<br>$ docker rmi     # 删除镜像<br>$ docker history # 列出镜像的变更历史  </p>
+</blockquote>
+</li>
+<li>运行的容器  <blockquote>
+<p>$ docker create  # 创建一个容器，但不启动它<br>$ docker run     #  创建并启动一个容器<br>$ docker stop    # 停止容器<br>$ docker start   #  启动容器<br>$ docker restart # 重启容器<br>$ docker rm      # 删除容器<br>$ docker kill    #  给容器发送kill信号<br>$ docker attach  # 连接到正在运行的容器中<br>$ docker wait    # 阻塞直到容器停止为止<br>$ docker exec    # 在运行的容器中执行一条命令  </p>
+</blockquote>
+</li>
+<li>检查容器  <blockquote>
+<p>$ docker ps      # 显示运行的容器<br>$ docker inspect # 显示容器信息（包括ip地址）<br>$ docker logs    # 获取容器中的日志<br>$ docker events  # 获取容器事件<br>$ docker port    # 显示容器的公开端口<br>$ docker top     # 显示容器中运行的进程<br>$ docker diff    # 查看容器文件系统中改变的文件<br>$ docker stats   # 查看各种纬度数据、内存、CPU、文件系统等  </p>
+</blockquote>
+</li>
+</ol>
+<p>之后的会继续更新博客</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
+                  高可用集群系列之基础01
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/集群/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>什么是集群?  </p>
+<blockquote>
+<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
+</blockquote>
+</li>
+<li><p>集群系统的主要优点:  </p>
+<blockquote>
+<p>(1)高可扩展性：<br> (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br> (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br> (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
+</blockquote>
+</li>
+<li><p>集群系统的分类</p>
+<blockquote>
+<p>1)、高可用(High Availability)集群,简称HA集群。<br> 这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br> 负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br> 在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br> (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br> 在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br> 这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
+</blockquote>
+<ol>
+<li>什么是高可用性 (HA)<blockquote>
+<p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
+<ul>
+<li>HA的容错备援运作过程  <blockquote>
+<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>HA三种工作方式：  </p>
+<blockquote>
+<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/16/haproxy/" itemprop="url">
+                  Haproxy负载均衡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/负载均衡/" itemprop="url" rel="index">
+                    <span itemprop="name">负载均衡</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>HAProxy简介<br><em>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.</em><br><em>HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</em><br>————百度百科<br>HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。<br>1.1 HAProxy目前主要有两个版本<br>1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。<br> 客户端侧的长连接(client-side keep-alive)<br> TCP加速(TCP speedups)<br> 响应池(response buffering)<br> RDP协议<br> 基于源的粘性(source-based stickiness)<br> 更好的统计数据接口(a much better stats interfaces)<br> 更详细的健康状态检测机制(more verbose health checks)<br> 基于流量的健康评估机制(traffic-based health)<br> 支持HTTP认证<br> 服务器管理命令行接口(server management from the CLI)<br> 基于ACL的持久性(ACL-based persistence)<br> 日志分析器<br>1.1.2 内容交换和超强负载：<br>衍生于1.2版本，并提供了额外的新特性。<br> 内容交换(content switching)：基于任何请求标准挑选服务器池；<br> ACL：编写内容交换规则；<br> 负载均衡算法(load-balancing algorithms)：更多的算法支持；<br> 内容探测(content inspection)：阻止非授权协议；<br> 透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；<br> 内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；<br> 分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；<br> 快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；<br> 会话速率限制(session rate limiting)：适用于托管环境；<br>1.2 性能<br>HAProxy借助于OS上几种常见的技术来实现性能的最大化。<br> 单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。<br> O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。<br> 在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；<br> 借助于Linux 2.6 (&gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；<br> MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；<br> 树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；<br> 优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；<br> 精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；<br>所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。<br>在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。<br>可以从三个因素来评估负载均衡器的性能：<br>(1)    会话率<br>(2)    会话并发能力<br>(3) 数据率  </p>
+</li>
+<li><p>配置HAProxy<br>2.1 配置文件格式<br>HAProxy的配置处理3类来主要参数来源：<br> ——最优先处理的命令行参数，<br> ——“global”配置段，用于设定全局配置参数；<br> ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；<br>2.2 时间格式<br>一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。<br> us: 微秒(microseconds)，即1/1000000秒；<br> ms: 毫秒(milliseconds)，即1/1000秒；<br> s: 秒(seconds)；<br> m: 分钟(minutes)；<br> h：小时(hours)；<br> d: 天(days)；<br>2.3 例子<br>下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。<br><pre><code><br> global<br> daemon<br> maxconn 25600<br>defaults<br> mode http<br> timeout connect 5000ms<br> timeout client 50000ms<br> timeout server 50000ms<br>frontend http-in<br> bind <em>:80<br> default_backend servers<br>backend servers<br> server server1 127.0.0.1:8080 maxconn 32<br></em></code></pre><br>2.4 全局配置<br>“”“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。<br>\ 进程管理及安全相关的参数<br>- chroot <jail dir="">：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；<br>- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；<br>- gid <number>：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；<br>- group <group name="">：同gid，不过指定的组名；<br>- log  <address> <facility> [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；<br>- log-send-hostname [<string>]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；<br>- nbproc <number>：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；<br>- pidfile：<br>- uid：以指定的UID身份运行haproxy进程；<br>- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；<br>- user：同uid，但使用的是用户名；<br>- stats：<br>- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；<br>- description：当前实例的描述信息；<br>* 性能调整相关的参数<br>- maxconn <number>：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；<br>- maxpipes <number>：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；<br>- noepoll：在Linux系统上禁用epoll机制；<br>- nokqueue：在BSE系统上禁用kqueue机制；<br>- nopoll：禁用poll机制；<br>- nosepoll：在Linux禁用启发式epoll机制；<br>- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；<br>- spread-checks <0..50, in="" percent="">：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；<br>- tune.bufsize <number>：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；<br>- tune.chksize <number>：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；<br>- tune.maxaccept <number>：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；<br>- tune.maxpollevents  <number>：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；<br>- tune.maxrewrite <number>：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；<br>- tune.rcvbuf.client <number>：<br>- tune.rcvbuf.server <number>：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；<br>- tune.sndbuf.client：<br>- tune.sndbuf.server：<br>* Debug相关的参数<br>- debug<br>- quiet<br>2.5 代理<br>代理相关的配置可以如下配置段中。<br>(1) defaults name<br>(2) frontend name<br>(3) backend  name<br>(4) listen   name<br>“defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。<br>“frontend”段用于定义一系列监听的套接字，这些套stats<em>auth接字可接受客户端请求并与之建立连接。<br>“backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。<br>“listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。<br>所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\</em>(下划线)、.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  </number></number></number></number></number></number></number></0..50,></number></number></number></string></facility></address></group></number></jail></p>
+</li>
+<li><p>配置文件中的关键字参考<br>3.1 balance<br><code>balance &lt;algorithm&gt; [ &lt;arguments&gt; ]</code><br><code>balance url_param &lt;param&gt; [check_post   [&lt;max_wait&gt;]]</code><br>3.2 bind<br><code>bind [&lt;address&gt;]:&lt;port_range&gt; [, ...]</code><br><code>bind [&lt;address&gt;]:&lt;port_range&gt; [, ...] interface &lt;interface&gt;</code><br>-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。<br><code>&lt;address&gt;</code>：可选选项，其可以为主机名、IPv4地址、IPv6地址或<em>；省略此选项、将其指定为</em>或0.0.0.0时，将监听当前系统的所有IPv4地址；<br><code>&lt;port_range&gt;</code>：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字<address:port>在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；<br><code>&lt;interface&gt;：</code>指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；<br>3.3 mode<br><code>mode { tcp|http|health }</code><br>设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。<br>tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；<br>http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；<br>health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；<br>3.4 hash-type<br><code>hash-type &lt;method&gt;</code><br>定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法<br>map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。<br>consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。<br>3.5 log<br><code>log global</code><br><code>log &lt;address&gt; &lt;facility&gt; [&lt;level&gt; [&lt;minlevel&gt;]]</code><br>为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且”global”段已经定了两个log参数时，多余了log参数将被忽略。<br>global：当前实例的日志系统参数同”global”段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；<br><code>&lt;address&gt;</code>：定义日志发往的位置，其格式之一可以为<code>&lt;IPv4_address:PORT&gt;</code>，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；<br><code>&lt;facility&gt;</code>：可以为syslog系统的标准facility之一；<br><code>&lt;level&gt;</code>：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；<br>3.6 maxconn<br><code>maxconn &lt;conns&gt;</code><br>设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。<br>如果为<code>&lt;conns&gt;</code>指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。<br>3.7 default_backend<br>default_backend <code>&lt;backend&gt;</code><br>在没有匹配的”use_backend”规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在”frontend”和”backend”之间进行内容交换时，通常使用”use-backend”定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。<br><code>&lt;backend&gt;</code>：指定使用的后端的名称；<br>使用案例：  </address:port></p>
+<pre><code>
+use_backend     dynamic  if  url_dyn
+use_backend     static   if  url_css url_img extension_img
+default_backend dynamic
+</code></pre>  
+3.8 服务  
+<pre><code>
+server <name> <address>[:port] [param*]
+为后端声明一个server，因此，不能用于defaults和frontend区段。
+<name>：为此服务器指定的内部名称，其将出现在日志及警告信息中；如果设定了"http-send-server-name"，它还将被添加至发往此服务器的请求首部中；
+<address>：此服务器的的IPv4地址，也支持使用可解析的主机名，只不过在启动时需要解析主机名至相应的IPv4地址；
+[:port]：指定将连接请求所发往的此服务器时的目标端口，其为可选项；未设定时，将使用客户端请求时的同一相端口；
+[param*]：为此服务器设定的一系参数；其可用的参数非常多，具体请参考官方文档中的说明，下面仅说明几个常用的参数；
+服务器或默认服务器参数：
+backup：设定为备用服务器，仅在负载均衡场景中的其它server均不可用于启用此server；
+check：启动对此server执行健康状态检查，其可以借助于额外的其它参数完成更精细的设定，如：
+ inter <delay>：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
+ rise <count>：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
+ fall <count>：确认server从正常状态转换为不可用状态需要检查的次数；
+cookie <value>：为指定server设定cookie值，此处指定的值将在请求入站时被检查，第一次为此值挑选的server将在后续的请求中被选中，其目的在于实现持久连接的功能；
+maxconn <maxconn>：指定此服务器接受的最大并发连接数；如果发往此服务器的连接数目高于此处指定的值，其将被放置于请求队列，以等待其它连接被释放；
+maxqueue <maxqueue>：设定请求队列的最大长度；
+observe <mode>：通过观察服务器的通信状况来判定其健康状态，默认为禁用，其支持的类型有“layer4”和“layer7”，“layer7”仅能用于http代理场景；
+redir <prefix>：启用重定向功能，将发往此服务器的GET和HEAD请求均以302状态码响应；需要注意的是，在prefix后面不能使用/，且不能使用相对地址，以免造成循环；例如：
+ server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
+weight <weight>：权重，默认为1，最大值为256，0表示不参与负载均衡；
+检查方法：
+option httpchk
+option httpchk <uri>
+option httpchk <method> <uri>
+option httpchk <method> <uri> <version>：不能用于frontend段，例如：
+backend https_relay
+ mode tcp
+ option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
+ server apache1 192.168.1.1:443 check port 80
+使用案例：
+server first  172.16.100.7:1080 cookie first  check inter 1000
+server second 172.16.100.8:1080 cookie second check inter 1000
+</version></uri></method></uri></method></uri></weight></prefix></mode></maxqueue></maxconn></value></count></count></delay></address></name></address></name></code></pre>  
+3.9 capture request header  
+<pre><code>
+capture request header <name> len <length>
+捕获并记录指定的请求首部最近一次出现时的第一个值，仅能用于“frontend”和“listen”区段。捕获的首部值使用花括号{}括起来后添加进日志中。如果需要捕获多个首部值，它们将以指定的次序出现在日志文件中，并以竖线“|”作为分隔符。不存在的首部记录为空字符串，最常需要捕获的首部包括在虚拟主机环境中使用的“Host”、上传请求首部中的“Content-length”、快速区别真实用户和网络机器人的“User-agent”，以及代理环境中记录真实请求来源的“X-Forward-For”。
+<name>：要捕获的首部的名称，此名称不区分字符大小写，但建议与它们出现在首部中的格式相同，比如大写首字母。需要注意的是，记录在日志中的是首部对应的值，而非首部名称。
+<length>：指定记录首部值时所记录的精确长度，超出的部分将会被忽略。
+可以捕获的请求首部的个数没有限制，但每个捕获最多只能记录64个字符。为了保证同一个frontend中日志格式的统一性，首部捕获仅能在frontend中定义。
+</length></name></length></name></code></pre>
+3.10 capture response header  
+<pre><code>
+capture response header <name> len <length>
+捕获并记录响应首部，其格式和要点同请求首部。
+</length></name></code></pre>  
+3.11 stats enable
+<pre><code>
+启用基于程序编译时默认设置的统计报告，不能用于“frontend”区段。只要没有另外的其它设定，它们就会使用如下的配置：
+\- stats uri   : /haproxy?stats
+\- stats realm : "HAProxy Statistics"
+\- stats auth  : no authentication
+\- stats scope : no restriction   
+尽管“stats enable”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。  
+backend public_www
+ server websrv1 172.16.100.11:80
+ stats enable
+ stats hide-version
+ stats scope   .
+ stats uri     /haproxyadmin?stats
+ stats realm   Haproxy\ Statistics
+ stats auth    statsadmin:password
+ stats auth    statsmaster:password
+</code></pre>  
+3.12 stats hide-version
+<pre><code>
+stats hide-version  
+启用统计报告并隐藏HAProxy版本报告，不能用于“frontend”区段。默认情况下，统计页面会显示一些有用信息，包括HAProxy的版本号，然而，向所有人公开HAProxy的精确版本号是非常有风险的，因为它能帮助恶意用户快速定位版本的缺陷和漏洞。尽管“stats hide-version”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。具体请参照“stats enable”一节的说明。
+</code></pre>
+3.13 stats realm  
+<pre><code>
+stats realm <realm>
+启用统计报告并高精认证领域，不能用于“frontend”区段。haproxy在读取realm时会将其视作一个单词，因此，中间的任何空白字符都必须使用反斜线进行转义。此参数仅在与“stats auth”配置使用时有意义。
+<realm>：实现HTTP基本认证时显示在浏览器中的领域名称，用于提示用户输入一个用户名和密码。
+尽管“stats realm”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。具体请参照“stats enable”一节的说明。
+</realm></realm></code></pre>
+3.14 stats scope  
+<pre><code>
+stats scope { <name> | "." }
+启用统计报告并限定报告的区段，不能用于“frontend”区段。当指定此语句时，统计报告将仅显示其列举出区段的报告信息，所有其它区段的信息将被隐藏。如果需要显示多个区段的统计报告，此语句可以定义多次。需要注意的是，区段名称检测仅仅是以字符串比较的方式进行，它不会真检测指定的区段是否真正存在。
+name>：可以是一个“listen”、“frontend”或“backend”区段的名称，而“.”则表示stats scope语句所定义的当前区段。  
+尽管“stats scope”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。
+backend private_monitoring
+ stats enable
+ stats uri     /haproxyadmin?stats
+ stats refresh 10s
+</name></code></pre>
+3.15 stats auth  
+<pre><code>
+stats auth <user>:<passwd>
+启用带认证的统计报告功能并授权一个用户帐号，其不能用于“frontend”区段。
+<user>：授权进行访问的用户名；
+<passwd>：此用户的访问密码，明文格式；
+此语句将基于默认设定启用统计报告功能，并仅允许其定义的用户访问，其也可以定义多次以授权多个用户帐号。可以结合“stats realm”参数在提示用户认证时给出一个领域说明信息。在使用非法用户访问统计功能时，其将会响应一个“401 Forbidden”页面。其认证方式为HTTP Basic认证，密码传输会以明文方式进行，因此，配置文件中也使用明文方式存储以说明其非保密信息故此不能相同于其它关键性帐号的密码。
+尽管“stats auth”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。
+</passwd></user></passwd></user></code></pre>
+3.16 stats admin  
+<pre><code>
+stats admin { if | unless } <cond>
+在指定的条件满足时启用统计报告页面的管理级别功能，它允许通过web接口启用或禁用服务器，不过，基于安全的角度考虑，统计报告页面应该尽可能为只读的。此外，如果启用了HAProxy的多进程模式，启用此管理级别将有可能导致异常行为。
+目前来说，POST请求方法被限制于仅能使用缓冲区减去保留部分之外的空间，因此，服务器列表不能过长，否则，此请求将无法正常工作。因此，建议一次仅调整少数几个服务器。下面是两个案例，第一个限制了仅能在本机打开报告页面时启用管理级别功能，第二个定义了仅允许通过认证的用户使用管理级别功能。
+backend stats_localhost
+ stats enable
+ stats admin if LOCALHOST
+backend stats_auth
+ stats enable
+ stats auth  haproxyadmin:password
+ stats admin if TRUE
+</cond></code></pre>
+3.17 option httplog  
+<pre><code>
+option httplog [ clf ]
+启用记录HTTP请求、会话状态和计时器的功能。
+clf：使用CLF格式来代替HAProxy默认的HTTP格式，通常在使用仅支持CLF格式的特定日志分析器时才需要使用此格式。
+默认情况下，日志输入格式非常简陋，因为其仅包括源地址、目标地址和实例名称，而“option httplog”参数将会使得日志格式变得丰富许多，其通常包括但不限于HTTP请求、连接计时器、会话状态、连接数、捕获的首部及cookie、“frontend”、“backend”及服务器名称，当然也包括源地址和端口号等。
+</code></pre>
+3.18 option logasap  
+<pre><code>
+     option logasap  
+ no option logasap  
+启用或禁用提前将HTTP请求记入日志，不能用于“backend”区段。  
+默认情况下，HTTP请求是在请求结束时进行记录以便能将其整体传输时长和字节数记入日志，由此，传较大的对象时，其记入日志的时长可能会略有延迟。“option logasap”参数能够在服务器发送complete首部时即时记录日志，只不过，此时将不记录整体传输时长和字节数。此情形下，捕获“Content-Length”响应首部来记录传输的字节数是一个较好选择。下面是一个例子。  
+listen http_proxy 0.0.0.0:80
+   mode http
+   option httplog
+   option logasap
+   log 172.16.100.9 local2
+</code></pre>
+3.19 option forwardfor  
+<pre><code>
+option forwardfor [ except <network> ] [ header <name> ] [ if-none ]
+允许在发往服务器的请求首部中插入“X-Forwarded-For”首部。  
+<network>：可选参数，当指定时，源地址为匹配至此网络中的请求都禁用此功能。  
+<name>：可选参数，可使用一个自定义的首部，如“X-Client”来替代“X-Forwarded-For”。有些独特的web服务器的确需要用于一个独特的首部
+if-none：仅在此首部不存在时才将其添加至请求报文问道中
+HAProxy工作于反向代理模式，其发往服务器的请求中的客户端IP均为HAProxy主机的地址而非真正客户端的地址，这会使得服务器端的日志信息记录不了真正的请求来源，“X-Forwarded-For”首部则可用于解决此问题。HAProxy可以向每个发往服务器的请求上添加此首部，并以客户端IP为其value
+需要注意的是，HAProxy工作于隧道模式，其仅检查每一个连接的第一个请求，因此，仅第一个请求报文被附加此首部。如果想为每一个请求都附加此首部，请确保同时使用了“option httpclose”、“option forceclose”和“option http-server-close”几个option。  
+下面是一个例子
+frontend www
+ mode http
+ option forwardfor except 127.0.0.1
+</name></network></name></network></code></pre>
+3.20 errorfile  
+<pre><code>
+errorfile <code> <file>
+在用户请求不存在的页面时，返回一个页面文件给客户端而非由haproxy生成的错误代码；可用于所有段中
+<code>：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有200、400、403、408、500、502、503和504；
+<file>：指定用于响应的页面文件；
+例如
+errorfile 400 /etc/haproxy/errorpages/400badreq.http
+errorfile 403 /etc/haproxy/errorpages/403forbid.http
+errorfile 503 /etc/haproxy/errorpages/503sorry.http
+</file></code></file></code></code></pre>
+3.21 errorloc 和 errorloc302  
+<pre><code>
+errorloc <code> <url>
+errorloc302 <code> <url>
+请求错误时，返回一个HTTP重定向至某URL的信息；可用于所有配置段中。
+<code>：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有200、400、403、408、500、502、503和504；
+<url>：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；
+需要留意的是，这两个关键字都会返回302状态吗，这将使得客户端使用同样的HTTP方法获取指定的URL，对于非GET法的场景(如POST)来说会产生问题，因为返回客户的URL是不允许使用GET以外的其它方法的。如果的确有这种问题，可以使用errorloc303来返回303状态码给客户端。
+</url></code></url></code></url></code></code></pre>
+3.22 errorloc303
+<pre><code>
+`errorloc303 <code> <url>`  
+请求错误时，返回一个HTTP重定向至某URL的信息给客户端；可用于所有配置段中。  
+`<code>`：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有400、403、408、500、502、503和504；  
+<url>：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；  
+例如：
+backend webserver
+server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
+server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
+errorloc 403 /etc/haproxy/errorpages/sorry.htm
+errorloc 503 /etc/haproxy/errorpages/sorry.htm
+</url></code></url></code></code></pre>
+
+</li>
+</ol>
+<p>一个配置示例：</p>
+<pre><code>
+\#---------------------------------------------------------------------
+\# Global settings
+\#---------------------------------------------------------------------
+global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+    log         127.0.0.1 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 30000
+listen stats
+    mode http
+    bind 0.0.0.0:1080
+    stats enable
+    stats hide-version
+    stats uri     /haproxyadmin?stats
+    stats realm   Haproxy\ Statistics
+    stats auth    admin:admin
+    stats admin   if TRUE
+frontend http-in
+    bind \*:80
+    mode http
+    log global
+    option httpclose
+    option logasap
+    option dontlognull
+    capture request  header Host len 20
+    capture request  header Referer len 60
+    default_backend servers
+frontend healthcheck
+    bind :1099
+    mode http
+    option httpclose
+    option forwardfor
+    default_backend servers
+backend servers
+    balance roundrobin
+    server websrv1 192.168.10.11:80 check maxconn 2000
+    server websrv2 192.168.10.12:80 check maxconn 2000
+</code></pre>  
+负载均衡MySQL服务的配置示例  
+<pre><code>
+\#---------------------------------------------------------------------
+\# Global settings
+\#---------------------------------------------------------------------
+global
+    \# to have these messages end up in /var/log/haproxy.log you will
+    \# need to:
+    \#
+    \# 1) configure syslog to accept network log events.  This is done
+    \#    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    \#    /etc/sysconfig/syslog
+    \#
+    \# 2) configure local2 events to go to the /var/log/haproxy.log
+    \#   file. A line like the following can be added to
+    \#   /etc/sysconfig/syslog
+    \#
+    \#    local2.*                       /var/log/haproxy.log
+    \#
+    log         127.0.0.1 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+defaults
+    mode                    tcp
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 600
+listen stats
+    mode http
+    bind 0.0.0.0:1080
+    stats enable
+    stats hide-version
+    stats uri     /haproxyadmin?stats
+    stats realm   Haproxy\ Statistics
+    stats auth    admin:admin
+    stats admin if TRUE
+frontend mysql
+    bind \*:3306
+    mode tcp
+    log global
+    default_backend mysqlservers
+backend mysqlservers
+    balance leastconn
+    server dbsrv1 192.168.10.11:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
+    server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/01/Memcached/" itemprop="url">
+                  Memcached简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-01T21:49:33+08:00" content="2016-01-01">
+              2016-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">缓存</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。</p>
+</li>
+<li><p>memcached是以LiveJournal旗下Danga Interactive 公司的Brad Fitzpatric 为首开发的一款软件。现在<br>已成为mixi、hatena、Facebook、Vox、LiveJournal等众多服务中提高Web应用扩展性的重要因素。</p>
+</li>
+</ul>
+<p>Memcached是一款开发工具，它既不是一个代码加速器，也不是数据库中间件。其设计哲学思想主要反映在如下方面：</p>
+<blockquote>
+<ol>
+<li>简单key/value存储：服务器不关心数据本身的意义及结构，只要是可序列化数据即可。存储项由“键、过期时间、可选的标志及数据”四个部分组成；  </li>
+<li>功能的实现一半依赖于客户端，一半基于服务器端：客户负责发送存储项至服务器端、从服务端获取数据以及无法连接至服务器时采用相应的动作；服务端负责接收、存储数据，并负责数据项的超时过期；  </li>
+<li>各服务器间彼此无视：不在服务器间进行数据同步；  </li>
+<li>O(1)的执行效率  </li>
+<li>清理超期数据：默认情况下，Memcached是一个LRU缓存，同时，它按事先预订的时长清理超期数据；<br>但事实上，memcached不会删除任何已缓存数据，只是在其过期之后不再为客户所见；<br>而且，memcached也不会真正按期限清理缓存，而仅是当get命令到达时检查其时长；   </li>
+</ol>
+</blockquote>
+<p>Memcached提供了为数不多的几个命令来完成与服务器端的交互，这些命令基于memcached的协议实现。  </p>
+<blockquote>
+<p>存储类命令：set, add, replace, append, prepend<br>获取数据类命令：get, delete, incr/decr<br>统计类命令：stats, stats items, stats slabs, stats sizes<br>清理命令： flush_all  </p>
+</blockquote>
+<p>一、安装libevent<br>memcached依赖于libevent API，因此要事先安装之，项目主页：<a href="http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：" target="_blank" rel="external">http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：</a></p>
+<pre><code>
+# tar xf libevent-2.0.20-stable.tar.gz
+# cd libevent-2.0.20
+# ./configure --prefix=/usr/local/libevent
+# make && make install
+
+# echo "/usr/local/libevent/lib" > /etc/ld.so.conf.d/libevent.conf
+# ldconfig
+</code></pre>
+二、安装配置memcached
+
+1. 安装memcached
+<pre><code>
+# tar xf memcached-1.4.15.tar.gz
+# cd memcached-1.4.15
+# ./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
+# make && make install
+</code></pre>
+2. memcached SysV的startup脚本代码如下所示，将其建立为/etc/init.d/memcached文件：
+<pre><code>
+#!/bin/bash
+#
+# Init file for memcached
+#
+# chkconfig: - 86 14
+# description: Distributed memory caching daemon
+#
+# processname: memcached
+# config: /etc/sysconfig/memcached
+. /etc/rc.d/init.d/functions
+## Default variables
+PORT="11211"
+USER="nobody"
+MAXCONN="1024"
+CACHESIZE="64"
+OPTIONS=""
+RETVAL=0
+prog="/usr/local/memcached/bin/memcached"
+desc="Distributed memory caching"
+lockfile="/var/lock/subsys/memcached"
+start() {
+        echo -n $"Starting $desc (memcached): "
+        daemon $prog -d -p $PORT -u $USER -c $MAXCONN -m $CACHESIZE -o "$OPTIONS"
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch $lockfile
+        return $RETVAL
+}
+stop() {
+        echo -n $"Shutting down $desc (memcached): "
+        killproc $prog
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f $lockfile
+        return $RETVAL
+}
+restart() {
+        stop
+        start
+}
+reload() {
+        echo -n $"Reloading $desc ($prog): "
+        killproc $prog -HUP
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        restart
+        ;;
+  condrestart)
+        [ -e $lockfile ] && restart
+        RETVAL=$?
+        ;;       
+  reload)
+        reload
+        ;;
+  status)
+        status $prog
+        RETVAL=$?
+        ;;
+   \*)
+        echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+        RETVAL=1
+esac
+exit $RETVAL
+</code></pre>
+
+<p>使用如下命令配置memcached成为系统服务：</p>
+<pre><code>
+# chmod +x /etc/init.d/memcached
+# chkconfig --add memcached
+# service memcached start
+</code></pre>
+
+<ol>
+<li>使用telnet命令测试memcached的使用<br>Memcached提供一组基本命令用于基于命令行调用其服务或查看服务器状态等。<br><code>telnet 127.0.0.1 11211</code>  <blockquote>
+<p>add命令：<br>add keyname flag  timeout  datasize<br>如：<br>add mykey 0 10 12<br>Hello world!<br>get命令：<br>get keyname<br>如：get mykey<br>VALUE mykey 0 12<br>Hello world!<br>END  </p>
+</blockquote>
+</li>
+</ol>
+<p>4.memcached的常用选项说明</p>
+<pre><code>
+-l <ip_addr>：指定进程监听的地址；
+-d: 以服务模式运行；
+-u <username>：以指定的用户身份运行memcached进程；
+-m <num>：用于缓存数据的最大内存空间，单位为MB，默认为64MB；
+-c <num>：最大支持的并发连接数，默认为1024；
+-p <num>: 指定监听的TCP端口，默认为11211；
+-U <num>：指定监听的UDP端口，默认为11211，0表示关闭UDP端口；
+-t <threads>：用于处理入站请求的最大线程数，仅在memcached编译时开启了支持线程才有效；
+-f <num>：设定Slab Allocator定义预先分配内存空间大小固定的块时使用的增长因子；
+-M：当内存空间不够使用时返回错误信息，而不是按LRU算法利用空间；
+-n: 指定最小的slab chunk大小；单位是字节；
+-S: 启用sasl进行用户认证；
+</num></threads></num></num></num></num></username></ip_addr></code></pre>
+
+<p>三、安装Memcache的PHP扩展</p>
+<p>①安装PHP的memcache扩展</p>
+<pre><code>
+# tar xf memcache-2.2.5.tgz
+# cd memcache-2.2.5
+/usr/local/php/bin/phpize
+# ./configure --with-php-config=/usr/local/php/bin/php-config --enable-memcache
+# make && make install
+</code></pre>
+
+<p>上述安装完后会有类似以下的提示：</p>
+<blockquote>
+<p>Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/  </p>
+</blockquote>
+<p>②编辑/usr/local/php/lib/php.ini，在“动态模块”相关的位置添加如下一行来载入memcache扩展：<br>extension=/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/memcache.so<br>而后对memcached功能进行测试，在网站目录中建立测试页面test.php，添加如下内容：  </p>
+<pre><code>
+<?php
+$mem = new Memcache;
+$mem->connect("127.0.0.1", 11211)  or die("Could not connect");
+$version = $mem->getVersion();
+echo "Server's version: ".$version."<br>\n";
+$mem->set('testkey', 'Hello World', 0, 600) or die("Failed to save data at the memcached server");
+echo "Store data in the cache (data will expire in 600 seconds)<br>\n";
+$get_result = $mem->get('testkey');
+echo "$get_result is from memcached server.";         
+?>
+</code></pre>  
+
+<p>如果有输出”Hello World is from memcached”<br>等信息，则表明memcache已经能够正常工作</p>
+<p>四. 使用libmemcached的客户端工具:</p>
+<p>访问memcached的传统方法是使用基于perl语言开发的Cache::memcached模块，这个模块在大多数perl代码中都能良好的工作，但也有着众所周知的性能方面的问题。libMemcached则是基于C语言开发的开源的C/C++代码访问memcached的库文件，同时，它还提供了数个可以远程使用的memcached管理工具，如memcat, memping，memstat，memslap等。</p>
+<ol>
+<li>编译安装libmemcached<pre><code>
+# tar xf libmemcached-1.0.2.tar.gz
+# cd libmemcached-1.0.2
+# ./configure
+# make && make install
+# ldconfig
+</code></pre></li>
+<li>客户端工具<pre><code>
+# memcat --servers=127.0.0.1:11211 mykey
+# memping
+# memslap
+# memstat
+</code></pre>
+
+</li>
+</ol>
+<p>五. Nginx整合memcached:</p>
+<pre><code>
+server {
+        listen       80;
+        server_name  www.magedu.com;
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+        location / {
+                set $memcached_key $uri;
+                memcached_pass     127.0.0.1:11211;
+                default_type       text/html;
+                error_page         404 @fallback;
+        }
+        location @fallback {
+                proxy_pass http://172.16.0.1;
+        }
+}
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/01/php/" itemprop="url">
+                  PHP编译出错
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-01T00:00:00+08:00" content="2016-01-01">
+              2016-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/lnmp/" itemprop="url" rel="index">
+                    <span itemprop="name">lnmp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>
+   /libxmlrpc/encoding.c:101:undefined reference to 'libiconv_close'
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS='-liconv'
+   　　错误一、编译php出错
+   　　/php-5.3.2/ext/fileinfo/libmagic/apprentice.c:147:internal compiler
+   error:Segmentation fault
+   　　Please submit a full bug report,
+   　　with preprocessed source if appropriate.
+   　　See <url:http: bugzilla.redhat.com="" bugzilla=""> for instructions.
+   　　The bug is not reproducible,so it is likely a hardware or OS problem.
+   　　make:*** [ext/fileinfo/libmagic/apprentice.lo] Error 1
+   　　解决方法：内存大于1G即可，这是php5.3.2的一个bug
+    或者在./configure加上选项:--disable-fileinfo
+    　　--------------------------------------------------------------------
+    　　错误二、重新构造configure文件出错
+    　　./buildconf --force
+    　　Forcing buildconf
+    　　buildconf:checking installation…
+    　　buildconf:autoconf version 2.59 （ok）
+    　　buildconf:Your version of autoconf likely contains buggy cache code.
+    　　Running vcsclean for you.
+    　　To avoid this,install autoconf-2.13.
+    　　Can't figure out your VCS, not cleaning.
+    　　解决方法：编译安装autoconf-2.13
+    　　再将autoconf-2.13的auotconf文件至/usr/local/autoconf
+    　　--------------------------------------------------------------------
+    　　错误三、编译时缺少库
+    　　configure: error: libXpm.（a|so） not found.
+    　　解决方法：yum install libXpm-devel
+    　　--------------------------------------------------------------------
+    　　错误四、编译时缺少gmp.h文件
+    　　configure: error: Unable to locate gmp.h
+    　　解决方法：yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误五
+    　　Configure: error: xml2-config not found. Please check your libxml2
+    installation.
+    　　解决方法：
+    　　#yum install libxml2 libxml2-devel （For Redhat & Fedora）
+    　　# aptitude install libxml2-dev      （For ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误六
+    　　Checking for pkg-config… /usr/bin/pkg-config
+    　　configure: error: Cannot find OpenSSL’s <evp.h>
+    　　解决方法：
+    　　#yum install openssl openssl-devel
+    　　--------------------------------------------------------------------
+    　　错误七
+    　　Configure: error: Please reinstall the BZip2 distribution
+    　　解决方法：
+    　　# yum install bzip2 bzip2-devel
+    　　--------------------------------------------------------------------
+    　　错误八
+    　　Configure: error: Please reinstall the libcurl distribution -
+    　　easy.h should be in <curl-dir>/include/curl/
+    　　解决方法：
+    　　# yum install curl curl-devel   （For Redhat & Fedora）
+    　　# install libcurl4-gnutls-dev    （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误九：
+    　　Configure: error: libjpeg.（also） not found.
+    　　解决方法：
+    　　# yum install libjpeg libjpeg-devel
+    　　--------------------------------------------------------------------
+    　　错误十
+    　　Configure: error: libpng.（also） not found.
+    　　--------------------------------------------------------------------
+    　　解决方法：
+    　　# yum install libpng libpng-devel
+    　　--------------------------------------------------------------------
+    　　错误十一
+    　　Configure: error: freetype.h not found.
+    　　解决方法：
+    　　#yum install freetype-devel
+    　　--------------------------------------------------------------------
+    　　错误十二
+    　　Configure: error: Unable to locate gmp.h
+    　　解决方法：
+    　　# yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十三
+    　　Configure: error: Cannot find MySQL header files under /usr.
+    　　Note that the MySQL client library is not bundled anymore!
+    　　解决方法：
+    　　# yum install mysql-devel            （For Redhat & Fedora）
+    　　# apt-get install libmysql++-dev      （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误十四
+    　　Configure: error: Please reinstall the ncurses distribution
+    　　解决方法：
+    　　# yum install ncurses ncurses-devel
+    　　--------------------------------------------------------------------
+    　　错误十五
+    　　Checking for unixODBC support… configure: error: ODBC header file ‘
+    /usr/include/sqlext.h’ not found!
+    　　解决方法：
+    　　# yum install unixODBC-devel
+    　　--------------------------------------------------------------------
+    　　错误十六
+    　　Configure: error: Cannot find pspell
+    　　解决方法：
+    　　# yum install pspell-devel
+    　　--------------------------------------------------------------------
+    　　错误十七
+    　　configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+    　　解决方法：
+    　　# yum install libmcrypt libmcrypt-devel    （For Redhat & Fedora）
+    　　# apt-get install libmcrypt-dev
+    　　--------------------------------------------------------------------
+    　　错误十八
+    　　Configure: error: snmp.h not found. Check your SNMP installation.
+    　　解决方法：
+    　　# yum install net-snmp net-snmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十九
+    　　configure:error:Cannot find ldap.h
+    　　解决方法：
+    　　#yum install openldap-devel openldap
+    　　错误二十
+    　　configure:error:xslt-config not found. Please reinstall the libxslt
+    >= 1.1.0 distribution
+    　　解决方法：
+    　　#yum install libxslt libxslt-devel
+    　　错误二十一
+    　　checking for libevent >=1.4.11 install prefix… configure: error:
+    Could not find libevent >=1.4.11 in /usr/local/php
+    　　解决方法：
+    　　安装libevent-1.4.11以上版本至/usr/local
+    　　tar xzvf libevent-1.4.14-stable.tar.gz
+    　　cd libevent-1.4.14-stable
+    　　./configure --prefix=/usr/local
+    　　make&&make install
+    　　在编译。/configure时添加--with-libevent-dir=/usr/local即可
+    　　错误二十二
+    　　cc1: out of memory allocating 2036 bytes after a total of 81846272
+    bytes
+    　　make: *** [ext/date/lib/parse_date.lo] Error 1
+    　　报错：
+    　　/usr/bin/ld: cannot find -lltdl
+    　　collect2: ld returned 1 exit status
+    　　make:*** [sapi/fpm/php-fpm] Error 1
+    　　解决方法：
+    　　安装ltdl
+    　　#cd /libmcrypt-2.5.7/libltdl/
+    　　#./configure --enable-ltdl-install
+    　　#ldconfig
+    　　#cd php-5.3.6
+    　　#make ZEND_EXTRA_LIBS='-liconv'
+</curl-dir></evp.h></url:http:></code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/23/nginx配置文件详解/" itemprop="url">
+                  nginx配置文件详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-23T21:49:33+08:00" content="2015-12-23">
+              2015-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>
+
+
+    #运行用户
+    user nginx;   
+    #启动进程,通常设置成和cpu的数量相等
+    worker_processes  1;
+
+    #全局错误日志及PID文件
+    error_log  /var/log/nginx/error.log;
+    pid        /var/run/nginx.pid;
+
+    #工作模式及连接数上限
+    events {
+        use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
+        worker_connections  1024;#单个后台worker process进程的最大并发链接数
+        # multi_accept on;
+    }
+
+    #设定http服务器，利用它的反向代理功能提供负载均衡支持
+    http {
+         #设定mime类型,类型由mime.type文件定义
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        #设定日志格式
+        access_log    /var/log/nginx/access.log;
+
+        #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+        #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+        sendfile        on;
+        #tcp_nopush     on;
+
+        #连接超时时间
+        #keepalive_timeout  0;
+        keepalive_timeout  65;
+        tcp_nodelay        on;
+
+        #开启gzip压缩
+        gzip  on;
+        gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
+        #设定请求缓冲
+        client_header_buffer_size    1k;
+        large_client_header_buffers  4 4k;
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+
+        #设定负载均衡的服务器列表
+         upstream mysvr {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+        #本机上的Squid开启3128端口
+        server 192.168.8.1:3128 weight=5;
+        server 192.168.8.2:80  weight=1;
+        server 192.168.8.3:80  weight=6;
+        }
+
+
+       server {
+        #侦听80端口
+            listen       80;
+            #定义使用www.xx.com访问
+            server_name  www.xx.com;
+
+            #设定本虚拟主机的访问日志
+            access_log  logs/www.xx.com.access.log  main;
+
+        #默认请求
+        location / {
+              root   /root;      #定义服务器的默认网站根目录位置
+              index index.php index.html index.htm;   #定义首页索引文件的名称
+
+              fastcgi_pass  www.xx.com;
+             fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
+              include /etc/nginx/fastcgi_params;
+            }
+
+        # 定义错误提示页面
+        error_page   500 502 503 504 /50x.html;
+            location = /50x.html {
+            root   /root;
+        }
+
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            root /var/www/virtual/htdocs;
+            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+            expires 30d;
+        }
+        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
+        location ~ \.php$ {
+            root /root;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
+            include fastcgi_params;
+        }
+        #设定查看Nginx状态的地址
+        location /NginxStatus {
+            stub_status              on;
+            access_log               on;
+            auth_basic              "NginxStatus";
+            auth_basic_user_file  conf/htpasswd;
+        }
+        #禁止访问 .htxxx 文件
+        location ~ /\.ht {
+            deny all;
+        }
+
+         }
+    }
+
+以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
+
+如果要使用负载均衡的话,可以修改配置http节点如下：
+
+    #设定http服务器，利用它的反向代理功能提供负载均衡支持
+    http {
+         #设定mime类型,类型由mime.type文件定义
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        #设定日志格式
+        access_log    /var/log/nginx/access.log;
+
+        #省略上文有的一些配置节点
+
+        #。。。。。。。。。。
+
+        #设定负载均衡的服务器列表
+        upstream mysvr {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+        server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
+        server 192.168.8.2x:80  weight=1;
+        server 192.168.8.3x:80  weight=6;
+        }
+
+        upstream mysvr2 {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+
+            server 192.168.8.x:80  weight=1;
+            server 192.168.8.x:80  weight=6;
+        }
+
+       #第一个虚拟服务器
+       server {
+        #侦听192.168.8.x的80端口
+            listen       80;
+            server_name  192.168.8.x;
+
+            #对aspx后缀的进行负载均衡请求
+            location ~ .*\.aspx$ {
+
+                root   /root;      #定义服务器的默认网站根目录位置
+                index index.php index.html index.htm;   #定义首页索引文件的名称
+
+                proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
+
+                #以下是一些反向代理的配置可删除.
+
+                proxy_redirect off;
+
+                #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                client_max_body_size 10m;       #允许客户端请求的最大单文件字节数
+                client_body_buffer_size 128k;   #缓冲区代理缓冲用户端请求的最大字节数，
+                proxy_connect_timeout 90;       #nginx跟后端服务器连接超时时间(代理连接超时)
+                proxy_send_timeout 90;          #后端服务器数据回传时间(代理发送超时)
+                proxy_read_timeout 90;          #连接成功后，后端服务器响应时间(代理接收超时)
+                proxy_buffer_size 4k;           #设置代理服务器（nginx）保存用户头信息的缓冲区大小
+                proxy_buffers 4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
+                proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
+                proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
+
+           }
+
+         }
+    }
+
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="陈子瑶" />
+          <p class="site-author-name" itemprop="name">陈子瑶</p>
+          <p class="site-description motion-element" itemprop="description">linux运维,python</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iceziYao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈子瑶</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

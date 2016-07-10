@@ -107,7 +107,7 @@
     <link href="https://iceziyao.github.io/2016/05/06/nodejs/"/>
     <id>https://iceziyao.github.io/2016/05/06/nodejs/</id>
     <published>2016-05-06T13:49:33.000Z</published>
-    <updated>2016-07-09T23:12:03.819Z</updated>
+    <updated>2016-07-10T17:39:53.226Z</updated>
     
     <content type="html">&lt;h3 id=&quot;什么是node-js&quot;&gt;&lt;a href=&quot;#什么是node-js&quot; class=&quot;headerlink&quot; title=&quot;什么是node.js&quot;&gt;&lt;/a&gt;什么是node.js&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  &lt;/p&gt;
@@ -178,7 +178,7 @@ res.output();
       <category term="后台" scheme="https://iceziyao.github.io/categories/%E5%90%8E%E5%8F%B0/"/>
     
     
-      <category term="js node.js" scheme="https://iceziyao.github.io/tags/js-node-js/"/>
+      <category term="node.js" scheme="https://iceziyao.github.io/tags/node-js/"/>
     
   </entry>
   
@@ -187,7 +187,7 @@ res.output();
     <link href="https://iceziyao.github.io/2016/05/01/python%E7%AB%AF%E5%8F%A3/"/>
     <id>https://iceziyao.github.io/2016/05/01/python端口/</id>
     <published>2016-04-30T16:00:00.000Z</published>
-    <updated>2016-07-09T23:07:33.198Z</updated>
+    <updated>2016-07-10T17:39:53.810Z</updated>
     
     <content type="html">&lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器&lt;/li&gt;
@@ -287,10 +287,10 @@ t.start()
     
     </summary>
     
-      <category term="Python 编程语言" scheme="https://iceziyao.github.io/categories/Python-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
     
     
-      <category term="Python 黑客编程" scheme="https://iceziyao.github.io/tags/Python-%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -299,7 +299,7 @@ t.start()
     <link href="https://iceziyao.github.io/2016/04/04/docker02/"/>
     <id>https://iceziyao.github.io/2016/04/04/docker02/</id>
     <published>2016-04-03T16:00:00.000Z</published>
-    <updated>2016-07-09T23:18:38.215Z</updated>
+    <updated>2016-07-10T17:39:45.772Z</updated>
     
     <content type="html">&lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
@@ -372,10 +372,10 @@ t.start()
     
     </summary>
     
-      <category term="docker 容器" scheme="https://iceziyao.github.io/categories/docker-%E5%AE%B9%E5%99%A8/"/>
+      <category term="docker" scheme="https://iceziyao.github.io/categories/docker/"/>
     
     
-      <category term="docker linux" scheme="https://iceziyao.github.io/tags/docker-linux/"/>
+      <category term="docker" scheme="https://iceziyao.github.io/tags/docker/"/>
     
   </entry>
   
@@ -384,7 +384,7 @@ t.start()
     <link href="https://iceziyao.github.io/2016/04/03/docker01/"/>
     <id>https://iceziyao.github.io/2016/04/03/docker01/</id>
     <published>2016-04-02T16:00:00.000Z</published>
-    <updated>2016-07-09T23:18:19.582Z</updated>
+    <updated>2016-07-10T17:39:49.100Z</updated>
     
     <content type="html">&lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
@@ -508,19 +508,19 @@ t.start()
     
     </summary>
     
-      <category term="docker 容器" scheme="https://iceziyao.github.io/categories/docker-%E5%AE%B9%E5%99%A8/"/>
+      <category term="docker" scheme="https://iceziyao.github.io/categories/docker/"/>
     
     
-      <category term="docker linux" scheme="https://iceziyao.github.io/tags/docker-linux/"/>
+      <category term="docker" scheme="https://iceziyao.github.io/tags/docker/"/>
     
   </entry>
   
   <entry>
-    <title>高可用系列1</title>
+    <title>高可用集群系列之基础01</title>
     <link href="https://iceziyao.github.io/2016/01/16/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
     <id>https://iceziyao.github.io/2016/01/16/高可用集群01/</id>
     <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-09T23:29:13.238Z</updated>
+    <updated>2016-07-10T17:39:34.715Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;什么是集群?  &lt;/p&gt;
@@ -567,7 +567,7 @@ t.start()
     
     </summary>
     
-      <category term="Linux 集群" scheme="https://iceziyao.github.io/categories/Linux-%E9%9B%86%E7%BE%A4/"/>
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
     
     
       <category term="集群" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4/"/>
@@ -579,7 +579,7 @@ t.start()
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>
     <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-09T22:19:01.383Z</updated>
+    <updated>2016-07-10T17:39:50.160Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;HAProxy简介&lt;br&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;br&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt; 客户端侧的长连接(client-side keep-alive)&lt;br&gt; TCP加速(TCP speedups)&lt;br&gt; 响应池(response buffering)&lt;br&gt; RDP协议&lt;br&gt; 基于源的粘性(source-based stickiness)&lt;br&gt; 更好的统计数据接口(a much better stats interfaces)&lt;br&gt; 更详细的健康状态检测机制(more verbose health checks)&lt;br&gt; 基于流量的健康评估机制(traffic-based health)&lt;br&gt; 支持HTTP认证&lt;br&gt; 服务器管理命令行接口(server management from the CLI)&lt;br&gt; 基于ACL的持久性(ACL-based persistence)&lt;br&gt; 日志分析器&lt;br&gt;1.1.2 内容交换和超强负载：&lt;br&gt;衍生于1.2版本，并提供了额外的新特性。&lt;br&gt; 内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt; ACL：编写内容交换规则；&lt;br&gt; 负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt; 内容探测(content inspection)：阻止非授权协议；&lt;br&gt; 透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt; 内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt; 分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt; 快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt; 会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt; 单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt; O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt; 在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt; 借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt; MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt; 树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt; 优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt; 精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
@@ -912,10 +912,10 @@ backend mysqlservers
     
     </summary>
     
-      <category term="Linux，集群，负载均衡" scheme="https://iceziyao.github.io/categories/Linux%EF%BC%8C%E9%9B%86%E7%BE%A4%EF%BC%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+      <category term="负载均衡" scheme="https://iceziyao.github.io/categories/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     
     
-      <category term="集群 负载均衡" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+      <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     
   </entry>
   
@@ -924,7 +924,7 @@ backend mysqlservers
     <link href="https://iceziyao.github.io/2016/01/01/Memcached/"/>
     <id>https://iceziyao.github.io/2016/01/01/Memcached/</id>
     <published>2016-01-01T13:49:33.000Z</published>
-    <updated>2016-07-09T21:41:02.589Z</updated>
+    <updated>2016-07-10T17:39:51.275Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
@@ -1149,7 +1149,7 @@ server {
       <category term="缓存" scheme="https://iceziyao.github.io/categories/%E7%BC%93%E5%AD%98/"/>
     
     
-      <category term="缓存 加速" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98-%E5%8A%A0%E9%80%9F/"/>
+      <category term="缓存" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
@@ -1335,7 +1335,7 @@ server {
     <link href="https://iceziyao.github.io/2015/12/23/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>https://iceziyao.github.io/2015/12/23/nginx配置文件详解/</id>
     <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T21:39:06.930Z</updated>
+    <updated>2016-07-10T17:39:52.170Z</updated>
     
     <content type="html">&lt;pre&gt;&lt;code&gt;
 
@@ -1538,7 +1538,7 @@ server {
       <category term="nginx" scheme="https://iceziyao.github.io/categories/nginx/"/>
     
     
-      <category term="nginx lnmp" scheme="https://iceziyao.github.io/tags/nginx-lnmp/"/>
+      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
     
   </entry>
   

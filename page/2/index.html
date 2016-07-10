@@ -1,1 +1,1298 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="linux运维,python"><title>非衣 | 心静如水</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">非衣</h1><a id="logo" href="/.">非衣</a><p class="description">心静如水</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/2015/12/23/nginx负载均衡/">nginx负载均衡</a></h2><div class="post-meta">2015-12-23</div><div class="post-content"><h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p></div><p class="readmore"><a href="/2015/12/23/nginx负载均衡/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></h2><div class="post-meta">2015-11-24</div><div class="post-content"><p>一、安装所需要程序</p></div><p class="readmore"><a href="/2015/11/24/ftp+mysql/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2015/10/06/linux基础/">Linux基础</a></h2><div class="post-meta">2015-10-06</div><div class="post-content"><h3 id="如何在linux上活下去"><a href="#如何在linux上活下去" class="headerlink" title="如何在linux上活下去"></a>如何在linux上活下去</h3><p>1.cd 命令<br>用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。</p></div><p class="readmore"><a href="/2015/10/06/linux基础/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2015/01/02/ajax/">ajax初探</a></h2><div class="post-meta">2015-01-02</div><div class="post-content"><ul></div><p class="readmore"><a href="/2015/01/02/ajax/">阅读更多</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span></nav></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://iceziyao.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux-集群/">Linux 集群</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux，集群，负载均衡/">Linux，集群，负载均衡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-编程语言/">Python 编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker-容器/">docker 容器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lnmp/">lnmp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/缓存/">缓存</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/缓存-加速/" style="font-size: 15px;">缓存 加速</a> <a href="/tags/ajax/" style="font-size: 15px;">ajax</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/集群-负载均衡/" style="font-size: 15px;">集群 负载均衡</a> <a href="/tags/docker-linux/" style="font-size: 15px;">docker linux</a> <a href="/tags/nginx-lnmp/" style="font-size: 15px;">nginx lnmp</a> <a href="/tags/js-node-js/" style="font-size: 15px;">js node.js</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/集群/" style="font-size: 15px;">集群</a> <a href="/tags/Python-黑客编程/" style="font-size: 15px;">Python 黑客编程</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/高可用集群01/">高可用系列1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/nginx配置文件详解/">nginx配置文件详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">非衣.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="非衣" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="linux运维,python">
+<meta property="og:type" content="website">
+<meta property="og:title" content="非衣">
+<meta property="og:url" content="https://iceziyao.github.io/page/2/index.html">
+<meta property="og:site_name" content="非衣">
+<meta property="og:description" content="linux运维,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非衣">
+<meta name="twitter:description" content="linux运维,python">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://iceziyao.github.io/page/2/"/>
+
+  <title> 非衣 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">非衣</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">心静如水</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            非衣
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/23/nginx负载均衡/" itemprop="url">
+                  nginx负载均衡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-23T21:49:33+08:00" content="2015-12-23">
+              2015-12-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p>
+<ol>
+<li><p>nginx 反向代理<br>nginx的负载均衡基于反向代理  </p>
+<blockquote>
+<p>1.1 正向代理  </p>
+<blockquote>
+<p> 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  </p>
+</blockquote>
+<p>1.2反向代理</p>
+<blockquote>
+<p>反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。</p>
+</blockquote>
+<p>区别:</p>
+<blockquote>
+<p>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。<br>正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>upstream</p>
+<blockquote>
+<p>2.1 负载均衡算法</p>
+<blockquote>
+<p>2.1.1 轮循<br>当weight不指定时，各服务器weight相同，<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  </p>
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
+</code></pre>
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+<pre><code>
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+</code></pre>
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+<pre><code>
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+</code></pre>
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+</code></pre>
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+</code></pre>
+
+</blockquote>
+<p>2.2 参数</p>
+<blockquote>
+<p>1.down 表示单前的server暂时不参与负载<br>2.weight 默认为1.weight越大，负载的权重就越大。<br>3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误<br>4.fail_timeout:max_fails次失败后，暂停的时间。<br>5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。<br>nginx支持同时设置多组的负载均衡，用来给不用的server来使用。<br>client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug<br>client_body_temp_path 设置记录文件的目录 可以设置最多3层目录<br>location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  </p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>示例<br>3.1 网络拓扑<br>反向代理服务器 server1.example.com<br>后端服务器：<br>server2.example.com<br>server3.example.com<br>3.2 配置<br>3.2.1 server1</p>
+<pre><code>
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+</code></pre>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/ftp+mysql/" itemprop="url">
+                  ftp+mysql搭建ftp认证
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-24T11:49:33+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ftp/" itemprop="url" rel="index">
+                    <span itemprop="name">ftp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、安装所需要程序</p>
+<ol>
+<li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
+<li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
+# cd  pam_mysql-0.7RC1
+# ./configure --with-mysql=/usr --with-openssl
+# make
+# make install  
+</code></pre></li>
+<li>安装vsftpd<blockquote>
+<p><code>yum -y install vsftpd</code></p>
+</blockquote>
+</li>
+</ol>
+<p>二、创建虚拟用户账号  </p>
+<ol>
+<li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
+<blockquote>
+<p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
+</blockquote>
+</li>
+<li><p>添加测试的虚拟用户<br>根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.</p>
+<pre><code>mysql&gt; insert into users(name,password) values(&apos;tom&apos;,&apos;magedu&apos;);
+mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
+</code></pre></li>
+</ol>
+<p>三、配置vsftpd</p>
+<ol>
+<li><p>建立pam认证所需文件</p>
+<pre><code>#vi /etc/pam.d/vsftpd.mysql
+添加如下两行
+auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+account required /lib/security/pam_mysql.so user=vsftpd
+passwd=www.magedu.com
+host=localhost
+db=vsftpd
+table=users
+usercolumn=name
+passwdcolumn=password
+crypt=0
+</code></pre></li>
+<li><p>修改vsftpd的配置文件，使其适应mysql认证<br>建立虚拟用户映射的系统用户及对应的目录  </p>
+<pre><code>#useradd -s /sbin/nologin -d /var/ftproot vuser
+#chmod go+rx /var/ftproot
+</code></pre><p>请确保/etc/vsftpd.conf中已经启用了以下选项  </p>
+<blockquote>
+<p>anonymous_enable=YES<br>local_enable=YES<br>write_enable=YES<br>anon_upload_enable=NO<br>anon_mkdir_write_enable=NO<br>chroot_local_user=YES<br>而后添加以下选项<br>guest_enable=YES<br>guest_username=vuser<br>并确保pam_service_name选项的值如下所示<br>pam_service_name=vsftpd.mysql  </p>
+</blockquote>
+</li>
+</ol>
+<p>四、启动vsftpd服务</p>
+<pre><code># service vsftpd start
+# chkconfig vsftpd on
+</code></pre><p>查看端口开启情况  </p>
+<pre><code># netstat -tnlp |grep :21
+tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
+</code></pre><p>使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  </p>
+<pre><code># ftp localhost
+</code></pre><p>五、配置虚拟用户具有不同的访问权限<br>vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  </p>
+<ol>
+<li><p>配置vsftpd为虚拟用户使用配置文件目录</p>
+<pre><code># vim vsftpd.conf
+添加如下选项
+user_config_dir=/etc/vsftpd/vusers_dir
+</code></pre></li>
+<li><p>创建所需要目录，并为虚拟用户提供配置文件</p>
+<pre><code># mkdir /etc/vsftpd/vusers_dir/
+# cd /etc/vsftpd/vusers_dir/
+# touch tom jerry
+</code></pre></li>
+<li>配置虚拟用户的访问权限<br>虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。<br><code>anon_upload_enable=YES</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/06/linux基础/" itemprop="url">
+                  Linux基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-06T00:00:00+08:00" content="2015-10-06">
+              2015-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="如何在linux上活下去"><a href="#如何在linux上活下去" class="headerlink" title="如何在linux上活下去"></a>如何在linux上活下去</h3><p>1.cd 命令<br>用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。</p>
+<blockquote>
+<p>cd /mnt          进入/mnt<br>cd ~           进入用户家目录<br>cd 绝对路径 or 相对路径  </p>
+</blockquote>
+<p>2.ls 命令<br>查看文件与目录的命令，list之意,常用如下:</p>
+<blockquote>
+<p>-l ：列出长数据串，包含文件的属性与权限数据等<br><br>-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用)<br><br>-d ：仅列出目录本身，而不是列出目录的文件数据<br><br>-h ：将文件容量以较易读的方式（GB，kB等）列出来<br>-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  </p>
+</blockquote>
+<p>注：这些参数也可以组合使用  </p>
+<blockquote>
+<p>ls -l #以长数据串的形式列出当前目录下的数据文件和目录<br>ls -lR #以长数据串的形式列出当前目录下的所有文件   </p>
+</blockquote>
+<p>3.mkdir 命令<br>创建目录</p>
+<blockquote>
+<p>mkdir dir</p>
+</blockquote>
+<p>参数：</p>
+<blockquote>
+<p>-p 递归创建<br>-m 给于权限</p>
+</blockquote>
+<p>4.touch 命令<br>创建文件</p>
+<blockquote>
+<p>touch filename</p>
+</blockquote>
+<p>5.grep 命令<br>命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等等</p>
+<blockquote>
+<p>grep [-acinv] [–color=auto] ‘查找字符串’ filename</p>
+</blockquote>
+<p>它的常用参数如下：</p>
+<blockquote>
+<p>-a ：将binary文件以text文件的方式查找数据<br>-c ：计算找到‘查找字符串’的次数<br>-i ：忽略大小写的区别，即把大小写视为相同<br>-v ：反向选择，即显示出没有‘查找字符串’内容的那一行<br> 例如：<br> 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色<br>grep –color=auto ‘MANPATH’ /etc/man.config<br>把ls -l的输出中包含字母file（不区分大小写）的内容输出<br>ls -l | grep -i file</p>
+</blockquote>
+<p>6.find 命令<br>find是一个基于查找的功能非常强大的命令，相对而言，它的使用也相对较为复杂，参数也比较多，所以在这里将给把它们分类列出，它的基本语法如下：</p>
+<blockquote>
+<p>find [PATH] [option] [action]<br>与时间有关的参数：<br>-mtime n : n为数字，意思为在n天之前的“一天内”被更改过的文件；<br>-mtime +n : 列出在n天之前（不含n天本身）被更改过的文件名；<br>-mtime -n : 列出在n天之内（含n天本身）被更改过的文件名；<br>-newer file : 列出比file还要新的文件名<br>例如：<br>find /root -mtime 0 # 在当前目录下查找今天之内有改动的文件<br>与用户或用户组名有关的参数：<br>-user name : 列出文件所有者为name的文件<br>-group name : 列出文件所属用户组为name的文件<br>-uid n : 列出文件所有者为用户ID为n的文件<br>-gid n : 列出文件所属用户组为用户组ID为n的文件<br>例如：<br>find /home/ljianhui -user ljianhui # 在目录/home/ljianhui中找出所有者为ljianhui的文件<br>与文件权限及名称有关的参数：<br>-name filename ：找出文件名为filename的文件<br>-size [+-]SIZE ：找出比SIZE还要大（+）或小（-）的文件<br>-tpye TYPE ：查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件（f)、设备文件（b、c）、<br>             目录（d）、连接文件（l）、socket（s）、FIFO管道文件（p）；<br>-perm mode ：查找文件权限刚好等于mode的文件，mode用数字表示，如0755；<br>-perm -mode ：查找文件权限必须要全部包括mode权限的文件，mode用数字表示<br>-perm +mode ：查找文件权限包含任一mode的权限的文件，mode用数字表示<br>例如：<br>find / -name passwd # 查找文件名为passwd的文件<br>find . -perm 0755 # 查找当前目录中文件权限的0755的文件<br>find . -size +12k # 查找当前目录中大于12KB的文件，注意c表示byte</p>
+</blockquote>
+<p>7.cp 命令<br>拷贝命令,命令用于复制文件，copy:</p>
+<blockquote>
+<p>   -a ：将文件的特性一起复制<br>    -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份<br>    -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行<br>    -r ：递归持续复制，用于目录的复制行为<br>    -u ：目标文件与源文件有差异时才会复制  </p>
+</blockquote>
+<p>8.mv 命令</p>
+<blockquote>
+<p>mv oldname newname<br>9.ps 命令<br>命令用于将某个时间点的进程运行情况选取下来并输出，process之意:<br>-A ：所有的进程均显示出来<br>-a ：不与terminal有关的所有进程<br>-u ：有效用户的相关进程<br>-x ：一般与a参数一起使用，可列出较完整的信息<br>-l ：较长，较详细地将PID的信息列出</p>
+</blockquote>
+<p>常用如下:</p>
+<blockquote>
+<p>ps aux # 查看系统所有的进程数据<br>ps ax # 查看不与terminal有关的所有进程<br>ps -lA # 查看系统所有的进程数据<br>ps axjf # 查看连同一部分进程树状态  </p>
+</blockquote>
+<p>10.kill 命令<br>该命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号:</p>
+<blockquote>
+<p><code>kill -signal PID</code></p>
+</blockquote>
+<p>signal的常用参数如下：</p>
+<blockquote>
+<p>1：SIGHUP，启动被终止的进程<br> 2：SIGINT，相当于输入ctrl+c，中断一个程序的进行<br> 9：SIGKILL，强制中断一个进程的进行<br> 15：SIGTERM，以正常的结束进程方式来终止进程<br> 17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行  </p>
+</blockquote>
+<p>11.killall 命令<br>命令用于向一个命令启动的进程发送一个信号，它的一般语法如下</p>
+<blockquote>
+<p>killall [-iIe] [command name]</p>
+</blockquote>
+<p>具体参数解释:</p>
+<blockquote>
+<p>-i ：交互式的意思，若需要删除时，会询问用户<br>-e ：表示后面接的command name要一致，但command name不能超过15个字符<br>-I ：命令名称忽略大小写</p>
+</blockquote>
+<p>12.file 命令<br>用于判断接在file命令后的文件的基本数据</p>
+<blockquote>
+<p><code>file filename</code></p>
+</blockquote>
+<p>13.tar 命令<br>该命令用于对文件进行打包，默认情况并不会压缩，如果指定了相应的参数，它还会调用相应的压缩程序:</p>
+<blockquote>
+<p>   -c ：新建打包文件<br>    -t ：查看打包文件的内容含有哪些文件名<br>    -x ：解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中<br>    -j ：通过bzip2的支持进行压缩/解压缩<br>    -z ：通过gzip的支持进行压缩/解压缩<br>    -v ：在压缩/解压缩过程中，将正在处理的文件名显示出来<br>    -f filename ：filename为要处理的文件<br>    -C dir ：指定压缩/解压缩的目录dir  </p>
+</blockquote>
+<p>14.cat 命令<br>用于查看文本文件的内容</p>
+<blockquote>
+<p><code>cat filename</code></p>
+</blockquote>
+<p>15.gcc 命令</p>
+<blockquote>
+<p>-o ：output之意，用于指定生成一个可执行文件的文件名<br>-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序<br>-I ：增加编译时搜索头文件的路径<br>-L ：增加编译时搜索静态连接库的路径<br>-S ：把源文件生成汇编代码文件<br>-lm：表示标准库的目录中名为libm.a的函数库<br>-lpthread ：连接NPTL实现的线程库<br>-std= ：用于指定把使用的C语言的版本<br># 把源文件test.c按照c99标准编译成可执行程序test<br><code>gcc -o test test.c -lm -std=c99</code><br>#把源文件test.c转换为相应的汇编程序源文件test.s<br><code>gcc -S test.c</code></p>
+</blockquote>
+<p>16.rm 命令<br>用于删除文件或目录，remove</p>
+<blockquote>
+<p>-f ：就是force的意思，忽略不存在的文件，不会出现警告消息<br>-i ：互动模式，在删除前会询问用户是否操作<br>-r ：递归删除，最常用于目录删除，它是一个非常危险的参数</p>
+</blockquote>
+<p>例如</p>
+<blockquote>
+<p><code>rm -i file</code> #删除文件file，在删除之前会询问是否进行该操作<br><code>rm -fr dir</code> # 强制删除目录dir中的所有文件</p>
+</blockquote>
+<p>17.chgrp命令<br>用于改变文件所属用户组，它的使用非常简单，它的基本用法如下：</p>
+<blockquote>
+<p>chgrp [-R] dirname/filename<br>-R ：进行递归的持续对所有文件和子目录更改</p>
+</blockquote>
+<p>18.chown命令<br>该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同，不再详述。</p>
+<p>19.chmod命令<br>该命令用于改变文件的权限，一般的用法如下：</p>
+<blockquote>
+<p>chmod [-R] xyz 文件或目录<br>-R：进行递归的持续更改，即连同子目录下的所有文件都会更改</p>
+</blockquote>
+<p>20.time命令<br>该命令用于测算一个命令（即程序）的执行时间。</p>
+<blockquote>
+<p>time ./process<br>time ps aux</p>
+</blockquote>
+<p>在程序或命令运行结束后，在最后输出了三个时间，它们分别是：<br>user：用户CPU时间，命令执行完成花费的用户CPU时间，即命令在用户态中执行时间总和；<br>system：系统CPU时间，命令执行完成花费的系统CPU时间，即命令在核心态中执行时间总和；<br>real：实际时间，从command命令行开始执行到运行终止的消逝时间；</p>
+<p>注：用户CPU时间和系统CPU时间之和为CPU时间，即命令占用CPU执行的时间总和。实际时间要大于CPU时间，因为Linux是多任务操作系统，往往在执行一条命令时，系统还要处理其它任务。另一个需要注意的问题是即使每次执行相同命令，但所花费的时间也是不一样，其花费时间是与系统运行相关的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/01/02/ajax/" itemprop="url">
+                  ajax初探
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-02T00:00:00+08:00" content="2015-01-02">
+              2015-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>ajax简介  </p>
+<ul>
+<li>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </li>
+<li>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </li>
+<li>AJAX 是一种用于创建快速动态网页的技术。  </li>
+</ul>
+</li>
+<li><p>发展  </p>
+<ol>
+<li>在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。</li>
+<li>在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。<br>2.1 如何更改页面信息呢？<br>可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。<br>2.2 如何与后台进行交互？<br>那么，我们必须向后台进行请求，可以用个超链接<code>&lt;a href=&#39;#&#39; title=&#39;&#39; target=_blank&lt;/a&gt;</code>,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。<br>可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。</li>
+</ol>
+</li>
+<li><p>工作原理<br>Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。<br>XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    </p>
+<ul>
+<li>所以我们先从XMLHttpRequest讲起，来看看它的工作原理。<br>　  首先，我们先来看看XMLHttpRequest这个对象的属性。<br>　　它的属性有:  <ul>
+<li>onreadystatechange  每次状态改变所触发事件的事件处理程序。</li>
+<li>responseText     从服务器进程返回数据的字符串形式。</li>
+<li>responseXML    从服务器进程返回的DOM兼容的文档数据对象。</li>
+<li>status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）</li>
+<li>status Text       伴随状态码的字符串信息</li>
+<li>readyState       对象状态值  <blockquote>
+<p>0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）<br>　　 1 (初始化) 对象已建立，尚未调用send方法<br>　　 2 (发送数据) send方法已调用，但是当前的状态及http头未知<br>　　 3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，<br>　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据  </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ajax的使用</p>
+<ol>
+<li>创建XMLHTTPReq</li>
+<li>发送数据</li>
+<li><p>接受回调数据</p>
+<pre><code>
+var XMLHttpReq=null;
+//创建Ajax引擎对象
+function createXMLHttpRequest() {
+ try {
+        XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");//IE高版本创建XMLHTTP
+     }
+     catch(E) {
+        try {
+               XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");//IE低版本创建XMLHTTP
+        }
+        catch(E) {
+               XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
+        }
+      }
+}
+//向后台发送数据
+function sendGetAjaxRequest(url,text) {
+      createXMLHttpRequest();                                //创建XMLHttpRequest对象
+      XMLHttpReq.open("get", url+"?"+encodeURI(text), true);
+     XMLHttpReq.onreadystatechange = doResult; //指定响应函数
+     XMLHttpReq.send(null);
+}
+function sendPOSTAjaxRequest(url,text) {
+      createXMLHttpRequest();                                //创建XMLHttpRequest对象
+      XMLHttpReq.open("post", url, true);
+      XMLHttpReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      XMLHttpReq.setRequestHeader("Content-length", text.length);
+      XMLHttpReq.setRequestHeader("Connection", "close");
+      XMLHttpReq.onreadystatechange = doResult; //指定响应函数
+      XMLHttpReq.send(null);
+}
+function doResult() {
+   if (XMLHttpReq.readyState == 4 && XMLHttpReq.status == 200) {
+     //4代表执行完成                
+     //200代表执行成功，删除当前表格
+
+   }
+}
+</code></pre></li>
+</ol>
+</li>
+<li>ajax的优缺点<ul>
+<li>优点：<ul>
+<li>就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。</li>
+<li>异步非阻塞</li>
+<li>可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。</li>
+<li>基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>用户不知道数据是否更新</li>
+<li>无法回退</li>
+<li>安全问题<br>任何数据处理在前端，都会暴露后台</li>
+<li>对串流媒体的支持没有FLASH、Java Applet好;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="陈子瑶" />
+          <p class="site-author-name" itemprop="name">陈子瑶</p>
+          <p class="site-description motion-element" itemprop="description">linux运维,python</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iceziYao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈子瑶</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
