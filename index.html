@@ -1214,152 +1214,6 @@ t.start()
             
               
                 
-                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
-                  高可用集群系列之基础01
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
-              2016-01-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/集群/" itemprop="url" rel="index">
-                    <span itemprop="name">集群</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>什么是集群?  </p>
-<blockquote>
-<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
-</blockquote>
-</li>
-<li><p>集群系统的主要优点:  </p>
-<blockquote>
-<p>(1)高可扩展性：<br> (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br> (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br> (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
-</blockquote>
-</li>
-<li><p>集群系统的分类</p>
-<blockquote>
-<p>1)、高可用(High Availability)集群,简称HA集群。<br> 这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br> 负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br> 在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br> (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br> 在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br> 这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
-</blockquote>
-<ol>
-<li>什么是高可用性 (HA)<blockquote>
-<p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
-<ul>
-<li>HA的容错备援运作过程  <blockquote>
-<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>HA三种工作方式：  </p>
-<blockquote>
-<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/01/16/haproxy/" itemprop="url">
                   Haproxy负载均衡
                 </a>
@@ -1745,6 +1599,152 @@ backend mysqlservers
     server dbsrv1 192.168.10.11:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
     server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
 </code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
+                  高可用集群系列之基础01
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/集群/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>什么是集群?  </p>
+<blockquote>
+<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
+</blockquote>
+</li>
+<li><p>集群系统的主要优点:  </p>
+<blockquote>
+<p>(1)高可扩展性：<br> (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br> (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br> (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
+</blockquote>
+</li>
+<li><p>集群系统的分类</p>
+<blockquote>
+<p>1)、高可用(High Availability)集群,简称HA集群。<br> 这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br> 负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br> 在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br> (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br> 在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br> 这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
+</blockquote>
+<ol>
+<li>什么是高可用性 (HA)<blockquote>
+<p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
+<ul>
+<li>HA的容错备援运作过程  <blockquote>
+<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>HA三种工作方式：  </p>
+<blockquote>
+<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
+</blockquote>
+</li>
+</ol>
 
           
         
@@ -2381,8 +2381,8 @@ server {
             
               
                 
-                <a class="post-title-link" href="/2015/12/23/nginx配置文件详解/" itemprop="url">
-                  nginx配置文件详解
+                <a class="post-title-link" href="/2015/12/23/nginx负载均衡/" itemprop="url">
+                  nginx负载均衡
                 </a>
               
             
@@ -2400,25 +2400,6 @@ server {
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -2444,187 +2425,115 @@ server {
       
         
           
-            <pre><code>
-
-
-    #运行用户
-    user nginx;   
-    #启动进程,通常设置成和cpu的数量相等
-    worker_processes  1;
-
-    #全局错误日志及PID文件
-    error_log  /var/log/nginx/error.log;
-    pid        /var/run/nginx.pid;
-
-    #工作模式及连接数上限
-    events {
-        use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
-        worker_connections  1024;#单个后台worker process进程的最大并发链接数
-        # multi_accept on;
-    }
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
-        #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
-        sendfile        on;
-        #tcp_nopush     on;
-
-        #连接超时时间
-        #keepalive_timeout  0;
-        keepalive_timeout  65;
-        tcp_nodelay        on;
-
-        #开启gzip压缩
-        gzip  on;
-        gzip_disable "MSIE [1-6]\.(?!.*SV1)";
-
-        #设定请求缓冲
-        client_header_buffer_size    1k;
-        large_client_header_buffers  4 4k;
-
-        include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/sites-enabled/*;
-
-        #设定负载均衡的服务器列表
-         upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        #本机上的Squid开启3128端口
-        server 192.168.8.1:3128 weight=5;
-        server 192.168.8.2:80  weight=1;
-        server 192.168.8.3:80  weight=6;
-        }
-
-
-       server {
-        #侦听80端口
-            listen       80;
-            #定义使用www.xx.com访问
-            server_name  www.xx.com;
-
-            #设定本虚拟主机的访问日志
-            access_log  logs/www.xx.com.access.log  main;
-
-        #默认请求
-        location / {
-              root   /root;      #定义服务器的默认网站根目录位置
-              index index.php index.html index.htm;   #定义首页索引文件的名称
-
-              fastcgi_pass  www.xx.com;
-             fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
-              include /etc/nginx/fastcgi_params;
-            }
-
-        # 定义错误提示页面
-        error_page   500 502 503 504 /50x.html;
-            location = /50x.html {
-            root   /root;
-        }
-
-        #静态文件，nginx自己处理
-        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
-            root /var/www/virtual/htdocs;
-            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
-            expires 30d;
-        }
-        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
-        location ~ \.php$ {
-            root /root;
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index index.php;
-            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
-            include fastcgi_params;
-        }
-        #设定查看Nginx状态的地址
-        location /NginxStatus {
-            stub_status              on;
-            access_log               on;
-            auth_basic              "NginxStatus";
-            auth_basic_user_file  conf/htpasswd;
-        }
-        #禁止访问 .htxxx 文件
-        location ~ /\.ht {
-            deny all;
-        }
-
-         }
-    }
-
-以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
-
-如果要使用负载均衡的话,可以修改配置http节点如下：
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #省略上文有的一些配置节点
-
-        #。。。。。。。。。。
-
-        #设定负载均衡的服务器列表
-        upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
-        server 192.168.8.2x:80  weight=1;
-        server 192.168.8.3x:80  weight=6;
-        }
-
-        upstream mysvr2 {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-
-            server 192.168.8.x:80  weight=1;
-            server 192.168.8.x:80  weight=6;
-        }
-
-       #第一个虚拟服务器
-       server {
-        #侦听192.168.8.x的80端口
-            listen       80;
-            server_name  192.168.8.x;
-
-            #对aspx后缀的进行负载均衡请求
-            location ~ .*\.aspx$ {
-
-                root   /root;      #定义服务器的默认网站根目录位置
-                index index.php index.html index.htm;   #定义首页索引文件的名称
-
-                proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
-
-                #以下是一些反向代理的配置可删除.
-
-                proxy_redirect off;
-
-                #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                client_max_body_size 10m;       #允许客户端请求的最大单文件字节数
-                client_body_buffer_size 128k;   #缓冲区代理缓冲用户端请求的最大字节数，
-                proxy_connect_timeout 90;       #nginx跟后端服务器连接超时时间(代理连接超时)
-                proxy_send_timeout 90;          #后端服务器数据回传时间(代理发送超时)
-                proxy_read_timeout 90;          #连接成功后，后端服务器响应时间(代理接收超时)
-                proxy_buffer_size 4k;           #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-                proxy_buffers 4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-                proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
-                proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-
-           }
-
-         }
-    }
-
+            <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p>
+<ol>
+<li><p>nginx 反向代理<br>nginx的负载均衡基于反向代理  </p>
+<blockquote>
+<p>1.1 正向代理  </p>
+<blockquote>
+<p> 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  </p>
+</blockquote>
+<p>1.2反向代理</p>
+<blockquote>
+<p>反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。</p>
+</blockquote>
+<p>区别:</p>
+<blockquote>
+<p>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。<br>正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>upstream</p>
+<blockquote>
+<p>2.1 负载均衡算法</p>
+<blockquote>
+<p>2.1.1 轮循<br>当weight不指定时，各服务器weight相同，<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  </p>
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
 </code></pre>
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+<pre><code>
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+</code></pre>
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+<pre><code>
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+</code></pre>
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+</code></pre>
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+</code></pre>
+
+</blockquote>
+<p>2.2 参数</p>
+<blockquote>
+<p>1.down 表示单前的server暂时不参与负载<br>2.weight 默认为1.weight越大，负载的权重就越大。<br>3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误<br>4.fail_timeout:max_fails次失败后，暂停的时间。<br>5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。<br>nginx支持同时设置多组的负载均衡，用来给不用的server来使用。<br>client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug<br>client_body_temp_path 设置记录文件的目录 可以设置最多3层目录<br>location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  </p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>示例<br>3.1 网络拓扑<br>反向代理服务器 server1.example.com<br>后端服务器：<br>server2.example.com<br>server3.example.com<br>3.2 配置<br>3.2.1 server1</p>
+<pre><code>
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+</code></pre>
+</li>
+</ol>
 
           
         
@@ -2706,7 +2615,7 @@ server {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2715,7 +2624,7 @@ server {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
