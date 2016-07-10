@@ -935,7 +935,7 @@ t.start()
 </blockquote>
 </li>
 </ul>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><ul>
 <li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
 <li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
 <li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
@@ -1214,6 +1214,137 @@ t.start()
             
               
                 
+                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
+                  高可用集群系列之基础01
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/集群/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群?"></a>什么是集群?</h3><blockquote>
+<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
+</blockquote>
+<h3 id="集群系统的主要优点"><a href="#集群系统的主要优点" class="headerlink" title="集群系统的主要优点:"></a>集群系统的主要优点:</h3><blockquote>
+<p>(1)高可扩展性：<br>    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br>    (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br>    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
+</blockquote>
+<h3 id="集群系统的分类"><a href="#集群系统的分类" class="headerlink" title="集群系统的分类"></a>集群系统的分类</h3><blockquote>
+<p>1)、高可用(High Availability)集群,简称HA集群。<br>    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br>    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br>    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br>    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br>    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br>    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
+<h3 id="什么是高可用性-HA"><a href="#什么是高可用性-HA" class="headerlink" title="什么是高可用性 (HA)"></a>什么是高可用性 (HA)</h3><p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
+<ul>
+<li>HA的容错备援运作过程  <blockquote>
+<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h3 id="HA三种工作方式："><a href="#HA三种工作方式：" class="headerlink" title="HA三种工作方式："></a>HA三种工作方式：</h3><blockquote>
+<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/16/haproxy/" itemprop="url">
                   Haproxy负载均衡
                 </a>
@@ -1277,12 +1408,112 @@ t.start()
       
         
           
-            <ol>
-<li><p>HAProxy简介<br><em>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.</em><br><em>HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</em><br>————百度百科<br>HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。<br>1.1 HAProxy目前主要有两个版本<br>1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。<br> 客户端侧的长连接(client-side keep-alive)<br> TCP加速(TCP speedups)<br> 响应池(response buffering)<br> RDP协议<br> 基于源的粘性(source-based stickiness)<br> 更好的统计数据接口(a much better stats interfaces)<br> 更详细的健康状态检测机制(more verbose health checks)<br> 基于流量的健康评估机制(traffic-based health)<br> 支持HTTP认证<br> 服务器管理命令行接口(server management from the CLI)<br> 基于ACL的持久性(ACL-based persistence)<br> 日志分析器<br>1.1.2 内容交换和超强负载：<br>衍生于1.2版本，并提供了额外的新特性。<br> 内容交换(content switching)：基于任何请求标准挑选服务器池；<br> ACL：编写内容交换规则；<br> 负载均衡算法(load-balancing algorithms)：更多的算法支持；<br> 内容探测(content inspection)：阻止非授权协议；<br> 透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；<br> 内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；<br> 分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；<br> 快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；<br> 会话速率限制(session rate limiting)：适用于托管环境；<br>1.2 性能<br>HAProxy借助于OS上几种常见的技术来实现性能的最大化。<br> 单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。<br> O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。<br> 在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；<br> 借助于Linux 2.6 (&gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；<br> MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；<br> 树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；<br> 优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；<br> 精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；<br>所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。<br>在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。<br>可以从三个因素来评估负载均衡器的性能：<br>(1)    会话率<br>(2)    会话并发能力<br>(3) 数据率  </p>
-</li>
-<li><p>配置HAProxy<br>2.1 配置文件格式<br>HAProxy的配置处理3类来主要参数来源：<br> ——最优先处理的命令行参数，<br> ——“global”配置段，用于设定全局配置参数；<br> ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；<br>2.2 时间格式<br>一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。<br> us: 微秒(microseconds)，即1/1000000秒；<br> ms: 毫秒(milliseconds)，即1/1000秒；<br> s: 秒(seconds)；<br> m: 分钟(minutes)；<br> h：小时(hours)；<br> d: 天(days)；<br>2.3 例子<br>下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。<br><pre><code><br> global<br> daemon<br> maxconn 25600<br>defaults<br> mode http<br> timeout connect 5000ms<br> timeout client 50000ms<br> timeout server 50000ms<br>frontend http-in<br> bind <em>:80<br> default_backend servers<br>backend servers<br> server server1 127.0.0.1:8080 maxconn 32<br></em></code></pre><br>2.4 全局配置<br>“”“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。<br>\ 进程管理及安全相关的参数<br>- chroot <jail dir="">：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；<br>- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；<br>- gid <number>：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；<br>- group <group name="">：同gid，不过指定的组名；<br>- log  <address> <facility> [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；<br>- log-send-hostname [<string>]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；<br>- nbproc <number>：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；<br>- pidfile：<br>- uid：以指定的UID身份运行haproxy进程；<br>- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；<br>- user：同uid，但使用的是用户名；<br>- stats：<br>- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；<br>- description：当前实例的描述信息；<br>* 性能调整相关的参数<br>- maxconn <number>：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；<br>- maxpipes <number>：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；<br>- noepoll：在Linux系统上禁用epoll机制；<br>- nokqueue：在BSE系统上禁用kqueue机制；<br>- nopoll：禁用poll机制；<br>- nosepoll：在Linux禁用启发式epoll机制；<br>- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；<br>- spread-checks <0..50, in="" percent="">：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；<br>- tune.bufsize <number>：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；<br>- tune.chksize <number>：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；<br>- tune.maxaccept <number>：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；<br>- tune.maxpollevents  <number>：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；<br>- tune.maxrewrite <number>：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；<br>- tune.rcvbuf.client <number>：<br>- tune.rcvbuf.server <number>：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；<br>- tune.sndbuf.client：<br>- tune.sndbuf.server：<br>* Debug相关的参数<br>- debug<br>- quiet<br>2.5 代理<br>代理相关的配置可以如下配置段中。<br>(1) defaults name<br>(2) frontend name<br>(3) backend  name<br>(4) listen   name<br>“defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。<br>“frontend”段用于定义一系列监听的套接字，这些套stats<em>auth接字可接受客户端请求并与之建立连接。<br>“backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。<br>“listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。<br>所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\</em>(下划线)、.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  </number></number></number></number></number></number></number></0..50,></number></number></number></string></facility></address></group></number></jail></p>
-</li>
-<li><p>配置文件中的关键字参考<br>3.1 balance<br><code>balance &lt;algorithm&gt; [ &lt;arguments&gt; ]</code><br><code>balance url_param &lt;param&gt; [check_post   [&lt;max_wait&gt;]]</code><br>3.2 bind<br><code>bind [&lt;address&gt;]:&lt;port_range&gt; [, ...]</code><br><code>bind [&lt;address&gt;]:&lt;port_range&gt; [, ...] interface &lt;interface&gt;</code><br>-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。<br><code>&lt;address&gt;</code>：可选选项，其可以为主机名、IPv4地址、IPv6地址或<em>；省略此选项、将其指定为</em>或0.0.0.0时，将监听当前系统的所有IPv4地址；<br><code>&lt;port_range&gt;</code>：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字<address:port>在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；<br><code>&lt;interface&gt;：</code>指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；<br>3.3 mode<br><code>mode { tcp|http|health }</code><br>设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。<br>tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；<br>http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；<br>health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；<br>3.4 hash-type<br><code>hash-type &lt;method&gt;</code><br>定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法<br>map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。<br>consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。<br>3.5 log<br><code>log global</code><br><code>log &lt;address&gt; &lt;facility&gt; [&lt;level&gt; [&lt;minlevel&gt;]]</code><br>为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且”global”段已经定了两个log参数时，多余了log参数将被忽略。<br>global：当前实例的日志系统参数同”global”段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；<br><code>&lt;address&gt;</code>：定义日志发往的位置，其格式之一可以为<code>&lt;IPv4_address:PORT&gt;</code>，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；<br><code>&lt;facility&gt;</code>：可以为syslog系统的标准facility之一；<br><code>&lt;level&gt;</code>：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；<br>3.6 maxconn<br><code>maxconn &lt;conns&gt;</code><br>设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。<br>如果为<code>&lt;conns&gt;</code>指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。<br>3.7 default_backend<br>default_backend <code>&lt;backend&gt;</code><br>在没有匹配的”use_backend”规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在”frontend”和”backend”之间进行内容交换时，通常使用”use-backend”定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。<br><code>&lt;backend&gt;</code>：指定使用的后端的名称；<br>使用案例：  </address:port></p>
+            <h4 id="HAProxy简介"><a href="#HAProxy简介" class="headerlink" title="HAProxy简介"></a>HAProxy简介</h4><p><em>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.</em><br><em>HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</em><br>————百度百科<br>HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。<br>1.1 HAProxy目前主要有两个版本<br>1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。<br>    客户端侧的长连接(client-side keep-alive)<br>    TCP加速(TCP speedups)<br>    响应池(response buffering)<br>    RDP协议<br>    基于源的粘性(source-based stickiness)<br>    更好的统计数据接口(a much better stats interfaces)<br>    更详细的健康状态检测机制(more verbose health checks)<br>    基于流量的健康评估机制(traffic-based health)<br>    支持HTTP认证<br>    服务器管理命令行接口(server management from the CLI)<br>    基于ACL的持久性(ACL-based persistence)<br>    日志分析器<br>  1.1.2 内容交换和超强负载：<br>  衍生于1.2版本，并提供了额外的新特性。<br>    内容交换(content switching)：基于任何请求标准挑选服务器池；<br>    ACL：编写内容交换规则；<br>    负载均衡算法(load-balancing algorithms)：更多的算法支持；<br>    内容探测(content inspection)：阻止非授权协议；<br>    透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；<br>    内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；<br>    分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；<br>    快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；<br>    会话速率限制(session rate limiting)：适用于托管环境；<br>1.2 性能<br>HAProxy借助于OS上几种常见的技术来实现性能的最大化。<br>    单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。<br>    O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。<br>    在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；<br>    借助于Linux 2.6 (&gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；<br>    MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；<br>    树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；<br>    优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；<br>    精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；<br>所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。<br>在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。<br>可以从三个因素来评估负载均衡器的性能：<br>(1)    会话率<br>(2)    会话并发能力<br>(3) 数据率  </p>
+<h4 id="配置HAProxy"><a href="#配置HAProxy" class="headerlink" title="配置HAProxy"></a>配置HAProxy</h4><p>2.1 配置文件格式<br>HAProxy的配置处理3类来主要参数来源：<br>    ——最优先处理的命令行参数，<br>    ——“global”配置段，用于设定全局配置参数；<br>    ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；<br>2.2 时间格式<br>一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。<br>    us: 微秒(microseconds)，即1/1000000秒；<br>    ms: 毫秒(milliseconds)，即1/1000秒；<br>    s: 秒(seconds)；<br>    m: 分钟(minutes)；<br>    h：小时(hours)；<br>    d: 天(days)；<br>2.3 例子<br>下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。</p>
+<pre><code>
+    global
+    daemon
+    maxconn 25600
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+frontend http-in
+    bind *:80
+    default_backend servers
+backend servers
+    server server1 127.0.0.1:8080 maxconn 32
+</code></pre>
+2.4 全局配置
+""“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。  
+ \* 进程管理及安全相关的参数  
+   \- chroot <jail dir="">：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；  
+   \- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；  
+   \- gid <number>：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；  
+   \- group <group name="">：同gid，不过指定的组名；  
+   \- log  <address> <facility> [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；  
+   \- log-send-hostname [<string>]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；  
+   \- nbproc <number>：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；  
+   \- pidfile：  
+   \- uid：以指定的UID身份运行haproxy进程；  
+   \- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；  
+   \- user：同uid，但使用的是用户名；  
+   \- stats：  
+   \- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；  
+   \- description：当前实例的描述信息；  
+ \* 性能调整相关的参数  
+   \- maxconn <number>：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；  
+   \- maxpipes <number>：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；  
+   \- noepoll：在Linux系统上禁用epoll机制；  
+   \- nokqueue：在BSE系统上禁用kqueue机制；  
+   \- nopoll：禁用poll机制；  
+   \- nosepoll：在Linux禁用启发式epoll机制；  
+   \- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；  
+   \- spread-checks <0..50, in="" percent="">：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；  
+   \- tune.bufsize <number>：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；  
+   \- tune.chksize <number>：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；  
+   \- tune.maxaccept <number>：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；  
+   \- tune.maxpollevents  <number>：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；  
+   \- tune.maxrewrite <number>：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；  
+   \- tune.rcvbuf.client <number>：  
+   \- tune.rcvbuf.server <number>：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；  
+   \- tune.sndbuf.client：  
+   \- tune.sndbuf.server：  
+ \* Debug相关的参数  
+   \- debug  
+   \- quiet   
+2.5 代理  
+代理相关的配置可以如下配置段中。
+ (1) defaults name  
+ (2) frontend name  
+ (3) backend  name  
+ (4) listen   name  
+ “defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。
+ “frontend”段用于定义一系列监听的套接字，这些套stats_auth接字可接受客户端请求并与之建立连接。  
+ “backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。  
+ “listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。  
+ 所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\_(下划线)、\.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  
+
+### 配置文件中的关键字参考  
+3.1 balance  
+`balance <algorithm> [ <arguments> ]`    
+`balance url_param <param> [check_post   [<max_wait>]]`    
+3.2 bind  
+`bind [<address>]:<port_range> [, ...]`  
+`bind [<address>]:<port_range> [, ...] interface <interface>`   
+\-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。  
+`<address>`：可选选项，其可以为主机名、IPv4地址、IPv6地址或*；省略此选项、将其指定为*或0.0.0.0时，将监听当前系统的所有IPv4地址；
+`<port_range>`：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字<address:port>在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；
+`<interface>：`指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；  
+3.3 mode  
+`mode { tcp|http|health } `
+设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。  
+tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；  
+http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；  
+health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；  
+3.4 hash-type
+`hash-type <method>`  
+定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法  
+map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。  
+consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。  
+3.5 log  
+`log global`  
+`log <address> <facility> [<level> [<minlevel>]]`  
+为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且"global"段已经定了两个log参数时，多余了log参数将被忽略。  
+global：当前实例的日志系统参数同"global"段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；  
+`<address>`：定义日志发往的位置，其格式之一可以为`<ipv4_address:port>`，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；  
+`<facility>`：可以为syslog系统的标准facility之一；
+`<level>`：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；   
+3.6 maxconn  
+`maxconn <conns>`  
+设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。  
+如果为`<conns>`指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。  
+3.7 default_backend  
+default_backend `<backend>`  
+在没有匹配的"use_backend"规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在"frontend"和"backend"之间进行内容交换时，通常使用"use\-backend"定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。  
+`<backend>`：指定使用的后端的名称；  
+使用案例：  
 <pre><code>
 use_backend     dynamic  if  url_dyn
 use_backend     static   if  url_css url_img extension_img
@@ -1299,15 +1530,15 @@ server <name> <address>[:port] [param*]
 服务器或默认服务器参数：
 backup：设定为备用服务器，仅在负载均衡场景中的其它server均不可用于启用此server；
 check：启动对此server执行健康状态检查，其可以借助于额外的其它参数完成更精细的设定，如：
- inter <delay>：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
- rise <count>：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
- fall <count>：确认server从正常状态转换为不可用状态需要检查的次数；
+    inter <delay>：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
+    rise <count>：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
+    fall <count>：确认server从正常状态转换为不可用状态需要检查的次数；
 cookie <value>：为指定server设定cookie值，此处指定的值将在请求入站时被检查，第一次为此值挑选的server将在后续的请求中被选中，其目的在于实现持久连接的功能；
 maxconn <maxconn>：指定此服务器接受的最大并发连接数；如果发往此服务器的连接数目高于此处指定的值，其将被放置于请求队列，以等待其它连接被释放；
 maxqueue <maxqueue>：设定请求队列的最大长度；
 observe <mode>：通过观察服务器的通信状况来判定其健康状态，默认为禁用，其支持的类型有“layer4”和“layer7”，“layer7”仅能用于http代理场景；
 redir <prefix>：启用重定向功能，将发往此服务器的GET和HEAD请求均以302状态码响应；需要注意的是，在prefix后面不能使用/，且不能使用相对地址，以免造成循环；例如：
- server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
+    server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
 weight <weight>：权重，默认为1，最大值为256，0表示不参与负载均衡；
 检查方法：
 option httpchk
@@ -1315,9 +1546,9 @@ option httpchk <uri>
 option httpchk <method> <uri>
 option httpchk <method> <uri> <version>：不能用于frontend段，例如：
 backend https_relay
- mode tcp
- option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
- server apache1 192.168.1.1:443 check port 80
+    mode tcp
+    option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
+    server apache1 192.168.1.1:443 check port 80
 使用案例：
 server first  172.16.100.7:1080 cookie first  check inter 1000
 server second 172.16.100.8:1080 cookie second check inter 1000
@@ -1338,20 +1569,20 @@ capture response header <name> len <length>
 3.11 stats enable
 <pre><code>
 启用基于程序编译时默认设置的统计报告，不能用于“frontend”区段。只要没有另外的其它设定，它们就会使用如下的配置：
-\- stats uri   : /haproxy?stats
-\- stats realm : "HAProxy Statistics"
-\- stats auth  : no authentication
-\- stats scope : no restriction   
+  \- stats uri   : /haproxy?stats
+  \- stats realm : "HAProxy Statistics"
+  \- stats auth  : no authentication
+  \- stats scope : no restriction   
 尽管“stats enable”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。  
-backend public_www
- server websrv1 172.16.100.11:80
- stats enable
- stats hide-version
- stats scope   .
- stats uri     /haproxyadmin?stats
- stats realm   Haproxy\ Statistics
- stats auth    statsadmin:password
- stats auth    statsmaster:password
+  backend public_www
+    server websrv1 172.16.100.11:80
+    stats enable
+    stats hide-version
+    stats scope   .
+    stats uri     /haproxyadmin?stats
+    stats realm   Haproxy\ Statistics
+    stats auth    statsadmin:password
+    stats auth    statsmaster:password
 </code></pre>  
 3.12 stats hide-version
 <pre><code>
@@ -1372,9 +1603,9 @@ stats scope { <name> | "." }
 name>：可以是一个“listen”、“frontend”或“backend”区段的名称，而“.”则表示stats scope语句所定义的当前区段。  
 尽管“stats scope”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。
 backend private_monitoring
- stats enable
- stats uri     /haproxyadmin?stats
- stats refresh 10s
+    stats enable
+    stats uri     /haproxyadmin?stats
+    stats refresh 10s
 </name></code></pre>
 3.15 stats auth  
 <pre><code>
@@ -1391,12 +1622,12 @@ stats admin { if | unless } <cond>
 在指定的条件满足时启用统计报告页面的管理级别功能，它允许通过web接口启用或禁用服务器，不过，基于安全的角度考虑，统计报告页面应该尽可能为只读的。此外，如果启用了HAProxy的多进程模式，启用此管理级别将有可能导致异常行为。
 目前来说，POST请求方法被限制于仅能使用缓冲区减去保留部分之外的空间，因此，服务器列表不能过长，否则，此请求将无法正常工作。因此，建议一次仅调整少数几个服务器。下面是两个案例，第一个限制了仅能在本机打开报告页面时启用管理级别功能，第二个定义了仅允许通过认证的用户使用管理级别功能。
 backend stats_localhost
- stats enable
- stats admin if LOCALHOST
+    stats enable
+    stats admin if LOCALHOST
 backend stats_auth
- stats enable
- stats auth  haproxyadmin:password
- stats admin if TRUE
+    stats enable
+    stats auth  haproxyadmin:password
+    stats admin if TRUE
 </cond></code></pre>
 3.17 option httplog  
 <pre><code>
@@ -1407,15 +1638,15 @@ clf：使用CLF格式来代替HAProxy默认的HTTP格式，通常在使用仅支
 </code></pre>
 3.18 option logasap  
 <pre><code>
-     option logasap  
- no option logasap  
+        option logasap  
+    no option logasap  
 启用或禁用提前将HTTP请求记入日志，不能用于“backend”区段。  
 默认情况下，HTTP请求是在请求结束时进行记录以便能将其整体传输时长和字节数记入日志，由此，传较大的对象时，其记入日志的时长可能会略有延迟。“option logasap”参数能够在服务器发送complete首部时即时记录日志，只不过，此时将不记录整体传输时长和字节数。此情形下，捕获“Content-Length”响应首部来记录传输的字节数是一个较好选择。下面是一个例子。  
-listen http_proxy 0.0.0.0:80
-   mode http
-   option httplog
-   option logasap
-   log 172.16.100.9 local2
+  listen http_proxy 0.0.0.0:80
+      mode http
+      option httplog
+      option logasap
+      log 172.16.100.9 local2
 </code></pre>
 3.19 option forwardfor  
 <pre><code>
@@ -1428,8 +1659,8 @@ HAProxy工作于反向代理模式，其发往服务器的请求中的客户端I
 需要注意的是，HAProxy工作于隧道模式，其仅检查每一个连接的第一个请求，因此，仅第一个请求报文被附加此首部。如果想为每一个请求都附加此首部，请确保同时使用了“option httpclose”、“option forceclose”和“option http-server-close”几个option。  
 下面是一个例子
 frontend www
- mode http
- option forwardfor except 127.0.0.1
+    mode http
+    option forwardfor except 127.0.0.1
 </name></network></name></network></code></pre>
 3.20 errorfile  
 <pre><code>
@@ -1459,14 +1690,12 @@ errorloc302 <code> <url>
 <url>：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；  
 例如：
 backend webserver
-server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
-server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
-errorloc 403 /etc/haproxy/errorpages/sorry.htm
-errorloc 503 /etc/haproxy/errorpages/sorry.htm
+  server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
+  server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
+  errorloc 403 /etc/haproxy/errorpages/sorry.htm
+  errorloc 503 /etc/haproxy/errorpages/sorry.htm
 </url></code></url></code></code></pre>
 
-</li>
-</ol>
 <p>一个配置示例：</p>
 <pre><code>
 \#---------------------------------------------------------------------
@@ -1599,153 +1828,7 @@ backend mysqlservers
     server dbsrv1 192.168.10.11:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
     server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
 </code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
-                  高可用集群系列之基础01
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
-              2016-01-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/集群/" itemprop="url" rel="index">
-                    <span itemprop="name">集群</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>什么是集群?  </p>
-<blockquote>
-<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
-</blockquote>
-</li>
-<li><p>集群系统的主要优点:  </p>
-<blockquote>
-<p>(1)高可扩展性：<br> (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br> (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br> (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
-</blockquote>
-</li>
-<li><p>集群系统的分类</p>
-<blockquote>
-<p>1)、高可用(High Availability)集群,简称HA集群。<br> 这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br> 负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br> 在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br> (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br> 在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br> 这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
-</blockquote>
-<ol>
-<li>什么是高可用性 (HA)<blockquote>
-<p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
-<ul>
-<li>HA的容错备援运作过程  <blockquote>
-<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>HA三种工作方式：  </p>
-<blockquote>
-<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
-</blockquote>
-</li>
-</ol>
-
+</backend></backend></conns></conns></level></facility></ipv4_address:port></address></minlevel></level></facility></address></method></interface></address:port></port_range></address></interface></port_range></address></port_range></address></max_wait></arguments></algorithm></number></number></number></number></number></number></number></0..50,></number></number></number></string></facility></address></group></number></jail>
           
         
       
@@ -2381,8 +2464,8 @@ server {
             
               
                 
-                <a class="post-title-link" href="/2015/12/23/nginx负载均衡/" itemprop="url">
-                  nginx负载均衡
+                <a class="post-title-link" href="/2015/12/23/nginx配置文件详解/" itemprop="url">
+                  nginx配置文件详解
                 </a>
               
             
@@ -2400,6 +2483,25 @@ server {
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -2425,115 +2527,187 @@ server {
       
         
           
-            <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p>
-<ol>
-<li><p>nginx 反向代理<br>nginx的负载均衡基于反向代理  </p>
-<blockquote>
-<p>1.1 正向代理  </p>
-<blockquote>
-<p> 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  </p>
-</blockquote>
-<p>1.2反向代理</p>
-<blockquote>
-<p>反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。</p>
-</blockquote>
-<p>区别:</p>
-<blockquote>
-<p>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。<br>正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>upstream</p>
-<blockquote>
-<p>2.1 负载均衡算法</p>
-<blockquote>
-<p>2.1.1 轮循<br>当weight不指定时，各服务器weight相同，<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  </p>
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-}
-</code></pre>
-2.1.2 weight    
-指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
-如果后端服务器down掉，能自动剔除。
-比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
-<pre><code>
-upstream bakend {
-server server1.example.com weight=1;
-server server2.example.com weight=2;
-}
-</code></pre>
-2.1.3 ip_hash        
-每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
-<pre><code>
-upstream bakend {
-ip_hash
-server server1.example.com;
-server server2.example.com;
-}
-</code></pre>
-2.1.4 fair  
-按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-fair;
-}
-</code></pre>
-2.1.5 url_hash  
-按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
-在upstream中加入hash语句，hash_method是使用的hash算法。  
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-hash $request_uri;
-hash_method crc32;
-}
-</code></pre>
+            <pre><code>
 
-</blockquote>
-<p>2.2 参数</p>
-<blockquote>
-<p>1.down 表示单前的server暂时不参与负载<br>2.weight 默认为1.weight越大，负载的权重就越大。<br>3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误<br>4.fail_timeout:max_fails次失败后，暂停的时间。<br>5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。<br>nginx支持同时设置多组的负载均衡，用来给不用的server来使用。<br>client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug<br>client_body_temp_path 设置记录文件的目录 可以设置最多3层目录<br>location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  </p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>示例<br>3.1 网络拓扑<br>反向代理服务器 server1.example.com<br>后端服务器：<br>server2.example.com<br>server3.example.com<br>3.2 配置<br>3.2.1 server1</p>
-<pre><code>
-user nginx;
-worker_processes 1;
-events {
- use epoll;
- worker_connections  1024;
-}
-http {
- include       mime.types;
- default_type  application/octet-stream;
- sendfile        on;
- keepalive_timeout  65;
- upstream nginx.com{
-        server server2.example.com:80;
-        server server3.example.com:80;
- }  
- server {
-     listen       80;
-     server_name  localhost;
-     location / {
-         proxy_pass http://nginx.com;
-     proxy_set_header  X-Real-IP  $remote_addr;
-   }
- error_page   500 502 503 504  /50x.html;
- location = /50x.html {
-         root   html;
- }  
-}  
-}  
+
+    #运行用户
+    user nginx;   
+    #启动进程,通常设置成和cpu的数量相等
+    worker_processes  1;
+
+    #全局错误日志及PID文件
+    error_log  /var/log/nginx/error.log;
+    pid        /var/run/nginx.pid;
+
+    #工作模式及连接数上限
+    events {
+        use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
+        worker_connections  1024;#单个后台worker process进程的最大并发链接数
+        # multi_accept on;
+    }
+
+    #设定http服务器，利用它的反向代理功能提供负载均衡支持
+    http {
+         #设定mime类型,类型由mime.type文件定义
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        #设定日志格式
+        access_log    /var/log/nginx/access.log;
+
+        #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+        #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+        sendfile        on;
+        #tcp_nopush     on;
+
+        #连接超时时间
+        #keepalive_timeout  0;
+        keepalive_timeout  65;
+        tcp_nodelay        on;
+
+        #开启gzip压缩
+        gzip  on;
+        gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
+        #设定请求缓冲
+        client_header_buffer_size    1k;
+        large_client_header_buffers  4 4k;
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+
+        #设定负载均衡的服务器列表
+         upstream mysvr {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+        #本机上的Squid开启3128端口
+        server 192.168.8.1:3128 weight=5;
+        server 192.168.8.2:80  weight=1;
+        server 192.168.8.3:80  weight=6;
+        }
+
+
+       server {
+        #侦听80端口
+            listen       80;
+            #定义使用www.xx.com访问
+            server_name  www.xx.com;
+
+            #设定本虚拟主机的访问日志
+            access_log  logs/www.xx.com.access.log  main;
+
+        #默认请求
+        location / {
+              root   /root;      #定义服务器的默认网站根目录位置
+              index index.php index.html index.htm;   #定义首页索引文件的名称
+
+              fastcgi_pass  www.xx.com;
+             fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
+              include /etc/nginx/fastcgi_params;
+            }
+
+        # 定义错误提示页面
+        error_page   500 502 503 504 /50x.html;
+            location = /50x.html {
+            root   /root;
+        }
+
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            root /var/www/virtual/htdocs;
+            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+            expires 30d;
+        }
+        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
+        location ~ \.php$ {
+            root /root;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
+            include fastcgi_params;
+        }
+        #设定查看Nginx状态的地址
+        location /NginxStatus {
+            stub_status              on;
+            access_log               on;
+            auth_basic              "NginxStatus";
+            auth_basic_user_file  conf/htpasswd;
+        }
+        #禁止访问 .htxxx 文件
+        location ~ /\.ht {
+            deny all;
+        }
+
+         }
+    }
+
+以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
+
+如果要使用负载均衡的话,可以修改配置http节点如下：
+
+    #设定http服务器，利用它的反向代理功能提供负载均衡支持
+    http {
+         #设定mime类型,类型由mime.type文件定义
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        #设定日志格式
+        access_log    /var/log/nginx/access.log;
+
+        #省略上文有的一些配置节点
+
+        #。。。。。。。。。。
+
+        #设定负载均衡的服务器列表
+        upstream mysvr {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+        server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
+        server 192.168.8.2x:80  weight=1;
+        server 192.168.8.3x:80  weight=6;
+        }
+
+        upstream mysvr2 {
+        #weigth参数表示权值，权值越高被分配到的几率越大
+
+            server 192.168.8.x:80  weight=1;
+            server 192.168.8.x:80  weight=6;
+        }
+
+       #第一个虚拟服务器
+       server {
+        #侦听192.168.8.x的80端口
+            listen       80;
+            server_name  192.168.8.x;
+
+            #对aspx后缀的进行负载均衡请求
+            location ~ .*\.aspx$ {
+
+                root   /root;      #定义服务器的默认网站根目录位置
+                index index.php index.html index.htm;   #定义首页索引文件的名称
+
+                proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
+
+                #以下是一些反向代理的配置可删除.
+
+                proxy_redirect off;
+
+                #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                client_max_body_size 10m;       #允许客户端请求的最大单文件字节数
+                client_body_buffer_size 128k;   #缓冲区代理缓冲用户端请求的最大字节数，
+                proxy_connect_timeout 90;       #nginx跟后端服务器连接超时时间(代理连接超时)
+                proxy_send_timeout 90;          #后端服务器数据回传时间(代理发送超时)
+                proxy_read_timeout 90;          #连接成功后，后端服务器响应时间(代理接收超时)
+                proxy_buffer_size 4k;           #设置代理服务器（nginx）保存用户头信息的缓冲区大小
+                proxy_buffers 4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
+                proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
+                proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
+
+           }
+
+         }
+    }
+
 </code></pre>
-</li>
-</ol>
 
           
         
@@ -2607,7 +2781,7 @@ http {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2624,7 +2798,7 @@ http {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

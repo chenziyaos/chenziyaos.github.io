@@ -86,43 +86,34 @@
 
 
 
-<meta name="description" content="ajax简介  
-
+<meta name="description" content="ajax简介
 AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  
 AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  
 AJAX 是一种用于创建快速动态网页的技术。  
 
-
-发展  
-
-在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进">
+发展
+在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax初探">
 <meta property="og:url" content="https://iceziyao.github.io/2015/01/02/ajax/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="ajax简介  
-
+<meta property="og:description" content="ajax简介
 AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  
 AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  
 AJAX 是一种用于创建快速动态网页的技术。  
 
-
-发展  
-
-在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进">
-<meta property="og:updated_time" content="2016-07-09T21:38:45.334Z">
+发展
+在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每">
+<meta property="og:updated_time" content="2016-07-10T18:32:07.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax初探">
-<meta name="twitter:description" content="ajax简介  
-
+<meta name="twitter:description" content="ajax简介
 AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  
 AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  
 AJAX 是一种用于创建快速动态网页的技术。  
 
-
-发展  
-
-在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进">
+发展
+在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每">
 
 
 
@@ -354,22 +345,14 @@ AJAX 是一种用于创建快速动态网页的技术。
       
 
       
-        <ul>
-<li><p>ajax简介  </p>
-<ul>
+        <h4 id="ajax简介"><a href="#ajax简介" class="headerlink" title="ajax简介"></a>ajax简介</h4><ul>
 <li>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </li>
 <li>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </li>
 <li>AJAX 是一种用于创建快速动态网页的技术。  </li>
 </ul>
-</li>
-<li><p>发展  </p>
-<ol>
+<h4 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h4><ol>
 <li>在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。</li>
-<li>在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。<br>2.1 如何更改页面信息呢？<br>可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。<br>2.2 如何与后台进行交互？<br>那么，我们必须向后台进行请求，可以用个超链接<code>&lt;a href=&#39;#&#39; title=&#39;&#39; target=_blank&lt;/a&gt;</code>,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。<br>可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。</li>
-</ol>
-</li>
-<li><p>工作原理<br>Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。<br>XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    </p>
-<ul>
+<li>在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。<br>2.1 如何更改页面信息呢？<br>可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。<br>2.2 如何与后台进行交互？<br>那么，我们必须向后台进行请求，可以用个超链接<code>&lt;a href=&#39;#&#39; title=&#39;&#39; target=_blank&lt;/a&gt;</code>,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。<br>可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4>Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。<br>XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    <ul>
 <li>所以我们先从XMLHttpRequest讲起，来看看它的工作原理。<br>　  首先，我们先来看看XMLHttpRequest这个对象的属性。<br>　　它的属性有:  <ul>
 <li>onreadystatechange  每次状态改变所触发事件的事件处理程序。</li>
 <li>responseText     从服务器进程返回数据的字符串形式。</li>
@@ -384,72 +367,25 @@ AJAX 是一种用于创建快速动态网页的技术。
 </li>
 </ul>
 </li>
-<li><p>ajax的使用</p>
-<ol>
-<li>创建XMLHTTPReq</li>
-<li>发送数据</li>
-<li><p>接受回调数据</p>
-<pre><code>
-var XMLHttpReq=null;
-//创建Ajax引擎对象
-function createXMLHttpRequest() {
- try {
-        XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");//IE高版本创建XMLHTTP
-     }
-     catch(E) {
-        try {
-               XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");//IE低版本创建XMLHTTP
-        }
-        catch(E) {
-               XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
-        }
-      }
-}
-//向后台发送数据
-function sendGetAjaxRequest(url,text) {
-      createXMLHttpRequest();                                //创建XMLHttpRequest对象
-      XMLHttpReq.open("get", url+"?"+encodeURI(text), true);
-     XMLHttpReq.onreadystatechange = doResult; //指定响应函数
-     XMLHttpReq.send(null);
-}
-function sendPOSTAjaxRequest(url,text) {
-      createXMLHttpRequest();                                //创建XMLHttpRequest对象
-      XMLHttpReq.open("post", url, true);
-      XMLHttpReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      XMLHttpReq.setRequestHeader("Content-length", text.length);
-      XMLHttpReq.setRequestHeader("Connection", "close");
-      XMLHttpReq.onreadystatechange = doResult; //指定响应函数
-      XMLHttpReq.send(null);
-}
-function doResult() {
-   if (XMLHttpReq.readyState == 4 && XMLHttpReq.status == 200) {
-     //4代表执行完成                
-     //200代表执行成功，删除当前表格
-
-   }
-}
-</code></pre></li>
 </ol>
-</li>
-<li>ajax的优缺点<ul>
-<li>优点：<ul>
-<li>就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。</li>
-<li>异步非阻塞</li>
-<li>可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。</li>
-<li>基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。</li>
-</ul>
-</li>
-<li>缺点：<ul>
-<li>用户不知道数据是否更新</li>
-<li>无法回退</li>
-<li>安全问题<br>任何数据处理在前端，都会暴露后台</li>
-<li>对串流媒体的支持没有FLASH、Java Applet好;</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+<h4 id="ajax的使用"><a href="#ajax的使用" class="headerlink" title="ajax的使用"></a>ajax的使用</h4><pre><code>1. 创建XMLHTTPReq
+2. 发送数据
+3. 接受回调数据
+</code></pre><p><pre><code><br>var XMLHttpReq=null;<br>//创建Ajax引擎对象<br>function createXMLHttpRequest() {<br>        try {<br>               XMLHttpReq = new ActiveXObject(“Msxml2.XMLHTTP”);//IE高版本创建XMLHTTP<br>            }<br>            catch(E) {<br>               try {<br>                      XMLHttpReq = new ActiveXObject(“Microsoft.XMLHTTP”);//IE低版本创建XMLHTTP<br>               }<br>               catch(E) {<br>                      XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象<br>               }<br>             }<br>}<br>//向后台发送数据<br>function sendGetAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);<br>            XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>            XMLHttpReq.send(null);<br>}<br>function sendPOSTAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“post”, url, true);<br>             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);<br>             XMLHttpReq.setRequestHeader(“Content-length”, text.length);<br>             XMLHttpReq.setRequestHeader(“Connection”, “close”);<br>             XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>             XMLHttpReq.send(null);<br>}<br>function doResult() {<br>          if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {<br>            //4代表执行完成<br>            //200代表执行成功，删除当前表格</code></pre></p>
+<pre><code>}
+</code></pre><p>}<br></p>
+<h4 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h4><pre><code>* 优点：
+    * 就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。
+    * 异步非阻塞
+    * 可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。
+    * 基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。
+* 缺点：
+    * 用户不知道数据是否更新
+    * 无法回退
+    * 安全问题  
+    任何数据处理在前端，都会暴露后台
+    * 对串流媒体的支持没有FLASH、Java Applet好;
+</code></pre>
       
     </div>
 
@@ -554,7 +490,7 @@ function doResult() {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -571,7 +507,7 @@ function doResult() {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -618,7 +554,7 @@ function doResult() {
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax简介"><span class="nav-number">1.</span> <span class="nav-text">ajax简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发展"><span class="nav-number">2.</span> <span class="nav-text">发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作原理"><span class="nav-number">3.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax的使用"><span class="nav-number">4.</span> <span class="nav-text">ajax的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">5.</span> <span class="nav-text">ajax的优缺点</span></a></li></ol></div>
             
           </div>
         </section>

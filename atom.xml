@@ -299,7 +299,7 @@ t.start()
     <link href="https://iceziyao.github.io/2016/04/04/docker02/"/>
     <id>https://iceziyao.github.io/2016/04/04/docker02/</id>
     <published>2016-04-03T16:00:00.000Z</published>
-    <updated>2016-07-10T17:39:45.772Z</updated>
+    <updated>2016-07-10T18:32:38.031Z</updated>
     
     <content type="html">&lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
@@ -357,7 +357,7 @@ t.start()
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;为什么使用go语言实现docker&lt;br&gt;部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  &lt;/li&gt;
 &lt;li&gt;docker与LXC的联系&lt;br&gt;在我理解，docker是LXC的一个高速引擎&lt;/li&gt;
 &lt;li&gt;为什么我只解析了docker实现思想&lt;br&gt;我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。&lt;/li&gt;
@@ -516,18 +516,160 @@ t.start()
   </entry>
   
   <entry>
+    <title>高可用集群系列之基础01</title>
+    <link href="https://iceziyao.github.io/2016/01/16/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-07-10T18:35:39.956Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="集群" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Haproxy负载均衡</title>
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>
     <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-10T17:39:50.160Z</updated>
+    <updated>2016-07-10T18:34:17.947Z</updated>
     
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;HAProxy简介&lt;br&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;br&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt; 客户端侧的长连接(client-side keep-alive)&lt;br&gt; TCP加速(TCP speedups)&lt;br&gt; 响应池(response buffering)&lt;br&gt; RDP协议&lt;br&gt; 基于源的粘性(source-based stickiness)&lt;br&gt; 更好的统计数据接口(a much better stats interfaces)&lt;br&gt; 更详细的健康状态检测机制(more verbose health checks)&lt;br&gt; 基于流量的健康评估机制(traffic-based health)&lt;br&gt; 支持HTTP认证&lt;br&gt; 服务器管理命令行接口(server management from the CLI)&lt;br&gt; 基于ACL的持久性(ACL-based persistence)&lt;br&gt; 日志分析器&lt;br&gt;1.1.2 内容交换和超强负载：&lt;br&gt;衍生于1.2版本，并提供了额外的新特性。&lt;br&gt; 内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt; ACL：编写内容交换规则；&lt;br&gt; 负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt; 内容探测(content inspection)：阻止非授权协议；&lt;br&gt; 透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt; 内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt; 分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt; 快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt; 会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt; 单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt; O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt; 在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt; 借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt; MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt; 树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt; 优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt; 精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;配置HAProxy&lt;br&gt;2.1 配置文件格式&lt;br&gt;HAProxy的配置处理3类来主要参数来源：&lt;br&gt; ——最优先处理的命令行参数，&lt;br&gt; ——“global”配置段，用于设定全局配置参数；&lt;br&gt; ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；&lt;br&gt;2.2 时间格式&lt;br&gt;一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。&lt;br&gt; us: 微秒(microseconds)，即1/1000000秒；&lt;br&gt; ms: 毫秒(milliseconds)，即1/1000秒；&lt;br&gt; s: 秒(seconds)；&lt;br&gt; m: 分钟(minutes)；&lt;br&gt; h：小时(hours)；&lt;br&gt; d: 天(days)；&lt;br&gt;2.3 例子&lt;br&gt;下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt; global&lt;br&gt; daemon&lt;br&gt; maxconn 25600&lt;br&gt;defaults&lt;br&gt; mode http&lt;br&gt; timeout connect 5000ms&lt;br&gt; timeout client 50000ms&lt;br&gt; timeout server 50000ms&lt;br&gt;frontend http-in&lt;br&gt; bind &lt;em&gt;:80&lt;br&gt; default_backend servers&lt;br&gt;backend servers&lt;br&gt; server server1 127.0.0.1:8080 maxconn 32&lt;br&gt;&lt;/em&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;2.4 全局配置&lt;br&gt;“”“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。&lt;br&gt;\ 进程管理及安全相关的参数&lt;br&gt;- chroot &lt;jail dir=&quot;&quot;&gt;：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；&lt;br&gt;- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；&lt;br&gt;- gid &lt;number&gt;：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；&lt;br&gt;- group &lt;group name=&quot;&quot;&gt;：同gid，不过指定的组名；&lt;br&gt;- log  &lt;address&gt; &lt;facility&gt; [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；&lt;br&gt;- log-send-hostname [&lt;string&gt;]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；&lt;br&gt;- nbproc &lt;number&gt;：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；&lt;br&gt;- pidfile：&lt;br&gt;- uid：以指定的UID身份运行haproxy进程；&lt;br&gt;- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；&lt;br&gt;- user：同uid，但使用的是用户名；&lt;br&gt;- stats：&lt;br&gt;- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；&lt;br&gt;- description：当前实例的描述信息；&lt;br&gt;* 性能调整相关的参数&lt;br&gt;- maxconn &lt;number&gt;：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；&lt;br&gt;- maxpipes &lt;number&gt;：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；&lt;br&gt;- noepoll：在Linux系统上禁用epoll机制；&lt;br&gt;- nokqueue：在BSE系统上禁用kqueue机制；&lt;br&gt;- nopoll：禁用poll机制；&lt;br&gt;- nosepoll：在Linux禁用启发式epoll机制；&lt;br&gt;- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；&lt;br&gt;- spread-checks &lt;0..50, in=&quot;&quot; percent=&quot;&quot;&gt;：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；&lt;br&gt;- tune.bufsize &lt;number&gt;：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；&lt;br&gt;- tune.chksize &lt;number&gt;：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；&lt;br&gt;- tune.maxaccept &lt;number&gt;：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；&lt;br&gt;- tune.maxpollevents  &lt;number&gt;：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；&lt;br&gt;- tune.maxrewrite &lt;number&gt;：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；&lt;br&gt;- tune.rcvbuf.client &lt;number&gt;：&lt;br&gt;- tune.rcvbuf.server &lt;number&gt;：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；&lt;br&gt;- tune.sndbuf.client：&lt;br&gt;- tune.sndbuf.server：&lt;br&gt;* Debug相关的参数&lt;br&gt;- debug&lt;br&gt;- quiet&lt;br&gt;2.5 代理&lt;br&gt;代理相关的配置可以如下配置段中。&lt;br&gt;(1) defaults name&lt;br&gt;(2) frontend name&lt;br&gt;(3) backend  name&lt;br&gt;(4) listen   name&lt;br&gt;“defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。&lt;br&gt;“frontend”段用于定义一系列监听的套接字，这些套stats&lt;em&gt;auth接字可接受客户端请求并与之建立连接。&lt;br&gt;“backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。&lt;br&gt;“listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。&lt;br&gt;所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\&lt;/em&gt;(下划线)、.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  &lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/0..50,&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/string&gt;&lt;/facility&gt;&lt;/address&gt;&lt;/group&gt;&lt;/number&gt;&lt;/jail&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;配置文件中的关键字参考&lt;br&gt;3.1 balance&lt;br&gt;&lt;code&gt;balance &amp;lt;algorithm&amp;gt; [ &amp;lt;arguments&amp;gt; ]&lt;/code&gt;&lt;br&gt;&lt;code&gt;balance url_param &amp;lt;param&amp;gt; [check_post   [&amp;lt;max_wait&amp;gt;]]&lt;/code&gt;&lt;br&gt;3.2 bind&lt;br&gt;&lt;code&gt;bind [&amp;lt;address&amp;gt;]:&amp;lt;port_range&amp;gt; [, ...]&lt;/code&gt;&lt;br&gt;&lt;code&gt;bind [&amp;lt;address&amp;gt;]:&amp;lt;port_range&amp;gt; [, ...] interface &amp;lt;interface&amp;gt;&lt;/code&gt;&lt;br&gt;-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。&lt;br&gt;&lt;code&gt;&amp;lt;address&amp;gt;&lt;/code&gt;：可选选项，其可以为主机名、IPv4地址、IPv6地址或&lt;em&gt;；省略此选项、将其指定为&lt;/em&gt;或0.0.0.0时，将监听当前系统的所有IPv4地址；&lt;br&gt;&lt;code&gt;&amp;lt;port_range&amp;gt;&lt;/code&gt;：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字&lt;address:port&gt;在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；&lt;br&gt;&lt;code&gt;&amp;lt;interface&amp;gt;：&lt;/code&gt;指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；&lt;br&gt;3.3 mode&lt;br&gt;&lt;code&gt;mode { tcp|http|health }&lt;/code&gt;&lt;br&gt;设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。&lt;br&gt;tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；&lt;br&gt;http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；&lt;br&gt;health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；&lt;br&gt;3.4 hash-type&lt;br&gt;&lt;code&gt;hash-type &amp;lt;method&amp;gt;&lt;/code&gt;&lt;br&gt;定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法&lt;br&gt;map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。&lt;br&gt;consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。&lt;br&gt;3.5 log&lt;br&gt;&lt;code&gt;log global&lt;/code&gt;&lt;br&gt;&lt;code&gt;log &amp;lt;address&amp;gt; &amp;lt;facility&amp;gt; [&amp;lt;level&amp;gt; [&amp;lt;minlevel&amp;gt;]]&lt;/code&gt;&lt;br&gt;为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且”global”段已经定了两个log参数时，多余了log参数将被忽略。&lt;br&gt;global：当前实例的日志系统参数同”global”段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；&lt;br&gt;&lt;code&gt;&amp;lt;address&amp;gt;&lt;/code&gt;：定义日志发往的位置，其格式之一可以为&lt;code&gt;&amp;lt;IPv4_address:PORT&amp;gt;&lt;/code&gt;，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；&lt;br&gt;&lt;code&gt;&amp;lt;facility&amp;gt;&lt;/code&gt;：可以为syslog系统的标准facility之一；&lt;br&gt;&lt;code&gt;&amp;lt;level&amp;gt;&lt;/code&gt;：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；&lt;br&gt;3.6 maxconn&lt;br&gt;&lt;code&gt;maxconn &amp;lt;conns&amp;gt;&lt;/code&gt;&lt;br&gt;设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。&lt;br&gt;如果为&lt;code&gt;&amp;lt;conns&amp;gt;&lt;/code&gt;指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。&lt;br&gt;3.7 default_backend&lt;br&gt;default_backend &lt;code&gt;&amp;lt;backend&amp;gt;&lt;/code&gt;&lt;br&gt;在没有匹配的”use_backend”规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在”frontend”和”backend”之间进行内容交换时，通常使用”use-backend”定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。&lt;br&gt;&lt;code&gt;&amp;lt;backend&amp;gt;&lt;/code&gt;：指定使用的后端的名称；&lt;br&gt;使用案例：  &lt;/address:port&gt;&lt;/p&gt;
+    <content type="html">&lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;br&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt;    客户端侧的长连接(client-side keep-alive)&lt;br&gt;    TCP加速(TCP speedups)&lt;br&gt;    响应池(response buffering)&lt;br&gt;    RDP协议&lt;br&gt;    基于源的粘性(source-based stickiness)&lt;br&gt;    更好的统计数据接口(a much better stats interfaces)&lt;br&gt;    更详细的健康状态检测机制(more verbose health checks)&lt;br&gt;    基于流量的健康评估机制(traffic-based health)&lt;br&gt;    支持HTTP认证&lt;br&gt;    服务器管理命令行接口(server management from the CLI)&lt;br&gt;    基于ACL的持久性(ACL-based persistence)&lt;br&gt;    日志分析器&lt;br&gt;  1.1.2 内容交换和超强负载：&lt;br&gt;  衍生于1.2版本，并提供了额外的新特性。&lt;br&gt;    内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt;    ACL：编写内容交换规则；&lt;br&gt;    负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt;    内容探测(content inspection)：阻止非授权协议；&lt;br&gt;    透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt;    内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt;    分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt;    快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt;    会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt;    单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt;    O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt;    在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt;    借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt;    MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt;    树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt;    优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt;    精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
+&lt;h4 id=&quot;配置HAProxy&quot;&gt;&lt;a href=&quot;#配置HAProxy&quot; class=&quot;headerlink&quot; title=&quot;配置HAProxy&quot;&gt;&lt;/a&gt;配置HAProxy&lt;/h4&gt;&lt;p&gt;2.1 配置文件格式&lt;br&gt;HAProxy的配置处理3类来主要参数来源：&lt;br&gt;    ——最优先处理的命令行参数，&lt;br&gt;    ——“global”配置段，用于设定全局配置参数；&lt;br&gt;    ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；&lt;br&gt;2.2 时间格式&lt;br&gt;一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。&lt;br&gt;    us: 微秒(microseconds)，即1/1000000秒；&lt;br&gt;    ms: 毫秒(milliseconds)，即1/1000秒；&lt;br&gt;    s: 秒(seconds)；&lt;br&gt;    m: 分钟(minutes)；&lt;br&gt;    h：小时(hours)；&lt;br&gt;    d: 天(days)；&lt;br&gt;2.3 例子&lt;br&gt;下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+    global
+    daemon
+    maxconn 25600
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+frontend http-in
+    bind *:80
+    default_backend servers
+backend servers
+    server server1 127.0.0.1:8080 maxconn 32
+&lt;/code&gt;&lt;/pre&gt;
+2.4 全局配置
+&quot;&quot;“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。  
+ \* 进程管理及安全相关的参数  
+   \- chroot &lt;jail dir=&quot;&quot;&gt;：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；  
+   \- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；  
+   \- gid &lt;number&gt;：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；  
+   \- group &lt;group name=&quot;&quot;&gt;：同gid，不过指定的组名；  
+   \- log  &lt;address&gt; &lt;facility&gt; [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；  
+   \- log-send-hostname [&lt;string&gt;]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；  
+   \- nbproc &lt;number&gt;：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；  
+   \- pidfile：  
+   \- uid：以指定的UID身份运行haproxy进程；  
+   \- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；  
+   \- user：同uid，但使用的是用户名；  
+   \- stats：  
+   \- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；  
+   \- description：当前实例的描述信息；  
+ \* 性能调整相关的参数  
+   \- maxconn &lt;number&gt;：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；  
+   \- maxpipes &lt;number&gt;：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；  
+   \- noepoll：在Linux系统上禁用epoll机制；  
+   \- nokqueue：在BSE系统上禁用kqueue机制；  
+   \- nopoll：禁用poll机制；  
+   \- nosepoll：在Linux禁用启发式epoll机制；  
+   \- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；  
+   \- spread-checks &lt;0..50, in=&quot;&quot; percent=&quot;&quot;&gt;：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；  
+   \- tune.bufsize &lt;number&gt;：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；  
+   \- tune.chksize &lt;number&gt;：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；  
+   \- tune.maxaccept &lt;number&gt;：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；  
+   \- tune.maxpollevents  &lt;number&gt;：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；  
+   \- tune.maxrewrite &lt;number&gt;：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；  
+   \- tune.rcvbuf.client &lt;number&gt;：  
+   \- tune.rcvbuf.server &lt;number&gt;：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；  
+   \- tune.sndbuf.client：  
+   \- tune.sndbuf.server：  
+ \* Debug相关的参数  
+   \- debug  
+   \- quiet   
+2.5 代理  
+代理相关的配置可以如下配置段中。
+ (1) defaults name  
+ (2) frontend name  
+ (3) backend  name  
+ (4) listen   name  
+ “defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。
+ “frontend”段用于定义一系列监听的套接字，这些套stats_auth接字可接受客户端请求并与之建立连接。  
+ “backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。  
+ “listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。  
+ 所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\_(下划线)、\.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  
+
+### 配置文件中的关键字参考  
+3.1 balance  
+`balance &lt;algorithm&gt; [ &lt;arguments&gt; ]`    
+`balance url_param &lt;param&gt; [check_post   [&lt;max_wait&gt;]]`    
+3.2 bind  
+`bind [&lt;address&gt;]:&lt;port_range&gt; [, ...]`  
+`bind [&lt;address&gt;]:&lt;port_range&gt; [, ...] interface &lt;interface&gt;`   
+\-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。  
+`&lt;address&gt;`：可选选项，其可以为主机名、IPv4地址、IPv6地址或*；省略此选项、将其指定为*或0.0.0.0时，将监听当前系统的所有IPv4地址；
+`&lt;port_range&gt;`：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字&lt;address:port&gt;在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；
+`&lt;interface&gt;：`指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；  
+3.3 mode  
+`mode { tcp|http|health } `
+设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。  
+tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；  
+http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；  
+health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；  
+3.4 hash-type
+`hash-type &lt;method&gt;`  
+定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法  
+map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。  
+consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。  
+3.5 log  
+`log global`  
+`log &lt;address&gt; &lt;facility&gt; [&lt;level&gt; [&lt;minlevel&gt;]]`  
+为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且&quot;global&quot;段已经定了两个log参数时，多余了log参数将被忽略。  
+global：当前实例的日志系统参数同&quot;global&quot;段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；  
+`&lt;address&gt;`：定义日志发往的位置，其格式之一可以为`&lt;ipv4_address:port&gt;`，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；  
+`&lt;facility&gt;`：可以为syslog系统的标准facility之一；
+`&lt;level&gt;`：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；   
+3.6 maxconn  
+`maxconn &lt;conns&gt;`  
+设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。  
+如果为`&lt;conns&gt;`指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。  
+3.7 default_backend  
+default_backend `&lt;backend&gt;`  
+在没有匹配的&quot;use_backend&quot;规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在&quot;frontend&quot;和&quot;backend&quot;之间进行内容交换时，通常使用&quot;use\-backend&quot;定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。  
+`&lt;backend&gt;`：指定使用的后端的名称；  
+使用案例：  
 &lt;pre&gt;&lt;code&gt;
 use_backend     dynamic  if  url_dyn
 use_backend     static   if  url_css url_img extension_img
@@ -544,15 +686,15 @@ server &lt;name&gt; &lt;address&gt;[:port] [param*]
 服务器或默认服务器参数：
 backup：设定为备用服务器，仅在负载均衡场景中的其它server均不可用于启用此server；
 check：启动对此server执行健康状态检查，其可以借助于额外的其它参数完成更精细的设定，如：
- inter &lt;delay&gt;：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
- rise &lt;count&gt;：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
- fall &lt;count&gt;：确认server从正常状态转换为不可用状态需要检查的次数；
+    inter &lt;delay&gt;：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
+    rise &lt;count&gt;：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
+    fall &lt;count&gt;：确认server从正常状态转换为不可用状态需要检查的次数；
 cookie &lt;value&gt;：为指定server设定cookie值，此处指定的值将在请求入站时被检查，第一次为此值挑选的server将在后续的请求中被选中，其目的在于实现持久连接的功能；
 maxconn &lt;maxconn&gt;：指定此服务器接受的最大并发连接数；如果发往此服务器的连接数目高于此处指定的值，其将被放置于请求队列，以等待其它连接被释放；
 maxqueue &lt;maxqueue&gt;：设定请求队列的最大长度；
 observe &lt;mode&gt;：通过观察服务器的通信状况来判定其健康状态，默认为禁用，其支持的类型有“layer4”和“layer7”，“layer7”仅能用于http代理场景；
 redir &lt;prefix&gt;：启用重定向功能，将发往此服务器的GET和HEAD请求均以302状态码响应；需要注意的是，在prefix后面不能使用/，且不能使用相对地址，以免造成循环；例如：
- server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
+    server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
 weight &lt;weight&gt;：权重，默认为1，最大值为256，0表示不参与负载均衡；
 检查方法：
 option httpchk
@@ -560,9 +702,9 @@ option httpchk &lt;uri&gt;
 option httpchk &lt;method&gt; &lt;uri&gt;
 option httpchk &lt;method&gt; &lt;uri&gt; &lt;version&gt;：不能用于frontend段，例如：
 backend https_relay
- mode tcp
- option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
- server apache1 192.168.1.1:443 check port 80
+    mode tcp
+    option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
+    server apache1 192.168.1.1:443 check port 80
 使用案例：
 server first  172.16.100.7:1080 cookie first  check inter 1000
 server second 172.16.100.8:1080 cookie second check inter 1000
@@ -583,20 +725,20 @@ capture response header &lt;name&gt; len &lt;length&gt;
 3.11 stats enable
 &lt;pre&gt;&lt;code&gt;
 启用基于程序编译时默认设置的统计报告，不能用于“frontend”区段。只要没有另外的其它设定，它们就会使用如下的配置：
-\- stats uri   : /haproxy?stats
-\- stats realm : &quot;HAProxy Statistics&quot;
-\- stats auth  : no authentication
-\- stats scope : no restriction   
+  \- stats uri   : /haproxy?stats
+  \- stats realm : &quot;HAProxy Statistics&quot;
+  \- stats auth  : no authentication
+  \- stats scope : no restriction   
 尽管“stats enable”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。  
-backend public_www
- server websrv1 172.16.100.11:80
- stats enable
- stats hide-version
- stats scope   .
- stats uri     /haproxyadmin?stats
- stats realm   Haproxy\ Statistics
- stats auth    statsadmin:password
- stats auth    statsmaster:password
+  backend public_www
+    server websrv1 172.16.100.11:80
+    stats enable
+    stats hide-version
+    stats scope   .
+    stats uri     /haproxyadmin?stats
+    stats realm   Haproxy\ Statistics
+    stats auth    statsadmin:password
+    stats auth    statsmaster:password
 &lt;/code&gt;&lt;/pre&gt;  
 3.12 stats hide-version
 &lt;pre&gt;&lt;code&gt;
@@ -617,9 +759,9 @@ stats scope { &lt;name&gt; | &quot;.&quot; }
 name&gt;：可以是一个“listen”、“frontend”或“backend”区段的名称，而“.”则表示stats scope语句所定义的当前区段。  
 尽管“stats scope”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。
 backend private_monitoring
- stats enable
- stats uri     /haproxyadmin?stats
- stats refresh 10s
+    stats enable
+    stats uri     /haproxyadmin?stats
+    stats refresh 10s
 &lt;/name&gt;&lt;/code&gt;&lt;/pre&gt;
 3.15 stats auth  
 &lt;pre&gt;&lt;code&gt;
@@ -636,12 +778,12 @@ stats admin { if | unless } &lt;cond&gt;
 在指定的条件满足时启用统计报告页面的管理级别功能，它允许通过web接口启用或禁用服务器，不过，基于安全的角度考虑，统计报告页面应该尽可能为只读的。此外，如果启用了HAProxy的多进程模式，启用此管理级别将有可能导致异常行为。
 目前来说，POST请求方法被限制于仅能使用缓冲区减去保留部分之外的空间，因此，服务器列表不能过长，否则，此请求将无法正常工作。因此，建议一次仅调整少数几个服务器。下面是两个案例，第一个限制了仅能在本机打开报告页面时启用管理级别功能，第二个定义了仅允许通过认证的用户使用管理级别功能。
 backend stats_localhost
- stats enable
- stats admin if LOCALHOST
+    stats enable
+    stats admin if LOCALHOST
 backend stats_auth
- stats enable
- stats auth  haproxyadmin:password
- stats admin if TRUE
+    stats enable
+    stats auth  haproxyadmin:password
+    stats admin if TRUE
 &lt;/cond&gt;&lt;/code&gt;&lt;/pre&gt;
 3.17 option httplog  
 &lt;pre&gt;&lt;code&gt;
@@ -652,15 +794,15 @@ clf：使用CLF格式来代替HAProxy默认的HTTP格式，通常在使用仅支
 &lt;/code&gt;&lt;/pre&gt;
 3.18 option logasap  
 &lt;pre&gt;&lt;code&gt;
-     option logasap  
- no option logasap  
+        option logasap  
+    no option logasap  
 启用或禁用提前将HTTP请求记入日志，不能用于“backend”区段。  
 默认情况下，HTTP请求是在请求结束时进行记录以便能将其整体传输时长和字节数记入日志，由此，传较大的对象时，其记入日志的时长可能会略有延迟。“option logasap”参数能够在服务器发送complete首部时即时记录日志，只不过，此时将不记录整体传输时长和字节数。此情形下，捕获“Content-Length”响应首部来记录传输的字节数是一个较好选择。下面是一个例子。  
-listen http_proxy 0.0.0.0:80
-   mode http
-   option httplog
-   option logasap
-   log 172.16.100.9 local2
+  listen http_proxy 0.0.0.0:80
+      mode http
+      option httplog
+      option logasap
+      log 172.16.100.9 local2
 &lt;/code&gt;&lt;/pre&gt;
 3.19 option forwardfor  
 &lt;pre&gt;&lt;code&gt;
@@ -673,8 +815,8 @@ HAProxy工作于反向代理模式，其发往服务器的请求中的客户端I
 需要注意的是，HAProxy工作于隧道模式，其仅检查每一个连接的第一个请求，因此，仅第一个请求报文被附加此首部。如果想为每一个请求都附加此首部，请确保同时使用了“option httpclose”、“option forceclose”和“option http-server-close”几个option。  
 下面是一个例子
 frontend www
- mode http
- option forwardfor except 127.0.0.1
+    mode http
+    option forwardfor except 127.0.0.1
 &lt;/name&gt;&lt;/network&gt;&lt;/name&gt;&lt;/network&gt;&lt;/code&gt;&lt;/pre&gt;
 3.20 errorfile  
 &lt;pre&gt;&lt;code&gt;
@@ -704,14 +846,12 @@ errorloc302 &lt;code&gt; &lt;url&gt;
 &lt;url&gt;：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；  
 例如：
 backend webserver
-server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
-server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
-errorloc 403 /etc/haproxy/errorpages/sorry.htm
-errorloc 503 /etc/haproxy/errorpages/sorry.htm
+  server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
+  server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
+  errorloc 403 /etc/haproxy/errorpages/sorry.htm
+  errorloc 503 /etc/haproxy/errorpages/sorry.htm
 &lt;/url&gt;&lt;/code&gt;&lt;/url&gt;&lt;/code&gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;一个配置示例：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 \#---------------------------------------------------------------------
@@ -844,12 +984,11 @@ backend mysqlservers
     server dbsrv1 192.168.10.11:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
     server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
 &lt;/code&gt;&lt;/pre&gt;
-</content>
+&lt;/backend&gt;&lt;/backend&gt;&lt;/conns&gt;&lt;/conns&gt;&lt;/level&gt;&lt;/facility&gt;&lt;/ipv4_address:port&gt;&lt;/address&gt;&lt;/minlevel&gt;&lt;/level&gt;&lt;/facility&gt;&lt;/address&gt;&lt;/method&gt;&lt;/interface&gt;&lt;/address:port&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/interface&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/max_wait&gt;&lt;/arguments&gt;&lt;/algorithm&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/0..50,&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/string&gt;&lt;/facility&gt;&lt;/address&gt;&lt;/group&gt;&lt;/number&gt;&lt;/jail&gt;</content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;HAProxy简介&lt;br&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAPro
+      &lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持
     
     </summary>
     
@@ -857,65 +996,6 @@ backend mysqlservers
     
     
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础01</title>
-    <link href="https://iceziyao.github.io/2016/01/16/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-10T17:39:34.715Z</updated>
-    
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是集群?  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;集群系统的主要优点:  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt; (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt; (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt; (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;集群系统的分类&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt; 这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt; 负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt; 在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt; (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt; 在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt; 这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;什么是高可用性 (HA)&lt;blockquote&gt;
-&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;HA三种工作方式：  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是集群?  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="集群" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4/"/>
     
   </entry>
   
@@ -1331,135 +1411,6 @@ server {
   </entry>
   
   <entry>
-    <title>nginx负载均衡</title>
-    <link href="https://iceziyao.github.io/2015/12/23/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    <id>https://iceziyao.github.io/2015/12/23/nginx负载均衡/</id>
-    <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T21:35:22.277Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.1 正向代理  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;1.2反向代理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;区别:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.2 weight    
-指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
-如果后端服务器down掉，能自动剔除。
-比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com weight=1;
-server server2.example.com weight=2;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.3 ip_hash        
-每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-ip_hash
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.4 fair  
-按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-fair;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.5 url_hash  
-按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
-在upstream中加入hash语句，hash_method是使用的hash算法。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-hash $request_uri;
-hash_method crc32;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;p&gt;2.2 参数&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-user nginx;
-worker_processes 1;
-events {
- use epoll;
- worker_connections  1024;
-}
-http {
- include       mime.types;
- default_type  application/octet-stream;
- sendfile        on;
- keepalive_timeout  65;
- upstream nginx.com{
-        server server2.example.com:80;
-        server server3.example.com:80;
- }  
- server {
-     listen       80;
-     server_name  localhost;
-     location / {
-         proxy_pass http://nginx.com;
-     proxy_set_header  X-Real-IP  $remote_addr;
-   }
- error_page   500 502 503 504  /50x.html;
- location = /50x.html {
-         root   html;
- }  
-}  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
     <title>nginx配置文件详解</title>
     <link href="https://iceziyao.github.io/2015/12/23/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>https://iceziyao.github.io/2015/12/23/nginx配置文件详解/</id>
@@ -1672,14 +1623,142 @@ http {
   </entry>
   
   <entry>
+    <title>nginx负载均衡</title>
+    <link href="https://iceziyao.github.io/2015/12/23/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    <id>https://iceziyao.github.io/2015/12/23/nginx负载均衡/</id>
+    <published>2015-12-23T13:49:33.000Z</published>
+    <updated>2016-07-09T21:35:22.277Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.1 正向代理  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.2反向代理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;区别:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;p&gt;2.2 参数&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ftp+mysql搭建ftp认证</title>
     <link href="https://iceziyao.github.io/2015/11/24/ftp+mysql/"/>
     <id>https://iceziyao.github.io/2015/11/24/ftp+mysql/</id>
     <published>2015-11-24T03:49:33.000Z</published>
-    <updated>2016-07-09T21:38:52.331Z</updated>
+    <updated>2016-07-10T18:33:16.441Z</updated>
     
-    <content type="html">&lt;p&gt;一、安装所需要程序&lt;/p&gt;
-&lt;ol&gt;
+    <content type="html">&lt;h3 id=&quot;安装所需要程序&quot;&gt;&lt;a href=&quot;#安装所需要程序&quot; class=&quot;headerlink&quot; title=&quot;安装所需要程序&quot;&gt;&lt;/a&gt;安装所需要程序&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y install mysql-server mysql-devel&lt;/code&gt;&lt;br&gt;&lt;code&gt;# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;&lt;/code&gt;  &lt;/li&gt;
 &lt;li&gt;安装pam_mysql-0.7RC1  &lt;pre&gt;&lt;code&gt;# tar zxvf  pam_mysql-0.7RC1.tar.gz
 # cd  pam_mysql-0.7RC1
@@ -1692,8 +1771,7 @@ http {
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;二、创建虚拟用户账号  &lt;/p&gt;
-&lt;ol&gt;
+&lt;h3 id=&quot;创建虚拟用户账号&quot;&gt;&lt;a href=&quot;#创建虚拟用户账号&quot; class=&quot;headerlink&quot; title=&quot;创建虚拟用户账号&quot;&gt;&lt;/a&gt;创建虚拟用户账号&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;准备数据库及相关表&lt;br&gt;首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;create database vsftpd;&lt;br&gt;grant select on vsftpd.&lt;em&gt; to vsftpd@localhost identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; grant select on vsftpd.&lt;/em&gt; to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; flush privileges;&lt;br&gt;mysql&amp;gt; use vsftpd;&lt;br&gt;mysql&amp;gt; create table users (&lt;br&gt; -&amp;gt; id int AUTO_INCREMENT NOT NULL,&lt;br&gt; -&amp;gt; name char(20) binary NOT NULL,&lt;br&gt; -&amp;gt; password char(48) binary NOT NULL,&lt;br&gt; -&amp;gt; primary key(id)&lt;br&gt; -&amp;gt; );  &lt;/p&gt;
@@ -1704,8 +1782,7 @@ http {
 mysql&amp;gt; insert into users(name,password) values(&amp;apos;jerry&amp;apos;,&amp;apos;magedu&amp;apos;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;三、配置vsftpd&lt;/p&gt;
-&lt;ol&gt;
+&lt;h3 id=&quot;配置vsftpd&quot;&gt;&lt;a href=&quot;#配置vsftpd&quot; class=&quot;headerlink&quot; title=&quot;配置vsftpd&quot;&gt;&lt;/a&gt;配置vsftpd&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;建立pam认证所需文件&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#vi /etc/pam.d/vsftpd.mysql
 添加如下两行
@@ -1760,9 +1837,8 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     <summary type="html">
     
-      &lt;p&gt;一、安装所需要程序&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y install mysql-server mysql-devel&lt;/code&gt;&lt;br&gt;&lt;code&gt;# yum -y groupinstall &amp;quot
+      &lt;h3 id=&quot;安装所需要程序&quot;&gt;&lt;a href=&quot;#安装所需要程序&quot; class=&quot;headerlink&quot; title=&quot;安装所需要程序&quot;&gt;&lt;/a&gt;安装所需要程序&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y instal
     
     </summary>
     
@@ -1770,6 +1846,261 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     
       <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell编程基础</title>
+    <link href="https://iceziyao.github.io/2015/10/11/shell%E7%BC%96%E7%A8%8B/"/>
+    <id>https://iceziyao.github.io/2015/10/11/shell编程/</id>
+    <published>2015-10-10T16:00:00.000Z</published>
+    <updated>2016-07-10T19:17:54.544Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;Shell与Shell语言&quot;&gt;&lt;a href=&quot;#Shell与Shell语言&quot; class=&quot;headerlink&quot; title=&quot;Shell与Shell语言&quot;&gt;&lt;/a&gt;Shell与Shell语言&lt;/h4&gt;&lt;p&gt;Shell, 实际上这里所说的Shell是一种应用程序, 它负责解释执行你编写的Shell脚本, linux默认就自带了sh/bash/csh/zsh/tcsh/ksh, 你可以这样查看cat /etc/shells&lt;/p&gt;
+&lt;h4 id=&quot;第一个Shell脚本&quot;&gt;&lt;a href=&quot;#第一个Shell脚本&quot; class=&quot;headerlink&quot; title=&quot;第一个Shell脚本&quot;&gt;&lt;/a&gt;第一个Shell脚本&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;#! /bin/sh  
+echo &amp;quot;hello world!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第一行的#!是一个约定标记, 它告诉脚本这段脚本需要什么解释器来执行. 第二行的echo命令则负责向屏幕上输出一句话.&lt;/p&gt;
+&lt;h4 id=&quot;如何运行&quot;&gt;&lt;a href=&quot;#如何运行&quot; class=&quot;headerlink&quot; title=&quot;如何运行?&quot;&gt;&lt;/a&gt;如何运行?&lt;/h4&gt;&lt;p&gt;运行shell程序有3种方法:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;chmod +x使文件具有可执行权限, 直接运行  &lt;/li&gt;
+&lt;li&gt;直接调用解释器, 将脚本文件作为参数传入 (比如bash)  &lt;/li&gt;
+&lt;li&gt;使用source(也可用 . 代替)执行文件  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;通常情况下, 最方便的方式就是方式1, 通过方式1执行你需要在脚本第一行写好这段脚本由哪个解释器来解释, 而通过方式2来执行则没有这个限制, 写了也没用.&lt;br&gt;除此之外方式1与方式2执行命令就没有区别了, 但方式3执行的方式与前两种都不同:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用source执行shell脚本时, 不会创建子进程, 而是在父进程中直接执行!  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h4&gt;&lt;p&gt;和其它语言一样Shell中也有变量, 而且更简单, 但有一些比较特殊的地方.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* Shell中的变量只有字符串这一种类型  
+* Shell中变量名与变量值没有长度限制  
+* Shell的变量也允许比较操作和整数操作, 只要变量中的字符串为数字
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;定义变量&quot;&gt;&lt;a href=&quot;#定义变量&quot; class=&quot;headerlink&quot; title=&quot;定义变量&quot;&gt;&lt;/a&gt;定义变量&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;`name=&amp;quot;ice&amp;quot;`  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt; 需要注意: = 两边不能加空格, 当赋值语句包含空格时请加引号(单引号/双引号均可)比如: &lt;/strong&gt;&lt;br&gt;    &lt;code&gt;name=&amp;quot;jj tom&amp;quot;&lt;/code&gt;&lt;br&gt;Shell中的变量可以分为两种类型:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;局部变量 (定义变量时在前面加local修饰符)  &lt;/li&gt;
+&lt;li&gt;全局变量 (定义变量时不加任何修饰符)  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;与其它语言一样局部变量的可见范围是代码块或函数内, 全局变量在全局范围内可见.看个简单的例子:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+num=111 #全局变量
+func1(){
+    local num=222 #局部变量
+    echo $num
+}
+echo &amp;quot;before---$num&amp;quot;
+func1
+echo &amp;quot;after---$num&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:     &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;before---111
+222
+after---111   
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;定义变量-1&quot;&gt;&lt;a href=&quot;#定义变量-1&quot; class=&quot;headerlink&quot; title=&quot;定义变量&quot;&gt;&lt;/a&gt;定义变量&lt;/h5&gt;&lt;p&gt;使用一个定义过的变量, 只要在变量名前面加$即可, 如:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;name=&amp;apos;tom&amp;apos;
+echo $name
+echo ${name} #{} 为了帮助解释器识别变量边界, 非必须
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在使用变量时还有一个地方需要注意, 请看下面的例子:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+str=&amp;apos;abc&amp;apos;
+echo &amp;quot;1 print $str&amp;quot;
+echo &amp;apos;2 print $str&amp;apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1 print abc
+2 print $str  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;即:&lt;br&gt;&lt;strong&gt;        被双引号括起来的变量会发生变量替换, 单引号不会 &lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Shell中注释使用#, 而且它不支持多行注释.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;常用的字符串操作&quot;&gt;&lt;a href=&quot;#常用的字符串操作&quot; class=&quot;headerlink&quot; title=&quot;常用的字符串操作&quot;&gt;&lt;/a&gt;常用的字符串操作&lt;/h4&gt;&lt;h5 id=&quot;字符串拼接&quot;&gt;&lt;a href=&quot;#字符串拼接&quot; class=&quot;headerlink&quot; title=&quot;字符串拼接&quot;&gt;&lt;/a&gt;字符串拼接&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;name=&amp;quot;shell&amp;quot;
+sayHi=&amp;quot;hello, &amp;quot;$name&amp;quot; !&amp;quot;
+sayHi2=&amp;quot;hello, ${name} !&amp;quot;
+echo $sayHi $sayHi2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意: 上面说的单双引号引起的变量替换问题  &lt;/p&gt;
+&lt;h5 id=&quot;获得字符串长度&quot;&gt;&lt;a href=&quot;#获得字符串长度&quot; class=&quot;headerlink&quot; title=&quot;获得字符串长度&quot;&gt;&lt;/a&gt;获得字符串长度&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;string=&amp;quot;abcd&amp;quot;  
+echo ${#string} #输出：4
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;截取字符串&quot;&gt;&lt;a href=&quot;#截取字符串&quot; class=&quot;headerlink&quot; title=&quot;截取字符串&quot;&gt;&lt;/a&gt;截取字符串&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;str=&amp;quot;hello shell&amp;quot;
+echo ${str:2}  #输出: llo shell
+echo ${string:1:3} #输出：ell
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;if-else流程控制&quot;&gt;&lt;a href=&quot;#if-else流程控制&quot; class=&quot;headerlink&quot; title=&quot;if/else流程控制&quot;&gt;&lt;/a&gt;if/else流程控制&lt;/h5&gt;&lt;p&gt;基本语法结构:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if condition
+then
+   do something
+elif condition
+then
+   do something
+elif condition
+then
+   do something
+else
+   do something
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中, elif语句和else语句非必须的.看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+a=1
+if [ $1=$a ]
+then
+   echo &amp;quot;you input 1&amp;quot;
+elif [ $1=2 ]
+then
+   echo &amp;quot;you input 2&amp;quot;
+else
+   #do nothing
+   echo &amp;quot; you input $1&amp;quot;
+ fi
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;很简单, 不过这里有两个地方需要注意, 如果某个条件下的执行体为空, 则你就不能写这个条件 即下面这样会报错:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if condition
+then
+   #do nothing
+elif condition
+then
+   # do nothing
+   #or
+else
+   #do nothing
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt; 另外, [ ] 两边一定要加空格, 下面这样都会报错: &lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if [$a=$b]
+#or
+if [ $a=$b]
+#or
+if [$a=$b ]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只有这样if [ $a=$b ]才是对的.&lt;br&gt;注意: 实际上这里的[]是test命令的一种形式, [是系统的一个内置命令,存在路径是/bin/[,它是调用test命令的标识, 右中括号是关闭条件判断的标识, 因此下面的两个测试语句是等效的:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if test &amp;quot;2&amp;gt;3&amp;quot;
+then
+   ...
+fi
+和
+if [ &amp;quot;2&amp;gt;3&amp;quot; ]
+then
+   ...
+fi
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt; 除[]之外, shell语言中还有几种其它括号, 比如: 单小括号/双小括号/双中括号/… , 不同的括号有不同的用法 &lt;/strong&gt;&lt;/p&gt;
+&lt;h5 id=&quot;switch流程控制&quot;&gt;&lt;a href=&quot;#switch流程控制&quot; class=&quot;headerlink&quot; title=&quot;switch流程控制&quot;&gt;&lt;/a&gt;switch流程控制&lt;/h5&gt;&lt;p&gt;当条件较多时, 可以选择使用switch语句, shell中的switch语句的写法和其它语言还是有些不同的, 基本结构如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;case expression in
+   pattern1)
+         do something... ;;
+   pattern2)
+         do something... ;;
+   pattern2)
+         do something... ;;
+    ...
+   esac
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+input=$1
+case $input in
+        1 | 0)
+        str=&amp;quot;一or零&amp;quot;;;
+        2)
+        str=&amp;quot;二&amp;quot;;;
+        3)
+        str=&amp;quot;三&amp;quot;;;
+        *)
+        str=$input;;
+esac
+echo &amp;quot;---$str&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个例子会根据你执行此脚本时传入的参数不同在屏幕上输出不同的值, 其中第一个case 1 | 0代表逻辑或.&lt;br&gt;NOTE:&lt;/p&gt;
+&lt;p&gt;;;相当于其它语言中的break&lt;br&gt;每个pattern之后记得加)&lt;br&gt;最后记得加esac (即反的case)&lt;/p&gt;
+&lt;h5 id=&quot;for循环&quot;&gt;&lt;a href=&quot;#for循环&quot; class=&quot;headerlink&quot; title=&quot;for循环&quot;&gt;&lt;/a&gt;for循环&lt;/h5&gt;&lt;p&gt;基本结构:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for name [in list]
+do
+    ...
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中,[]括起来的 in list, 为可选部分, 如果省略in list则默认为in “$@”, 即你执行此命令时传入的参数列表.&lt;br&gt;看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for file in *.txt
+do
+    open $file
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;遍历当前目录下的所有txt文件, 并依次打开.&lt;/p&gt;
+&lt;h5 id=&quot;while循环&quot;&gt;&lt;a href=&quot;#while循环&quot; class=&quot;headerlink&quot; title=&quot;while循环&quot;&gt;&lt;/a&gt;while循环&lt;/h5&gt;&lt;p&gt;基本结构:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;while condition
+do
+    do something...
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+i=0
+while ((i&amp;lt;5));
+do
+    ((i++))
+    echo &amp;quot;i=$i&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;i=1
+i=2
+i=3
+i=4
+i=5
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NOTE: 你可能需要去了解一下(())的用法&lt;/p&gt;
+&lt;h5 id=&quot;until循环&quot;&gt;&lt;a href=&quot;#until循环&quot; class=&quot;headerlink&quot; title=&quot;until循环&quot;&gt;&lt;/a&gt;until循环&lt;/h5&gt;&lt;p&gt;基本结构&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;until condition
+do
+    do something...
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+i=5
+until ((i==0))
+do
+    ((i--))
+    echo &amp;quot;i=$i&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;i=4
+i=3
+i=2
+i=1
+i=0
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;跳出循环&quot;&gt;&lt;a href=&quot;#跳出循环&quot; class=&quot;headerlink&quot; title=&quot;跳出循环&quot;&gt;&lt;/a&gt;跳出循环&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;shell中也支持break跳出循环, continue跳出本次循环.用法与C, Java中相同&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h4&gt;&lt;p&gt;要定义一个函数, 可以使用下面两种形式:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function funcname(){
+    do something
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;funcname (){
+    do something
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+# ad.sh 计算sum
+add()
+{
+    let &amp;quot;sum=$1+$2&amp;quot;
+    return $sum
+}
+
+add $1 $2
+echo &amp;quot;sum=$?&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输入&lt;br&gt;&lt;code&gt;ad 1 2&lt;/code&gt;&lt;br&gt;输出&lt;br&gt;&lt;code&gt;sum=3&lt;/code&gt;&lt;br&gt;其中, $?在shell中保存的是上一条命令的返回值  &lt;/p&gt;
+&lt;p&gt;NOTE:&lt;/p&gt;
+&lt;p&gt;函数必须先定义后使用&lt;br&gt;如果在函数中使用exit会退出脚本, 如果想退回到原本函数调用的地方, 则可使用return&lt;br&gt;向脚本传递参数&lt;/p&gt;
+&lt;p&gt;先shell脚本传递参数, 非常简单, 只需要在你执行命令的后面跟上即可, 看个例子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+# test.sh
+echo &amp;quot;$# parameters&amp;quot;;
+echo &amp;quot;$@&amp;quot;;
+echo &amp;quot;$0&amp;quot;
+echo &amp;quot;$1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输入:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;test.sh 11 22&lt;/code&gt;&lt;br&gt;输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2 parameters
+11 22
+test.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解释: $@代表所有参数的内容, $#代表所有参数的个数, $0代表脚本的名称, $1代表第一个参数的值.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Shell与Shell语言&quot;&gt;&lt;a href=&quot;#Shell与Shell语言&quot; class=&quot;headerlink&quot; title=&quot;Shell与Shell语言&quot;&gt;&lt;/a&gt;Shell与Shell语言&lt;/h4&gt;&lt;p&gt;Shell, 实际上这里所说的Shell是一种应用程
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="shell" scheme="https://iceziyao.github.io/tags/shell/"/>
     
   </entry>
   
@@ -1903,24 +2234,16 @@ user_config_dir=/etc/vsftpd/vusers_dir
     <link href="https://iceziyao.github.io/2015/01/02/ajax/"/>
     <id>https://iceziyao.github.io/2015/01/02/ajax/</id>
     <published>2015-01-01T16:00:00.000Z</published>
-    <updated>2016-07-09T21:38:45.334Z</updated>
+    <updated>2016-07-10T18:32:07.585Z</updated>
     
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
-&lt;ul&gt;
+    <content type="html">&lt;h4 id=&quot;ajax简介&quot;&gt;&lt;a href=&quot;#ajax简介&quot; class=&quot;headerlink&quot; title=&quot;ajax简介&quot;&gt;&lt;/a&gt;ajax简介&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  &lt;/li&gt;
 &lt;li&gt;AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  &lt;/li&gt;
 &lt;li&gt;AJAX 是一种用于创建快速动态网页的技术。  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;发展  &lt;/p&gt;
-&lt;ol&gt;
+&lt;h4 id=&quot;发展&quot;&gt;&lt;a href=&quot;#发展&quot; class=&quot;headerlink&quot; title=&quot;发展&quot;&gt;&lt;/a&gt;发展&lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。&lt;/li&gt;
-&lt;li&gt;在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。&lt;br&gt;2.1 如何更改页面信息呢？&lt;br&gt;可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。&lt;br&gt;2.2 如何与后台进行交互？&lt;br&gt;那么，我们必须向后台进行请求，可以用个超链接&lt;code&gt;&amp;lt;a href=&amp;#39;#&amp;#39; title=&amp;#39;&amp;#39; target=_blank&amp;lt;/a&amp;gt;&lt;/code&gt;,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。&lt;br&gt;可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;工作原理&lt;br&gt;Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。&lt;br&gt;XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    &lt;/p&gt;
-&lt;ul&gt;
+&lt;li&gt;在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。&lt;br&gt;2.1 如何更改页面信息呢？&lt;br&gt;可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。&lt;br&gt;2.2 如何与后台进行交互？&lt;br&gt;那么，我们必须向后台进行请求，可以用个超链接&lt;code&gt;&amp;lt;a href=&amp;#39;#&amp;#39; title=&amp;#39;&amp;#39; target=_blank&amp;lt;/a&amp;gt;&lt;/code&gt;,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。&lt;br&gt;可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。&lt;h4 id=&quot;工作原理&quot;&gt;&lt;a href=&quot;#工作原理&quot; class=&quot;headerlink&quot; title=&quot;工作原理&quot;&gt;&lt;/a&gt;工作原理&lt;/h4&gt;Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。&lt;br&gt;XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    &lt;ul&gt;
 &lt;li&gt;所以我们先从XMLHttpRequest讲起，来看看它的工作原理。&lt;br&gt;　  首先，我们先来看看XMLHttpRequest这个对象的属性。&lt;br&gt;　　它的属性有:  &lt;ul&gt;
 &lt;li&gt;onreadystatechange  每次状态改变所触发事件的事件处理程序。&lt;/li&gt;
 &lt;li&gt;responseText     从服务器进程返回数据的字符串形式。&lt;/li&gt;
@@ -1935,80 +2258,30 @@ user_config_dir=/etc/vsftpd/vusers_dir
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ajax的使用&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;创建XMLHTTPReq&lt;/li&gt;
-&lt;li&gt;发送数据&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接受回调数据&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-var XMLHttpReq=null;
-//创建Ajax引擎对象
-function createXMLHttpRequest() {
- try {
-        XMLHttpReq = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);//IE高版本创建XMLHTTP
-     }
-     catch(E) {
-        try {
-               XMLHttpReq = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE低版本创建XMLHTTP
-        }
-        catch(E) {
-               XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象
-        }
-      }
-}
-//向后台发送数据
-function sendGetAjaxRequest(url,text) {
-      createXMLHttpRequest();                                //创建XMLHttpRequest对象
-      XMLHttpReq.open(&quot;get&quot;, url+&quot;?&quot;+encodeURI(text), true);
-     XMLHttpReq.onreadystatechange = doResult; //指定响应函数
-     XMLHttpReq.send(null);
-}
-function sendPOSTAjaxRequest(url,text) {
-      createXMLHttpRequest();                                //创建XMLHttpRequest对象
-      XMLHttpReq.open(&quot;post&quot;, url, true);
-      XMLHttpReq.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-      XMLHttpReq.setRequestHeader(&quot;Content-length&quot;, text.length);
-      XMLHttpReq.setRequestHeader(&quot;Connection&quot;, &quot;close&quot;);
-      XMLHttpReq.onreadystatechange = doResult; //指定响应函数
-      XMLHttpReq.send(null);
-}
-function doResult() {
-   if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {
-     //4代表执行完成                
-     //200代表执行成功，删除当前表格
-
-   }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;ajax的优缺点&lt;ul&gt;
-&lt;li&gt;优点：&lt;ul&gt;
-&lt;li&gt;就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。&lt;/li&gt;
-&lt;li&gt;异步非阻塞&lt;/li&gt;
-&lt;li&gt;可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。&lt;/li&gt;
-&lt;li&gt;基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;缺点：&lt;ul&gt;
-&lt;li&gt;用户不知道数据是否更新&lt;/li&gt;
-&lt;li&gt;无法回退&lt;/li&gt;
-&lt;li&gt;安全问题&lt;br&gt;任何数据处理在前端，都会暴露后台&lt;/li&gt;
-&lt;li&gt;对串流媒体的支持没有FLASH、Java Applet好;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+&lt;h4 id=&quot;ajax的使用&quot;&gt;&lt;a href=&quot;#ajax的使用&quot; class=&quot;headerlink&quot; title=&quot;ajax的使用&quot;&gt;&lt;/a&gt;ajax的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;1. 创建XMLHTTPReq
+2. 发送数据
+3. 接受回调数据
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;var XMLHttpReq=null;&lt;br&gt;//创建Ajax引擎对象&lt;br&gt;function createXMLHttpRequest() {&lt;br&gt;        try {&lt;br&gt;               XMLHttpReq = new ActiveXObject(“Msxml2.XMLHTTP”);//IE高版本创建XMLHTTP&lt;br&gt;            }&lt;br&gt;            catch(E) {&lt;br&gt;               try {&lt;br&gt;                      XMLHttpReq = new ActiveXObject(“Microsoft.XMLHTTP”);//IE低版本创建XMLHTTP&lt;br&gt;               }&lt;br&gt;               catch(E) {&lt;br&gt;                      XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象&lt;br&gt;               }&lt;br&gt;             }&lt;br&gt;}&lt;br&gt;//向后台发送数据&lt;br&gt;function sendGetAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);&lt;br&gt;            XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;            XMLHttpReq.send(null);&lt;br&gt;}&lt;br&gt;function sendPOSTAjaxRequest(url,text) {&lt;br&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;br&gt;             XMLHttpReq.open(“post”, url, true);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Content-length”, text.length);&lt;br&gt;             XMLHttpReq.setRequestHeader(“Connection”, “close”);&lt;br&gt;             XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;br&gt;             XMLHttpReq.send(null);&lt;br&gt;}&lt;br&gt;function doResult() {&lt;br&gt;          if (XMLHttpReq.readyState == 4 &amp;amp;&amp;amp; XMLHttpReq.status == 200) {&lt;br&gt;            //4代表执行完成&lt;br&gt;            //200代表执行成功，删除当前表格&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;br&gt;&lt;/p&gt;
+&lt;h4 id=&quot;ajax的优缺点&quot;&gt;&lt;a href=&quot;#ajax的优缺点&quot; class=&quot;headerlink&quot; title=&quot;ajax的优缺点&quot;&gt;&lt;/a&gt;ajax的优缺点&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;* 优点：
+    * 就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。
+    * 异步非阻塞
+    * 可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。
+    * 基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。
+* 缺点：
+    * 用户不知道数据是否更新
+    * 无法回退
+    * 安全问题  
+    任何数据处理在前端，都会暴露后台
+    * 对串流媒体的支持没有FLASH、Java Applet好;
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ajax简介  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  &lt;/li&gt;
-&lt;li&gt;AJAX = 异步 JavaSc
+      &lt;h4 id=&quot;ajax简介&quot;&gt;&lt;a href=&quot;#ajax简介&quot; class=&quot;headerlink&quot; title=&quot;ajax简介&quot;&gt;&lt;/a&gt;ajax简介&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScr
     
     </summary>
     

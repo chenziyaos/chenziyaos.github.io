@@ -86,25 +86,22 @@
 
 
 
-<meta name="description" content="一、安装所需要程序
-
+<meta name="description" content="安装所需要程序
 事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql">
+安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ftp+mysql搭建ftp认证">
 <meta property="og:url" content="https://iceziyao.github.io/2015/11/24/ftp+mysql/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="一、安装所需要程序
-
+<meta property="og:description" content="安装所需要程序
 事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql">
-<meta property="og:updated_time" content="2016-07-09T21:38:52.331Z">
+安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
+<meta property="og:updated_time" content="2016-07-10T18:33:16.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ftp+mysql搭建ftp认证">
-<meta name="twitter:description" content="一、安装所需要程序
-
+<meta name="twitter:description" content="安装所需要程序
 事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql">
+安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
 
 
 
@@ -336,8 +333,7 @@
       
 
       
-        <p>一、安装所需要程序</p>
-<ol>
+        <h3 id="安装所需要程序"><a href="#安装所需要程序" class="headerlink" title="安装所需要程序"></a>安装所需要程序</h3><ol>
 <li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
 <li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
 # cd  pam_mysql-0.7RC1
@@ -350,8 +346,7 @@
 </blockquote>
 </li>
 </ol>
-<p>二、创建虚拟用户账号  </p>
-<ol>
+<h3 id="创建虚拟用户账号"><a href="#创建虚拟用户账号" class="headerlink" title="创建虚拟用户账号"></a>创建虚拟用户账号</h3><ol>
 <li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
 <blockquote>
 <p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
@@ -362,8 +357,7 @@
 mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
 </code></pre></li>
 </ol>
-<p>三、配置vsftpd</p>
-<ol>
+<h3 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h3><ol>
 <li><p>建立pam认证所需文件</p>
 <pre><code>#vi /etc/pam.d/vsftpd.mysql
 添加如下两行
@@ -445,16 +439,16 @@ user_config_dir=/etc/vsftpd/vusers_dir
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/06/linux基础/" rel="next" title="Linux基础">
-                <i class="fa fa-chevron-left"></i> Linux基础
+              <a href="/2015/10/11/shell编程/" rel="next" title="shell编程基础">
+                <i class="fa fa-chevron-left"></i> shell编程基础
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/23/nginx配置文件详解/" rel="prev" title="nginx配置文件详解">
-                nginx配置文件详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/23/nginx负载均衡/" rel="prev" title="nginx负载均衡">
+                nginx负载均衡 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +517,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -540,7 +534,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -587,7 +581,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装所需要程序"><span class="nav-number">1.</span> <span class="nav-text">安装所需要程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建虚拟用户账号"><span class="nav-number">2.</span> <span class="nav-text">创建虚拟用户账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置vsftpd"><span class="nav-number">3.</span> <span class="nav-text">配置vsftpd</span></a></li></ol></div>
             
           </div>
         </section>
