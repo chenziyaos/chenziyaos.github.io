@@ -270,6 +270,155 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/17/Ycm自动化运维/" itemprop="url">
+                  Ycm自动化运维平台
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="为什么要自动化运维？"><a href="#为什么要自动化运维？" class="headerlink" title="为什么要自动化运维？"></a>为什么要自动化运维？</h3><ol>
+<li>因为我很懒  </li>
+<li>不想重复  </li>
+<li>提高复用<br><strong> 懒是第一生产力 </strong></li>
+</ol>
+<h3 id="我的运维之路"><a href="#我的运维之路" class="headerlink" title="我的运维之路"></a>我的运维之路</h3><ol>
+<li>手动ssh<br>每次弄服务器时，总是ssh连上去，执行命令   </li>
+<li>脚本<br>把自己要执行的命令写入脚本</li>
+<li>python<br>python提供了很多东西</li>
+<li>自动化运维工具<br>4.1 ansible<br>4.2 puppet<br>4.3 saltstack</li>
+<li>写一个属于自己的自动化运维平台<br> Ycm</li>
+</ol>
+<h3 id="Ycm是一个基于python的B-S自动化运维平台"><a href="#Ycm是一个基于python的B-S自动化运维平台" class="headerlink" title="Ycm是一个基于python的B/S自动化运维平台"></a>Ycm是一个基于python的B/S自动化运维平台</h3><p>当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&lt;&lt;自动化运维&gt;&gt;一书  </p>
+<h4 id="Ycm简介"><a href="#Ycm简介" class="headerlink" title="Ycm简介"></a>Ycm简介</h4><h5 id="1-平台功能介绍"><a href="#1-平台功能介绍" class="headerlink" title="1.平台功能介绍"></a>1.平台功能介绍</h5><ul>
+<li><strong> 作为ITIL体系当中的一部分，本平台同样遵循ITIL标准设计规范。Ycm是本平台的名称，为了向vim伟大插件YouCompleteM致敬。Ycm实现了一个集中式的linux集群管理基础平台，提供了模块化的支持，可以随意增加集群操作任务模块，可实现日常运维远程操作，文件分发等任务，在安全方面，目前采用md5指令传输，操作日志记录，分离web server与主控设备，在效率方面，管理员只需要操作指定目标即可完成。另外采用ajax，已及mvc结构的实现。具有高度的可扩展性. </strong>  </li>
+</ul>
+<h5 id="2-系统架构设计"><a href="#2-系统架构设计" class="headerlink" title="2.系统架构设计"></a>2.系统架构设计</h5><p>Ycm平台采用三层设计模式</p>
+<ol>
+<li>第一层为Web交互层，采用Django+jquery,服务器端采用Nginx+uwsgi构建高效的web服务</li>
+<li>第二层业务逻辑层，有Python+Django  </li>
+<li>第三层为服务层<br>3.1 存储采用mysql<br>3.2 自动化运维ansible/Saltstack api<br>3.3 监控采用zabbix api<br>3.4 <h5 id="3-数据库设计"><a href="#3-数据库设计" class="headerlink" title="3.数据库设计"></a>3.数据库设计</h5></li>
+<li>用户列表</li>
+<li>资产管理<br>2.1 服务列表<br>2.2 主机列表<br>2.3 IDC机房信息</li>
+<li>运维审计</li>
+</ol>
+<h4 id="Ycm开发环境"><a href="#Ycm开发环境" class="headerlink" title="Ycm开发环境"></a>Ycm开发环境</h4><ol>
+<li>cestos 7.0</li>
+<li>python 2.75</li>
+<li>Django 1.85</li>
+<li>ansible/Saltstack/Func(其一) api</li>
+<li>clobbe</li>
+</ol>
+<h4 id="功能简介"><a href="#功能简介" class="headerlink" title="功能简介"></a>功能简介</h4><h5 id="装机管理"><a href="#装机管理" class="headerlink" title="装机管理"></a>装机管理</h5><p>略</p>
+<h5 id="资产管理"><a href="#资产管理" class="headerlink" title="资产管理"></a>资产管理</h5><p>略</p>
+<h5 id="服务部署"><a href="#服务部署" class="headerlink" title="服务部署"></a>服务部署</h5><p>略</p>
+<h5 id="运维审计"><a href="#运维审计" class="headerlink" title="运维审计"></a>运维审计</h5><p>略</p>
+<h5 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h5><p>zabbix api  </p>
+<h5 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h5>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/21/python01/" itemprop="url">
                   Python的内存管理机制
                 </a>
@@ -2443,299 +2592,6 @@ server {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/23/nginx配置文件详解/" itemprop="url">
-                  nginx配置文件详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-23T21:49:33+08:00" content="2015-12-23">
-              2015-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <pre><code>
-
-
-    #运行用户
-    user nginx;   
-    #启动进程,通常设置成和cpu的数量相等
-    worker_processes  1;
-
-    #全局错误日志及PID文件
-    error_log  /var/log/nginx/error.log;
-    pid        /var/run/nginx.pid;
-
-    #工作模式及连接数上限
-    events {
-        use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
-        worker_connections  1024;#单个后台worker process进程的最大并发链接数
-        # multi_accept on;
-    }
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
-        #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
-        sendfile        on;
-        #tcp_nopush     on;
-
-        #连接超时时间
-        #keepalive_timeout  0;
-        keepalive_timeout  65;
-        tcp_nodelay        on;
-
-        #开启gzip压缩
-        gzip  on;
-        gzip_disable "MSIE [1-6]\.(?!.*SV1)";
-
-        #设定请求缓冲
-        client_header_buffer_size    1k;
-        large_client_header_buffers  4 4k;
-
-        include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/sites-enabled/*;
-
-        #设定负载均衡的服务器列表
-         upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        #本机上的Squid开启3128端口
-        server 192.168.8.1:3128 weight=5;
-        server 192.168.8.2:80  weight=1;
-        server 192.168.8.3:80  weight=6;
-        }
-
-
-       server {
-        #侦听80端口
-            listen       80;
-            #定义使用www.xx.com访问
-            server_name  www.xx.com;
-
-            #设定本虚拟主机的访问日志
-            access_log  logs/www.xx.com.access.log  main;
-
-        #默认请求
-        location / {
-              root   /root;      #定义服务器的默认网站根目录位置
-              index index.php index.html index.htm;   #定义首页索引文件的名称
-
-              fastcgi_pass  www.xx.com;
-             fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
-              include /etc/nginx/fastcgi_params;
-            }
-
-        # 定义错误提示页面
-        error_page   500 502 503 504 /50x.html;
-            location = /50x.html {
-            root   /root;
-        }
-
-        #静态文件，nginx自己处理
-        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
-            root /var/www/virtual/htdocs;
-            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
-            expires 30d;
-        }
-        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
-        location ~ \.php$ {
-            root /root;
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index index.php;
-            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
-            include fastcgi_params;
-        }
-        #设定查看Nginx状态的地址
-        location /NginxStatus {
-            stub_status              on;
-            access_log               on;
-            auth_basic              "NginxStatus";
-            auth_basic_user_file  conf/htpasswd;
-        }
-        #禁止访问 .htxxx 文件
-        location ~ /\.ht {
-            deny all;
-        }
-
-         }
-    }
-
-以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
-
-如果要使用负载均衡的话,可以修改配置http节点如下：
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #省略上文有的一些配置节点
-
-        #。。。。。。。。。。
-
-        #设定负载均衡的服务器列表
-        upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
-        server 192.168.8.2x:80  weight=1;
-        server 192.168.8.3x:80  weight=6;
-        }
-
-        upstream mysvr2 {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-
-            server 192.168.8.x:80  weight=1;
-            server 192.168.8.x:80  weight=6;
-        }
-
-       #第一个虚拟服务器
-       server {
-        #侦听192.168.8.x的80端口
-            listen       80;
-            server_name  192.168.8.x;
-
-            #对aspx后缀的进行负载均衡请求
-            location ~ .*\.aspx$ {
-
-                root   /root;      #定义服务器的默认网站根目录位置
-                index index.php index.html index.htm;   #定义首页索引文件的名称
-
-                proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
-
-                #以下是一些反向代理的配置可删除.
-
-                proxy_redirect off;
-
-                #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                client_max_body_size 10m;       #允许客户端请求的最大单文件字节数
-                client_body_buffer_size 128k;   #缓冲区代理缓冲用户端请求的最大字节数，
-                proxy_connect_timeout 90;       #nginx跟后端服务器连接超时时间(代理连接超时)
-                proxy_send_timeout 90;          #后端服务器数据回传时间(代理发送超时)
-                proxy_read_timeout 90;          #连接成功后，后端服务器响应时间(代理接收超时)
-                proxy_buffer_size 4k;           #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-                proxy_buffers 4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-                proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
-                proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-
-           }
-
-         }
-    }
-
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2781,7 +2637,7 @@ server {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2789,7 +2645,7 @@ server {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

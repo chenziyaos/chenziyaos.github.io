@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-09T21:53:35.558Z</updated>
+  <updated>2016-07-10T19:57:40.223Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ycm自动化运维平台</title>
+    <link href="https://iceziyao.github.io/2016/06/17/Ycm%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    <id>https://iceziyao.github.io/2016/06/17/Ycm自动化运维/</id>
+    <published>2016-06-16T16:00:00.000Z</published>
+    <updated>2016-07-10T19:57:40.223Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;为什么要自动化运维？&quot;&gt;&lt;a href=&quot;#为什么要自动化运维？&quot; class=&quot;headerlink&quot; title=&quot;为什么要自动化运维？&quot;&gt;&lt;/a&gt;为什么要自动化运维？&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;因为我很懒  &lt;/li&gt;
+&lt;li&gt;不想重复  &lt;/li&gt;
+&lt;li&gt;提高复用&lt;br&gt;&lt;strong&gt; 懒是第一生产力 &lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;我的运维之路&quot;&gt;&lt;a href=&quot;#我的运维之路&quot; class=&quot;headerlink&quot; title=&quot;我的运维之路&quot;&gt;&lt;/a&gt;我的运维之路&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;手动ssh&lt;br&gt;每次弄服务器时，总是ssh连上去，执行命令   &lt;/li&gt;
+&lt;li&gt;脚本&lt;br&gt;把自己要执行的命令写入脚本&lt;/li&gt;
+&lt;li&gt;python&lt;br&gt;python提供了很多东西&lt;/li&gt;
+&lt;li&gt;自动化运维工具&lt;br&gt;4.1 ansible&lt;br&gt;4.2 puppet&lt;br&gt;4.3 saltstack&lt;/li&gt;
+&lt;li&gt;写一个属于自己的自动化运维平台&lt;br&gt; Ycm&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;Ycm是一个基于python的B-S自动化运维平台&quot;&gt;&lt;a href=&quot;#Ycm是一个基于python的B-S自动化运维平台&quot; class=&quot;headerlink&quot; title=&quot;Ycm是一个基于python的B/S自动化运维平台&quot;&gt;&lt;/a&gt;Ycm是一个基于python的B/S自动化运维平台&lt;/h3&gt;&lt;p&gt;当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&amp;lt;&amp;lt;自动化运维&amp;gt;&amp;gt;一书  &lt;/p&gt;
+&lt;h4 id=&quot;Ycm简介&quot;&gt;&lt;a href=&quot;#Ycm简介&quot; class=&quot;headerlink&quot; title=&quot;Ycm简介&quot;&gt;&lt;/a&gt;Ycm简介&lt;/h4&gt;&lt;h5 id=&quot;1-平台功能介绍&quot;&gt;&lt;a href=&quot;#1-平台功能介绍&quot; class=&quot;headerlink&quot; title=&quot;1.平台功能介绍&quot;&gt;&lt;/a&gt;1.平台功能介绍&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; 作为ITIL体系当中的一部分，本平台同样遵循ITIL标准设计规范。Ycm是本平台的名称，为了向vim伟大插件YouCompleteM致敬。Ycm实现了一个集中式的linux集群管理基础平台，提供了模块化的支持，可以随意增加集群操作任务模块，可实现日常运维远程操作，文件分发等任务，在安全方面，目前采用md5指令传输，操作日志记录，分离web server与主控设备，在效率方面，管理员只需要操作指定目标即可完成。另外采用ajax，已及mvc结构的实现。具有高度的可扩展性. &lt;/strong&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;2-系统架构设计&quot;&gt;&lt;a href=&quot;#2-系统架构设计&quot; class=&quot;headerlink&quot; title=&quot;2.系统架构设计&quot;&gt;&lt;/a&gt;2.系统架构设计&lt;/h5&gt;&lt;p&gt;Ycm平台采用三层设计模式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一层为Web交互层，采用Django+jquery,服务器端采用Nginx+uwsgi构建高效的web服务&lt;/li&gt;
+&lt;li&gt;第二层业务逻辑层，有Python+Django  &lt;/li&gt;
+&lt;li&gt;第三层为服务层&lt;br&gt;3.1 存储采用mysql&lt;br&gt;3.2 自动化运维ansible/Saltstack api&lt;br&gt;3.3 监控采用zabbix api&lt;br&gt;3.4 &lt;h5 id=&quot;3-数据库设计&quot;&gt;&lt;a href=&quot;#3-数据库设计&quot; class=&quot;headerlink&quot; title=&quot;3.数据库设计&quot;&gt;&lt;/a&gt;3.数据库设计&lt;/h5&gt;&lt;/li&gt;
+&lt;li&gt;用户列表&lt;/li&gt;
+&lt;li&gt;资产管理&lt;br&gt;2.1 服务列表&lt;br&gt;2.2 主机列表&lt;br&gt;2.3 IDC机房信息&lt;/li&gt;
+&lt;li&gt;运维审计&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;Ycm开发环境&quot;&gt;&lt;a href=&quot;#Ycm开发环境&quot; class=&quot;headerlink&quot; title=&quot;Ycm开发环境&quot;&gt;&lt;/a&gt;Ycm开发环境&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;cestos 7.0&lt;/li&gt;
+&lt;li&gt;python 2.75&lt;/li&gt;
+&lt;li&gt;Django 1.85&lt;/li&gt;
+&lt;li&gt;ansible/Saltstack/Func(其一) api&lt;/li&gt;
+&lt;li&gt;clobbe&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;功能简介&quot;&gt;&lt;a href=&quot;#功能简介&quot; class=&quot;headerlink&quot; title=&quot;功能简介&quot;&gt;&lt;/a&gt;功能简介&lt;/h4&gt;&lt;h5 id=&quot;装机管理&quot;&gt;&lt;a href=&quot;#装机管理&quot; class=&quot;headerlink&quot; title=&quot;装机管理&quot;&gt;&lt;/a&gt;装机管理&lt;/h5&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h5 id=&quot;资产管理&quot;&gt;&lt;a href=&quot;#资产管理&quot; class=&quot;headerlink&quot; title=&quot;资产管理&quot;&gt;&lt;/a&gt;资产管理&lt;/h5&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h5 id=&quot;服务部署&quot;&gt;&lt;a href=&quot;#服务部署&quot; class=&quot;headerlink&quot; title=&quot;服务部署&quot;&gt;&lt;/a&gt;服务部署&lt;/h5&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h5 id=&quot;运维审计&quot;&gt;&lt;a href=&quot;#运维审计&quot; class=&quot;headerlink&quot; title=&quot;运维审计&quot;&gt;&lt;/a&gt;运维审计&lt;/h5&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h5 id=&quot;监控&quot;&gt;&lt;a href=&quot;#监控&quot; class=&quot;headerlink&quot; title=&quot;监控&quot;&gt;&lt;/a&gt;监控&lt;/h5&gt;&lt;p&gt;zabbix api  &lt;/p&gt;
+&lt;h5 id=&quot;日志分析&quot;&gt;&lt;a href=&quot;#日志分析&quot; class=&quot;headerlink&quot; title=&quot;日志分析&quot;&gt;&lt;/a&gt;日志分析&lt;/h5&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;为什么要自动化运维？&quot;&gt;&lt;a href=&quot;#为什么要自动化运维？&quot; class=&quot;headerlink&quot; title=&quot;为什么要自动化运维？&quot;&gt;&lt;/a&gt;为什么要自动化运维？&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;因为我很懒  &lt;/li&gt;
+&lt;li&gt;不想重复  &lt;/li&gt;
+&lt;li
+    
+    </summary>
+    
+      <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python的内存管理机制</title>
