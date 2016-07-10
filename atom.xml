@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-10T19:57:40.223Z</updated>
+  <updated>2016-07-10T20:02:17.455Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Ycm自动化运维平台</title>
+    <title>Ycm，我的自动化运维之路</title>
     <link href="https://iceziyao.github.io/2016/06/17/Ycm%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     <id>https://iceziyao.github.io/2016/06/17/Ycm自动化运维/</id>
     <published>2016-06-16T16:00:00.000Z</published>
-    <updated>2016-07-10T19:57:40.223Z</updated>
+    <updated>2016-07-10T20:02:17.455Z</updated>
     
     <content type="html">&lt;h3 id=&quot;为什么要自动化运维？&quot;&gt;&lt;a href=&quot;#为什么要自动化运维？&quot; class=&quot;headerlink&quot; title=&quot;为什么要自动化运维？&quot;&gt;&lt;/a&gt;为什么要自动化运维？&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;因为我很懒  &lt;/li&gt;
@@ -34,7 +34,7 @@
 &lt;li&gt;自动化运维工具&lt;br&gt;4.1 ansible&lt;br&gt;4.2 puppet&lt;br&gt;4.3 saltstack&lt;/li&gt;
 &lt;li&gt;写一个属于自己的自动化运维平台&lt;br&gt; Ycm&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;Ycm是一个基于python的B-S自动化运维平台&quot;&gt;&lt;a href=&quot;#Ycm是一个基于python的B-S自动化运维平台&quot; class=&quot;headerlink&quot; title=&quot;Ycm是一个基于python的B/S自动化运维平台&quot;&gt;&lt;/a&gt;Ycm是一个基于python的B/S自动化运维平台&lt;/h3&gt;&lt;p&gt;当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&amp;lt;&amp;lt;自动化运维&amp;gt;&amp;gt;一书  &lt;/p&gt;
+&lt;h3 id=&quot;Ycm是一个基于python的B-S自动化运维平台&quot;&gt;&lt;a href=&quot;#Ycm是一个基于python的B-S自动化运维平台&quot; class=&quot;headerlink&quot; title=&quot;Ycm是一个基于python的B/S自动化运维平台&quot;&gt;&lt;/a&gt;Ycm是一个基于python的B/S自动化运维平台&lt;/h3&gt;&lt;p&gt;当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&amp;lt;&amp;lt;自动化运维&amp;gt;&amp;gt;一书&lt;br&gt;项目地址&lt;a href=&quot;https://github.com/iceziYao/Ycm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Ycm,我的自动化运维之路 &lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&quot;Ycm简介&quot;&gt;&lt;a href=&quot;#Ycm简介&quot; class=&quot;headerlink&quot; title=&quot;Ycm简介&quot;&gt;&lt;/a&gt;Ycm简介&lt;/h4&gt;&lt;h5 id=&quot;1-平台功能介绍&quot;&gt;&lt;a href=&quot;#1-平台功能介绍&quot; class=&quot;headerlink&quot; title=&quot;1.平台功能介绍&quot;&gt;&lt;/a&gt;1.平台功能介绍&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt; 作为ITIL体系当中的一部分，本平台同样遵循ITIL标准设计规范。Ycm是本平台的名称，为了向vim伟大插件YouCompleteM致敬。Ycm实现了一个集中式的linux集群管理基础平台，提供了模块化的支持，可以随意增加集群操作任务模块，可实现日常运维远程操作，文件分发等任务，在安全方面，目前采用md5指令传输，操作日志记录，分离web server与主控设备，在效率方面，管理员只需要操作指定目标即可完成。另外采用ajax，已及mvc结构的实现。具有高度的可扩展性. &lt;/strong&gt;  &lt;/li&gt;
 &lt;/ul&gt;
@@ -42,7 +42,9 @@
 &lt;ol&gt;
 &lt;li&gt;第一层为Web交互层，采用Django+jquery,服务器端采用Nginx+uwsgi构建高效的web服务&lt;/li&gt;
 &lt;li&gt;第二层业务逻辑层，有Python+Django  &lt;/li&gt;
-&lt;li&gt;第三层为服务层&lt;br&gt;3.1 存储采用mysql&lt;br&gt;3.2 自动化运维ansible/Saltstack api&lt;br&gt;3.3 监控采用zabbix api&lt;br&gt;3.4 &lt;h5 id=&quot;3-数据库设计&quot;&gt;&lt;a href=&quot;#3-数据库设计&quot; class=&quot;headerlink&quot; title=&quot;3.数据库设计&quot;&gt;&lt;/a&gt;3.数据库设计&lt;/h5&gt;&lt;/li&gt;
+&lt;li&gt;第三层为服务层&lt;br&gt;3.1 存储采用mysql&lt;br&gt;3.2 自动化运维ansible/Saltstack api&lt;br&gt;3.3 监控采用zabbix api&lt;br&gt;3.4 运维审计  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&quot;3-数据库设计&quot;&gt;&lt;a href=&quot;#3-数据库设计&quot; class=&quot;headerlink&quot; title=&quot;3.数据库设计&quot;&gt;&lt;/a&gt;3.数据库设计&lt;/h5&gt;&lt;ol&gt;
 &lt;li&gt;用户列表&lt;/li&gt;
 &lt;li&gt;资产管理&lt;br&gt;2.1 服务列表&lt;br&gt;2.2 主机列表&lt;br&gt;2.3 IDC机房信息&lt;/li&gt;
 &lt;li&gt;运维审计&lt;/li&gt;
@@ -578,48 +580,6 @@ t.start()
   </entry>
   
   <entry>
-    <title>高可用集群系列之基础01</title>
-    <link href="https://iceziyao.github.io/2016/01/16/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-10T18:35:39.956Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="集群" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Haproxy负载均衡</title>
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>
@@ -1058,6 +1018,48 @@ backend mysqlservers
     
     
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高可用集群系列之基础01</title>
+    <link href="https://iceziyao.github.io/2016/01/16/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-07-10T18:35:39.956Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="集群" scheme="https://iceziyao.github.io/tags/%E9%9B%86%E7%BE%A4/"/>
     
   </entry>
   

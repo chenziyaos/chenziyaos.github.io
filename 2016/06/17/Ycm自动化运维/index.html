@@ -100,7 +100,7 @@ pythonpython提供了很多东西
 
 Ycm是一个基于python的B/S自动化运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ycm自动化运维平台">
+<meta property="og:title" content="Ycm，我的自动化运维之路">
 <meta property="og:url" content="https://iceziyao.github.io/2016/06/17/Ycm自动化运维/index.html">
 <meta property="og:site_name" content="非衣">
 <meta property="og:description" content="为什么要自动化运维？
@@ -116,9 +116,9 @@ pythonpython提供了很多东西
 写一个属于自己的自动化运维平台 Ycm
 
 Ycm是一个基于python的B/S自动化运维">
-<meta property="og:updated_time" content="2016-07-10T19:57:40.223Z">
+<meta property="og:updated_time" content="2016-07-10T20:02:17.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ycm自动化运维平台">
+<meta name="twitter:title" content="Ycm，我的自动化运维之路">
 <meta name="twitter:description" content="为什么要自动化运维？
 因为我很懒  
 不想重复  
@@ -154,7 +154,7 @@ Ycm是一个基于python的B/S自动化运维">
 
   <link rel="canonical" href="https://iceziyao.github.io/2016/06/17/Ycm自动化运维/"/>
 
-  <title> Ycm自动化运维平台 | 非衣 </title>
+  <title> Ycm，我的自动化运维之路 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,12 +268,161 @@ Ycm是一个基于python的B/S自动化运维">
       
 
       
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High起来</a> </li>
     </ul>
   
 
   
 </nav>
-
  </div>
     </header>
 
@@ -304,7 +453,7 @@ Ycm是一个基于python的B/S自动化运维">
             
             
               
-                Ycm自动化运维平台
+                Ycm，我的自动化运维之路
               
             
           </h1>
@@ -375,7 +524,7 @@ Ycm是一个基于python的B/S自动化运维">
 <li>自动化运维工具<br>4.1 ansible<br>4.2 puppet<br>4.3 saltstack</li>
 <li>写一个属于自己的自动化运维平台<br> Ycm</li>
 </ol>
-<h3 id="Ycm是一个基于python的B-S自动化运维平台"><a href="#Ycm是一个基于python的B-S自动化运维平台" class="headerlink" title="Ycm是一个基于python的B/S自动化运维平台"></a>Ycm是一个基于python的B/S自动化运维平台</h3><p>当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&lt;&lt;自动化运维&gt;&gt;一书  </p>
+<h3 id="Ycm是一个基于python的B-S自动化运维平台"><a href="#Ycm是一个基于python的B-S自动化运维平台" class="headerlink" title="Ycm是一个基于python的B/S自动化运维平台"></a>Ycm是一个基于python的B/S自动化运维平台</h3><p>当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&lt;&lt;自动化运维&gt;&gt;一书<br>项目地址<a href="https://github.com/iceziYao/Ycm" target="_blank" rel="external">Ycm,我的自动化运维之路 </a></p>
 <h4 id="Ycm简介"><a href="#Ycm简介" class="headerlink" title="Ycm简介"></a>Ycm简介</h4><h5 id="1-平台功能介绍"><a href="#1-平台功能介绍" class="headerlink" title="1.平台功能介绍"></a>1.平台功能介绍</h5><ul>
 <li><strong> 作为ITIL体系当中的一部分，本平台同样遵循ITIL标准设计规范。Ycm是本平台的名称，为了向vim伟大插件YouCompleteM致敬。Ycm实现了一个集中式的linux集群管理基础平台，提供了模块化的支持，可以随意增加集群操作任务模块，可实现日常运维远程操作，文件分发等任务，在安全方面，目前采用md5指令传输，操作日志记录，分离web server与主控设备，在效率方面，管理员只需要操作指定目标即可完成。另外采用ajax，已及mvc结构的实现。具有高度的可扩展性. </strong>  </li>
 </ul>
@@ -383,7 +532,9 @@ Ycm是一个基于python的B/S自动化运维">
 <ol>
 <li>第一层为Web交互层，采用Django+jquery,服务器端采用Nginx+uwsgi构建高效的web服务</li>
 <li>第二层业务逻辑层，有Python+Django  </li>
-<li>第三层为服务层<br>3.1 存储采用mysql<br>3.2 自动化运维ansible/Saltstack api<br>3.3 监控采用zabbix api<br>3.4 <h5 id="3-数据库设计"><a href="#3-数据库设计" class="headerlink" title="3.数据库设计"></a>3.数据库设计</h5></li>
+<li>第三层为服务层<br>3.1 存储采用mysql<br>3.2 自动化运维ansible/Saltstack api<br>3.3 监控采用zabbix api<br>3.4 运维审计  </li>
+</ol>
+<h5 id="3-数据库设计"><a href="#3-数据库设计" class="headerlink" title="3.数据库设计"></a>3.数据库设计</h5><ol>
 <li>用户列表</li>
 <li>资产管理<br>2.1 服务列表<br>2.2 主机列表<br>2.3 IDC机房信息</li>
 <li>运维审计</li>
