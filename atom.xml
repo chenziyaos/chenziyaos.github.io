@@ -251,7 +251,7 @@ res.output();
     <link href="https://iceziyao.github.io/2016/05/01/python%E7%AB%AF%E5%8F%A3/"/>
     <id>https://iceziyao.github.io/2016/05/01/python端口/</id>
     <published>2016-04-30T16:00:00.000Z</published>
-    <updated>2016-07-10T17:39:53.810Z</updated>
+    <updated>2016-07-11T15:00:07.748Z</updated>
     
     <content type="html">&lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器&lt;/li&gt;
@@ -263,55 +263,8 @@ res.output();
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;实现端口扫描器&quot;&gt;&lt;a href=&quot;#实现端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;实现端口扫描器&quot;&gt;&lt;/a&gt;实现端口扫描器&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;main函数&lt;pre&gt;&lt;code&gt;
-def main():
- parser = optparse.OptionParser(&quot;usage: %prog&quot; + \
- &quot;-H &lt;tgthost host=&quot;&quot;&gt; -P &lt;tgtport&gt;&quot; ,version=&quot;%prog 1.0&quot;)
- &#39;&#39;&#39; 添加命令行参 &#39;&#39;&#39;
- parser.add_option(&#39;-H&#39;,dest=&#39;Host&#39;,type=&#39;string&#39;,help=&#39;specify target host&#39;)
- parser.add_option(&#39;-P&#39;,dest=&#39;Port&#39;,type=&#39;string&#39;,\
- help=&#39;specify target port[s] separated by command&#39;)
- (options ,args) = parser.parse_args()
- tgtHost = options.Host
- tgtPorts = str(options.Port).split(&quot;,&quot;)
- if (tgtHost == None) or (tgtPorts[0] == None):
-     print &#39;[-] You must specify a target host and port[s]&#39;
-     exit(0)
- portScan(tgtHost,tgtPorts)
-&lt;/tgtport&gt;&lt;/tgthost&gt;&lt;/code&gt;&lt;/pre&gt;  &lt;/li&gt;
-&lt;li&gt;portScan(tgtHost,tgtPorts)&lt;pre&gt;&lt;code&gt;
-def portScan(tgtHost,tgtPorts):
- try:
-   tgtIP = gethostbyname(tgtHost)
- except:
-   print &quot;[-] cannot resolve &#39;%s&#39;:Unknown host&quot; %(tgtHost)
- try:
-   tgtName = gethostbyaddr(tgtIP)
-   print &#39;\n[+] Scan Reselts for:&#39; + tgtName[0]
- except:
-   print &#39;\n[+] Scan Results for: &#39;+ tgtIP
- setdefaulttimeout(1)
- for tgtPort in tgtPorts:
-   connScan(tgtHost,tgtPort)  
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;connScan(tgtHost, tgtPort)  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-def connScan(tgtHost, tgtPort):
- try:
-     connSkt = socket(AF_INET,SOCK_STREAM)
-     connSkt.connect((tgtHost,tgtPort))
-     connSkt.send(&#39;Hello\r\n&#39;)
-     results = connSkt.recv(100)
-     lock.acquire()
-     print &quot;[+]%d/TCP open&quot; %(tgtPort)
-     print &quot;[+] &quot;+str(results)
- except:
-     lock.acquire()
-     print &quot;[-]%d/TCP closed&quot; %(tgtPort)
- finally:
-     lock.release()
-     connSkt.close()
-&lt;/code&gt;&lt;/pre&gt;
+&lt;li&gt;&lt;p&gt;main函数&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;python&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;def main():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    parser = optparse.OptionParser(&amp;quot;usage: %prog&amp;quot; + \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;quot;-H &amp;lt;tgtHost host&amp;gt; -P &amp;lt;tgtPort&amp;gt;&amp;quot; ,version=&amp;quot;%prog 1.0&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;apos;&amp;apos;&amp;apos; 添加命令行参 &amp;apos;&amp;apos;&amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    parser.add_option(&amp;apos;-H&amp;apos;,dest=&amp;apos;Host&amp;apos;,type=&amp;apos;string&amp;apos;,help=&amp;apos;specify target host&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    parser.add_option(&amp;apos;-P&amp;apos;,dest=&amp;apos;Port&amp;apos;,type=&amp;apos;string&amp;apos;,\&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    help=&amp;apos;specify target port[s] separated by command&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (options ,args) = parser.parse_args()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tgtHost = options.Host&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tgtPorts = str(options.Port).split(&amp;quot;,&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if (tgtHost == None) or (tgtPorts[0] == None):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;apos;[-] You must specify a target host and port[s]&amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        exit(0)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    portScan(tgtHost,tgtPorts)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. portScan(tgtHost,tgtPorts)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def portScan(tgtHost,tgtPorts):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      tgtIP = gethostbyname(tgtHost)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      print &amp;quot;[-] cannot resolve &amp;apos;%s&amp;apos;:Unknown host&amp;quot; %(tgtHost)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      tgtName = gethostbyaddr(tgtIP)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      print &amp;apos;\n[+] Scan Reselts for:&amp;apos; + tgtName[0]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      print &amp;apos;\n[+] Scan Results for: &amp;apos;+ tgtIP&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    setdefaulttimeout(1)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    for tgtPort in tgtPorts:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      connScan(tgtHost,tgtPort)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. connScan(tgtHost, tgtPort)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def connScan(tgtHost, tgtPort):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt = socket(AF_INET,SOCK_STREAM)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.connect((tgtHost,tgtPort))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.send(&amp;apos;Hello\r\n&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        results = connSkt.recv(100)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.acquire()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[+]%d/TCP open&amp;quot; %(tgtPort)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[+] &amp;quot;+str(results)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.acquire()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[-]%d/TCP closed&amp;quot; %(tgtPort)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    finally:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.release()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.close()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;使用&lt;br&gt;运行后如下结果  &lt;/p&gt;
 &lt;blockquote&gt;
@@ -320,28 +273,16 @@ def connScan(tgtHost, tgtPort):
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;优化&quot;&gt;&lt;a href=&quot;#优化&quot; class=&quot;headerlink&quot; title=&quot;优化&quot;&gt;&lt;/a&gt;优化&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;线程优化&lt;br&gt;采用多线程扫描&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;for tgtPort in tgtPorts:&lt;br&gt; t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))&lt;br&gt; t.start()&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;import threading&lt;br&gt;import multiprocessing&lt;br&gt;lock = multiprocessing.Semaphore(value=1) #锁&lt;br&gt;def connScan(tgtHost, tgtPort):&lt;br&gt; try:&lt;pre&gt;&lt;code&gt;connSkt = socket(AF_INET,SOCK_STREAM)
-connSkt.connect((tgtHost,tgtPort))
-connSkt.send(&amp;apos;Hello\r\n&amp;apos;)
-results = connSkt.recv(100)
-lock.acquire()
-print &amp;quot;[+]%d/TCP open&amp;quot; %(tgtPort)
-print &amp;quot;[+] &amp;quot;+str(results)
-&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;lock.acquire()
-print &amp;quot;[-]%d/TCP closed&amp;quot; %(tgtPort)
-&lt;/code&gt;&lt;/pre&gt; finally:&lt;pre&gt;&lt;code&gt;lock.release()
-connSkt.close()
-&lt;/code&gt;&lt;/pre&gt;def portScan(tgtHost,tgtPorts):&lt;br&gt; try:&lt;pre&gt;&lt;code&gt;tgtIP = gethostbyname(tgtHost)
-&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;print &amp;quot;[-] cannot resolve &amp;apos;%s&amp;apos;:Unknown host&amp;quot; %(tgtHost)
-&lt;/code&gt;&lt;/pre&gt; try:&lt;pre&gt;&lt;code&gt;tgtName = gethostbyaddr(tgtIP)
-print &amp;apos;\n[+] Scan Reselts for:&amp;apos; + tgtName[0]
-&lt;/code&gt;&lt;/pre&gt; except:&lt;pre&gt;&lt;code&gt;print &amp;apos;\n[+] Scan Results for: &amp;apos;+ tgtIP
-&lt;/code&gt;&lt;/pre&gt; setdefaulttimeout(1)&lt;br&gt; for tgtPort in tgtPorts:&lt;pre&gt;&lt;code&gt;#print &amp;apos;Scanning port &amp;apos; + tgtPort
-t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))
-t.start()
-&lt;/code&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;完整代码请参考&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/portscanner.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;portscanner.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;使用nmap端口扫描代码&lt;br&gt;2.1 下载Python-Nmap&lt;br&gt;&lt;code&gt;pip install Python-Nmap&lt;/code&gt;&lt;br&gt;2.2 实现&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;import nmap&lt;br&gt;import optparse&lt;br&gt;from socket import *&lt;br&gt;import os,sys&lt;br&gt;def nmapScan(tgtHost,tgtPort):&lt;br&gt;   nmScan = nmap.PortScanner()&lt;br&gt;   nmScan.scan(tgtHost,tgtPort)&lt;br&gt;   status = nmScan[tgtHost][‘tcp’][int(tgtPort)][‘state’]&lt;br&gt;   print ‘[!] %s tcp/%s %s’ %(tgtHost,tgtPort,status)&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;详细代码查看&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/nmapport.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nmapport.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;线程优化&lt;br&gt;采用多线程扫描  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;for tgtPort in tgtPorts:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t.start()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import threading&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import multiprocessing&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;lock = multiprocessing.Semaphore(value=1) #锁&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def connScan(tgtHost, tgtPort):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt = socket(AF_INET,SOCK_STREAM)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.connect((tgtHost,tgtPort))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.send(&amp;apos;Hello\r\n&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        results = connSkt.recv(100)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.acquire()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[+]%d/TCP open&amp;quot; %(tgtPort)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[+] &amp;quot;+str(results)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.acquire()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[-]%d/TCP closed&amp;quot; %(tgtPort)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    finally:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        lock.release()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        connSkt.close()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def portScan(tgtHost,tgtPorts):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        tgtIP = gethostbyname(tgtHost)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;quot;[-] cannot resolve &amp;apos;%s&amp;apos;:Unknown host&amp;quot; %(tgtHost)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        tgtName = gethostbyaddr(tgtIP)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;apos;\n[+] Scan Reselts for:&amp;apos; + tgtName[0]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    except:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        print &amp;apos;\n[+] Scan Results for: &amp;apos;+ tgtIP&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    setdefaulttimeout(1)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    for tgtPort in tgtPorts:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        #print &amp;apos;Scanning port &amp;apos; + tgtPort&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        t.start()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;完整代码请参考&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/portscanner.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;portscanner.py&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用nmap端口扫描代码&lt;br&gt;2.1 下载Python-Nmap&lt;br&gt;&lt;code&gt;pip install Python-Nmap&lt;/code&gt;&lt;br&gt;2.2 实现&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;python&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import nmap&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import optparse&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;from socket import *&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import os,sys&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def nmapScan(tgtHost,tgtPort):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      nmScan = nmap.PortScanner()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      nmScan.scan(tgtHost,tgtPort)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      status = nmScan[tgtHost][&amp;apos;tcp&amp;apos;][int(tgtPort)][&amp;apos;state&amp;apos;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      print &amp;apos;[!] %s tcp/%s %s&amp;apos; %(tgtHost,tgtPort,status)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;详细代码查看&lt;a href=&quot;https://github.com/iceziYao/Grocery/blob/master/nmapport.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nmapport.py&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -1475,135 +1416,6 @@ server {
   </entry>
   
   <entry>
-    <title>nginx负载均衡</title>
-    <link href="https://iceziyao.github.io/2015/12/23/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    <id>https://iceziyao.github.io/2015/12/23/nginx负载均衡/</id>
-    <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T21:35:22.277Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.1 正向代理  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;1.2反向代理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;区别:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.2 weight    
-指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
-如果后端服务器down掉，能自动剔除。
-比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com weight=1;
-server server2.example.com weight=2;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.3 ip_hash        
-每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-ip_hash
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.4 fair  
-按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-fair;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.5 url_hash  
-按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
-在upstream中加入hash语句，hash_method是使用的hash算法。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-hash $request_uri;
-hash_method crc32;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;p&gt;2.2 参数&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-user nginx;
-worker_processes 1;
-events {
- use epoll;
- worker_connections  1024;
-}
-http {
- include       mime.types;
- default_type  application/octet-stream;
- sendfile        on;
- keepalive_timeout  65;
- upstream nginx.com{
-        server server2.example.com:80;
-        server server3.example.com:80;
- }  
- server {
-     listen       80;
-     server_name  localhost;
-     location / {
-         proxy_pass http://nginx.com;
-     proxy_set_header  X-Real-IP  $remote_addr;
-   }
- error_page   500 502 503 504  /50x.html;
- location = /50x.html {
-         root   html;
- }  
-}  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
     <title>nginx配置文件详解</title>
     <link href="https://iceziyao.github.io/2015/12/23/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>https://iceziyao.github.io/2015/12/23/nginx配置文件详解/</id>
@@ -1809,6 +1621,135 @@ http {
     </summary>
     
       <category term="nginx" scheme="https://iceziyao.github.io/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx负载均衡</title>
+    <link href="https://iceziyao.github.io/2015/12/23/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    <id>https://iceziyao.github.io/2015/12/23/nginx负载均衡/</id>
+    <published>2015-12-23T13:49:33.000Z</published>
+    <updated>2016-07-09T21:35:22.277Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.1 正向代理  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.2反向代理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;区别:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;p&gt;2.2 参数&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%
+    
+    </summary>
     
     
       <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>

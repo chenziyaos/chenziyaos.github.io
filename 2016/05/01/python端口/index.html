@@ -100,7 +100,7 @@
 端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  
 处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  
 将主机名转换为对应的IPv4互联网地址，采socket.gethostbyn">
-<meta property="og:updated_time" content="2016-07-10T17:39:53.810Z">
+<meta property="og:updated_time" content="2016-07-11T15:00:07.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python编写一个端口扫描器">
 <meta name="twitter:description" content="编写一个端口扫描器
@@ -502,55 +502,8 @@
 </li>
 </ul>
 <h3 id="实现端口扫描器"><a href="#实现端口扫描器" class="headerlink" title="实现端口扫描器"></a>实现端口扫描器</h3><ol>
-<li>main函数<pre><code>
-def main():
- parser = optparse.OptionParser("usage: %prog" + \
- "-H <tgthost host=""> -P <tgtport>" ,version="%prog 1.0")
- ''' 添加命令行参 '''
- parser.add_option('-H',dest='Host',type='string',help='specify target host')
- parser.add_option('-P',dest='Port',type='string',\
- help='specify target port[s] separated by command')
- (options ,args) = parser.parse_args()
- tgtHost = options.Host
- tgtPorts = str(options.Port).split(",")
- if (tgtHost == None) or (tgtPorts[0] == None):
-     print '[-] You must specify a target host and port[s]'
-     exit(0)
- portScan(tgtHost,tgtPorts)
-</tgtport></tgthost></code></pre>  </li>
-<li>portScan(tgtHost,tgtPorts)<pre><code>
-def portScan(tgtHost,tgtPorts):
- try:
-   tgtIP = gethostbyname(tgtHost)
- except:
-   print "[-] cannot resolve '%s':Unknown host" %(tgtHost)
- try:
-   tgtName = gethostbyaddr(tgtIP)
-   print '\n[+] Scan Reselts for:' + tgtName[0]
- except:
-   print '\n[+] Scan Results for: '+ tgtIP
- setdefaulttimeout(1)
- for tgtPort in tgtPorts:
-   connScan(tgtHost,tgtPort)  
-</code></pre></li>
-<li><p>connScan(tgtHost, tgtPort)  </p>
-<pre><code>
-def connScan(tgtHost, tgtPort):
- try:
-     connSkt = socket(AF_INET,SOCK_STREAM)
-     connSkt.connect((tgtHost,tgtPort))
-     connSkt.send('Hello\r\n')
-     results = connSkt.recv(100)
-     lock.acquire()
-     print "[+]%d/TCP open" %(tgtPort)
-     print "[+] "+str(results)
- except:
-     lock.acquire()
-     print "[-]%d/TCP closed" %(tgtPort)
- finally:
-     lock.release()
-     connSkt.close()
-</code></pre>
+<li><p>main函数</p>
+<figure class="highlight plain"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">def main():</div><div class="line">    parser = optparse.OptionParser(&quot;usage: %prog&quot; + \</div><div class="line">    &quot;-H &lt;tgtHost host&gt; -P &lt;tgtPort&gt;&quot; ,version=&quot;%prog 1.0&quot;)</div><div class="line">    &apos;&apos;&apos; 添加命令行参 &apos;&apos;&apos;</div><div class="line">    parser.add_option(&apos;-H&apos;,dest=&apos;Host&apos;,type=&apos;string&apos;,help=&apos;specify target host&apos;)</div><div class="line">    parser.add_option(&apos;-P&apos;,dest=&apos;Port&apos;,type=&apos;string&apos;,\</div><div class="line">    help=&apos;specify target port[s] separated by command&apos;)</div><div class="line">    (options ,args) = parser.parse_args()</div><div class="line">    tgtHost = options.Host</div><div class="line">    tgtPorts = str(options.Port).split(&quot;,&quot;)</div><div class="line">    if (tgtHost == None) or (tgtPorts[0] == None):</div><div class="line">        print &apos;[-] You must specify a target host and port[s]&apos;</div><div class="line">        exit(0)</div><div class="line">    portScan(tgtHost,tgtPorts)</div><div class="line">&lt;/code&gt;&lt;/pre&gt;  </div><div class="line">2. portScan(tgtHost,tgtPorts)</div><div class="line">&lt;pre&gt;&lt;code&gt;</div><div class="line">def portScan(tgtHost,tgtPorts):</div><div class="line">    try:</div><div class="line">      tgtIP = gethostbyname(tgtHost)</div><div class="line">    except:</div><div class="line">      print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)</div><div class="line">    try:</div><div class="line">      tgtName = gethostbyaddr(tgtIP)</div><div class="line">      print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]</div><div class="line">    except:</div><div class="line">      print &apos;\n[+] Scan Results for: &apos;+ tgtIP</div><div class="line">    setdefaulttimeout(1)</div><div class="line">    for tgtPort in tgtPorts:</div><div class="line">      connScan(tgtHost,tgtPort)  </div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line">3. connScan(tgtHost, tgtPort)  </div><div class="line">&lt;pre&gt;&lt;code&gt;</div><div class="line">def connScan(tgtHost, tgtPort):</div><div class="line">    try:</div><div class="line">        connSkt = socket(AF_INET,SOCK_STREAM)</div><div class="line">        connSkt.connect((tgtHost,tgtPort))</div><div class="line">        connSkt.send(&apos;Hello\r\n&apos;)</div><div class="line">        results = connSkt.recv(100)</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[+]%d/TCP open&quot; %(tgtPort)</div><div class="line">        print &quot;[+] &quot;+str(results)</div><div class="line">    except:</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[-]%d/TCP closed&quot; %(tgtPort)</div><div class="line">    finally:</div><div class="line">        lock.release()</div><div class="line">        connSkt.close()</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用<br>运行后如下结果  </p>
 <blockquote>
@@ -559,28 +512,16 @@ def connScan(tgtHost, tgtPort):
 </li>
 </ol>
 <h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
-<li>线程优化<br>采用多线程扫描<br><pre><code><br>for tgtPort in tgtPorts:<br> t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))<br> t.start()<br></code></pre><br>这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：<br><pre><code><br>import threading<br>import multiprocessing<br>lock = multiprocessing.Semaphore(value=1) #锁<br>def connScan(tgtHost, tgtPort):<br> try:<pre><code>connSkt = socket(AF_INET,SOCK_STREAM)
-connSkt.connect((tgtHost,tgtPort))
-connSkt.send(&apos;Hello\r\n&apos;)
-results = connSkt.recv(100)
-lock.acquire()
-print &quot;[+]%d/TCP open&quot; %(tgtPort)
-print &quot;[+] &quot;+str(results)
-</code></pre> except:<pre><code>lock.acquire()
-print &quot;[-]%d/TCP closed&quot; %(tgtPort)
-</code></pre> finally:<pre><code>lock.release()
-connSkt.close()
-</code></pre>def portScan(tgtHost,tgtPorts):<br> try:<pre><code>tgtIP = gethostbyname(tgtHost)
-</code></pre> except:<pre><code>print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)
-</code></pre> try:<pre><code>tgtName = gethostbyaddr(tgtIP)
-print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]
-</code></pre> except:<pre><code>print &apos;\n[+] Scan Results for: &apos;+ tgtIP
-</code></pre> setdefaulttimeout(1)<br> for tgtPort in tgtPorts:<pre><code>#print &apos;Scanning port &apos; + tgtPort
-t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))
-t.start()
-</code></pre></code></pre><br>完整代码请参考<a href="https://github.com/iceziYao/Grocery/blob/master/portscanner.py" target="_blank" rel="external">portscanner.py</a></li>
-<li>使用nmap端口扫描代码<br>2.1 下载Python-Nmap<br><code>pip install Python-Nmap</code><br>2.2 实现<br><pre><code><br>import nmap<br>import optparse<br>from socket import *<br>import os,sys<br>def nmapScan(tgtHost,tgtPort):<br>   nmScan = nmap.PortScanner()<br>   nmScan.scan(tgtHost,tgtPort)<br>   status = nmScan[tgtHost][‘tcp’][int(tgtPort)][‘state’]<br>   print ‘[!] %s tcp/%s %s’ %(tgtHost,tgtPort,status)<br></code></pre><br>详细代码查看<a href="https://github.com/iceziYao/Grocery/blob/master/nmapport.py" target="_blank" rel="external">nmapport.py</a></li>
+<li>线程优化<br>采用多线程扫描  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for tgtPort in tgtPorts:</div><div class="line">    t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))</div><div class="line">    t.start()</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">import multiprocessing</div><div class="line">lock = multiprocessing.Semaphore(value=1) #锁</div><div class="line">def connScan(tgtHost, tgtPort):</div><div class="line">    try:</div><div class="line">        connSkt = socket(AF_INET,SOCK_STREAM)</div><div class="line">        connSkt.connect((tgtHost,tgtPort))</div><div class="line">        connSkt.send(&apos;Hello\r\n&apos;)</div><div class="line">        results = connSkt.recv(100)</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[+]%d/TCP open&quot; %(tgtPort)</div><div class="line">        print &quot;[+] &quot;+str(results)</div><div class="line">    except:</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[-]%d/TCP closed&quot; %(tgtPort)</div><div class="line">    finally:</div><div class="line">        lock.release()</div><div class="line">        connSkt.close()</div><div class="line">def portScan(tgtHost,tgtPorts):</div><div class="line">    try:</div><div class="line">        tgtIP = gethostbyname(tgtHost)</div><div class="line">    except:</div><div class="line">        print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)</div><div class="line">    try:</div><div class="line">        tgtName = gethostbyaddr(tgtIP)</div><div class="line">        print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]</div><div class="line">    except:</div><div class="line">        print &apos;\n[+] Scan Results for: &apos;+ tgtIP</div><div class="line">    setdefaulttimeout(1)</div><div class="line">    for tgtPort in tgtPorts:</div><div class="line">        #print &apos;Scanning port &apos; + tgtPort</div><div class="line">        t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))</div><div class="line">        t.start()</div></pre></td></tr></table></figure></p>
+<p>完整代码请参考<a href="https://github.com/iceziYao/Grocery/blob/master/portscanner.py" target="_blank" rel="external">portscanner.py</a></p>
+<ol>
+<li>使用nmap端口扫描代码<br>2.1 下载Python-Nmap<br><code>pip install Python-Nmap</code><br>2.2 实现<figure class="highlight plain"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import nmap</div><div class="line">import optparse</div><div class="line">from socket import *</div><div class="line">import os,sys</div><div class="line">def nmapScan(tgtHost,tgtPort):</div><div class="line">      nmScan = nmap.PortScanner()</div><div class="line">      nmScan.scan(tgtHost,tgtPort)</div><div class="line">      status = nmScan[tgtHost][&apos;tcp&apos;][int(tgtPort)][&apos;state&apos;]</div><div class="line">      print &apos;[!] %s tcp/%s %s&apos; %(tgtHost,tgtPort,status)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>详细代码查看<a href="https://github.com/iceziYao/Grocery/blob/master/nmapport.py" target="_blank" rel="external">nmapport.py</a></p>
 
       
     </div>
