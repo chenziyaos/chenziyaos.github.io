@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -101,7 +101,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -167,16 +167,12 @@
 
 <nav class="site-nav">
   
-
   
     <ul id="menu" class="menu">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=442760&auto=1&height=66"></iframe>
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -186,8 +182,6 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
             分类
           </a>
         </li>
@@ -195,8 +189,6 @@
         
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             非衣
           </a>
@@ -206,8 +198,6 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
             归档
           </a>
         </li>
@@ -215,8 +205,6 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -226,15 +214,23 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
             公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+            留言
           </a>
         </li>
       
 
       
-      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+
+      <li>
+      <a title="high" href='javascript:(function() {
       function c() {
         var e = document.createElement("link");
         e.setAttribute("type", "text/css");
@@ -371,11 +367,22 @@
             O.push(A)
         }
     }
-    })()    '>High起来</a> </li>
+    })()    '>High起来</a>
+    </li>
+
     </ul>
+
   
 
   
+
+</nav><br/><br/>
+<nav class="site-nav">
+<ul>
+<blockquote class="blockquote-center">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=442760&auto=1&height=66"></iframe>
+</blockquote>
+</ul>
 </nav>
  </div>
     </header>
@@ -450,11 +457,26 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/23/nginx配置文件详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/23/nginx配置文件详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/12/23/nginx配置文件详解/" class="leancloud_visitors" data-flag-title="nginx配置文件详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -471,7 +493,7 @@
       
         
           
-            <pre><code>
+          
 
 
     #运行用户
@@ -481,179 +503,14 @@
 
     #全局错误日志及PID文件
     error_log  /var/log/nginx/error.log;
-    pid        /var/run/nginx.pid;
+    pid 
+          ...
 
-    #工作模式及连接数上限
-    events {
-        use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
-        worker_connections  1024;#单个后台worker process进程的最大并发链接数
-        # multi_accept on;
-    }
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
-        #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
-        sendfile        on;
-        #tcp_nopush     on;
-
-        #连接超时时间
-        #keepalive_timeout  0;
-        keepalive_timeout  65;
-        tcp_nodelay        on;
-
-        #开启gzip压缩
-        gzip  on;
-        gzip_disable "MSIE [1-6]\.(?!.*SV1)";
-
-        #设定请求缓冲
-        client_header_buffer_size    1k;
-        large_client_header_buffers  4 4k;
-
-        include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/sites-enabled/*;
-
-        #设定负载均衡的服务器列表
-         upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        #本机上的Squid开启3128端口
-        server 192.168.8.1:3128 weight=5;
-        server 192.168.8.2:80  weight=1;
-        server 192.168.8.3:80  weight=6;
-        }
-
-
-       server {
-        #侦听80端口
-            listen       80;
-            #定义使用www.xx.com访问
-            server_name  www.xx.com;
-
-            #设定本虚拟主机的访问日志
-            access_log  logs/www.xx.com.access.log  main;
-
-        #默认请求
-        location / {
-              root   /root;      #定义服务器的默认网站根目录位置
-              index index.php index.html index.htm;   #定义首页索引文件的名称
-
-              fastcgi_pass  www.xx.com;
-             fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
-              include /etc/nginx/fastcgi_params;
-            }
-
-        # 定义错误提示页面
-        error_page   500 502 503 504 /50x.html;
-            location = /50x.html {
-            root   /root;
-        }
-
-        #静态文件，nginx自己处理
-        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
-            root /var/www/virtual/htdocs;
-            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
-            expires 30d;
-        }
-        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
-        location ~ \.php$ {
-            root /root;
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index index.php;
-            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
-            include fastcgi_params;
-        }
-        #设定查看Nginx状态的地址
-        location /NginxStatus {
-            stub_status              on;
-            access_log               on;
-            auth_basic              "NginxStatus";
-            auth_basic_user_file  conf/htpasswd;
-        }
-        #禁止访问 .htxxx 文件
-        location ~ /\.ht {
-            deny all;
-        }
-
-         }
-    }
-
-以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
-
-如果要使用负载均衡的话,可以修改配置http节点如下：
-
-    #设定http服务器，利用它的反向代理功能提供负载均衡支持
-    http {
-         #设定mime类型,类型由mime.type文件定义
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
-        #设定日志格式
-        access_log    /var/log/nginx/access.log;
-
-        #省略上文有的一些配置节点
-
-        #。。。。。。。。。。
-
-        #设定负载均衡的服务器列表
-        upstream mysvr {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-        server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
-        server 192.168.8.2x:80  weight=1;
-        server 192.168.8.3x:80  weight=6;
-        }
-
-        upstream mysvr2 {
-        #weigth参数表示权值，权值越高被分配到的几率越大
-
-            server 192.168.8.x:80  weight=1;
-            server 192.168.8.x:80  weight=6;
-        }
-
-       #第一个虚拟服务器
-       server {
-        #侦听192.168.8.x的80端口
-            listen       80;
-            server_name  192.168.8.x;
-
-            #对aspx后缀的进行负载均衡请求
-            location ~ .*\.aspx$ {
-
-                root   /root;      #定义服务器的默认网站根目录位置
-                index index.php index.html index.htm;   #定义首页索引文件的名称
-
-                proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
-
-                #以下是一些反向代理的配置可删除.
-
-                proxy_redirect off;
-
-                #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                client_max_body_size 10m;       #允许客户端请求的最大单文件字节数
-                client_body_buffer_size 128k;   #缓冲区代理缓冲用户端请求的最大字节数，
-                proxy_connect_timeout 90;       #nginx跟后端服务器连接超时时间(代理连接超时)
-                proxy_send_timeout 90;          #后端服务器数据回传时间(代理发送超时)
-                proxy_read_timeout 90;          #连接成功后，后端服务器响应时间(代理接收超时)
-                proxy_buffer_size 4k;           #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-                proxy_buffers 4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-                proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
-                proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-
-           }
-
-         }
-    }
-
-</code></pre>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/23/nginx配置文件详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -724,11 +581,26 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/23/nginx负载均衡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/23/nginx负载均衡/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/12/23/nginx负载均衡/" class="leancloud_visitors" data-flag-title="nginx负载均衡">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -745,117 +617,20 @@
       
         
           
-            <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p>
-<ol>
-<li><p>nginx 反向代理<br>nginx的负载均衡基于反向代理  </p>
-<blockquote>
-<p>1.1 正向代理  </p>
-<blockquote>
-<p> 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  </p>
-</blockquote>
-<p>1.2反向代理</p>
-<blockquote>
-<p>反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。</p>
-</blockquote>
-<p>区别:</p>
-<blockquote>
-<p>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。<br>正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>upstream</p>
-<blockquote>
-<p>2.1 负载均衡算法</p>
-<blockquote>
-<p>2.1.1 轮循<br>当weight不指定时，各服务器weight相同，<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  </p>
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-}
-</code></pre>
-2.1.2 weight    
-指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
-如果后端服务器down掉，能自动剔除。
-比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
-<pre><code>
-upstream bakend {
-server server1.example.com weight=1;
-server server2.example.com weight=2;
-}
-</code></pre>
-2.1.3 ip_hash        
-每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
-<pre><code>
-upstream bakend {
-ip_hash
-server server1.example.com;
-server server2.example.com;
-}
-</code></pre>
-2.1.4 fair  
-按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-fair;
-}
-</code></pre>
-2.1.5 url_hash  
-按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
-在upstream中加入hash语句，hash_method是使用的hash算法。  
-<pre><code>
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-hash $request_uri;
-hash_method crc32;
-}
-</code></pre>
+          安装nginx请参考lnmp架构
 
-</blockquote>
-<p>2.2 参数</p>
-<blockquote>
-<p>1.down 表示单前的server暂时不参与负载<br>2.weight 默认为1.weight越大，负载的权重就越大。<br>3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误<br>4.fail_timeout:max_fails次失败后，暂停的时间。<br>5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。<br>nginx支持同时设置多组的负载均衡，用来给不用的server来使用。<br>client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug<br>client_body_temp_path 设置记录文件的目录 可以设置最多3层目录<br>location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  </p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>示例<br>3.1 网络拓扑<br>反向代理服务器 server1.example.com<br>后端服务器：<br>server2.example.com<br>server3.example.com<br>3.2 配置<br>3.2.1 server1</p>
-<pre><code>
-user nginx;
-worker_processes 1;
-events {
- use epoll;
- worker_connections  1024;
-}
-http {
- include       mime.types;
- default_type  application/octet-stream;
- sendfile        on;
- keepalive_timeout  65;
- upstream nginx.com{
-        server server2.example.com:80;
-        server server3.example.com:80;
- }  
- server {
-     listen       80;
-     server_name  localhost;
-     location / {
-         proxy_pass http://nginx.com;
-     proxy_set_header  X-Real-IP  $remote_addr;
-   }
- error_page   500 502 503 504  /50x.html;
- location = /50x.html {
-         root   html;
- }  
-}  
-}  
-</code></pre>
-</li>
-</ol>
+nginx 反向代理nginx的负载均衡基于反向代理  
 
-          
+1.1 正向代理  
+
+ 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/23/nginx负载均衡/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -945,11 +720,26 @@ http {
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/24/ftp+mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/24/ftp+mysql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/11/24/ftp+mysql/" class="leancloud_visitors" data-flag-title="ftp+mysql搭建ftp认证">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -966,83 +756,15 @@ http {
       
         
           
-            <h3 id="安装所需要程序"><a href="#安装所需要程序" class="headerlink" title="安装所需要程序"></a>安装所需要程序</h3><ol>
-<li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
-<li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
-# cd  pam_mysql-0.7RC1
-# ./configure --with-mysql=/usr --with-openssl
-# make
-# make install  
-</code></pre></li>
-<li>安装vsftpd<blockquote>
-<p><code>yum -y install vsftpd</code></p>
-</blockquote>
-</li>
-</ol>
-<h3 id="创建虚拟用户账号"><a href="#创建虚拟用户账号" class="headerlink" title="创建虚拟用户账号"></a>创建虚拟用户账号</h3><ol>
-<li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
-<blockquote>
-<p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
-</blockquote>
-</li>
-<li><p>添加测试的虚拟用户<br>根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.</p>
-<pre><code>mysql&gt; insert into users(name,password) values(&apos;tom&apos;,&apos;magedu&apos;);
-mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
-</code></pre></li>
-</ol>
-<h3 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h3><ol>
-<li><p>建立pam认证所需文件</p>
-<pre><code>#vi /etc/pam.d/vsftpd.mysql
-添加如下两行
-auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-account required /lib/security/pam_mysql.so user=vsftpd
-passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-</code></pre></li>
-<li><p>修改vsftpd的配置文件，使其适应mysql认证<br>建立虚拟用户映射的系统用户及对应的目录  </p>
-<pre><code>#useradd -s /sbin/nologin -d /var/ftproot vuser
-#chmod go+rx /var/ftproot
-</code></pre><p>请确保/etc/vsftpd.conf中已经启用了以下选项  </p>
-<blockquote>
-<p>anonymous_enable=YES<br>local_enable=YES<br>write_enable=YES<br>anon_upload_enable=NO<br>anon_mkdir_write_enable=NO<br>chroot_local_user=YES<br>而后添加以下选项<br>guest_enable=YES<br>guest_username=vuser<br>并确保pam_service_name选项的值如下所示<br>pam_service_name=vsftpd.mysql  </p>
-</blockquote>
-</li>
-</ol>
-<p>四、启动vsftpd服务</p>
-<pre><code># service vsftpd start
-# chkconfig vsftpd on
-</code></pre><p>查看端口开启情况  </p>
-<pre><code># netstat -tnlp |grep :21
-tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
-</code></pre><p>使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  </p>
-<pre><code># ftp localhost
-</code></pre><p>五、配置虚拟用户具有不同的访问权限<br>vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  </p>
-<ol>
-<li><p>配置vsftpd为虚拟用户使用配置文件目录</p>
-<pre><code># vim vsftpd.conf
-添加如下选项
-user_config_dir=/etc/vsftpd/vusers_dir
-</code></pre></li>
-<li><p>创建所需要目录，并为虚拟用户提供配置文件</p>
-<pre><code># mkdir /etc/vsftpd/vusers_dir/
-# cd /etc/vsftpd/vusers_dir/
-# touch tom jerry
-</code></pre></li>
-<li>配置虚拟用户的访问权限<br>虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。<br><code>anon_upload_enable=YES</code></li>
-</ol>
+          安装所需要程序
+事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&qu
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/24/ftp+mysql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1132,11 +854,26 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/11/shell编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/shell编程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/10/11/shell编程/" class="leancloud_visitors" data-flag-title="shell编程基础">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -1153,241 +890,16 @@ user_config_dir=/etc/vsftpd/vusers_dir
       
         
           
-            <h4 id="Shell与Shell语言"><a href="#Shell与Shell语言" class="headerlink" title="Shell与Shell语言"></a>Shell与Shell语言</h4><p>Shell, 实际上这里所说的Shell是一种应用程序, 它负责解释执行你编写的Shell脚本, linux默认就自带了sh/bash/csh/zsh/tcsh/ksh, 你可以这样查看cat /etc/shells</p>
-<h4 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h4><pre><code>#! /bin/sh  
-echo &quot;hello world!&quot;
-</code></pre><p>第一行的#!是一个约定标记, 它告诉脚本这段脚本需要什么解释器来执行. 第二行的echo命令则负责向屏幕上输出一句话.</p>
-<h4 id="如何运行"><a href="#如何运行" class="headerlink" title="如何运行?"></a>如何运行?</h4><p>运行shell程序有3种方法:</p>
-<blockquote>
-<ul>
-<li>chmod +x使文件具有可执行权限, 直接运行  </li>
-<li>直接调用解释器, 将脚本文件作为参数传入 (比如bash)  </li>
-<li>使用source(也可用 . 代替)执行文件  </li>
-</ul>
-</blockquote>
-<p>通常情况下, 最方便的方式就是方式1, 通过方式1执行你需要在脚本第一行写好这段脚本由哪个解释器来解释, 而通过方式2来执行则没有这个限制, 写了也没用.<br>除此之外方式1与方式2执行命令就没有区别了, 但方式3执行的方式与前两种都不同:  </p>
-<blockquote>
-<p>使用source执行shell脚本时, 不会创建子进程, 而是在父进程中直接执行!  </p>
-</blockquote>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>和其它语言一样Shell中也有变量, 而且更简单, 但有一些比较特殊的地方.</p>
-<pre><code>* Shell中的变量只有字符串这一种类型  
-* Shell中变量名与变量值没有长度限制  
-* Shell的变量也允许比较操作和整数操作, 只要变量中的字符串为数字
-</code></pre><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><pre><code>`name=&quot;ice&quot;`  
-</code></pre><p> <strong> 需要注意: = 两边不能加空格, 当赋值语句包含空格时请加引号(单引号/双引号均可)比如: </strong><br>    <code>name=&quot;jj tom&quot;</code><br>Shell中的变量可以分为两种类型:</p>
-<ol>
-<li>局部变量 (定义变量时在前面加local修饰符)  </li>
-<li>全局变量 (定义变量时不加任何修饰符)  </li>
-</ol>
-<p>与其它语言一样局部变量的可见范围是代码块或函数内, 全局变量在全局范围内可见.看个简单的例子:  </p>
-<pre><code>#! /bin/sh
-num=111 #全局变量
-func1(){
-    local num=222 #局部变量
-    echo $num
-}
-echo &quot;before---$num&quot;
-func1
-echo &quot;after---$num&quot;
-</code></pre><p>输出:     </p>
-<pre><code>before---111
-222
-after---111   
-</code></pre><h5 id="定义变量-1"><a href="#定义变量-1" class="headerlink" title="定义变量"></a>定义变量</h5><p>使用一个定义过的变量, 只要在变量名前面加$即可, 如:  </p>
-<pre><code>name=&apos;tom&apos;
-echo $name
-echo ${name} #{} 为了帮助解释器识别变量边界, 非必须
-</code></pre><p>在使用变量时还有一个地方需要注意, 请看下面的例子:  </p>
-<pre><code>#! /bin/sh
-str=&apos;abc&apos;
-echo &quot;1 print $str&quot;
-echo &apos;2 print $str&apos;
-</code></pre><p>输出:</p>
-<pre><code>1 print abc
-2 print $str  
-</code></pre><p>即:<br><strong>        被双引号括起来的变量会发生变量替换, 单引号不会 </strong></p>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ul>
-<li>Shell中注释使用#, 而且它不支持多行注释.</li>
-</ul>
-<h4 id="常用的字符串操作"><a href="#常用的字符串操作" class="headerlink" title="常用的字符串操作"></a>常用的字符串操作</h4><h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><pre><code>name=&quot;shell&quot;
-sayHi=&quot;hello, &quot;$name&quot; !&quot;
-sayHi2=&quot;hello, ${name} !&quot;
-echo $sayHi $sayHi2
-</code></pre><p>注意: 上面说的单双引号引起的变量替换问题  </p>
-<h5 id="获得字符串长度"><a href="#获得字符串长度" class="headerlink" title="获得字符串长度"></a>获得字符串长度</h5><pre><code>string=&quot;abcd&quot;  
-echo ${#string} #输出：4
-</code></pre><h5 id="截取字符串"><a href="#截取字符串" class="headerlink" title="截取字符串"></a>截取字符串</h5><pre><code>str=&quot;hello shell&quot;
-echo ${str:2}  #输出: llo shell
-echo ${string:1:3} #输出：ell
-</code></pre><h5 id="if-else流程控制"><a href="#if-else流程控制" class="headerlink" title="if/else流程控制"></a>if/else流程控制</h5><p>基本语法结构:  </p>
-<pre><code>if condition
-then
-   do something
-elif condition
-then
-   do something
-elif condition
-then
-   do something
-else
-   do something
-fi
-</code></pre><p>其中, elif语句和else语句非必须的.看个例子:</p>
-<pre><code>#! /bin/sh
-a=1
-if [ $1=$a ]
-then
-   echo &quot;you input 1&quot;
-elif [ $1=2 ]
-then
-   echo &quot;you input 2&quot;
-else
-   #do nothing
-   echo &quot; you input $1&quot;
- fi
-</code></pre><p>很简单, 不过这里有两个地方需要注意, 如果某个条件下的执行体为空, 则你就不能写这个条件 即下面这样会报错:</p>
-<pre><code>if condition
-then
-   #do nothing
-elif condition
-then
-   # do nothing
-   #or
-else
-   #do nothing
-</code></pre><p><strong> 另外, [ ] 两边一定要加空格, 下面这样都会报错: </strong></p>
-<pre><code>if [$a=$b]
-#or
-if [ $a=$b]
-#or
-if [$a=$b ]
-</code></pre><p>只有这样if [ $a=$b ]才是对的.<br>注意: 实际上这里的[]是test命令的一种形式, [是系统的一个内置命令,存在路径是/bin/[,它是调用test命令的标识, 右中括号是关闭条件判断的标识, 因此下面的两个测试语句是等效的:  </p>
-<pre><code>if test &quot;2&gt;3&quot;
-then
-   ...
-fi
-和
-if [ &quot;2&gt;3&quot; ]
-then
-   ...
-fi
-</code></pre><p><strong> 除[]之外, shell语言中还有几种其它括号, 比如: 单小括号/双小括号/双中括号/… , 不同的括号有不同的用法 </strong></p>
-<h5 id="switch流程控制"><a href="#switch流程控制" class="headerlink" title="switch流程控制"></a>switch流程控制</h5><p>当条件较多时, 可以选择使用switch语句, shell中的switch语句的写法和其它语言还是有些不同的, 基本结构如下:</p>
-<pre><code>case expression in
-   pattern1)
-         do something... ;;
-   pattern2)
-         do something... ;;
-   pattern2)
-         do something... ;;
-    ...
-   esac
-</code></pre><p>看个例子:</p>
-<pre><code>#! /bin/sh
-input=$1
-case $input in
-        1 | 0)
-        str=&quot;一or零&quot;;;
-        2)
-        str=&quot;二&quot;;;
-        3)
-        str=&quot;三&quot;;;
-        *)
-        str=$input;;
-esac
-echo &quot;---$str&quot;
-</code></pre><p>这个例子会根据你执行此脚本时传入的参数不同在屏幕上输出不同的值, 其中第一个case 1 | 0代表逻辑或.<br>NOTE:</p>
-<p>;;相当于其它语言中的break<br>每个pattern之后记得加)<br>最后记得加esac (即反的case)</p>
-<h5 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h5><p>基本结构:</p>
-<pre><code>for name [in list]
-do
-    ...
-done
-</code></pre><p>其中,[]括起来的 in list, 为可选部分, 如果省略in list则默认为in “$@”, 即你执行此命令时传入的参数列表.<br>看个例子:</p>
-<pre><code>for file in *.txt
-do
-    open $file
-done
-</code></pre><p>遍历当前目录下的所有txt文件, 并依次打开.</p>
-<h5 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h5><p>基本结构:</p>
-<pre><code>while condition
-do
-    do something...
-done
-</code></pre><p>看个例子:</p>
-<pre><code>#! /bin/sh
-i=0
-while ((i&lt;5));
-do
-    ((i++))
-    echo &quot;i=$i&quot;
-done
-</code></pre><p>输出:</p>
-<pre><code>i=1
-i=2
-i=3
-i=4
-i=5
-</code></pre><p>NOTE: 你可能需要去了解一下(())的用法</p>
-<h5 id="until循环"><a href="#until循环" class="headerlink" title="until循环"></a>until循环</h5><p>基本结构</p>
-<pre><code>until condition
-do
-    do something...
-done
-</code></pre><p>看个例子:</p>
-<pre><code>#! /bin/sh
-i=5
-until ((i==0))
-do
-    ((i--))
-    echo &quot;i=$i&quot;
-done
-</code></pre><p>输出:</p>
-<pre><code>i=4
-i=3
-i=2
-i=1
-i=0
-</code></pre><h5 id="跳出循环"><a href="#跳出循环" class="headerlink" title="跳出循环"></a>跳出循环</h5><ul>
-<li>shell中也支持break跳出循环, continue跳出本次循环.用法与C, Java中相同</li>
-</ul>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>要定义一个函数, 可以使用下面两种形式:</p>
-<pre><code>function funcname(){
-    do something
-}
-</code></pre><p>或者</p>
-<pre><code>funcname (){
-    do something
-}
-</code></pre><p>看个例子</p>
-<pre><code>#! /bin/sh
-# ad.sh 计算sum
-add()
-{
-    let &quot;sum=$1+$2&quot;
-    return $sum
-}
+          Shell与Shell语言Shell, 实际上这里所说的Shell是一种应用程序, 它负责解释执行你编写的Shell脚本, linux默认就自带了sh/bash/csh/zsh/tcsh/ksh, 你可以这样查看cat /etc/shells
+第一个Shell脚本#! /bin/sh  
+echo 
+          ...
 
-add $1 $2
-echo &quot;sum=$?&quot;
-</code></pre><p>输入<br><code>ad 1 2</code><br>输出<br><code>sum=3</code><br>其中, $?在shell中保存的是上一条命令的返回值  </p>
-<p>NOTE:</p>
-<p>函数必须先定义后使用<br>如果在函数中使用exit会退出脚本, 如果想退回到原本函数调用的地方, 则可使用return<br>向脚本传递参数</p>
-<p>先shell脚本传递参数, 非常简单, 只需要在你执行命令的后面跟上即可, 看个例子:</p>
-<pre><code>#! /bin/sh
-# test.sh
-echo &quot;$# parameters&quot;;
-echo &quot;$@&quot;;
-echo &quot;$0&quot;
-echo &quot;$1&quot;
-</code></pre><p>输入:</p>
-<p><code>test.sh 11 22</code><br>输出:</p>
-<pre><code>2 parameters
-11 22
-test.sh
-</code></pre><p>解释: $@代表所有参数的内容, $#代表所有参数的个数, $0代表脚本的名称, $1代表第一个参数的值.</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/11/shell编程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1477,11 +989,26 @@ test.sh
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/06/linux基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/06/linux基础/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/10/06/linux基础/" class="leancloud_visitors" data-flag-title="Linux基础">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -1498,111 +1025,18 @@ test.sh
       
         
           
-            <h3 id="如何在linux上活下去"><a href="#如何在linux上活下去" class="headerlink" title="如何在linux上活下去"></a>如何在linux上活下去</h3><p>1.cd 命令<br>用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。</p>
-<blockquote>
-<p>cd /mnt          进入/mnt<br>cd ~           进入用户家目录<br>cd 绝对路径 or 相对路径  </p>
-</blockquote>
-<p>2.ls 命令<br>查看文件与目录的命令，list之意,常用如下:</p>
-<blockquote>
-<p>-l ：列出长数据串，包含文件的属性与权限数据等<br><br>-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用)<br><br>-d ：仅列出目录本身，而不是列出目录的文件数据<br><br>-h ：将文件容量以较易读的方式（GB，kB等）列出来<br>-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  </p>
-</blockquote>
-<p>注：这些参数也可以组合使用  </p>
-<blockquote>
-<p>ls -l #以长数据串的形式列出当前目录下的数据文件和目录<br>ls -lR #以长数据串的形式列出当前目录下的所有文件   </p>
-</blockquote>
-<p>3.mkdir 命令<br>创建目录</p>
-<blockquote>
-<p>mkdir dir</p>
-</blockquote>
-<p>参数：</p>
-<blockquote>
-<p>-p 递归创建<br>-m 给于权限</p>
-</blockquote>
-<p>4.touch 命令<br>创建文件</p>
-<blockquote>
-<p>touch filename</p>
-</blockquote>
-<p>5.grep 命令<br>命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等等</p>
-<blockquote>
-<p>grep [-acinv] [–color=auto] ‘查找字符串’ filename</p>
-</blockquote>
-<p>它的常用参数如下：</p>
-<blockquote>
-<p>-a ：将binary文件以text文件的方式查找数据<br>-c ：计算找到‘查找字符串’的次数<br>-i ：忽略大小写的区别，即把大小写视为相同<br>-v ：反向选择，即显示出没有‘查找字符串’内容的那一行<br> 例如：<br> 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色<br>grep –color=auto ‘MANPATH’ /etc/man.config<br>把ls -l的输出中包含字母file（不区分大小写）的内容输出<br>ls -l | grep -i file</p>
-</blockquote>
-<p>6.find 命令<br>find是一个基于查找的功能非常强大的命令，相对而言，它的使用也相对较为复杂，参数也比较多，所以在这里将给把它们分类列出，它的基本语法如下：</p>
-<blockquote>
-<p>find [PATH] [option] [action]<br>与时间有关的参数：<br>-mtime n : n为数字，意思为在n天之前的“一天内”被更改过的文件；<br>-mtime +n : 列出在n天之前（不含n天本身）被更改过的文件名；<br>-mtime -n : 列出在n天之内（含n天本身）被更改过的文件名；<br>-newer file : 列出比file还要新的文件名<br>例如：<br>find /root -mtime 0 # 在当前目录下查找今天之内有改动的文件<br>与用户或用户组名有关的参数：<br>-user name : 列出文件所有者为name的文件<br>-group name : 列出文件所属用户组为name的文件<br>-uid n : 列出文件所有者为用户ID为n的文件<br>-gid n : 列出文件所属用户组为用户组ID为n的文件<br>例如：<br>find /home/ljianhui -user ljianhui # 在目录/home/ljianhui中找出所有者为ljianhui的文件<br>与文件权限及名称有关的参数：<br>-name filename ：找出文件名为filename的文件<br>-size [+-]SIZE ：找出比SIZE还要大（+）或小（-）的文件<br>-tpye TYPE ：查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件（f)、设备文件（b、c）、<br>             目录（d）、连接文件（l）、socket（s）、FIFO管道文件（p）；<br>-perm mode ：查找文件权限刚好等于mode的文件，mode用数字表示，如0755；<br>-perm -mode ：查找文件权限必须要全部包括mode权限的文件，mode用数字表示<br>-perm +mode ：查找文件权限包含任一mode的权限的文件，mode用数字表示<br>例如：<br>find / -name passwd # 查找文件名为passwd的文件<br>find . -perm 0755 # 查找当前目录中文件权限的0755的文件<br>find . -size +12k # 查找当前目录中大于12KB的文件，注意c表示byte</p>
-</blockquote>
-<p>7.cp 命令<br>拷贝命令,命令用于复制文件，copy:</p>
-<blockquote>
-<p>   -a ：将文件的特性一起复制<br>    -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份<br>    -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行<br>    -r ：递归持续复制，用于目录的复制行为<br>    -u ：目标文件与源文件有差异时才会复制  </p>
-</blockquote>
-<p>8.mv 命令</p>
-<blockquote>
-<p>mv oldname newname<br>9.ps 命令<br>命令用于将某个时间点的进程运行情况选取下来并输出，process之意:<br>-A ：所有的进程均显示出来<br>-a ：不与terminal有关的所有进程<br>-u ：有效用户的相关进程<br>-x ：一般与a参数一起使用，可列出较完整的信息<br>-l ：较长，较详细地将PID的信息列出</p>
-</blockquote>
-<p>常用如下:</p>
-<blockquote>
-<p>ps aux # 查看系统所有的进程数据<br>ps ax # 查看不与terminal有关的所有进程<br>ps -lA # 查看系统所有的进程数据<br>ps axjf # 查看连同一部分进程树状态  </p>
-</blockquote>
-<p>10.kill 命令<br>该命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号:</p>
-<blockquote>
-<p><code>kill -signal PID</code></p>
-</blockquote>
-<p>signal的常用参数如下：</p>
-<blockquote>
-<p>1：SIGHUP，启动被终止的进程<br> 2：SIGINT，相当于输入ctrl+c，中断一个程序的进行<br> 9：SIGKILL，强制中断一个进程的进行<br> 15：SIGTERM，以正常的结束进程方式来终止进程<br> 17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行  </p>
-</blockquote>
-<p>11.killall 命令<br>命令用于向一个命令启动的进程发送一个信号，它的一般语法如下</p>
-<blockquote>
-<p>killall [-iIe] [command name]</p>
-</blockquote>
-<p>具体参数解释:</p>
-<blockquote>
-<p>-i ：交互式的意思，若需要删除时，会询问用户<br>-e ：表示后面接的command name要一致，但command name不能超过15个字符<br>-I ：命令名称忽略大小写</p>
-</blockquote>
-<p>12.file 命令<br>用于判断接在file命令后的文件的基本数据</p>
-<blockquote>
-<p><code>file filename</code></p>
-</blockquote>
-<p>13.tar 命令<br>该命令用于对文件进行打包，默认情况并不会压缩，如果指定了相应的参数，它还会调用相应的压缩程序:</p>
-<blockquote>
-<p>   -c ：新建打包文件<br>    -t ：查看打包文件的内容含有哪些文件名<br>    -x ：解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中<br>    -j ：通过bzip2的支持进行压缩/解压缩<br>    -z ：通过gzip的支持进行压缩/解压缩<br>    -v ：在压缩/解压缩过程中，将正在处理的文件名显示出来<br>    -f filename ：filename为要处理的文件<br>    -C dir ：指定压缩/解压缩的目录dir  </p>
-</blockquote>
-<p>14.cat 命令<br>用于查看文本文件的内容</p>
-<blockquote>
-<p><code>cat filename</code></p>
-</blockquote>
-<p>15.gcc 命令</p>
-<blockquote>
-<p>-o ：output之意，用于指定生成一个可执行文件的文件名<br>-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序<br>-I ：增加编译时搜索头文件的路径<br>-L ：增加编译时搜索静态连接库的路径<br>-S ：把源文件生成汇编代码文件<br>-lm：表示标准库的目录中名为libm.a的函数库<br>-lpthread ：连接NPTL实现的线程库<br>-std= ：用于指定把使用的C语言的版本<br># 把源文件test.c按照c99标准编译成可执行程序test<br><code>gcc -o test test.c -lm -std=c99</code><br>#把源文件test.c转换为相应的汇编程序源文件test.s<br><code>gcc -S test.c</code></p>
-</blockquote>
-<p>16.rm 命令<br>用于删除文件或目录，remove</p>
-<blockquote>
-<p>-f ：就是force的意思，忽略不存在的文件，不会出现警告消息<br>-i ：互动模式，在删除前会询问用户是否操作<br>-r ：递归删除，最常用于目录删除，它是一个非常危险的参数</p>
-</blockquote>
-<p>例如</p>
-<blockquote>
-<p><code>rm -i file</code> #删除文件file，在删除之前会询问是否进行该操作<br><code>rm -fr dir</code> # 强制删除目录dir中的所有文件</p>
-</blockquote>
-<p>17.chgrp命令<br>用于改变文件所属用户组，它的使用非常简单，它的基本用法如下：</p>
-<blockquote>
-<p>chgrp [-R] dirname/filename<br>-R ：进行递归的持续对所有文件和子目录更改</p>
-</blockquote>
-<p>18.chown命令<br>该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同，不再详述。</p>
-<p>19.chmod命令<br>该命令用于改变文件的权限，一般的用法如下：</p>
-<blockquote>
-<p>chmod [-R] xyz 文件或目录<br>-R：进行递归的持续更改，即连同子目录下的所有文件都会更改</p>
-</blockquote>
-<p>20.time命令<br>该命令用于测算一个命令（即程序）的执行时间。</p>
-<blockquote>
-<p>time ./process<br>time ps aux</p>
-</blockquote>
-<p>在程序或命令运行结束后，在最后输出了三个时间，它们分别是：<br>user：用户CPU时间，命令执行完成花费的用户CPU时间，即命令在用户态中执行时间总和；<br>system：系统CPU时间，命令执行完成花费的系统CPU时间，即命令在核心态中执行时间总和；<br>real：实际时间，从command命令行开始执行到运行终止的消逝时间；</p>
-<p>注：用户CPU时间和系统CPU时间之和为CPU时间，即命令占用CPU执行的时间总和。实际时间要大于CPU时间，因为Linux是多任务操作系统，往往在执行一条命令时，系统还要处理其它任务。另一个需要注意的问题是即使每次执行相同命令，但所花费的时间也是不一样，其花费时间是与系统运行相关的。</p>
+          如何在linux上活下去1.cd 命令用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。
 
-          
+cd /mnt          进入/mntcd ~           进入用户家目录cd 绝对路径 or 相对路径  
+
+2.ls 命令查看文件与目录的命令，list之
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/06/linux基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1692,11 +1126,26 @@ test.sh
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/02/ajax/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/02/ajax/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
-
           
+          
+             <span id="/2015/01/02/ajax/" class="leancloud_visitors" data-flag-title="ajax初探">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -1713,48 +1162,17 @@ test.sh
       
         
           
-            <h4 id="ajax简介"><a href="#ajax简介" class="headerlink" title="ajax简介"></a>ajax简介</h4><ul>
-<li>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </li>
-<li>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </li>
-<li>AJAX 是一种用于创建快速动态网页的技术。  </li>
-</ul>
-<h4 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h4><ol>
-<li>在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。</li>
-<li>在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。<br>2.1 如何更改页面信息呢？<br>可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。<br>2.2 如何与后台进行交互？<br>那么，我们必须向后台进行请求，可以用个超链接<code>&lt;a href=&#39;#&#39; title=&#39;&#39; target=_blank&lt;/a&gt;</code>,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。<br>可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4>Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。<br>XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    <ul>
-<li>所以我们先从XMLHttpRequest讲起，来看看它的工作原理。<br>　  首先，我们先来看看XMLHttpRequest这个对象的属性。<br>　　它的属性有:  <ul>
-<li>onreadystatechange  每次状态改变所触发事件的事件处理程序。</li>
-<li>responseText     从服务器进程返回数据的字符串形式。</li>
-<li>responseXML    从服务器进程返回的DOM兼容的文档数据对象。</li>
-<li>status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）</li>
-<li>status Text       伴随状态码的字符串信息</li>
-<li>readyState       对象状态值  <blockquote>
-<p>0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）<br>　　 1 (初始化) 对象已建立，尚未调用send方法<br>　　 2 (发送数据) send方法已调用，但是当前的状态及http头未知<br>　　 3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，<br>　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据  </p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="ajax的使用"><a href="#ajax的使用" class="headerlink" title="ajax的使用"></a>ajax的使用</h4><pre><code>1. 创建XMLHTTPReq
-2. 发送数据
-3. 接受回调数据
-</code></pre><p><pre><code><br>var XMLHttpReq=null;<br>//创建Ajax引擎对象<br>function createXMLHttpRequest() {<br>        try {<br>               XMLHttpReq = new ActiveXObject(“Msxml2.XMLHTTP”);//IE高版本创建XMLHTTP<br>            }<br>            catch(E) {<br>               try {<br>                      XMLHttpReq = new ActiveXObject(“Microsoft.XMLHTTP”);//IE低版本创建XMLHTTP<br>               }<br>               catch(E) {<br>                      XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象<br>               }<br>             }<br>}<br>//向后台发送数据<br>function sendGetAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);<br>            XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>            XMLHttpReq.send(null);<br>}<br>function sendPOSTAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“post”, url, true);<br>             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);<br>             XMLHttpReq.setRequestHeader(“Content-length”, text.length);<br>             XMLHttpReq.setRequestHeader(“Connection”, “close”);<br>             XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>             XMLHttpReq.send(null);<br>}<br>function doResult() {<br>          if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {<br>            //4代表执行完成<br>            //200代表执行成功，删除当前表格</code></pre></p>
-<pre><code>}
-</code></pre><p>}<br></p>
-<h4 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h4><pre><code>* 优点：
-    * 就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。
-    * 异步非阻塞
-    * 可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。
-    * 基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。
-* 缺点：
-    * 用户不知道数据是否更新
-    * 无法回退
-    * 安全问题  
-    任何数据处理在前端，都会暴露后台
-    * 对串流媒体的支持没有FLASH、Java Applet好;
-</code></pre>
-          
+          ajax简介
+AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  
+AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  
+AJAX 是一种用于创建快速动态网页的技术
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/02/ajax/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1912,7 +1330,7 @@ test.sh
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -1978,13 +1396,6 @@ test.sh
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
   
 
   
@@ -2000,6 +1411,25 @@ test.sh
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'chenziyao';
+      var disqus_identifier = 'page/2/index.html';
+      var disqus_title = "";
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
 
 
 
@@ -2011,6 +1441,112 @@ test.sh
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("rVNAfDUaxTLcdOBci1igj0mh-gzGzoHsz", "L6t5swS4xarqe6R14vVvWPDN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
 
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
 </body>
 </html>
