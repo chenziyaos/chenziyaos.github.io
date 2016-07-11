@@ -384,7 +384,8 @@ Node.js 是构建于Chrome的JavaScript引擎的Google的浏览器Chrome，有�
 
   
 
-</nav><br/><br/>
+</nav>
+<br/><br/>
 <nav class="site-nav">
 <ul>
 <blockquote class="blockquote-center">
@@ -465,7 +466,7 @@ Node.js 是构建于Chrome的JavaScript引擎的Google的浏览器Chrome，有�
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/05/06/nodejs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/06/nodejs/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/nodejs/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -636,11 +637,8 @@ res.output();
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2016/05/06/nodejs/"
+           data-title="初探node.js" data-url="https://iceziyao.github.io/2016/05/06/nodejs/">
       </div>
     
   </div>
@@ -863,30 +861,30 @@ res.output();
 
   
 
-
-
+  
+    
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'chenziyao';
-      var disqus_identifier = '2016/05/06/nodejs/';
-      var disqus_title = "初探node.js";
-      var disqus_url = 'https://iceziyao.github.io/2016/05/06/nodejs/';
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"chenziyao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
   
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 

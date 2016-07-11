@@ -376,7 +376,8 @@
 
   
 
-</nav><br/><br/>
+</nav>
+<br/><br/>
 <nav class="site-nav">
 <ul>
 <blockquote class="blockquote-center">
@@ -460,7 +461,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/12/23/nginx配置文件详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/23/nginx配置文件详解/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/nginx配置文件详解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -584,7 +585,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/12/23/nginx负载均衡/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/23/nginx负载均衡/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/nginx负载均衡/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -723,7 +724,7 @@ nginx 反向代理nginx的负载均衡基于反向代理
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/11/24/ftp+mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/24/ftp+mysql/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/24/ftp+mysql/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -857,7 +858,7 @@ nginx 反向代理nginx的负载均衡基于反向代理
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/10/11/shell编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/shell编程/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/11/shell编程/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -992,7 +993,7 @@ echo
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/10/06/linux基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/06/linux基础/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/06/linux基础/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1129,7 +1130,7 @@ cd /mnt          进入/mntcd ~           进入用户家目录cd 绝对路径 o
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/01/02/ajax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/02/ajax/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/02/ajax/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1407,28 +1408,30 @@ AJAX 是一种用于创建快速动态网页的技术
 
   
 
-
-
+  
+    
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'chenziyao';
-      var disqus_identifier = 'page/2/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"chenziyao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-    </script>
   
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 
