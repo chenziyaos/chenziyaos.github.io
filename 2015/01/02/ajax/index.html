@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -104,7 +104,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 
 发展
 在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每">
-<meta property="og:updated_time" content="2016-07-10T18:32:07.585Z">
+<meta property="og:updated_time" content="2016-07-11T15:16:56.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax初探">
 <meta name="twitter:description" content="ajax简介
@@ -120,7 +120,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -524,9 +524,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 <h4 id="ajax的使用"><a href="#ajax的使用" class="headerlink" title="ajax的使用"></a>ajax的使用</h4><pre><code>1. 创建XMLHTTPReq
 2. 发送数据
 3. 接受回调数据
-</code></pre><p><pre><code><br>var XMLHttpReq=null;<br>//创建Ajax引擎对象<br>function createXMLHttpRequest() {<br>        try {<br>               XMLHttpReq = new ActiveXObject(“Msxml2.XMLHTTP”);//IE高版本创建XMLHTTP<br>            }<br>            catch(E) {<br>               try {<br>                      XMLHttpReq = new ActiveXObject(“Microsoft.XMLHTTP”);//IE低版本创建XMLHTTP<br>               }<br>               catch(E) {<br>                      XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象<br>               }<br>             }<br>}<br>//向后台发送数据<br>function sendGetAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“get”, url+”?”+encodeURI(text), true);<br>            XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>            XMLHttpReq.send(null);<br>}<br>function sendPOSTAjaxRequest(url,text) {<br>             createXMLHttpRequest();                                //创建XMLHttpRequest对象<br>             XMLHttpReq.open(“post”, url, true);<br>             XMLHttpReq.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);<br>             XMLHttpReq.setRequestHeader(“Content-length”, text.length);<br>             XMLHttpReq.setRequestHeader(“Connection”, “close”);<br>             XMLHttpReq.onreadystatechange = doResult; //指定响应函数<br>             XMLHttpReq.send(null);<br>}<br>function doResult() {<br>          if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) {<br>            //4代表执行完成<br>            //200代表执行成功，删除当前表格</code></pre></p>
-<pre><code>}
-</code></pre><p>}<br></p>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">var XMLHttpReq=null;</div><div class="line">//创建Ajax引擎对象</div><div class="line">function createXMLHttpRequest() &#123;</div><div class="line">        try &#123;</div><div class="line">	           XMLHttpReq = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);//IE高版本创建XMLHTTP</div><div class="line">            &#125;</div><div class="line">            catch(E) &#123;</div><div class="line">	           try &#123;</div><div class="line">    	              XMLHttpReq = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE低版本创建XMLHTTP</div><div class="line">	           &#125;</div><div class="line">	           catch(E) &#123;</div><div class="line">    	              XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象</div><div class="line">	           &#125;</div><div class="line">             &#125;</div><div class="line">&#125;</div><div class="line">//向后台发送数据</div><div class="line">function sendGetAjaxRequest(url,text) &#123;</div><div class="line">             createXMLHttpRequest();                                //创建XMLHttpRequest对象</div><div class="line">             XMLHttpReq.open(&quot;get&quot;, url+&quot;?&quot;+encodeURI(text), true);</div><div class="line">            XMLHttpReq.onreadystatechange = doResult; //指定响应函数</div><div class="line">            XMLHttpReq.send(null);</div><div class="line">&#125;</div><div class="line">function sendPOSTAjaxRequest(url,text) &#123;</div><div class="line">             createXMLHttpRequest();                                //创建XMLHttpRequest对象</div><div class="line">             XMLHttpReq.open(&quot;post&quot;, url, true);</div><div class="line">             XMLHttpReq.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);</div><div class="line">             XMLHttpReq.setRequestHeader(&quot;Content-length&quot;, text.length);</div><div class="line">             XMLHttpReq.setRequestHeader(&quot;Connection&quot;, &quot;close&quot;);</div><div class="line">             XMLHttpReq.onreadystatechange = doResult; //指定响应函数</div><div class="line">             XMLHttpReq.send(null);</div><div class="line">&#125;</div><div class="line">function doResult() &#123;</div><div class="line">          if (XMLHttpReq.readyState == 4 &amp;&amp; XMLHttpReq.status == 200) &#123;</div><div class="line">    	    //4代表执行完成                </div><div class="line">            //200代表执行成功，删除当前表格</div><div class="line"></div><div class="line">          &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h4><pre><code>* 优点：
     * 就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。
     * 异步非阻塞
@@ -663,7 +661,7 @@ AJAX 是一种用于创建快速动态网页的技术。
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -760,7 +758,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -825,6 +823,13 @@ AJAX 是一种用于创建快速动态网页的技术。
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>

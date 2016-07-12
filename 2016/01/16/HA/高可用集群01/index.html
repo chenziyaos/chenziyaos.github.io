@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="HA," />
 
 
 
@@ -86,22 +86,26 @@
 
 
 
-<meta name="description" content="linux运维,python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="非衣">
-<meta property="og:url" content="https://iceziyao.github.io/tags/集群/index.html">
+<meta name="description" content="什么是集群?
+集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高可用集群系列之基础篇1">
+<meta property="og:url" content="https://iceziyao.github.io/2016/01/16/HA/高可用集群01/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="linux运维,python">
+<meta property="og:description" content="什么是集群?
+集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载">
+<meta property="og:updated_time" content="2016-07-11T23:41:40.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非衣">
-<meta name="twitter:description" content="linux运维,python">
+<meta name="twitter:title" content="高可用集群系列之基础篇1">
+<meta name="twitter:description" content="什么是集群?
+集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -115,9 +119,9 @@
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/tags/集群/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/01/16/HA/高可用集群01/"/>
 
-  <title> 标签: 集群 | 非衣 </title>
+  <title> 高可用集群系列之基础篇1 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +142,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -384,46 +388,194 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        集群
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                高可用集群系列之基础篇1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T00:00:00+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/集群/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/16/HA/高可用集群01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/16/HA/高可用集群01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+             <span id="/2016/01/16/HA/高可用集群01/" class="leancloud_visitors" data-flag-title="高可用集群系列之基础篇1">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="什么是集群"><a href="#什么是集群" class="headerlink" title="什么是集群?"></a>什么是集群?</h3><blockquote>
+<p>集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。<br>　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。<br>　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。</p>
+</blockquote>
+<h3 id="集群系统的主要优点"><a href="#集群系统的主要优点" class="headerlink" title="集群系统的主要优点:"></a>集群系统的主要优点:</h3><blockquote>
+<p>(1)高可扩展性：<br>    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。<br>    (3)高性能：负载平衡集群允许系统同时接入更多的用户。<br>    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  </p>
+</blockquote>
+<h3 id="集群系统的分类"><a href="#集群系统的分类" class="headerlink" title="集群系统的分类"></a>集群系统的分类</h3><blockquote>
+<p>1)、高可用(High Availability)集群,简称HA集群。<br>    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。<br>    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。<br>    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。<br>    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。<br>    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。<br>    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  </p>
+<h3 id="什么是高可用性-HA"><a href="#什么是高可用性-HA" class="headerlink" title="什么是高可用性 (HA)"></a>什么是高可用性 (HA)</h3><p>计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  </p>
+<ul>
+<li>HA的容错备援运作过程  <blockquote>
+<p>自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。<br>  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。<br>  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  </p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h3 id="HA三种工作方式："><a href="#HA三种工作方式：" class="headerlink" title="HA三种工作方式："></a>HA三种工作方式：</h3><blockquote>
+<p>（1）、主从方式 （非对称方式）<br>工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。<br>（2）、双机双工方式（互备互援）<br>工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。<br>（3）、集群工作方式（多服务器互备方式）<br>工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  </p>
+</blockquote>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/01/16/高可用集群01/" itemprop="url">
-              
-                <span itemprop="name">高可用集群系列之基础01</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>生活不仅是眼前的苟且，还有远方的梦</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/upload/weixin.jpg" alt="陈子瑶 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-01-16T00:00:00+08:00"
-              content="2016-01-16" >
-          01-16
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HA/" rel="tag">#HA</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/16/haproxy/" rel="next" title="Haproxy负载均衡">
+                <i class="fa fa-chevron-left"></i> Haproxy负载均衡
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/03/docker01/" rel="prev" title="浅析docker使用">
+                浅析docker使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -431,6 +583,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/16/HA/高可用集群01/"
+           data-title="高可用集群系列之基础篇1" data-url="https://iceziyao.github.io/2016/01/16/HA/高可用集群01/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -450,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/upload/avar.jpg"
@@ -462,7 +631,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -520,6 +689,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是集群"><span class="nav-number">1.</span> <span class="nav-text">什么是集群?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群系统的主要优点"><span class="nav-number">2.</span> <span class="nav-text">集群系统的主要优点:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群系统的分类"><span class="nav-number">3.</span> <span class="nav-text">集群系统的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是高可用性-HA"><span class="nav-number">4.</span> <span class="nav-text">什么是高可用性 (HA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HA三种工作方式："><span class="nav-number">5.</span> <span class="nav-text">HA三种工作方式：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -548,7 +728,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -614,7 +794,18 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
