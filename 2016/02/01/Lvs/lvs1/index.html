@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="docker," />
+  <meta name="keywords" content="负载均衡," />
 
 
 
@@ -86,43 +86,24 @@
 
 
 
-<meta name="description" content="从虚拟化的种类和层级说起
+<meta name="description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
 
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
+通过LVS提供的负载均衡技术和Li">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析docker实现思想">
-<meta property="og:url" content="https://iceziyao.github.io/2016/04/04/docker02/index.html">
+<meta property="og:title" content="Lvs负载均衡">
+<meta property="og:url" content="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="从虚拟化的种类和层级说起
+<meta property="og:description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
 
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
-<meta property="og:updated_time" content="2016-07-10T18:32:38.031Z">
+通过LVS提供的负载均衡技术和Li">
+<meta property="og:image" content="https://iceziyao.github.io/upload/Lvs.png">
+<meta property="og:updated_time" content="2016-07-23T13:18:13.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析docker实现思想">
-<meta name="twitter:description" content="从虚拟化的种类和层级说起
+<meta name="twitter:title" content="Lvs负载均衡">
+<meta name="twitter:description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
 
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
+通过LVS提供的负载均衡技术和Li">
+<meta name="twitter:image" content="https://iceziyao.github.io/upload/Lvs.png">
 
 
 
@@ -143,9 +124,9 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/2016/04/04/docker02/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/"/>
 
-  <title> 浅析docker实现思想 | 非衣 </title>
+  <title> Lvs负载均衡 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -433,7 +414,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
             
             
               
-                浅析docker实现思想
+                Lvs负载均衡
               
             
           </h1>
@@ -445,8 +426,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-04T00:00:00+08:00" content="2016-04-04">
-              2016-04-04
+            <time itemprop="dateCreated" datetime="2016-02-01T00:00:00+08:00" content="2016-02-01">
+              2016-02-01
             </time>
           </span>
 
@@ -459,8 +440,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
+                  <a href="/categories/负载均衡/" itemprop="url" rel="index">
+                    <span itemprop="name">负载均衡</span>
                   </a>
                 </span>
 
@@ -475,8 +456,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/04/docker02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/04/docker02/" itemprop="commentsCount"></span>
+                <a href="/2016/02/01/Lvs/lvs1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/01/Lvs/lvs1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -485,7 +466,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
           
           
           
-             <span id="/2016/04/04/docker02/" class="leancloud_visitors" data-flag-title="浅析docker实现思想">
+             <span id="/2016/02/01/Lvs/lvs1/" class="leancloud_visitors" data-flag-title="Lvs负载均衡">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -507,68 +488,28 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
       
 
       
-        <h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。<br>在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。<br>使用LVS技术要达到的目标是:</p>
+<blockquote>
+<p>通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。</p>
+</blockquote>
+<h2 id="LVS体系结构"><a href="#LVS体系结构" class="headerlink" title="LVS体系结构"></a>LVS体系结构</h2><ol>
+<li><p>LVS体系结构下图所示：<br><img src="/upload/Lvs.png" alt="Lvs"></p>
+</li>
+<li><p>LVS 集群分为三层结构:  </p>
 <ul>
-<li>cpu虚拟化：可以模拟不同CPU，例如bochs</li>
-<li>完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware</li>
-<li>半虚拟化</li>
-<li>硬件虚拟化：可以当作获得硬件加速的完全虚拟化</li>
-<li>系统虚拟化：host和guest共享一样的内核，例如Openvz</li>
-<li>语言沙盒：只能在语言的范围内使用</li>
-</ul>
-<p>虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？</p>
-<ul>
-<li>cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在</li>
-<li>半虚拟化时，guest内核必须存在补丁<ul>
-<li>系统虚拟化时，用户不能控制自己的内核</li>
-<li>语言沙盒时，用户没有使用api的自由</li>
+<li>负载调度器(load balancer)：它是整个LVS 集群对外的前端机器，负责将client请求发送到一组服务器[多台LB IP]上执行，而client端认为是返回来一个同一个IP【通常把这个IP 称为虚拟IP/VIP】</li>
+<li>服务器池(server pool)：一组真正执行client</li>
+<li>共享存储(shared stored)：它为 server pool 提供了一个共享的存储区，很容易让服务器池拥有相同的内容，提供相同的服务</li>
 </ul>
 </li>
-</ul>
-</blockquote>
-<h2 id="docker的原理"><a href="#docker的原理" class="headerlink" title="docker的原理"></a>docker的原理</h2><ul>
-<li>doceker实现结构<br>–&gt;lxc<br>–&gt;namespace: 仅沙盒隔离，不限制资源。<br>–&gt;cgroup: 仅限制资源，不沙盒隔离。<br>–&gt;aufs<br>–&gt;image管理  </li>
-<li>底层技术<blockquote>
-<p>Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。</p>
-</blockquote>
-</li>
-<li>lxc<blockquote>
-<p>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.</p>
-<ul>
-<li>XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。</li>
-</ul>
-</blockquote>
-</li>
-<li>命名空间(Namespaces)<blockquote>
-<ul>
-<li>Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    </li>
-<li>这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。<br>通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  </li>
-</ul>
-<p>一些Docker使用到的命名空间有：</p>
-<ul>
-<li>pid命名空间: 使用在进程隔离(PID: Process ID)。</li>
-<li>net命名空间: 使用在管理网络接口(NET: Networking</li>
-<li>ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)</li>
-<li>mnt命名空间: 使用在管理挂载点 (MNT: Mount)。</li>
-<li>uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。</li>
-</ul>
-</blockquote>
-</li>
-<li>群组控制(cgroup)<blockquote>
-<p>Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用</p>
-</blockquote>
-</li>
-<li>联合文件系统(UnionFS)<blockquote>
-<p>联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><ul>
-<li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
-<li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
-<li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
-</ul>
-
+</ol>
+<h2 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h2><ol>
+<li>DR</li>
+<li>NAT</li>
+<li>隧道模式</li>
+<li>FULL NAT 模式</li>
+</ol>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2>
       
     </div>
 
@@ -606,7 +547,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag">#docker</a>
+            <a href="/tags/负载均衡/" rel="tag">#负载均衡</a>
           
         </div>
       
@@ -615,16 +556,16 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/03/docker01/" rel="next" title="浅析docker使用">
-                <i class="fa fa-chevron-left"></i> 浅析docker使用
+              <a href="/2016/01/16/haproxy/" rel="next" title="Haproxy负载均衡">
+                <i class="fa fa-chevron-left"></i> Haproxy负载均衡
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/01/python端口/" rel="prev" title="python编写一个端口扫描器">
-                python编写一个端口扫描器 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/03/docker01/" rel="prev" title="浅析docker使用">
+                浅析docker使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -651,8 +592,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/04/docker02/"
-           data-title="浅析docker实现思想" data-url="https://iceziyao.github.io/2016/04/04/docker02/">
+      <div class="ds-thread" data-thread-key="2016/02/01/Lvs/lvs1/"
+           data-title="Lvs负载均衡" data-url="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/">
       </div>
     
   </div>
@@ -761,7 +702,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从虚拟化的种类和层级说起"><span class="nav-number">1.</span> <span class="nav-text">从虚拟化的种类和层级说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker的原理"><span class="nav-number">2.</span> <span class="nav-text">docker的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVS体系结构"><span class="nav-number">2.</span> <span class="nav-text">LVS体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作模式"><span class="nav-number">3.</span> <span class="nav-text">工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">4.</span> <span class="nav-text">算法</span></a></li></ol></div>
             
           </div>
         </section>
