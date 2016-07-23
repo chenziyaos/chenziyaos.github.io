@@ -85,7 +85,7 @@
     <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
     <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-07-23T14:43:29.855Z</updated>
+    <updated>2016-07-23T14:45:10.233Z</updated>
     
     <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
@@ -134,18 +134,11 @@
 　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;原因  &lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;li&gt;原因  &lt;ul&gt;
+&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;具现化  &lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;　　Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
+&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </content>
     
@@ -557,136 +550,6 @@ res.output();
     
     
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇2</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-12T15:46:59.148Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;/li&gt;
-&lt;li&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;primitive：可以理解为主资源，有时候看到的会是native，都是一个意思，该资源只在主节点上有。（当然备份节点一旦将资源夺过来了，也就成了主节点，因此，主节点是相对来说的）&lt;/li&gt;
-&lt;li&gt;group：组资源，将多个资源绑定在一个同一个组上面且运行在同一个节点上。&lt;/li&gt;
-&lt;li&gt;clone：是将primitive资源克隆n份且运行在每一个节点上&lt;/li&gt;
-&lt;li&gt;master/slave：也是将primitive克隆2份、其中master和slave节点各运行一份，且只能在这2个节点上运行。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源约束&quot;&gt;&lt;a href=&quot;#资源约束&quot; class=&quot;headerlink&quot; title=&quot;资源约束&quot;&gt;&lt;/a&gt;资源约束&lt;/h4&gt;&lt;p&gt;对于某些集群服务来说，启动相关的资源是有先后顺序的。例如启动一个mysql集群服务，首先应该先挂载共享存储设备，否则即时mysql服务启动起来了，用户也访问不了数据。因此,要对资源一个约束.  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;位置约束（location）：资源对节点的倾向程度，通常可以使用一个分数（score）来定义，当score为正值时，表示资源倾向与此节点；负值表示资源倾向逃离于此节点。也可以将score定义为-inf(负无穷大)和inf（正无穷大）。例如：有三个节点rs1、rs2、rs3当rs1是主节点且发生故障时，则比较rs2和rs3的score值，谁是正值，则资源将会转移到哪个节点上去。  &lt;/li&gt;
-&lt;li&gt;排列约束（colocation）：用来定义资源是否可以在一起，通常也是使用一个score来定义的。当score是正值表示资源可以在一起；否则表示不可以在一起。通过定义资源类型为group也可以来将所有资源绑定在一起。  &lt;/li&gt;
-&lt;li&gt;顺序约束（order）：用来定义资源启动和停止的顺序。web为例子,备用节点上线后,VIP必须先转移到本地,其次共享存储到位,最后才是开启web服务器.  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源转移&quot;&gt;&lt;a href=&quot;#资源转移&quot; class=&quot;headerlink&quot; title=&quot;资源转移&quot;&gt;&lt;/a&gt;资源转移&lt;/h4&gt;&lt;p&gt;将有故障节点的VIP设置到另一个节点上去，并在另一个节点启用相应的服务，挂载相应的存储设备等等都可以叫做资源转移。  &lt;/p&gt;
-&lt;h2 id=&quot;HA实现原理&quot;&gt;&lt;a href=&quot;#HA实现原理&quot; class=&quot;headerlink&quot; title=&quot;HA实现原理&quot;&gt;&lt;/a&gt;HA实现原理&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;在高可用集群的各节点中定义了一个抽象层,信息传递层(Messaing Layer),用来传递集群之间的事务(Transaction)信息.事务信息中包含了节点的心跳信息(是否在线),节点的主机名、IP等一系列信息&lt;/li&gt;
-&lt;li&gt;通过一个程序获取信息传递层的信息，进行服务调配，资源管理.(资源管理层)&lt;/li&gt;
-&lt;li&gt;服务代理，通过策略代理各节点服务。(资源代理层)&lt;br&gt;信息层传递信息，资源管理层通过监听信息层的信息进行相应规则的资源调配和服务迁移。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;Messaging-Layer（信息传递层）&quot;&gt;&lt;a href=&quot;#Messaging-Layer（信息传递层）&quot; class=&quot;headerlink&quot; title=&quot;Messaging  Layer（信息传递层）&quot;&gt;&lt;/a&gt;Messaging  Layer（信息传递层）&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;主要的作用是传递当前节点的心跳信息，并告知给对方，这样对方就知道其他节点是否在线。如果不在线，则可以实现资源转移，这样另一台节点就可以充当主节点，并正常提供服务。传递心跳信息一般使用一根心跳线连接，该线接口可以使用串行接口也可以是以太网接口来连接。每一个节点上都包含信息层。&lt;br&gt;常见软件:  &lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;hearbeat&lt;/li&gt;
-&lt;li&gt;keepalived&lt;/li&gt;
-&lt;li&gt;ultramonkey&lt;/li&gt;
-&lt;li&gt;Corosync&lt;/li&gt;
-&lt;li&gt;cman&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;ha-aware-CRM-资源管理层&quot;&gt;&lt;a href=&quot;#ha-aware-CRM-资源管理层&quot; class=&quot;headerlink&quot; title=&quot;ha-aware/CRM (资源管理层)&quot;&gt;&lt;/a&gt;ha-aware/CRM (资源管理层)&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Cluster  Resource Messager,资源管理器，它主要是用来提供那些不具有高可用的服务提供高可用性的。它需要借助Messaging  Layer来实现工作，因此工作在Messaging Layer上层。&lt;/li&gt;
-&lt;li&gt;资源管理器的主要工作是根据messaging Layer传递的健康信息来决定服务的启动、停止和资源转移、资源的定义和资源分配。在每一个节点上都包含一个CRM，且每个CRM都维护这一个CIB（Cluster Internet  Base，集群信息库），只有在主节点上的CIB是可以修改的，其他节点上的CIB都是从主节点那里复制而来的。在CRM中还包含LRM和DC等组件。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;CIB&quot;&gt;&lt;a href=&quot;#CIB&quot; class=&quot;headerlink&quot; title=&quot;CIB&quot;&gt;&lt;/a&gt;CIB&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;集群信息库 XML文档&lt;br&gt;集群资源管理器必须借助于Messageing Layer通告给每一个节点，自动的广播或组播给每一个节点，这样就保证了每一个节点上的信息都是一样的，而这些数据在计算机中又怎么样来交互数据的呢，这里就要基于扩展标记语言来实现数据的格式传递的，这种叫半结构化数据基于XML的，所以在各节点之间实现配置信息保存都是通过XML文件保存的，而要能够理解这个XML文件保存的信息使用到一个工具叫CIB(Cluster Information Base集群信息库)；只要能连接到CRM上都可以去配置这个XML文件，首先它会先保存到DC的XML中，然后再由DC同步支每个节点上的XML文件中去的；&lt;br&gt;对于CIB，只有工作在DC（主节点）上的文档是可以修改的，其他CIB都是复制DC上的那个文档而来的。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;LRM&quot;&gt;&lt;a href=&quot;#LRM&quot; class=&quot;headerlink&quot; title=&quot;LRM&quot;&gt;&lt;/a&gt;LRM&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Local Resource  Messager，叫做本地资源管理器，它是CRM的一个子组件，用来获取某个资源的状态，并且管理本地资源的。&lt;br&gt;对于LRM,是执行CRM传递过来的在本地执行某个资源的执行和停止的具体执行人，当某个节点发生故障之后，是由DC通过PE（策略引擎）和TE（实施引擎）来决定是否抢夺资源。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;DC&quot;&gt;&lt;a href=&quot;#DC&quot; class=&quot;headerlink&quot; title=&quot;DC&quot;&gt;&lt;/a&gt;DC&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;事务调节员.当DC所在的主机挂了就会先选出一个DC，再由DC做出事物的决策。&lt;br&gt;任何DC上会额外运行两个进程，一个叫PE(Policy Engine策略引擎)，所谓策略引擎就是将底层信息层收集整个集群中所有节点上的信息在本地生成一个大图big pic来策略节点运行在哪个节点上，并通知其实节点上的资源管理器来实现资源的启动和关闭等操作；一个叫TE(Transition Engine 实施引擎)，它主要是把PE做出的决策通告给对应节点的CRM；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;PE和TE是DC的子组件&lt;/p&gt;
-&lt;h4 id=&quot;PE（策略引擎）&quot;&gt;&lt;a href=&quot;#PE（策略引擎）&quot; class=&quot;headerlink&quot; title=&quot;PE（策略引擎）&quot;&gt;&lt;/a&gt;PE（策略引擎）&lt;/h4&gt;&lt;p&gt;来定义资源转移的一整套转移方式，但只是做策略者，并不亲自来参加资源转移的过程，而是让TE来执行自己的策略。&lt;/p&gt;
-&lt;h4 id=&quot;TE-实施引擎）&quot;&gt;&lt;a href=&quot;#TE-实施引擎）&quot; class=&quot;headerlink&quot; title=&quot;TE (实施引擎）&quot;&gt;&lt;/a&gt;TE (实施引擎）&lt;/h4&gt;&lt;p&gt;执行PE做出的策略的并且只有DC上才运行PE和TE。&lt;/p&gt;
-&lt;h3 id=&quot;实施软件&quot;&gt;&lt;a href=&quot;#实施软件&quot; class=&quot;headerlink&quot; title=&quot;实施软件&quot;&gt;&lt;/a&gt;实施软件&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;可以提供CRM的软件有：  &lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;heartbeat v1自带的资源管理为haresource&lt;/li&gt;
-&lt;li&gt;heartbeat v2自带的资源管理有haresource和crm&lt;/li&gt;
-&lt;li&gt;Pacemaker  &lt;/li&gt;
-&lt;li&gt;Cman 是红帽开发的一个资源管理器,是红帽开发的一个资源管理器,6.x版本后红帽也开始使用强大的pacemaker  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;资源代理层（Resource-Agents）&quot;&gt;&lt;a href=&quot;#资源代理层（Resource-Agents）&quot; class=&quot;headerlink&quot; title=&quot;资源代理层（Resource Agents）&quot;&gt;&lt;/a&gt;资源代理层（Resource Agents）&lt;/h2&gt;&lt;p&gt;集群资源代理(能够管理本节点上的属于集群资源的某一资源的启动，停止和状态信息的脚本)&lt;/p&gt;
-&lt;h3 id=&quot;LSB&quot;&gt;&lt;a href=&quot;#LSB&quot; class=&quot;headerlink&quot; title=&quot;LSB&quot;&gt;&lt;/a&gt;LSB&lt;/h3&gt;&lt;p&gt;常见的如/etc/init.d/下的标准linux脚本风格。&lt;/p&gt;
-&lt;h3 id=&quot;OCF&quot;&gt;&lt;a href=&quot;#OCF&quot; class=&quot;headerlink&quot; title=&quot;OCF&quot;&gt;&lt;/a&gt;OCF&lt;/h3&gt;&lt;p&gt;比LSB更高级  &lt;/p&gt;
-&lt;h3 id=&quot;Legacy-heartbeat&quot;&gt;&lt;a href=&quot;#Legacy-heartbeat&quot; class=&quot;headerlink&quot; title=&quot;Legacy heartbeat&quot;&gt;&lt;/a&gt;Legacy heartbeat&lt;/h3&gt;&lt;p&gt;heartbeat自带的  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-11T23:41:40.975Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
     
   </entry>
   
@@ -1133,6 +996,136 @@ backend mysqlservers
   </entry>
   
   <entry>
+    <title>高可用集群系列之基础篇1</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-07-11T23:41:40.975Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高可用集群系列之基础篇2</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-07-12T15:46:59.148Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;/li&gt;
+&lt;li&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;primitive：可以理解为主资源，有时候看到的会是native，都是一个意思，该资源只在主节点上有。（当然备份节点一旦将资源夺过来了，也就成了主节点，因此，主节点是相对来说的）&lt;/li&gt;
+&lt;li&gt;group：组资源，将多个资源绑定在一个同一个组上面且运行在同一个节点上。&lt;/li&gt;
+&lt;li&gt;clone：是将primitive资源克隆n份且运行在每一个节点上&lt;/li&gt;
+&lt;li&gt;master/slave：也是将primitive克隆2份、其中master和slave节点各运行一份，且只能在这2个节点上运行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;资源约束&quot;&gt;&lt;a href=&quot;#资源约束&quot; class=&quot;headerlink&quot; title=&quot;资源约束&quot;&gt;&lt;/a&gt;资源约束&lt;/h4&gt;&lt;p&gt;对于某些集群服务来说，启动相关的资源是有先后顺序的。例如启动一个mysql集群服务，首先应该先挂载共享存储设备，否则即时mysql服务启动起来了，用户也访问不了数据。因此,要对资源一个约束.  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;位置约束（location）：资源对节点的倾向程度，通常可以使用一个分数（score）来定义，当score为正值时，表示资源倾向与此节点；负值表示资源倾向逃离于此节点。也可以将score定义为-inf(负无穷大)和inf（正无穷大）。例如：有三个节点rs1、rs2、rs3当rs1是主节点且发生故障时，则比较rs2和rs3的score值，谁是正值，则资源将会转移到哪个节点上去。  &lt;/li&gt;
+&lt;li&gt;排列约束（colocation）：用来定义资源是否可以在一起，通常也是使用一个score来定义的。当score是正值表示资源可以在一起；否则表示不可以在一起。通过定义资源类型为group也可以来将所有资源绑定在一起。  &lt;/li&gt;
+&lt;li&gt;顺序约束（order）：用来定义资源启动和停止的顺序。web为例子,备用节点上线后,VIP必须先转移到本地,其次共享存储到位,最后才是开启web服务器.  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;资源转移&quot;&gt;&lt;a href=&quot;#资源转移&quot; class=&quot;headerlink&quot; title=&quot;资源转移&quot;&gt;&lt;/a&gt;资源转移&lt;/h4&gt;&lt;p&gt;将有故障节点的VIP设置到另一个节点上去，并在另一个节点启用相应的服务，挂载相应的存储设备等等都可以叫做资源转移。  &lt;/p&gt;
+&lt;h2 id=&quot;HA实现原理&quot;&gt;&lt;a href=&quot;#HA实现原理&quot; class=&quot;headerlink&quot; title=&quot;HA实现原理&quot;&gt;&lt;/a&gt;HA实现原理&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在高可用集群的各节点中定义了一个抽象层,信息传递层(Messaing Layer),用来传递集群之间的事务(Transaction)信息.事务信息中包含了节点的心跳信息(是否在线),节点的主机名、IP等一系列信息&lt;/li&gt;
+&lt;li&gt;通过一个程序获取信息传递层的信息，进行服务调配，资源管理.(资源管理层)&lt;/li&gt;
+&lt;li&gt;服务代理，通过策略代理各节点服务。(资源代理层)&lt;br&gt;信息层传递信息，资源管理层通过监听信息层的信息进行相应规则的资源调配和服务迁移。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;Messaging-Layer（信息传递层）&quot;&gt;&lt;a href=&quot;#Messaging-Layer（信息传递层）&quot; class=&quot;headerlink&quot; title=&quot;Messaging  Layer（信息传递层）&quot;&gt;&lt;/a&gt;Messaging  Layer（信息传递层）&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;主要的作用是传递当前节点的心跳信息，并告知给对方，这样对方就知道其他节点是否在线。如果不在线，则可以实现资源转移，这样另一台节点就可以充当主节点，并正常提供服务。传递心跳信息一般使用一根心跳线连接，该线接口可以使用串行接口也可以是以太网接口来连接。每一个节点上都包含信息层。&lt;br&gt;常见软件:  &lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;hearbeat&lt;/li&gt;
+&lt;li&gt;keepalived&lt;/li&gt;
+&lt;li&gt;ultramonkey&lt;/li&gt;
+&lt;li&gt;Corosync&lt;/li&gt;
+&lt;li&gt;cman&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;ha-aware-CRM-资源管理层&quot;&gt;&lt;a href=&quot;#ha-aware-CRM-资源管理层&quot; class=&quot;headerlink&quot; title=&quot;ha-aware/CRM (资源管理层)&quot;&gt;&lt;/a&gt;ha-aware/CRM (资源管理层)&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Cluster  Resource Messager,资源管理器，它主要是用来提供那些不具有高可用的服务提供高可用性的。它需要借助Messaging  Layer来实现工作，因此工作在Messaging Layer上层。&lt;/li&gt;
+&lt;li&gt;资源管理器的主要工作是根据messaging Layer传递的健康信息来决定服务的启动、停止和资源转移、资源的定义和资源分配。在每一个节点上都包含一个CRM，且每个CRM都维护这一个CIB（Cluster Internet  Base，集群信息库），只有在主节点上的CIB是可以修改的，其他节点上的CIB都是从主节点那里复制而来的。在CRM中还包含LRM和DC等组件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;CIB&quot;&gt;&lt;a href=&quot;#CIB&quot; class=&quot;headerlink&quot; title=&quot;CIB&quot;&gt;&lt;/a&gt;CIB&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;集群信息库 XML文档&lt;br&gt;集群资源管理器必须借助于Messageing Layer通告给每一个节点，自动的广播或组播给每一个节点，这样就保证了每一个节点上的信息都是一样的，而这些数据在计算机中又怎么样来交互数据的呢，这里就要基于扩展标记语言来实现数据的格式传递的，这种叫半结构化数据基于XML的，所以在各节点之间实现配置信息保存都是通过XML文件保存的，而要能够理解这个XML文件保存的信息使用到一个工具叫CIB(Cluster Information Base集群信息库)；只要能连接到CRM上都可以去配置这个XML文件，首先它会先保存到DC的XML中，然后再由DC同步支每个节点上的XML文件中去的；&lt;br&gt;对于CIB，只有工作在DC（主节点）上的文档是可以修改的，其他CIB都是复制DC上的那个文档而来的。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;LRM&quot;&gt;&lt;a href=&quot;#LRM&quot; class=&quot;headerlink&quot; title=&quot;LRM&quot;&gt;&lt;/a&gt;LRM&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Local Resource  Messager，叫做本地资源管理器，它是CRM的一个子组件，用来获取某个资源的状态，并且管理本地资源的。&lt;br&gt;对于LRM,是执行CRM传递过来的在本地执行某个资源的执行和停止的具体执行人，当某个节点发生故障之后，是由DC通过PE（策略引擎）和TE（实施引擎）来决定是否抢夺资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;DC&quot;&gt;&lt;a href=&quot;#DC&quot; class=&quot;headerlink&quot; title=&quot;DC&quot;&gt;&lt;/a&gt;DC&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;事务调节员.当DC所在的主机挂了就会先选出一个DC，再由DC做出事物的决策。&lt;br&gt;任何DC上会额外运行两个进程，一个叫PE(Policy Engine策略引擎)，所谓策略引擎就是将底层信息层收集整个集群中所有节点上的信息在本地生成一个大图big pic来策略节点运行在哪个节点上，并通知其实节点上的资源管理器来实现资源的启动和关闭等操作；一个叫TE(Transition Engine 实施引擎)，它主要是把PE做出的决策通告给对应节点的CRM；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PE和TE是DC的子组件&lt;/p&gt;
+&lt;h4 id=&quot;PE（策略引擎）&quot;&gt;&lt;a href=&quot;#PE（策略引擎）&quot; class=&quot;headerlink&quot; title=&quot;PE（策略引擎）&quot;&gt;&lt;/a&gt;PE（策略引擎）&lt;/h4&gt;&lt;p&gt;来定义资源转移的一整套转移方式，但只是做策略者，并不亲自来参加资源转移的过程，而是让TE来执行自己的策略。&lt;/p&gt;
+&lt;h4 id=&quot;TE-实施引擎）&quot;&gt;&lt;a href=&quot;#TE-实施引擎）&quot; class=&quot;headerlink&quot; title=&quot;TE (实施引擎）&quot;&gt;&lt;/a&gt;TE (实施引擎）&lt;/h4&gt;&lt;p&gt;执行PE做出的策略的并且只有DC上才运行PE和TE。&lt;/p&gt;
+&lt;h3 id=&quot;实施软件&quot;&gt;&lt;a href=&quot;#实施软件&quot; class=&quot;headerlink&quot; title=&quot;实施软件&quot;&gt;&lt;/a&gt;实施软件&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;可以提供CRM的软件有：  &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;heartbeat v1自带的资源管理为haresource&lt;/li&gt;
+&lt;li&gt;heartbeat v2自带的资源管理有haresource和crm&lt;/li&gt;
+&lt;li&gt;Pacemaker  &lt;/li&gt;
+&lt;li&gt;Cman 是红帽开发的一个资源管理器,是红帽开发的一个资源管理器,6.x版本后红帽也开始使用强大的pacemaker  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;资源代理层（Resource-Agents）&quot;&gt;&lt;a href=&quot;#资源代理层（Resource-Agents）&quot; class=&quot;headerlink&quot; title=&quot;资源代理层（Resource Agents）&quot;&gt;&lt;/a&gt;资源代理层（Resource Agents）&lt;/h2&gt;&lt;p&gt;集群资源代理(能够管理本节点上的属于集群资源的某一资源的启动，停止和状态信息的脚本)&lt;/p&gt;
+&lt;h3 id=&quot;LSB&quot;&gt;&lt;a href=&quot;#LSB&quot; class=&quot;headerlink&quot; title=&quot;LSB&quot;&gt;&lt;/a&gt;LSB&lt;/h3&gt;&lt;p&gt;常见的如/etc/init.d/下的标准linux脚本风格。&lt;/p&gt;
+&lt;h3 id=&quot;OCF&quot;&gt;&lt;a href=&quot;#OCF&quot; class=&quot;headerlink&quot; title=&quot;OCF&quot;&gt;&lt;/a&gt;OCF&lt;/h3&gt;&lt;p&gt;比LSB更高级  &lt;/p&gt;
+&lt;h3 id=&quot;Legacy-heartbeat&quot;&gt;&lt;a href=&quot;#Legacy-heartbeat&quot; class=&quot;headerlink&quot; title=&quot;Legacy heartbeat&quot;&gt;&lt;/a&gt;Legacy heartbeat&lt;/h3&gt;&lt;p&gt;heartbeat自带的  &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Memcached简介</title>
     <link href="https://iceziyao.github.io/2016/01/01/Memcached/"/>
     <id>https://iceziyao.github.io/2016/01/01/Memcached/</id>
@@ -1466,6 +1459,76 @@ server {
     
     
       <category term="php" scheme="https://iceziyao.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP连接的建立与中止</title>
+    <link href="https://iceziyao.github.io/2016/01/01/Net/Tcp11/"/>
+    <id>https://iceziyao.github.io/2016/01/01/Net/Tcp11/</id>
+    <published>2015-12-31T16:00:00.000Z</published>
+    <updated>2016-07-23T23:30:54.255Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;/p&gt;
+&lt;h1 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h1&gt;&lt;h2 id=&quot;连接的建立&quot;&gt;&lt;a href=&quot;#连接的建立&quot; class=&quot;headerlink&quot; title=&quot;连接的建立&quot;&gt;&lt;/a&gt;连接的建立&lt;/h2&gt;&lt;h3 id=&quot;三次握手&quot;&gt;&lt;a href=&quot;#三次握手&quot; class=&quot;headerlink&quot; title=&quot;三次握手&quot;&gt;&lt;/a&gt;三次握手&lt;/h3&gt;&lt;p&gt;所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;TCP三次握手&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端的TCP进程也首先创建传输控制模块TCB，然后向服务端发出连接请求报文段，该报文段首部中的SYN=1，ACK=0，同时选择一个初始序号 seq=i。TCP规定，SYN=1的报文段不能携带数据，但要消耗掉一个序号。这时，TCP客户进程进入SYN—SENT（同步已发送）状态，这是 TCP连接的第一次握手。&lt;/li&gt;
+&lt;li&gt;服务端收到客户端发来的请求报文后，如果同意建立连接，则向客户端发送确认。确认报文中的SYN=1，ACK=1，确认号ack=i+1，同时为自己 选择一个初始序号seq=j。同样该报文段也是SYN=1的报文段，不能携带数据，但同样要消耗掉一个序号。这时，TCP服务端进入SYN—RCVD（同 步收到）状态，这是TCP连接的第二次握手。&lt;/li&gt;
+&lt;li&gt;TCP客户端进程收到服务端进程的确认后，还要向服务端给出确认。确认报文段的ACK=1，确认号ack=j+1，而自己的序号为seq=i+1。 TCP的标准规定，ACK报文段可以携带数据，但如果不携带数据则不消耗序号，因此，如果不携带数据，则下一个报文段的序号仍为seq=i+1。这 时，TCP连接已经建立，客户端进入ESTABLISHED（已建立连接）状态。这是TCP连接的第三次握手，可以看出第三次握手客户端已经可以发送携带 数据的报文段了。&lt;br&gt;当服务端收到确认后，也进入ESTABLISHED（已建立连接）状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为什么要三次握手&lt;br&gt;目的是为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;已失效的连接请求报文段&lt;/strong&gt; 的产生在这样一种情况下：   &lt;blockquote&gt;
+&lt;p&gt;client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。若不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。&lt;br&gt;.&lt;br&gt;三次握手是双方建立连接认证的最小保证。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP三次握手失败&lt;br&gt;我们总是要考虑网络是不可靠的。所以三次握手是存在失败的概率的。&lt;ul&gt;
+&lt;li&gt;如果server端接到了clien发的SYN后回了SYN-ACK后，之后server没有收到clien发送的ACK，会怎么样？  &lt;blockquote&gt;
+&lt;p&gt;此时server端处于SYN—RCVD,根据TCP的重发机制，在server发送SYN-ACK后，会启动一个重传定时器，当在指定时间内没有收到客户端发来的ACK报文时，就会重新发送SYN-ACK报文，并重置记时器。当然，这也不是无休止的，在Linux下，默认重试次数为5次，重试的间隔时间从1s开始每次都翻售，5次的重试时间间隔为1s, 2s, 4s, 8s, 16s，总共31s，第5次发出后还要等32s都知道第5次也超时了。 Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;那么client端会怎么样呢？&lt;blockquote&gt;
+&lt;p&gt;客户端认为连接建立，写数据时，会触发RST&lt;br&gt;如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。&lt;br&gt;但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SYN攻击&lt;br&gt;当正常TCP连接开始时，目的地主机将收到源主机发出的SYN(synchronize/start)信息包，并发回同步应答(同步承认)。 连接建立之前，目的地主机必须监听SYN ACK的ACK（确认）。&lt;br&gt;等待同步应答（SYN ACK）的确认（ACK）时，目的地主机上的大小有限的连接队列将记录等待完成的连接。 因为ACK预计在同步应答后几毫秒内到达，此队列通常迅速倒空。&lt;br&gt;TCP SYN攻击利用了此设计，由攻击源主机（相对于受害主机）生成带有随机源地址的TCP同步信息包。 受害目的地主机发送同步应答回到随机源地址，并且在连接队列中添加新条目。 因为同步应答指定用于不正确或不存在的主机，因此“三方握手”的最后部件永远不会完成，并且条目保留在连接队列中，直到计时器到期，保留时间通常为一分钟。 从随机IP地址快速生成欺骗性TCP同步信息包，有可能填满连接队列，并拒绝合法用户请求的TCP服务。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;连接的中断&quot;&gt;&lt;a href=&quot;#连接的中断&quot; class=&quot;headerlink&quot; title=&quot;连接的中断&quot;&gt;&lt;/a&gt;连接的中断&lt;/h2&gt;&lt;h3 id=&quot;四次挥手&quot;&gt;&lt;a href=&quot;#四次挥手&quot; class=&quot;headerlink&quot; title=&quot;四次挥手&quot;&gt;&lt;/a&gt;四次挥手&lt;/h3&gt;&lt;p&gt;所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;TCP四次挥手&lt;br&gt;由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。&lt;ul&gt;
+&lt;li&gt;第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。&lt;/li&gt;
+&lt;li&gt;第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。&lt;/li&gt;
+&lt;li&gt;第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。&lt;/li&gt;
+&lt;li&gt;第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;为什么要四次挥手&quot;&gt;&lt;a href=&quot;#为什么要四次挥手&quot; class=&quot;headerlink&quot; title=&quot;为什么要四次挥手&quot;&gt;&lt;/a&gt;为什么要四次挥手&lt;/h3&gt;&lt;p&gt;TCP协议是一种面向连接的、可靠的、基于字节流的运输层通信协议。TCP是全双工模式，这就意味着，当client发出FIN报文段时，只是表示client已经没有数据要发送了，client告诉server，数据传输完毕；但是server还有数据要穿，所以client还要继续接受server的数据；当server返回ACK报文段时，表示它已经知道client没有数据发送了，但是server还是可以发送数据到client的；当server也发送了FIN报文段时，这个时候就表示server也没有数据要发送了，就会告诉client，我也没有数据要发送了，之后彼此就会愉快的中断这次TCP连接。如果要正确的理解四次分手的原理，就需要了解四次分手过程中的状态变化。  &lt;/p&gt;
+&lt;h3 id=&quot;四次挥手的状态&quot;&gt;&lt;a href=&quot;#四次挥手的状态&quot; class=&quot;headerlink&quot; title=&quot;四次挥手的状态&quot;&gt;&lt;/a&gt;四次挥手的状态&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;* FIN_WAIT_1: 这个状态要好好解释一下，其实FIN_WAIT_1和FIN_WAIT_2状态的真正含义都是表示等待对方的FIN报文。而这两种状态的区别是：FIN_WAIT_1状态实际上是当SOCKET在ESTABLISHED状态时，它想主动关闭连接，向对方发送了FIN报文，此时该SOCKET即进入到FIN_WAIT_1状态。而当对方回应ACK报文后，则进入到FIN_WAIT_2状态，当然在实际的正常情况下，无论对方何种情况下，都应该马上回应ACK报文，所以FIN_WAIT_1状态一般是比较难见到的，而FIN_WAIT_2状态还有时常常可以用netstat看到。（主动方）
+* FIN_WAIT_2：上面已经详细解释了这种状态，实际上FIN_WAIT_2状态下的SOCKET，表示半连接，也即有一方要求close连接，但另外还告诉对方，我暂时还有点数据需要传送给你(ACK信息)，稍后再关闭连接。（主动方）
+* CLOSE_WAIT：这种状态的含义其实是表示在等待关闭。怎么理解呢？当对方close一个SOCKET后发送FIN报文给自己，你系统毫无疑问地会回应一个ACK报文给对方，此时则进入到CLOSE_WAIT状态。接下来呢，实际上你真正需要考虑的事情是察看你是否还有数据发送给对方，如果没有的话，那么你也就可以 close这个SOCKET，发送FIN报文给对方，也即关闭连接。所以你在CLOSE_WAIT状态下，需要完成的事情是等待你去关闭连接。（被动方）
+* LAST_ACK: 这个状态还是比较容易好理解的，它是被动关闭一方在发送FIN报文后，最后等待对方的ACK报文。当收到ACK报文后，也即可以进入到CLOSED可用状态了。（被动方）
+* TIME_WAIT: 表示收到了对方的FIN报文，并发送出了ACK报文，就等2MSL后即可回到CLOSED可用状态了。如果FINWAIT1状态下，收到了对方同时带FIN标志和ACK标志的报文时，可以直接进入到TIME_WAIT状态，而无须经过FIN_WAIT_2状态。（主动方）
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注：&lt;br&gt;为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？&lt;br&gt;答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。 &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
     
   </entry>
   
@@ -2095,104 +2158,6 @@ lo       65536    10103      0      0 0         10103      0      0      0 LRU
     
     
       <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ftp+mysql搭建ftp认证</title>
-    <link href="https://iceziyao.github.io/2015/11/24/ftp+mysql/"/>
-    <id>https://iceziyao.github.io/2015/11/24/ftp+mysql/</id>
-    <published>2015-11-24T03:49:33.000Z</published>
-    <updated>2016-07-10T18:33:16.441Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;安装所需要程序&quot;&gt;&lt;a href=&quot;#安装所需要程序&quot; class=&quot;headerlink&quot; title=&quot;安装所需要程序&quot;&gt;&lt;/a&gt;安装所需要程序&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y install mysql-server mysql-devel&lt;/code&gt;&lt;br&gt;&lt;code&gt;# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;&lt;/code&gt;  &lt;/li&gt;
-&lt;li&gt;安装pam_mysql-0.7RC1  &lt;pre&gt;&lt;code&gt;# tar zxvf  pam_mysql-0.7RC1.tar.gz
-# cd  pam_mysql-0.7RC1
-# ./configure --with-mysql=/usr --with-openssl
-# make
-# make install  
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;安装vsftpd&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;yum -y install vsftpd&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;创建虚拟用户账号&quot;&gt;&lt;a href=&quot;#创建虚拟用户账号&quot; class=&quot;headerlink&quot; title=&quot;创建虚拟用户账号&quot;&gt;&lt;/a&gt;创建虚拟用户账号&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;准备数据库及相关表&lt;br&gt;首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;create database vsftpd;&lt;br&gt;grant select on vsftpd.&lt;em&gt; to vsftpd@localhost identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; grant select on vsftpd.&lt;/em&gt; to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;&lt;br&gt;mysql&amp;gt; flush privileges;&lt;br&gt;mysql&amp;gt; use vsftpd;&lt;br&gt;mysql&amp;gt; create table users (&lt;br&gt; -&amp;gt; id int AUTO_INCREMENT NOT NULL,&lt;br&gt; -&amp;gt; name char(20) binary NOT NULL,&lt;br&gt; -&amp;gt; password char(48) binary NOT NULL,&lt;br&gt; -&amp;gt; primary key(id)&lt;br&gt; -&amp;gt; );  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;添加测试的虚拟用户&lt;br&gt;根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mysql&amp;gt; insert into users(name,password) values(&amp;apos;tom&amp;apos;,&amp;apos;magedu&amp;apos;);
-mysql&amp;gt; insert into users(name,password) values(&amp;apos;jerry&amp;apos;,&amp;apos;magedu&amp;apos;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;配置vsftpd&quot;&gt;&lt;a href=&quot;#配置vsftpd&quot; class=&quot;headerlink&quot; title=&quot;配置vsftpd&quot;&gt;&lt;/a&gt;配置vsftpd&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;建立pam认证所需文件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#vi /etc/pam.d/vsftpd.mysql
-添加如下两行
-auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-account required /lib/security/pam_mysql.so user=vsftpd
-passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;修改vsftpd的配置文件，使其适应mysql认证&lt;br&gt;建立虚拟用户映射的系统用户及对应的目录  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#useradd -s /sbin/nologin -d /var/ftproot vuser
-#chmod go+rx /var/ftproot
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;请确保/etc/vsftpd.conf中已经启用了以下选项  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;anonymous_enable=YES&lt;br&gt;local_enable=YES&lt;br&gt;write_enable=YES&lt;br&gt;anon_upload_enable=NO&lt;br&gt;anon_mkdir_write_enable=NO&lt;br&gt;chroot_local_user=YES&lt;br&gt;而后添加以下选项&lt;br&gt;guest_enable=YES&lt;br&gt;guest_username=vuser&lt;br&gt;并确保pam_service_name选项的值如下所示&lt;br&gt;pam_service_name=vsftpd.mysql  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;四、启动vsftpd服务&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# service vsftpd start
-# chkconfig vsftpd on
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看端口开启情况  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# netstat -tnlp |grep :21
-tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# ftp localhost
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;五、配置虚拟用户具有不同的访问权限&lt;br&gt;vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;配置vsftpd为虚拟用户使用配置文件目录&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# vim vsftpd.conf
-添加如下选项
-user_config_dir=/etc/vsftpd/vusers_dir
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;创建所需要目录，并为虚拟用户提供配置文件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# mkdir /etc/vsftpd/vusers_dir/
-# cd /etc/vsftpd/vusers_dir/
-# touch tom jerry
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;配置虚拟用户的访问权限&lt;br&gt;虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。&lt;br&gt;&lt;code&gt;anon_upload_enable=YES&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;安装所需要程序&quot;&gt;&lt;a href=&quot;#安装所需要程序&quot; class=&quot;headerlink&quot; title=&quot;安装所需要程序&quot;&gt;&lt;/a&gt;安装所需要程序&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;事先安装好开发环境和mysql数据库;&lt;br&gt;&lt;code&gt;# yum -y instal
-    
-    </summary>
-    
-      <category term="ftp" scheme="https://iceziyao.github.io/categories/ftp/"/>
-    
-    
-      <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
     
   </entry>
   
