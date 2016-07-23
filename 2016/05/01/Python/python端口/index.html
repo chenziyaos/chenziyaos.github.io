@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="负载均衡," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -86,24 +86,28 @@
 
 
 
-<meta name="description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
-
-通过LVS提供的负载均衡技术和Li">
+<meta name="description" content="编写一个端口扫描器
+任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器
+端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  
+处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  
+将主机名转换为对应的IPv4互联网地址，采socket.gethostbyn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lvs负载均衡">
-<meta property="og:url" content="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/index.html">
+<meta property="og:title" content="python编写一个端口扫描器">
+<meta property="og:url" content="https://iceziyao.github.io/2016/05/01/Python/python端口/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
-
-通过LVS提供的负载均衡技术和Li">
-<meta property="og:image" content="https://iceziyao.github.io/upload/Lvs.png">
-<meta property="og:updated_time" content="2016-07-23T13:18:13.282Z">
+<meta property="og:description" content="编写一个端口扫描器
+任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器
+端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  
+处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  
+将主机名转换为对应的IPv4互联网地址，采socket.gethostbyn">
+<meta property="og:updated_time" content="2016-07-23T13:39:03.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lvs负载均衡">
-<meta name="twitter:description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
-
-通过LVS提供的负载均衡技术和Li">
-<meta name="twitter:image" content="https://iceziyao.github.io/upload/Lvs.png">
+<meta name="twitter:title" content="python编写一个端口扫描器">
+<meta name="twitter:description" content="编写一个端口扫描器
+任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器
+端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  
+处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  
+将主机名转换为对应的IPv4互联网地址，采socket.gethostbyn">
 
 
 
@@ -124,9 +128,9 @@
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/05/01/Python/python端口/"/>
 
-  <title> Lvs负载均衡 | 非衣 </title>
+  <title> python编写一个端口扫描器 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -414,7 +418,7 @@
             
             
               
-                Lvs负载均衡
+                python编写一个端口扫描器
               
             
           </h1>
@@ -426,8 +430,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-01T00:00:00+08:00" content="2016-02-01">
-              2016-02-01
+            <time itemprop="dateCreated" datetime="2016-05-01T00:00:00+08:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -440,8 +444,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/负载均衡/" itemprop="url" rel="index">
-                    <span itemprop="name">负载均衡</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -456,8 +460,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/01/Lvs/lvs1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/01/Lvs/lvs1/" itemprop="commentsCount"></span>
+                <a href="/2016/05/01/Python/python端口/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/Python/python端口/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -466,7 +470,7 @@
           
           
           
-             <span id="/2016/02/01/Lvs/lvs1/" class="leancloud_visitors" data-flag-title="Lvs负载均衡">
+             <span id="/2016/05/01/Python/python端口/" class="leancloud_visitors" data-flag-title="python编写一个端口扫描器">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -488,28 +492,37 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。<br>在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。<br>使用LVS技术要达到的目标是:</p>
-<blockquote>
-<p>通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。</p>
-</blockquote>
-<h2 id="LVS体系结构"><a href="#LVS体系结构" class="headerlink" title="LVS体系结构"></a>LVS体系结构</h2><ol>
-<li><p>LVS体系结构下图所示：<br><img src="/upload/Lvs.png" alt="Lvs"></p>
-</li>
-<li><p>LVS 集群分为三层结构:  </p>
-<ul>
-<li>负载调度器(load balancer)：它是整个LVS 集群对外的前端机器，负责将client请求发送到一组服务器[多台LB IP]上执行，而client端认为是返回来一个同一个IP【通常把这个IP 称为虚拟IP/VIP】</li>
-<li>服务器池(server pool)：一组真正执行client</li>
-<li>共享存储(shared stored)：它为 server pool 提供了一个共享的存储区，很容易让服务器池拥有相同的内容，提供相同的服务</li>
+        <h3 id="编写一个端口扫描器"><a href="#编写一个端口扫描器" class="headerlink" title="编写一个端口扫描器"></a>编写一个端口扫描器</h3><ul>
+<li>任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器</li>
+<li>端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  <ul>
+<li>处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  </li>
+<li>将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)</li>
+<li>端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)</li>
 </ul>
 </li>
+</ul>
+<h3 id="实现端口扫描器"><a href="#实现端口扫描器" class="headerlink" title="实现端口扫描器"></a>实现端口扫描器</h3><ol>
+<li><p>main函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">def main():</div><div class="line">    parser = optparse.OptionParser(&quot;usage: %prog&quot; + \</div><div class="line">    &quot;-H &lt;tgtHost host&gt; -P &lt;tgtPort&gt;&quot; ,version=&quot;%prog 1.0&quot;)</div><div class="line">    &apos;&apos;&apos; 添加命令行参 &apos;&apos;&apos;</div><div class="line">    parser.add_option(&apos;-H&apos;,dest=&apos;Host&apos;,type=&apos;string&apos;,help=&apos;specify target host&apos;)</div><div class="line">    parser.add_option(&apos;-P&apos;,dest=&apos;Port&apos;,type=&apos;string&apos;,\</div><div class="line">    help=&apos;specify target port[s] separated by command&apos;)</div><div class="line">    (options ,args) = parser.parse_args()</div><div class="line">    tgtHost = options.Host</div><div class="line">    tgtPorts = str(options.Port).split(&quot;,&quot;)</div><div class="line">    if (tgtHost == None) or (tgtPorts[0] == None):</div><div class="line">        print &apos;[-] You must specify a target host and port[s]&apos;</div><div class="line">        exit(0)</div><div class="line">    portScan(tgtHost,tgtPorts)</div><div class="line">&lt;/code&gt;&lt;/pre&gt;  </div><div class="line">2. portScan(tgtHost,tgtPorts)</div><div class="line">&lt;pre&gt;&lt;code&gt;</div><div class="line">def portScan(tgtHost,tgtPorts):</div><div class="line">    try:</div><div class="line">      tgtIP = gethostbyname(tgtHost)</div><div class="line">    except:</div><div class="line">      print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)</div><div class="line">    try:</div><div class="line">      tgtName = gethostbyaddr(tgtIP)</div><div class="line">      print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]</div><div class="line">    except:</div><div class="line">      print &apos;\n[+] Scan Results for: &apos;+ tgtIP</div><div class="line">    setdefaulttimeout(1)</div><div class="line">    for tgtPort in tgtPorts:</div><div class="line">      connScan(tgtHost,tgtPort)  </div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line">3. connScan(tgtHost, tgtPort)  </div><div class="line">&lt;pre&gt;&lt;code&gt;</div><div class="line">def connScan(tgtHost, tgtPort):</div><div class="line">    try:</div><div class="line">        connSkt = socket(AF_INET,SOCK_STREAM)</div><div class="line">        connSkt.connect((tgtHost,tgtPort))</div><div class="line">        connSkt.send(&apos;Hello\r\n&apos;)</div><div class="line">        results = connSkt.recv(100)</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[+]%d/TCP open&quot; %(tgtPort)</div><div class="line">        print &quot;[+] &quot;+str(results)</div><div class="line">    except:</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[-]%d/TCP closed&quot; %(tgtPort)</div><div class="line">    finally:</div><div class="line">        lock.release()</div><div class="line">        connSkt.close()</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用<br>运行后如下结果  </p>
+<blockquote>
+<p>python portscanner.py -H localhost -P 21,22<br>[+] Scan Reselts for:localhost<br>[+]22/TCP open<br>[+] SSH-2.0-OpenSSH_6.4<br>[+]21/TCP open<br>[+] 220 (vsFTPd 3.0.2)  </p>
+</blockquote>
+</li>
 </ol>
-<h2 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h2><ol>
-<li>DR</li>
-<li>NAT</li>
-<li>隧道模式</li>
-<li>FULL NAT 模式</li>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
+<li>线程优化<br>采用多线程扫描  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for tgtPort in tgtPorts:</div><div class="line">    t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))</div><div class="line">    t.start()</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2>
+<p>这让扫描速度有了很大改进，但又是一个缺点，多个线程同时打印输出，可能出现乱码和失序。我们需要一个信号量来控制，这样代码就会变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">import multiprocessing</div><div class="line">lock = multiprocessing.Semaphore(value=1) #锁</div><div class="line">def connScan(tgtHost, tgtPort):</div><div class="line">    try:</div><div class="line">        connSkt = socket(AF_INET,SOCK_STREAM)</div><div class="line">        connSkt.connect((tgtHost,tgtPort))</div><div class="line">        connSkt.send(&apos;Hello\r\n&apos;)</div><div class="line">        results = connSkt.recv(100)</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[+]%d/TCP open&quot; %(tgtPort)</div><div class="line">        print &quot;[+] &quot;+str(results)</div><div class="line">    except:</div><div class="line">        lock.acquire()</div><div class="line">        print &quot;[-]%d/TCP closed&quot; %(tgtPort)</div><div class="line">    finally:</div><div class="line">        lock.release()</div><div class="line">        connSkt.close()</div><div class="line">def portScan(tgtHost,tgtPorts):</div><div class="line">    try:</div><div class="line">        tgtIP = gethostbyname(tgtHost)</div><div class="line">    except:</div><div class="line">        print &quot;[-] cannot resolve &apos;%s&apos;:Unknown host&quot; %(tgtHost)</div><div class="line">    try:</div><div class="line">        tgtName = gethostbyaddr(tgtIP)</div><div class="line">        print &apos;\n[+] Scan Reselts for:&apos; + tgtName[0]</div><div class="line">    except:</div><div class="line">        print &apos;\n[+] Scan Results for: &apos;+ tgtIP</div><div class="line">    setdefaulttimeout(1)</div><div class="line">    for tgtPort in tgtPorts:</div><div class="line">        #print &apos;Scanning port &apos; + tgtPort</div><div class="line">        t=threading.Thread(target=connScan,args=(tgtIP,int(tgtPort)))</div><div class="line">        t.start()</div></pre></td></tr></table></figure></p>
+<p>完整代码请参考<a href="https://github.com/iceziYao/Grocery/blob/master/portscanner.py" target="_blank" rel="external">portscanner.py</a></p>
+<ol>
+<li>使用nmap端口扫描代码<br>2.1 下载Python-Nmap<br><code>pip install Python-Nmap</code><br>2.2 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import nmap</div><div class="line">import optparse</div><div class="line">from socket import *</div><div class="line">import os,sys</div><div class="line">def nmapScan(tgtHost,tgtPort):</div><div class="line">      nmScan = nmap.PortScanner()</div><div class="line">      nmScan.scan(tgtHost,tgtPort)</div><div class="line">      status = nmScan[tgtHost][&apos;tcp&apos;][int(tgtPort)][&apos;state&apos;]</div><div class="line">      print &apos;[!] %s tcp/%s %s&apos; %(tgtHost,tgtPort,status)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>详细代码查看<a href="https://github.com/iceziYao/Grocery/blob/master/nmapport.py" target="_blank" rel="external">nmapport.py</a></p>
+
       
     </div>
 
@@ -547,7 +560,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/负载均衡/" rel="tag">#负载均衡</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
           
         </div>
       
@@ -556,16 +569,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/16/HA/高可用集群01/" rel="next" title="高可用集群系列之基础篇1">
-                <i class="fa fa-chevron-left"></i> 高可用集群系列之基础篇1
+              <a href="/2016/04/04/docker02/" rel="next" title="浅析docker实现思想">
+                <i class="fa fa-chevron-left"></i> 浅析docker实现思想
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/03/docker01/" rel="prev" title="浅析docker使用">
-                浅析docker使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/06/nodejs/" rel="prev" title="初探node.js">
+                初探node.js <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,8 +605,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/02/01/Lvs/lvs1/"
-           data-title="Lvs负载均衡" data-url="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/">
+      <div class="ds-thread" data-thread-key="2016/05/01/Python/python端口/"
+           data-title="python编写一个端口扫描器" data-url="https://iceziyao.github.io/2016/05/01/Python/python端口/">
       </div>
     
   </div>
@@ -702,7 +715,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVS体系结构"><span class="nav-number">2.</span> <span class="nav-text">LVS体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作模式"><span class="nav-number">3.</span> <span class="nav-text">工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">4.</span> <span class="nav-text">算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写一个端口扫描器"><span class="nav-number">1.</span> <span class="nav-text">编写一个端口扫描器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现端口扫描器"><span class="nav-number">2.</span> <span class="nav-text">实现端口扫描器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li></ol></div>
             
           </div>
         </section>
