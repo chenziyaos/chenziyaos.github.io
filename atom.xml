@@ -1474,15 +1474,65 @@ server {
   </entry>
   
   <entry>
-    <title>Tcp</title>
-    <link href="https://iceziyao.github.io/2016/01/01/Net/tcp/"/>
-    <id>https://iceziyao.github.io/2016/01/01/Net/tcp/</id>
-    <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-07-23T13:37:23.620Z</updated>
+    <title>Tcp协议概述</title>
+    <link href="https://iceziyao.github.io/2015/12/25/Net/tcp10/"/>
+    <id>https://iceziyao.github.io/2015/12/25/Net/tcp10/</id>
+    <published>2015-12-24T16:00:00.000Z</published>
+    <updated>2016-07-23T14:36:53.737Z</updated>
     
-    <content type="html"></content>
+    <content type="html">&lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; class=&quot;headerlink&quot; title=&quot;tcp报文格式&quot;&gt;&lt;/a&gt;tcp报文格式&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.&lt;br&gt;&lt;img src=&quot;/upload/tcp.jpg&quot; alt=&quot;tcp&quot;&gt;  &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;源、目标端口号字段：占16比特。TCP协议通过使用”端口”来标识源端和目标端的应用进程。端口号可以使用0到65535之间的任何数字。在收到服务请求时，操作系统动态地为客户端的应用程序分配端口号。在服务器端，每种服务在”众所周知的端口”（Well-Know Port）为用户提供服务。  &lt;/li&gt;
+&lt;li&gt;顺序号字段：占32比特。用来标识从TCP源端向TCP目标端发送的数据字节流，它表示在这个报文段中的第一个数据字节。  &lt;/li&gt;
+&lt;li&gt;确认号字段：占32比特。只有ACK标志为1时，确认号字段才有效。它包含目标端所期望收到源端的下一个数据字节  &lt;/li&gt;
+&lt;li&gt;头部长度字段：占4比特。给出头部占32比特的数目。没有任何选项字段的TCP头部长度为20字节；最多可以有60字节的TCP头部。&lt;/li&gt;
+&lt;li&gt;标志位字段（U、A、P、R、S、F）：占6比特。各比特的含义如下   &lt;ul&gt;
+&lt;li&gt;URG：紧急指针（urgent pointer）有效  &lt;/li&gt;
+&lt;li&gt;ACK：确认序号有效  &lt;/li&gt;
+&lt;li&gt;PSH：接收方应该尽快将这个报文段交给应用层  &lt;/li&gt;
+&lt;li&gt;RST：重建连接  &lt;/li&gt;
+&lt;li&gt;SYN：发起一个连接  &lt;/li&gt;
+&lt;li&gt;FIN：释放一个连接  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;窗口大小字段：占16比特。此字段用来进行流量控制。单位为字节数，这个值是本机期望一次接收的字节数  &lt;/li&gt;
+&lt;li&gt;TCP校验和字段：占16比特。对整个TCP报文段，即TCP头部和TCP数据进行校验和计算，并由目标端进行验证  &lt;/li&gt;
+&lt;li&gt;紧急指针字段：占16比特。它是一个偏移量，和序号字段中的值相加表示紧急数据最后一个字节的序号  &lt;/li&gt;
+&lt;li&gt;选项字段：占32比特。可能包括”窗口扩大因子”、”时间戳”等选项。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;TCP传输&quot;&gt;&lt;a href=&quot;#TCP传输&quot; class=&quot;headerlink&quot; title=&quot;TCP传输&quot;&gt;&lt;/a&gt;TCP传输&lt;/h2&gt;&lt;p&gt;TCP和UDP处在同一层—运输层，但是TCP和UDP最不同的地方是，TCP提供了一种可靠的数据传输服务，TCP是面向连接的，也就是说，利用TCP通信的两台主机首先要经历一个“拨打电话”的过程，等到通信准备结束才开始传输数据，最后结束通话。所以TCP要比UDP可靠的多，UDP是把数据直接发出去，而不管对方是不是在收信，就算是UDP无法送达，也不会产生ICMP差错报文&lt;/p&gt;
+&lt;h3 id=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;a href=&quot;#TCP保证可靠性的简单工作原理&quot; class=&quot;headerlink&quot; title=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;/a&gt;TCP保证可靠性的简单工作原理&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的 数据报长度将保持不变。由TCP传递给IP的信息单位称为报文段或段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当TCP发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能 及时收到一个确认，将重发这个报文段。在第21章我们将了解TCP协议中自适应的超时 及重传策略。&lt;/li&gt;
+&lt;li&gt;当TCP收到发自TCP连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒，这将在1 9.3节讨论。&lt;/li&gt;
+&lt;li&gt;TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输 过程中的任何变化。如果收到段的检验和有差错， T P将丢弃这个报文段和不确认收到此报文段（希望发端超时并重发）。&lt;/li&gt;
+&lt;li&gt;既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段 的到达也可能会失序。如果必要， TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。&lt;/li&gt;
+&lt;li&gt;TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从这段话中可以看到，TCP中保持可靠性的方式就是&lt;strong&gt;超时重发&lt;/strong&gt;，虽然TCP也可以用各种各样的ICMP报文来处理这些，但是这也不是可靠的，最可靠的方式就是只要不得到确认，就重新发送数据报，直到得到对方的确认为止。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h3&gt;&lt;p&gt;TCP的首部和UDP首部一样，都有发送端口号和接收端口号。但是显然，TCP的首部信息要比UDP的多，可以看到，TCP协议提供了发送和确认所需要的所有必要的信息。这在P171-173有详细地介绍。可以想象一个TCP数据的发送应该是如下的一个过程。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;双方建立连接&lt;ul&gt;
+&lt;li&gt;发送方给接受方TCP数据报，然后等待对方的确认TCP数据报，如果没有，就重新发，如果有，就发送下一个数据报。&lt;/li&gt;
+&lt;li&gt;接受方等待发送方的数据报，如果得到数据报并检验无误，就发送ACK(确认)数据报，并等待下一个TCP数据报的到来。直到接收到FIN(发送完成数据报)&lt;/li&gt;
+&lt;li&gt;中止连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以想见，为了建立一个TCP连接，系统可能会建立一个新的进程（最差也是一个线程），来进行数据的传送&lt;/p&gt;
+</content>
     
     <summary type="html">
+    
+      &lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; c
     
     </summary>
     
@@ -1835,6 +1885,224 @@ http {
   </entry>
   
   <entry>
+    <title>多播和广播</title>
+    <link href="https://iceziyao.github.io/2015/12/06/Net/tcp4/"/>
+    <id>https://iceziyao.github.io/2015/12/06/Net/tcp4/</id>
+    <published>2015-12-05T16:00:00.000Z</published>
+    <updated>2016-07-23T14:01:42.047Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。&lt;br&gt;这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，&lt;br&gt;就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。&lt;br&gt;现在的具有路由功能的主机应该可以将单播数据定向转发，&lt;br&gt;而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;广播-unicast&quot;&gt;&lt;a href=&quot;#广播-unicast&quot; class=&quot;headerlink&quot; title=&quot;广播(unicast)&quot;&gt;&lt;/a&gt;广播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;广播是主机针对某一个网络上的所有主机发送数据包。这个网络可能是网络，可能是子网，还可能是所有的子网。如果是网络，例如A类网址的广播就是 netid.255.255.255，如果是子网，则是netid.netid.subnetid.255；如果是所有的子网（B类IP）则是则是 netid.netid.255.255。广播所用的MAC地址FF-FF-FF-FF-FF-FF。网络内所有的主机都会收到这个广播数据，网卡只要把 MAC地址为FF-FF-FF-FF-FF-FF的数据交给内核就可以了。一般说来ARP，或者路由协议RIP应该是以广播的形式播发的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;多播-multicast&quot;&gt;&lt;a href=&quot;#多播-multicast&quot; class=&quot;headerlink&quot; title=&quot;多播(multicast)&quot;&gt;&lt;/a&gt;多播(multicast)&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;可以说广播是多播的特例，多播就是给一组特定的主机（多播组）发送数据，这样，数据的播发范围会小一些(实际上播发的范围一点也没有变小)，多播的MAC地址是最高字节的低位为一，例 如01-00-00-00-00-00。多播组的地址是D类IP，规定是224.0.0.0-239.255.255.255。  &lt;/li&gt;
+&lt;li&gt;虽然多播比较特殊，但是究其原理，多播的数据还是要通过数据链路层进行MAC地址绑定然后进行发送。所以一个以太网卡在绑定了一个多播IP地址之后，必 定还要绑定一个多播的MAC地址，才能使得其可以像单播那样工作。这个多播的IP和多播MAC地址有一个对应的算法，在书的p133到p134之间。可以看到 这个对应不是一一对应的，主机还是要对多播数据进行过滤。  &lt;/li&gt;
+&lt;li&gt;个人觉得：广播和多播的性质是一样的，路由器会把数据放到局域网里面，然后网卡对这些数据进行过滤，只拿到自己打算要的数据，比如自己感兴趣的多 播数据，自己感兴趣的组播数据。当一个主机运行了一个处理某一个多播IP的进程的时候，这个进程会给网卡绑定一个虚拟的多播mac地址，并做出来一个多播 ip。这样，网卡就会让带有这个多播mac地址的数据进来，从而实现通信，而那些没有监听这些数据的主机就会把这些数据过滤掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;IGMP协议&quot;&gt;&lt;a href=&quot;#IGMP协议&quot; class=&quot;headerlink&quot; title=&quot;IGMP协议&quot;&gt;&lt;/a&gt;IGMP协议&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;IGMP的作用在于，让其他所有需要知道自己处于哪个多播组的主机和路由器知道自己的状态。一般多播路由器根本不需要知道某一个多播组里面有多少个主机，而只要知道自己的子网内还有没有处于某个多播组的主机就可以了。只要某一个多播组还有一台主机，多播路由器就会把数据传输出去，这样，接受方就会通过网卡过滤功能来得到自己想要的数据。为了知道多播组的信息，多播路由器需要定时的发送IGMP查询，IGMP的格式可以看书，各个多播组里面的主机要根据查询来回复自己的状态。路由器来决定有几个多播组，自己要对某一个多播组发送什么样的数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IP协议,ARP协议和RARP协议</title>
+    <link href="https://iceziyao.github.io/2015/12/04/Net/tcp3/"/>
+    <id>https://iceziyao.github.io/2015/12/04/Net/tcp3/</id>
+    <published>2015-12-03T16:00:00.000Z</published>
+    <updated>2016-07-23T14:36:32.409Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。&lt;/p&gt;
+&lt;h2 id=&quot;IP&quot;&gt;&lt;a href=&quot;#IP&quot; class=&quot;headerlink&quot; title=&quot;IP&quot;&gt;&lt;/a&gt;IP&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;IP协议&lt;br&gt;IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IP路由选择&lt;br&gt;当一个IP数据包准备好了的时候，IP数据包(或者说是路由器)是如何将数据包送到目的地的呢?它是怎么选择一个合适的路径来”送货”的呢?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;最特殊的情况是目的主机和主机直连，那么主机根本不用寻找路由，直接把数据传递过去就可以了。至于是怎么直接传递的，这就要靠ARP协议了，后面会讲到。&lt;/li&gt;
+&lt;li&gt;稍微一般一点的情况是，主机通过若干个路由器(router)和目的主机连接。那么路由器就要通过ip包的信息来为ip包寻找到一个合适的目标来进行传递，比如合适的主机，或者合适的路由。路由器或者主机将会用如下的方式来处理某一个IP数据包&lt;/li&gt;
+&lt;li&gt;如果IP数据包的TTL(生命周期)以到，则该IP数据包就被抛弃。&lt;/li&gt;
+&lt;li&gt;搜索路由表，优先搜索匹配主机，如果能找到和IP地址完全一致的目标主机，则将该包发向目标主机&lt;/li&gt;
+&lt;li&gt;搜索路由表，如果匹配主机失败，则匹配同子网的路由器，这需要“子网掩码(1.3.)”的协助。如果找到路由器，则将该包发向路由器。&lt;ul&gt;
+&lt;li&gt;搜索路由表，如果匹配同子网路由器失败，则匹配同网号(第一章有讲解)路由器，如果找到路由器，则将该包发向路由器。&lt;/li&gt;
+&lt;li&gt;搜索陆游表，如果以上都失败了，就搜索默认路由，如果默认路由存在，则发包  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果都失败了，就丢掉这个包。&lt;br&gt;&lt;strong&gt;这再一次证明了，ip包是不可靠的。因为它不保证送达。&lt;/strong&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;子网寻址&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IP地址的定义是网络号+主机号。但是现在所有的主机都要求子网编址，也就是说，把主机号在细分成子网号+主机号。最终一个IP地址就成为 网络号码+子网号+主机号。例如一个B类地址：210.30.109.134。一般情况下，这个IP地址的红色部分就是网络号，而蓝色部分就是子网号，绿色部分就是主机号。至于有多少位代表子网号这个问题上，这没有一个硬性的规定，取而代之的则是子网掩码，校园网相信大多数人都用过，在校园网的设定里面有一个255.255.255.0的东西，这就是子网掩码。子网掩码是由32bit的二进制数字序列,形式为是一连串的1和一连串的0，例如：255.255.255.0(二进制就是11111111.11111111.11111111.00000000)对于刚才的那个B类地址，因为210.30是网络号，那么后面的109.134就是子网号和主机号的组合，又因为子网掩码只有后八bit为0，所以主机号就是IP地址的后八个bit，就是134，而剩下的就是子网号码–109。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;ARP协议&quot;&gt;&lt;a href=&quot;#ARP协议&quot; class=&quot;headerlink&quot; title=&quot;ARP协议&quot;&gt;&lt;/a&gt;ARP协议&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;数据链路层的以太网的协议中，每一个数据包都有一个MAC地址头么?我们知道每一块以太网卡都有一个MAC地址，这个地址是唯一的，那么IP包是如何知道这个MAC地址的?这就是ARP协议的工作。  &lt;/li&gt;
+&lt;li&gt;ARP(地址解析)协议是一种解析协议，本来主机是完全不知道这个IP对应的是哪个主机的哪个接口，当主机要发送一个IP包的时候，会首先查一下自己的ARP高速缓存(就是一个IP-MAC地址对应表缓存)，如果查询的IP-MAC值对不存在，那么主机就向网络发送一个ARP协议广播包，这个广播包里面就有待查询的IP地址，而直接收到这份广播的包的所有主机都会查询自己的IP地址，如果收到广播包的某一个主机发现自己符合条件，那么就准备好一个包含自己的MAC地址的ARP包传送给发送ARP广播的主机，而广播主机拿到ARP包后会更新自己的ARP缓存(就是存放IP-MAC对应表的地方)。发送广播的主机就会用新的ARP缓存数据准备好数据链路层的的数据包发送工作。   &lt;/li&gt;
+&lt;li&gt;一个典型的arp缓存信息如下，在任意一个系统里面用“arp -a”命令就可以看到&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;RARP协议&quot;&gt;&lt;a href=&quot;#RARP协议&quot; class=&quot;headerlink&quot; title=&quot;RARP协议&quot;&gt;&lt;/a&gt;RARP协议&lt;/h2&gt;&lt;p&gt;反向地址转换协议（RARP：Reverse Address Resolution Protocol） 反向地址转换协议（RARP）允许局域网的物理机器从网关服务器的 ARP 表或者缓存上请求其 IP 地址。网络管理员在局域网网关路由器里创建一个表以映射物理地址（MAC）和与其对应的 IP 地址。当设置一台新的机器时，其 RARP 客户机程序需要向路由器上的 RARP 服务器请求相应的 IP 地址。假设在路由表中已经设置了一个记录，RARP 服务器将会返回 IP 地址给机器，此机器就会存储起来以便日后使用。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;工作原理  &lt;blockquote&gt;
+&lt;p&gt;1、网络上的每台设备都会有一个独一无二的硬件地址，通常是由设备厂商分配的MAC地址。PC1从网卡上读取MAC地址，然后在网络上发送一个RARP请求的广播数据包，请求RARP服务器回复该PC的IP地址。&lt;br&gt;2、RARP服务器收到了RARP请求数据包，为其分配IP地址，并将RARP回应发送给PC1。&lt;br&gt;3、PC1收到RARP回应后，就使用得到的IP地址进行通讯。 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据链路层</title>
+    <link href="https://iceziyao.github.io/2015/12/03/Net/tcp2/"/>
+    <id>https://iceziyao.github.io/2015/12/03/Net/tcp2/</id>
+    <published>2015-12-02T16:00:00.000Z</published>
+    <updated>2016-07-23T14:15:55.920Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;数据链路层&quot;&gt;&lt;a href=&quot;#数据链路层&quot; class=&quot;headerlink&quot; title=&quot;数据链路层&quot;&gt;&lt;/a&gt;数据链路层&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;为IP模块发送和 接收IP数据报。&lt;/li&gt;
+&lt;li&gt;为ARP模块发送ARP请求和接收ARP应答。&lt;/li&gt;
+&lt;li&gt;为RARP发送RARP请 求和接收RARP应答&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。  &lt;/p&gt;
+&lt;h2 id=&quot;详解&quot;&gt;&lt;a href=&quot;#详解&quot; class=&quot;headerlink&quot; title=&quot;详解&quot;&gt;&lt;/a&gt;详解&lt;/h2&gt;&lt;p&gt;linux里面的ifconfig -a命令&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;eth0: flags=4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt;  mtu 1500&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ether e0:3f:49:34:3a:1f  txqueuelen 1000  (Ethernet)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RX packets 0  bytes 0 (0.0 B)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RX errors 0  dropped 0  overruns 0  frame 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TX packets 0  bytes 0 (0.0 B)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;device interrupt 18&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;+shell&quot;&gt;lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&amp;lt;host&amp;gt;
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 10099  bytes 4444181 (4.2 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10099  bytes 4444181 (4.2 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;以太网接口&quot;&gt;&lt;a href=&quot;#以太网接口&quot; class=&quot;headerlink&quot; title=&quot;以太网接口&quot;&gt;&lt;/a&gt;以太网接口&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;其中，eth0就是以太网接口，而lo则是loopback接口。这也说明这个主机在网络链路层上至少支持loopback协议和以太网协议。&lt;/p&gt;
+&lt;p&gt;以太网（Ether-net）的定是指数字设备公司（ Digital Equipment Corp.）、英特尔公司（Intel Corp.）和Xerox公司在1982年联合公布的一个标准，这个标准里面使用了一种称作CSMA/CD的接入方法。而IEEE802提供的标准集802.3(还有一部分定义到了802.2中)也提供了一个CSMA/CD的标准。这两个标准稍有不同，TCP/IP协议对这种情况的处理方式如下:&lt;br&gt;&amp;gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以太网的IP数据报封装在RFC894中定义，而IEEE802网络的IP数据报封装在RFC1042中定义。  &lt;/li&gt;
+&lt;li&gt;一台主机一定要能发送和接收RFC894定义的数据报。&lt;br&gt;一台主机可以接收RFC894和RFC1042的封装格式的混合数据报。&lt;br&gt;一台主机也许能够发送RFC1042数据报。&lt;br&gt; 如果主机能同时发送两种类型的分组数据，&lt;br&gt; 那么发送的分组必须是可以设置的，&lt;br&gt; 而且默认条件下必须是RFC 894分组。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;ppp(点对点协议)是从SLIP的替代品。他们都提供了一种低速接入的解决方案。而每一种数据链路层协议，都有一个MTU（最大传输单元）定义，在这个定义下面，如果IP数据报过大，则要进行分片(fragmentation)，使得每片都小于MTU，注意PPP的MTU并不是一个物理定义，而是指一个逻辑定义。可以用netstat来打印出MTU的结果，比如键入netstat -in  &lt;pre&gt;&lt;code class=&quot;+shell&quot;&gt;Kernel Interface table
+Iface      MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0    1500        0      0      0 0             0      0      0      0 BMU
+lo       65536    10103      0      0 0         10103      0      0      0 LRU
+&lt;/code&gt;&lt;/pre&gt;
+就可以观察到eth0的MTU是1500。而lo（环回接口）的MTU则是65536。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;环回接口（loopback）&quot;&gt;&lt;a href=&quot;#环回接口（loopback）&quot; class=&quot;headerlink&quot; title=&quot;环回接口（loopback）&quot;&gt;&lt;/a&gt;环回接口（loopback）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;对于环回接口，有如下三点值得注意:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;传给环回地址（一般是127.0.0.1）的任何数据均作为I P输入。&lt;/li&gt;
+&lt;li&gt;传给广播地址或多播地址的数据报复制一份传给环回接口，然后送到以太网上。这是 因为广播传送和多播传送的定义包含主机本身。&lt;/li&gt;
+&lt;li&gt;任何传给该主机IP地址的数据均送到环回接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数据链路层&quot;&gt;&lt;a href=&quot;#数据链路层&quot; class=&quot;headerlink&quot; title=&quot;数据链路层&quot;&gt;&lt;/a&gt;数据链路层&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;为IP模块发送和 接收IP数据报。&lt;/li&gt;
+&lt;li&gt;为ARP模块发送ARP请求和接收ARP应答。&lt;/l
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP/IP基础</title>
+    <link href="https://iceziyao.github.io/2015/12/03/Net/tcp1/"/>
+    <id>https://iceziyao.github.io/2015/12/03/Net/tcp1/</id>
+    <published>2015-12-02T16:00:00.000Z</published>
+    <updated>2016-07-23T13:56:08.485Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;为什么会有TCP-IP协议&quot;&gt;&lt;a href=&quot;#为什么会有TCP-IP协议&quot; class=&quot;headerlink&quot; title=&quot;为什么会有TCP/IP协议&quot;&gt;&lt;/a&gt;为什么会有TCP/IP协议&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在世界上各地，各种各样的电脑运行着各自不同的操作系统为大家服务，这些电脑在表达同一种信息的时候所使用的方法是千差万别。&lt;br&gt;就如同世界各地人的口音，彼此无法听懂。计算机只是单兵作战并不会发挥太大的作用。只有把它们联合起来，电脑才会发挥出它最大的潜力。&lt;br&gt;于是人们就想方设法的用电线把电脑连接到了一起。&lt;br&gt;但是简单的连到一起是远远不够的，就好像语言不同的两个人互相见了面，完全不能交流信息。因而他们需要定义一些共通的东西来进行交流，&lt;br&gt;TCP/IP就是为此而生。TCP/IP不是一个协议，而是一个协议族的统称。里面包括了IP协议，IMCP协议，TCP协议，&lt;br&gt;以及我们更加熟悉的http、ftp、pop3协议等等。电脑有了这些，就好像学会了外语一样，就可以和其他的计算机终端做自由的交流了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;TCP-IP协议分层&quot;&gt;&lt;a href=&quot;#TCP-IP协议分层&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP协议分层&quot;&gt;&lt;/a&gt;TCP/IP协议分层&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;TCP/IP将网络分为四层，分别为：  &lt;blockquote&gt;
+&lt;p&gt;应用层 —— telent，FTP，E-mail&lt;br&gt;传输层 —— tcp和udp&lt;br&gt;网络层 —— IP，ICMP和IGMP&lt;br&gt;链路层 —— 设备驱动程序及接口网卡&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;每一层具有不同的作用：  &lt;blockquote&gt;
+&lt;p&gt;1).链路层&lt;br&gt;2).网络层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;整个TCP/IP协议栈的核心。它的功能是把分组发往目标网络或主机。同时，为了尽快地发送分组，可能需要沿不同的路径同时进行分组传递。因此，分组到达的顺序和发送的顺序可能不同，这就需要上层必须对分组进行排序。  &lt;/li&gt;
+&lt;li&gt;网络层定义了分组格式和协议，即IP协议（Internet Protocol）。 　　&lt;/li&gt;
+&lt;li&gt;网络层除了需要完成路由的功能外，也可以完成将不同类型的网络（异构网）互连的任务。除此之外，网络层还需要完成拥塞控制的功能。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3).传输层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在TCP/IP模型中，传输层的功能是使源端主机和目标端主机上的对等实体可以进行会话。在传输层定义了两种服务质量不同的协议。即：传输控制协议TCP（transmission control protocol）和用户数据报协议UDP（user datagram protocol）.  &lt;/li&gt;
+&lt;li&gt;TCP协议是一个面向连接的、可靠的协议。它将一台主机发出的字节流无差错地发往互联网上的其他主机。在发送端，它负责把上层传送下来的字节流分成报文段并传递给下层。在接收端，它负责把收到的报文进行重组后递交给上层。TCP协议还要处理端到端的流量控制，以避免缓慢接收的接收方没有足够的缓冲区接收发送方发送的大量数据.&lt;/li&gt;
+&lt;li&gt;UDP协议是一个不可靠的、无连接协议，主要适用于不需要对报文进行排序和流量控制的场合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4).应用层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP/IP模型将OSI参考模型中的会话层和表示层的功能合并到应用层实现。&lt;/li&gt;
+&lt;li&gt;应用层面向不同的网络应用引入了不同的应用层协议。其中，有基于TCP协议的，如文件传输协议（File Transfer Protocol，FTP）、虚拟终端协议（TELNET）、超文本链接协议（Hyper Text Transfer Protocol，HTTP），也有基于UDP协议的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;为什么会有TCP-IP协议&quot;&gt;&lt;a href=&quot;#为什么会有TCP-IP协议&quot; class=&quot;headerlink&quot; title=&quot;为什么会有TCP/IP协议&quot;&gt;&lt;/a&gt;为什么会有TCP/IP协议&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在世界上各地，各种各样的电
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ftp+mysql搭建ftp认证</title>
     <link href="https://iceziyao.github.io/2015/11/24/ftp+mysql/"/>
     <id>https://iceziyao.github.io/2015/11/24/ftp+mysql/</id>
@@ -1929,447 +2197,6 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
     
       <category term="ftp" scheme="https://iceziyao.github.io/tags/ftp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shell编程基础</title>
-    <link href="https://iceziyao.github.io/2015/10/11/shell%E7%BC%96%E7%A8%8B/"/>
-    <id>https://iceziyao.github.io/2015/10/11/shell编程/</id>
-    <published>2015-10-10T16:00:00.000Z</published>
-    <updated>2016-07-10T19:17:54.544Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;Shell与Shell语言&quot;&gt;&lt;a href=&quot;#Shell与Shell语言&quot; class=&quot;headerlink&quot; title=&quot;Shell与Shell语言&quot;&gt;&lt;/a&gt;Shell与Shell语言&lt;/h4&gt;&lt;p&gt;Shell, 实际上这里所说的Shell是一种应用程序, 它负责解释执行你编写的Shell脚本, linux默认就自带了sh/bash/csh/zsh/tcsh/ksh, 你可以这样查看cat /etc/shells&lt;/p&gt;
-&lt;h4 id=&quot;第一个Shell脚本&quot;&gt;&lt;a href=&quot;#第一个Shell脚本&quot; class=&quot;headerlink&quot; title=&quot;第一个Shell脚本&quot;&gt;&lt;/a&gt;第一个Shell脚本&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;#! /bin/sh  
-echo &amp;quot;hello world!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第一行的#!是一个约定标记, 它告诉脚本这段脚本需要什么解释器来执行. 第二行的echo命令则负责向屏幕上输出一句话.&lt;/p&gt;
-&lt;h4 id=&quot;如何运行&quot;&gt;&lt;a href=&quot;#如何运行&quot; class=&quot;headerlink&quot; title=&quot;如何运行?&quot;&gt;&lt;/a&gt;如何运行?&lt;/h4&gt;&lt;p&gt;运行shell程序有3种方法:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;chmod +x使文件具有可执行权限, 直接运行  &lt;/li&gt;
-&lt;li&gt;直接调用解释器, 将脚本文件作为参数传入 (比如bash)  &lt;/li&gt;
-&lt;li&gt;使用source(也可用 . 代替)执行文件  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;通常情况下, 最方便的方式就是方式1, 通过方式1执行你需要在脚本第一行写好这段脚本由哪个解释器来解释, 而通过方式2来执行则没有这个限制, 写了也没用.&lt;br&gt;除此之外方式1与方式2执行命令就没有区别了, 但方式3执行的方式与前两种都不同:  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;使用source执行shell脚本时, 不会创建子进程, 而是在父进程中直接执行!  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h4&gt;&lt;p&gt;和其它语言一样Shell中也有变量, 而且更简单, 但有一些比较特殊的地方.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* Shell中的变量只有字符串这一种类型  
-* Shell中变量名与变量值没有长度限制  
-* Shell的变量也允许比较操作和整数操作, 只要变量中的字符串为数字
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;定义变量&quot;&gt;&lt;a href=&quot;#定义变量&quot; class=&quot;headerlink&quot; title=&quot;定义变量&quot;&gt;&lt;/a&gt;定义变量&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;`name=&amp;quot;ice&amp;quot;`  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;strong&gt; 需要注意: = 两边不能加空格, 当赋值语句包含空格时请加引号(单引号/双引号均可)比如: &lt;/strong&gt;&lt;br&gt;    &lt;code&gt;name=&amp;quot;jj tom&amp;quot;&lt;/code&gt;&lt;br&gt;Shell中的变量可以分为两种类型:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;局部变量 (定义变量时在前面加local修饰符)  &lt;/li&gt;
-&lt;li&gt;全局变量 (定义变量时不加任何修饰符)  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;与其它语言一样局部变量的可见范围是代码块或函数内, 全局变量在全局范围内可见.看个简单的例子:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-num=111 #全局变量
-func1(){
-    local num=222 #局部变量
-    echo $num
-}
-echo &amp;quot;before---$num&amp;quot;
-func1
-echo &amp;quot;after---$num&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:     &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;before---111
-222
-after---111   
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;定义变量-1&quot;&gt;&lt;a href=&quot;#定义变量-1&quot; class=&quot;headerlink&quot; title=&quot;定义变量&quot;&gt;&lt;/a&gt;定义变量&lt;/h5&gt;&lt;p&gt;使用一个定义过的变量, 只要在变量名前面加$即可, 如:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;name=&amp;apos;tom&amp;apos;
-echo $name
-echo ${name} #{} 为了帮助解释器识别变量边界, 非必须
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在使用变量时还有一个地方需要注意, 请看下面的例子:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-str=&amp;apos;abc&amp;apos;
-echo &amp;quot;1 print $str&amp;quot;
-echo &amp;apos;2 print $str&amp;apos;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1 print abc
-2 print $str  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;即:&lt;br&gt;&lt;strong&gt;        被双引号括起来的变量会发生变量替换, 单引号不会 &lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;Shell中注释使用#, 而且它不支持多行注释.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;常用的字符串操作&quot;&gt;&lt;a href=&quot;#常用的字符串操作&quot; class=&quot;headerlink&quot; title=&quot;常用的字符串操作&quot;&gt;&lt;/a&gt;常用的字符串操作&lt;/h4&gt;&lt;h5 id=&quot;字符串拼接&quot;&gt;&lt;a href=&quot;#字符串拼接&quot; class=&quot;headerlink&quot; title=&quot;字符串拼接&quot;&gt;&lt;/a&gt;字符串拼接&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;name=&amp;quot;shell&amp;quot;
-sayHi=&amp;quot;hello, &amp;quot;$name&amp;quot; !&amp;quot;
-sayHi2=&amp;quot;hello, ${name} !&amp;quot;
-echo $sayHi $sayHi2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意: 上面说的单双引号引起的变量替换问题  &lt;/p&gt;
-&lt;h5 id=&quot;获得字符串长度&quot;&gt;&lt;a href=&quot;#获得字符串长度&quot; class=&quot;headerlink&quot; title=&quot;获得字符串长度&quot;&gt;&lt;/a&gt;获得字符串长度&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;string=&amp;quot;abcd&amp;quot;  
-echo ${#string} #输出：4
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;截取字符串&quot;&gt;&lt;a href=&quot;#截取字符串&quot; class=&quot;headerlink&quot; title=&quot;截取字符串&quot;&gt;&lt;/a&gt;截取字符串&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;str=&amp;quot;hello shell&amp;quot;
-echo ${str:2}  #输出: llo shell
-echo ${string:1:3} #输出：ell
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;if-else流程控制&quot;&gt;&lt;a href=&quot;#if-else流程控制&quot; class=&quot;headerlink&quot; title=&quot;if/else流程控制&quot;&gt;&lt;/a&gt;if/else流程控制&lt;/h5&gt;&lt;p&gt;基本语法结构:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if condition
-then
-   do something
-elif condition
-then
-   do something
-elif condition
-then
-   do something
-else
-   do something
-fi
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中, elif语句和else语句非必须的.看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-a=1
-if [ $1=$a ]
-then
-   echo &amp;quot;you input 1&amp;quot;
-elif [ $1=2 ]
-then
-   echo &amp;quot;you input 2&amp;quot;
-else
-   #do nothing
-   echo &amp;quot; you input $1&amp;quot;
- fi
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;很简单, 不过这里有两个地方需要注意, 如果某个条件下的执行体为空, 则你就不能写这个条件 即下面这样会报错:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if condition
-then
-   #do nothing
-elif condition
-then
-   # do nothing
-   #or
-else
-   #do nothing
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt; 另外, [ ] 两边一定要加空格, 下面这样都会报错: &lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if [$a=$b]
-#or
-if [ $a=$b]
-#or
-if [$a=$b ]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只有这样if [ $a=$b ]才是对的.&lt;br&gt;注意: 实际上这里的[]是test命令的一种形式, [是系统的一个内置命令,存在路径是/bin/[,它是调用test命令的标识, 右中括号是关闭条件判断的标识, 因此下面的两个测试语句是等效的:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if test &amp;quot;2&amp;gt;3&amp;quot;
-then
-   ...
-fi
-和
-if [ &amp;quot;2&amp;gt;3&amp;quot; ]
-then
-   ...
-fi
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt; 除[]之外, shell语言中还有几种其它括号, 比如: 单小括号/双小括号/双中括号/… , 不同的括号有不同的用法 &lt;/strong&gt;&lt;/p&gt;
-&lt;h5 id=&quot;switch流程控制&quot;&gt;&lt;a href=&quot;#switch流程控制&quot; class=&quot;headerlink&quot; title=&quot;switch流程控制&quot;&gt;&lt;/a&gt;switch流程控制&lt;/h5&gt;&lt;p&gt;当条件较多时, 可以选择使用switch语句, shell中的switch语句的写法和其它语言还是有些不同的, 基本结构如下:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;case expression in
-   pattern1)
-         do something... ;;
-   pattern2)
-         do something... ;;
-   pattern2)
-         do something... ;;
-    ...
-   esac
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-input=$1
-case $input in
-        1 | 0)
-        str=&amp;quot;一or零&amp;quot;;;
-        2)
-        str=&amp;quot;二&amp;quot;;;
-        3)
-        str=&amp;quot;三&amp;quot;;;
-        *)
-        str=$input;;
-esac
-echo &amp;quot;---$str&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个例子会根据你执行此脚本时传入的参数不同在屏幕上输出不同的值, 其中第一个case 1 | 0代表逻辑或.&lt;br&gt;NOTE:&lt;/p&gt;
-&lt;p&gt;;;相当于其它语言中的break&lt;br&gt;每个pattern之后记得加)&lt;br&gt;最后记得加esac (即反的case)&lt;/p&gt;
-&lt;h5 id=&quot;for循环&quot;&gt;&lt;a href=&quot;#for循环&quot; class=&quot;headerlink&quot; title=&quot;for循环&quot;&gt;&lt;/a&gt;for循环&lt;/h5&gt;&lt;p&gt;基本结构:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;for name [in list]
-do
-    ...
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中,[]括起来的 in list, 为可选部分, 如果省略in list则默认为in “$@”, 即你执行此命令时传入的参数列表.&lt;br&gt;看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;for file in *.txt
-do
-    open $file
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;遍历当前目录下的所有txt文件, 并依次打开.&lt;/p&gt;
-&lt;h5 id=&quot;while循环&quot;&gt;&lt;a href=&quot;#while循环&quot; class=&quot;headerlink&quot; title=&quot;while循环&quot;&gt;&lt;/a&gt;while循环&lt;/h5&gt;&lt;p&gt;基本结构:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;while condition
-do
-    do something...
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-i=0
-while ((i&amp;lt;5));
-do
-    ((i++))
-    echo &amp;quot;i=$i&amp;quot;
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;i=1
-i=2
-i=3
-i=4
-i=5
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NOTE: 你可能需要去了解一下(())的用法&lt;/p&gt;
-&lt;h5 id=&quot;until循环&quot;&gt;&lt;a href=&quot;#until循环&quot; class=&quot;headerlink&quot; title=&quot;until循环&quot;&gt;&lt;/a&gt;until循环&lt;/h5&gt;&lt;p&gt;基本结构&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;until condition
-do
-    do something...
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-i=5
-until ((i==0))
-do
-    ((i--))
-    echo &amp;quot;i=$i&amp;quot;
-done
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;i=4
-i=3
-i=2
-i=1
-i=0
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;跳出循环&quot;&gt;&lt;a href=&quot;#跳出循环&quot; class=&quot;headerlink&quot; title=&quot;跳出循环&quot;&gt;&lt;/a&gt;跳出循环&lt;/h5&gt;&lt;ul&gt;
-&lt;li&gt;shell中也支持break跳出循环, continue跳出本次循环.用法与C, Java中相同&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h4&gt;&lt;p&gt;要定义一个函数, 可以使用下面两种形式:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function funcname(){
-    do something
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;funcname (){
-    do something
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看个例子&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-# ad.sh 计算sum
-add()
-{
-    let &amp;quot;sum=$1+$2&amp;quot;
-    return $sum
-}
-
-add $1 $2
-echo &amp;quot;sum=$?&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输入&lt;br&gt;&lt;code&gt;ad 1 2&lt;/code&gt;&lt;br&gt;输出&lt;br&gt;&lt;code&gt;sum=3&lt;/code&gt;&lt;br&gt;其中, $?在shell中保存的是上一条命令的返回值  &lt;/p&gt;
-&lt;p&gt;NOTE:&lt;/p&gt;
-&lt;p&gt;函数必须先定义后使用&lt;br&gt;如果在函数中使用exit会退出脚本, 如果想退回到原本函数调用的地方, 则可使用return&lt;br&gt;向脚本传递参数&lt;/p&gt;
-&lt;p&gt;先shell脚本传递参数, 非常简单, 只需要在你执行命令的后面跟上即可, 看个例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#! /bin/sh
-# test.sh
-echo &amp;quot;$# parameters&amp;quot;;
-echo &amp;quot;$@&amp;quot;;
-echo &amp;quot;$0&amp;quot;
-echo &amp;quot;$1&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输入:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;test.sh 11 22&lt;/code&gt;&lt;br&gt;输出:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;2 parameters
-11 22
-test.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解释: $@代表所有参数的内容, $#代表所有参数的个数, $0代表脚本的名称, $1代表第一个参数的值.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;Shell与Shell语言&quot;&gt;&lt;a href=&quot;#Shell与Shell语言&quot; class=&quot;headerlink&quot; title=&quot;Shell与Shell语言&quot;&gt;&lt;/a&gt;Shell与Shell语言&lt;/h4&gt;&lt;p&gt;Shell, 实际上这里所说的Shell是一种应用程
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
-    
-    
-      <category term="shell" scheme="https://iceziyao.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux基础</title>
-    <link href="https://iceziyao.github.io/2015/10/06/linux%E5%9F%BA%E7%A1%80/"/>
-    <id>https://iceziyao.github.io/2015/10/06/linux基础/</id>
-    <published>2015-10-05T16:00:00.000Z</published>
-    <updated>2016-07-09T23:06:20.144Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;如何在linux上活下去&quot;&gt;&lt;a href=&quot;#如何在linux上活下去&quot; class=&quot;headerlink&quot; title=&quot;如何在linux上活下去&quot;&gt;&lt;/a&gt;如何在linux上活下去&lt;/h3&gt;&lt;p&gt;1.cd 命令&lt;br&gt;用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;cd /mnt          进入/mnt&lt;br&gt;cd ~           进入用户家目录&lt;br&gt;cd 绝对路径 or 相对路径  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;2.ls 命令&lt;br&gt;查看文件与目录的命令，list之意,常用如下:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-l ：列出长数据串，包含文件的属性与权限数据等&lt;br&gt;&lt;br&gt;-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用)&lt;br&gt;&lt;br&gt;-d ：仅列出目录本身，而不是列出目录的文件数据&lt;br&gt;&lt;br&gt;-h ：将文件容量以较易读的方式（GB，kB等）列出来&lt;br&gt;-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;注：这些参数也可以组合使用  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ls -l #以长数据串的形式列出当前目录下的数据文件和目录&lt;br&gt;ls -lR #以长数据串的形式列出当前目录下的所有文件   &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;3.mkdir 命令&lt;br&gt;创建目录&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;mkdir dir&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;参数：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-p 递归创建&lt;br&gt;-m 给于权限&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;4.touch 命令&lt;br&gt;创建文件&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;touch filename&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;5.grep 命令&lt;br&gt;命令常用于分析一行的信息，若当中有我们所需要的信息，就将该行显示出来，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等等&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;grep [-acinv] [–color=auto] ‘查找字符串’ filename&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;它的常用参数如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-a ：将binary文件以text文件的方式查找数据&lt;br&gt;-c ：计算找到‘查找字符串’的次数&lt;br&gt;-i ：忽略大小写的区别，即把大小写视为相同&lt;br&gt;-v ：反向选择，即显示出没有‘查找字符串’内容的那一行&lt;br&gt; 例如：&lt;br&gt; 取出文件/etc/man.config中包含MANPATH的行，并把找到的关键字加上颜色&lt;br&gt;grep –color=auto ‘MANPATH’ /etc/man.config&lt;br&gt;把ls -l的输出中包含字母file（不区分大小写）的内容输出&lt;br&gt;ls -l | grep -i file&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;6.find 命令&lt;br&gt;find是一个基于查找的功能非常强大的命令，相对而言，它的使用也相对较为复杂，参数也比较多，所以在这里将给把它们分类列出，它的基本语法如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;find [PATH] [option] [action]&lt;br&gt;与时间有关的参数：&lt;br&gt;-mtime n : n为数字，意思为在n天之前的“一天内”被更改过的文件；&lt;br&gt;-mtime +n : 列出在n天之前（不含n天本身）被更改过的文件名；&lt;br&gt;-mtime -n : 列出在n天之内（含n天本身）被更改过的文件名；&lt;br&gt;-newer file : 列出比file还要新的文件名&lt;br&gt;例如：&lt;br&gt;find /root -mtime 0 # 在当前目录下查找今天之内有改动的文件&lt;br&gt;与用户或用户组名有关的参数：&lt;br&gt;-user name : 列出文件所有者为name的文件&lt;br&gt;-group name : 列出文件所属用户组为name的文件&lt;br&gt;-uid n : 列出文件所有者为用户ID为n的文件&lt;br&gt;-gid n : 列出文件所属用户组为用户组ID为n的文件&lt;br&gt;例如：&lt;br&gt;find /home/ljianhui -user ljianhui # 在目录/home/ljianhui中找出所有者为ljianhui的文件&lt;br&gt;与文件权限及名称有关的参数：&lt;br&gt;-name filename ：找出文件名为filename的文件&lt;br&gt;-size [+-]SIZE ：找出比SIZE还要大（+）或小（-）的文件&lt;br&gt;-tpye TYPE ：查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件（f)、设备文件（b、c）、&lt;br&gt;             目录（d）、连接文件（l）、socket（s）、FIFO管道文件（p）；&lt;br&gt;-perm mode ：查找文件权限刚好等于mode的文件，mode用数字表示，如0755；&lt;br&gt;-perm -mode ：查找文件权限必须要全部包括mode权限的文件，mode用数字表示&lt;br&gt;-perm +mode ：查找文件权限包含任一mode的权限的文件，mode用数字表示&lt;br&gt;例如：&lt;br&gt;find / -name passwd # 查找文件名为passwd的文件&lt;br&gt;find . -perm 0755 # 查找当前目录中文件权限的0755的文件&lt;br&gt;find . -size +12k # 查找当前目录中大于12KB的文件，注意c表示byte&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;7.cp 命令&lt;br&gt;拷贝命令,命令用于复制文件，copy:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;   -a ：将文件的特性一起复制&lt;br&gt;    -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份&lt;br&gt;    -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行&lt;br&gt;    -r ：递归持续复制，用于目录的复制行为&lt;br&gt;    -u ：目标文件与源文件有差异时才会复制  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;8.mv 命令&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;mv oldname newname&lt;br&gt;9.ps 命令&lt;br&gt;命令用于将某个时间点的进程运行情况选取下来并输出，process之意:&lt;br&gt;-A ：所有的进程均显示出来&lt;br&gt;-a ：不与terminal有关的所有进程&lt;br&gt;-u ：有效用户的相关进程&lt;br&gt;-x ：一般与a参数一起使用，可列出较完整的信息&lt;br&gt;-l ：较长，较详细地将PID的信息列出&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;常用如下:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ps aux # 查看系统所有的进程数据&lt;br&gt;ps ax # 查看不与terminal有关的所有进程&lt;br&gt;ps -lA # 查看系统所有的进程数据&lt;br&gt;ps axjf # 查看连同一部分进程树状态  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;10.kill 命令&lt;br&gt;该命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;kill -signal PID&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;signal的常用参数如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1：SIGHUP，启动被终止的进程&lt;br&gt; 2：SIGINT，相当于输入ctrl+c，中断一个程序的进行&lt;br&gt; 9：SIGKILL，强制中断一个进程的进行&lt;br&gt; 15：SIGTERM，以正常的结束进程方式来终止进程&lt;br&gt; 17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;11.killall 命令&lt;br&gt;命令用于向一个命令启动的进程发送一个信号，它的一般语法如下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;killall [-iIe] [command name]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;具体参数解释:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-i ：交互式的意思，若需要删除时，会询问用户&lt;br&gt;-e ：表示后面接的command name要一致，但command name不能超过15个字符&lt;br&gt;-I ：命令名称忽略大小写&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;12.file 命令&lt;br&gt;用于判断接在file命令后的文件的基本数据&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;file filename&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;13.tar 命令&lt;br&gt;该命令用于对文件进行打包，默认情况并不会压缩，如果指定了相应的参数，它还会调用相应的压缩程序:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;   -c ：新建打包文件&lt;br&gt;    -t ：查看打包文件的内容含有哪些文件名&lt;br&gt;    -x ：解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中&lt;br&gt;    -j ：通过bzip2的支持进行压缩/解压缩&lt;br&gt;    -z ：通过gzip的支持进行压缩/解压缩&lt;br&gt;    -v ：在压缩/解压缩过程中，将正在处理的文件名显示出来&lt;br&gt;    -f filename ：filename为要处理的文件&lt;br&gt;    -C dir ：指定压缩/解压缩的目录dir  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;14.cat 命令&lt;br&gt;用于查看文本文件的内容&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;cat filename&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;15.gcc 命令&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-o ：output之意，用于指定生成一个可执行文件的文件名&lt;br&gt;-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序&lt;br&gt;-I ：增加编译时搜索头文件的路径&lt;br&gt;-L ：增加编译时搜索静态连接库的路径&lt;br&gt;-S ：把源文件生成汇编代码文件&lt;br&gt;-lm：表示标准库的目录中名为libm.a的函数库&lt;br&gt;-lpthread ：连接NPTL实现的线程库&lt;br&gt;-std= ：用于指定把使用的C语言的版本&lt;br&gt;# 把源文件test.c按照c99标准编译成可执行程序test&lt;br&gt;&lt;code&gt;gcc -o test test.c -lm -std=c99&lt;/code&gt;&lt;br&gt;#把源文件test.c转换为相应的汇编程序源文件test.s&lt;br&gt;&lt;code&gt;gcc -S test.c&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;16.rm 命令&lt;br&gt;用于删除文件或目录，remove&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-f ：就是force的意思，忽略不存在的文件，不会出现警告消息&lt;br&gt;-i ：互动模式，在删除前会询问用户是否操作&lt;br&gt;-r ：递归删除，最常用于目录删除，它是一个非常危险的参数&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;例如&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;rm -i file&lt;/code&gt; #删除文件file，在删除之前会询问是否进行该操作&lt;br&gt;&lt;code&gt;rm -fr dir&lt;/code&gt; # 强制删除目录dir中的所有文件&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;17.chgrp命令&lt;br&gt;用于改变文件所属用户组，它的使用非常简单，它的基本用法如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;chgrp [-R] dirname/filename&lt;br&gt;-R ：进行递归的持续对所有文件和子目录更改&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;18.chown命令&lt;br&gt;该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同，不再详述。&lt;/p&gt;
-&lt;p&gt;19.chmod命令&lt;br&gt;该命令用于改变文件的权限，一般的用法如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;chmod [-R] xyz 文件或目录&lt;br&gt;-R：进行递归的持续更改，即连同子目录下的所有文件都会更改&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;20.time命令&lt;br&gt;该命令用于测算一个命令（即程序）的执行时间。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;time ./process&lt;br&gt;time ps aux&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;在程序或命令运行结束后，在最后输出了三个时间，它们分别是：&lt;br&gt;user：用户CPU时间，命令执行完成花费的用户CPU时间，即命令在用户态中执行时间总和；&lt;br&gt;system：系统CPU时间，命令执行完成花费的系统CPU时间，即命令在核心态中执行时间总和；&lt;br&gt;real：实际时间，从command命令行开始执行到运行终止的消逝时间；&lt;/p&gt;
-&lt;p&gt;注：用户CPU时间和系统CPU时间之和为CPU时间，即命令占用CPU执行的时间总和。实际时间要大于CPU时间，因为Linux是多任务操作系统，往往在执行一条命令时，系统还要处理其它任务。另一个需要注意的问题是即使每次执行相同命令，但所花费的时间也是不一样，其花费时间是与系统运行相关的。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;如何在linux上活下去&quot;&gt;&lt;a href=&quot;#如何在linux上活下去&quot; class=&quot;headerlink&quot; title=&quot;如何在linux上活下去&quot;&gt;&lt;/a&gt;如何在linux上活下去&lt;/h3&gt;&lt;p&gt;1.cd 命令&lt;br&gt;用于切换当前目录，它的参数是要切换到的
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="https://iceziyao.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ajax初探</title>
-    <link href="https://iceziyao.github.io/2015/01/02/ajax/"/>
-    <id>https://iceziyao.github.io/2015/01/02/ajax/</id>
-    <published>2015-01-01T16:00:00.000Z</published>
-    <updated>2016-07-11T15:16:56.716Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;ajax简介&quot;&gt;&lt;a href=&quot;#ajax简介&quot; class=&quot;headerlink&quot; title=&quot;ajax简介&quot;&gt;&lt;/a&gt;ajax简介&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  &lt;/li&gt;
-&lt;li&gt;AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  &lt;/li&gt;
-&lt;li&gt;AJAX 是一种用于创建快速动态网页的技术。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;发展&quot;&gt;&lt;a href=&quot;#发展&quot; class=&quot;headerlink&quot; title=&quot;发展&quot;&gt;&lt;/a&gt;发展&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;在web1.0中，我们需要对页面上的数据进行更新时，需要对整个页面进行重载。这样，每次更改局部信息时，都要进行所有后台数据的全部读取。在网速缓慢的情况下，这会让用户等待时间较长。&lt;/li&gt;
-&lt;li&gt;在web2.0下，我们可以设想这样一种方式，局部的更改数据，而不是加载整个页面。&lt;br&gt;2.1 如何更改页面信息呢？&lt;br&gt;可以使用js，它可以将页面上的元素进行更改。学过前端的都知道，js是可以获取到页面元素，并且修改元素的。&lt;br&gt;2.2 如何与后台进行交互？&lt;br&gt;那么，我们必须向后台进行请求，可以用个超链接&lt;code&gt;&amp;lt;a href=&amp;#39;#&amp;#39; title=&amp;#39;&amp;#39; target=_blank&amp;lt;/a&amp;gt;&lt;/code&gt;,向后台请求。那么问题来了，页面上的很多东西都会改变，都用超链接？这不现实。&lt;br&gt;可不可以让js和后台通过一种机制，直接交互呢？所以ajax产生了。&lt;h4 id=&quot;工作原理&quot;&gt;&lt;a href=&quot;#工作原理&quot; class=&quot;headerlink&quot; title=&quot;工作原理&quot;&gt;&lt;/a&gt;工作原理&lt;/h4&gt;Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。&lt;br&gt;XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。    &lt;ul&gt;
-&lt;li&gt;所以我们先从XMLHttpRequest讲起，来看看它的工作原理。&lt;br&gt;　  首先，我们先来看看XMLHttpRequest这个对象的属性。&lt;br&gt;　　它的属性有:  &lt;ul&gt;
-&lt;li&gt;onreadystatechange  每次状态改变所触发事件的事件处理程序。&lt;/li&gt;
-&lt;li&gt;responseText     从服务器进程返回数据的字符串形式。&lt;/li&gt;
-&lt;li&gt;responseXML    从服务器进程返回的DOM兼容的文档数据对象。&lt;/li&gt;
-&lt;li&gt;status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）&lt;/li&gt;
-&lt;li&gt;status Text       伴随状态码的字符串信息&lt;/li&gt;
-&lt;li&gt;readyState       对象状态值  &lt;blockquote&gt;
-&lt;p&gt;0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）&lt;br&gt;　　 1 (初始化) 对象已建立，尚未调用send方法&lt;br&gt;　　 2 (发送数据) send方法已调用，但是当前的状态及http头未知&lt;br&gt;　　 3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，&lt;br&gt;　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;ajax的使用&quot;&gt;&lt;a href=&quot;#ajax的使用&quot; class=&quot;headerlink&quot; title=&quot;ajax的使用&quot;&gt;&lt;/a&gt;ajax的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;1. 创建XMLHTTPReq
-2. 发送数据
-3. 接受回调数据
-&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;var XMLHttpReq=null;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;//创建Ajax引擎对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function createXMLHttpRequest() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        try &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	           XMLHttpReq = new ActiveXObject(&amp;quot;Msxml2.XMLHTTP&amp;quot;);//IE高版本创建XMLHTTP&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            catch(E) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	           try &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	              XMLHttpReq = new ActiveXObject(&amp;quot;Microsoft.XMLHTTP&amp;quot;);//IE低版本创建XMLHTTP&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	           &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	           catch(E) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	              XMLHttpReq = new XMLHttpRequest();//兼容非IE浏览器，直接创建XMLHTTP对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	           &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;//向后台发送数据&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function sendGetAjaxRequest(url,text) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.open(&amp;quot;get&amp;quot;, url+&amp;quot;?&amp;quot;+encodeURI(text), true);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            XMLHttpReq.send(null);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function sendPOSTAjaxRequest(url,text) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             createXMLHttpRequest();                                //创建XMLHttpRequest对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.open(&amp;quot;post&amp;quot;, url, true);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.setRequestHeader(&amp;quot;Content-type&amp;quot;, &amp;quot;application/x-www-form-urlencoded&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.setRequestHeader(&amp;quot;Content-length&amp;quot;, text.length);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.setRequestHeader(&amp;quot;Connection&amp;quot;, &amp;quot;close&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.onreadystatechange = doResult; //指定响应函数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             XMLHttpReq.send(null);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function doResult() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          if (XMLHttpReq.readyState == 4 &amp;amp;&amp;amp; XMLHttpReq.status == 200) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	    //4代表执行完成                &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            //200代表执行成功，删除当前表格&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;ajax的优缺点&quot;&gt;&lt;a href=&quot;#ajax的优缺点&quot; class=&quot;headerlink&quot; title=&quot;ajax的优缺点&quot;&gt;&lt;/a&gt;ajax的优缺点&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;* 优点：
-    * 就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。
-    * 异步非阻塞
-    * 可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。
-    * 基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。
-* 缺点：
-    * 用户不知道数据是否更新
-    * 无法回退
-    * 安全问题  
-    任何数据处理在前端，都会暴露后台
-    * 对串流媒体的支持没有FLASH、Java Applet好;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;ajax简介&quot;&gt;&lt;a href=&quot;#ajax简介&quot; class=&quot;headerlink&quot; title=&quot;ajax简介&quot;&gt;&lt;/a&gt;ajax简介&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;AJAX即“Asynchronous Javascript And XML”（异步JavaScr
-    
-    </summary>
-    
-      <category term="前端" scheme="https://iceziyao.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="ajax" scheme="https://iceziyao.github.io/tags/ajax/"/>
     
   </entry>
   
