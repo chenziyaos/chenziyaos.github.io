@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="docker," />
+  <meta name="keywords" content="php," />
 
 
 
@@ -86,43 +86,28 @@
 
 
 
-<meta name="description" content="从虚拟化的种类和层级说起
-
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
+<meta name="description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析docker实现思想">
-<meta property="og:url" content="https://iceziyao.github.io/2016/04/04/docker02/index.html">
+<meta property="og:title" content="PHP编译出错">
+<meta property="og:url" content="https://iceziyao.github.io/2016/01/01/lnmp/php/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="从虚拟化的种类和层级说起
-
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
-<meta property="og:updated_time" content="2016-07-10T18:32:38.031Z">
+<meta property="og:description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
+<meta property="og:updated_time" content="2016-07-09T21:55:23.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析docker实现思想">
-<meta name="twitter:description" content="从虚拟化的种类和层级说起
-
-cpu虚拟化：可以模拟不同CPU，例如bochs
-完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
-半虚拟化
-硬件虚拟化：可以当作获得硬件加速的完全虚拟化
-系统虚拟化：host和guest共享一样的内核，例如Openvz
-语言沙盒：只能在语言的范围内使用
-
-虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
+<meta name="twitter:title" content="PHP编译出错">
+<meta name="twitter:description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
 
 
 
@@ -143,9 +128,9 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/2016/04/04/docker02/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/01/01/lnmp/php/"/>
 
-  <title> 浅析docker实现思想 | 非衣 </title>
+  <title> PHP编译出错 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -433,7 +418,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
             
             
               
-                浅析docker实现思想
+                PHP编译出错
               
             
           </h1>
@@ -445,8 +430,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-04T00:00:00+08:00" content="2016-04-04">
-              2016-04-04
+            <time itemprop="dateCreated" datetime="2016-01-01T00:00:00+08:00" content="2016-01-01">
+              2016-01-01
             </time>
           </span>
 
@@ -459,8 +444,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
+                  <a href="/categories/lnmp/" itemprop="url" rel="index">
+                    <span itemprop="name">lnmp</span>
                   </a>
                 </span>
 
@@ -475,8 +460,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/04/docker02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/04/docker02/" itemprop="commentsCount"></span>
+                <a href="/2016/01/01/lnmp/php/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/01/lnmp/php/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -485,7 +470,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
           
           
           
-             <span id="/2016/04/04/docker02/" class="leancloud_visitors" data-flag-title="浅析docker实现思想">
+             <span id="/2016/01/01/lnmp/php/" class="leancloud_visitors" data-flag-title="PHP编译出错">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -507,67 +492,158 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
       
 
       
-        <h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote>
-<ul>
-<li>cpu虚拟化：可以模拟不同CPU，例如bochs</li>
-<li>完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware</li>
-<li>半虚拟化</li>
-<li>硬件虚拟化：可以当作获得硬件加速的完全虚拟化</li>
-<li>系统虚拟化：host和guest共享一样的内核，例如Openvz</li>
-<li>语言沙盒：只能在语言的范围内使用</li>
-</ul>
-<p>虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？</p>
-<ul>
-<li>cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在</li>
-<li>半虚拟化时，guest内核必须存在补丁<ul>
-<li>系统虚拟化时，用户不能控制自己的内核</li>
-<li>语言沙盒时，用户没有使用api的自由</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="docker的原理"><a href="#docker的原理" class="headerlink" title="docker的原理"></a>docker的原理</h2><ul>
-<li>doceker实现结构<br>–&gt;lxc<br>–&gt;namespace: 仅沙盒隔离，不限制资源。<br>–&gt;cgroup: 仅限制资源，不沙盒隔离。<br>–&gt;aufs<br>–&gt;image管理  </li>
-<li>底层技术<blockquote>
-<p>Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。</p>
-</blockquote>
-</li>
-<li>lxc<blockquote>
-<p>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.</p>
-<ul>
-<li>XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。</li>
-</ul>
-</blockquote>
-</li>
-<li>命名空间(Namespaces)<blockquote>
-<ul>
-<li>Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    </li>
-<li>这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。<br>通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  </li>
-</ul>
-<p>一些Docker使用到的命名空间有：</p>
-<ul>
-<li>pid命名空间: 使用在进程隔离(PID: Process ID)。</li>
-<li>net命名空间: 使用在管理网络接口(NET: Networking</li>
-<li>ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)</li>
-<li>mnt命名空间: 使用在管理挂载点 (MNT: Mount)。</li>
-<li>uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。</li>
-</ul>
-</blockquote>
-</li>
-<li>群组控制(cgroup)<blockquote>
-<p>Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用</p>
-</blockquote>
-</li>
-<li>联合文件系统(UnionFS)<blockquote>
-<p>联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><ul>
-<li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
-<li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
-<li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
-</ul>
+        <pre><code>
+   /libxmlrpc/encoding.c:101:undefined reference to 'libiconv_close'
+   　　collect2: ld returned 1 exit status
+   　　make:*** [sapi/fpm/php-fpm] Error 1
+   　　解决方法：
+   　　#make ZEND_EXTRA_LIBS='-liconv'
+   　　错误一、编译php出错
+   　　/php-5.3.2/ext/fileinfo/libmagic/apprentice.c:147:internal compiler
+   error:Segmentation fault
+   　　Please submit a full bug report,
+   　　with preprocessed source if appropriate.
+   　　See <url:http: bugzilla.redhat.com="" bugzilla=""> for instructions.
+   　　The bug is not reproducible,so it is likely a hardware or OS problem.
+   　　make:*** [ext/fileinfo/libmagic/apprentice.lo] Error 1
+   　　解决方法：内存大于1G即可，这是php5.3.2的一个bug
+    或者在./configure加上选项:--disable-fileinfo
+    　　--------------------------------------------------------------------
+    　　错误二、重新构造configure文件出错
+    　　./buildconf --force
+    　　Forcing buildconf
+    　　buildconf:checking installation…
+    　　buildconf:autoconf version 2.59 （ok）
+    　　buildconf:Your version of autoconf likely contains buggy cache code.
+    　　Running vcsclean for you.
+    　　To avoid this,install autoconf-2.13.
+    　　Can't figure out your VCS, not cleaning.
+    　　解决方法：编译安装autoconf-2.13
+    　　再将autoconf-2.13的auotconf文件至/usr/local/autoconf
+    　　--------------------------------------------------------------------
+    　　错误三、编译时缺少库
+    　　configure: error: libXpm.（a|so） not found.
+    　　解决方法：yum install libXpm-devel
+    　　--------------------------------------------------------------------
+    　　错误四、编译时缺少gmp.h文件
+    　　configure: error: Unable to locate gmp.h
+    　　解决方法：yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误五
+    　　Configure: error: xml2-config not found. Please check your libxml2
+    installation.
+    　　解决方法：
+    　　#yum install libxml2 libxml2-devel （For Redhat & Fedora）
+    　　# aptitude install libxml2-dev      （For ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误六
+    　　Checking for pkg-config… /usr/bin/pkg-config
+    　　configure: error: Cannot find OpenSSL’s <evp.h>
+    　　解决方法：
+    　　#yum install openssl openssl-devel
+    　　--------------------------------------------------------------------
+    　　错误七
+    　　Configure: error: Please reinstall the BZip2 distribution
+    　　解决方法：
+    　　# yum install bzip2 bzip2-devel
+    　　--------------------------------------------------------------------
+    　　错误八
+    　　Configure: error: Please reinstall the libcurl distribution -
+    　　easy.h should be in <curl-dir>/include/curl/
+    　　解决方法：
+    　　# yum install curl curl-devel   （For Redhat & Fedora）
+    　　# install libcurl4-gnutls-dev    （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误九：
+    　　Configure: error: libjpeg.（also） not found.
+    　　解决方法：
+    　　# yum install libjpeg libjpeg-devel
+    　　--------------------------------------------------------------------
+    　　错误十
+    　　Configure: error: libpng.（also） not found.
+    　　--------------------------------------------------------------------
+    　　解决方法：
+    　　# yum install libpng libpng-devel
+    　　--------------------------------------------------------------------
+    　　错误十一
+    　　Configure: error: freetype.h not found.
+    　　解决方法：
+    　　#yum install freetype-devel
+    　　--------------------------------------------------------------------
+    　　错误十二
+    　　Configure: error: Unable to locate gmp.h
+    　　解决方法：
+    　　# yum install gmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十三
+    　　Configure: error: Cannot find MySQL header files under /usr.
+    　　Note that the MySQL client library is not bundled anymore!
+    　　解决方法：
+    　　# yum install mysql-devel            （For Redhat & Fedora）
+    　　# apt-get install libmysql++-dev      （For Ubuntu）
+    　　--------------------------------------------------------------------
+    　　错误十四
+    　　Configure: error: Please reinstall the ncurses distribution
+    　　解决方法：
+    　　# yum install ncurses ncurses-devel
+    　　--------------------------------------------------------------------
+    　　错误十五
+    　　Checking for unixODBC support… configure: error: ODBC header file ‘
+    /usr/include/sqlext.h’ not found!
+    　　解决方法：
+    　　# yum install unixODBC-devel
+    　　--------------------------------------------------------------------
+    　　错误十六
+    　　Configure: error: Cannot find pspell
+    　　解决方法：
+    　　# yum install pspell-devel
+    　　--------------------------------------------------------------------
+    　　错误十七
+    　　configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+    　　解决方法：
+    　　# yum install libmcrypt libmcrypt-devel    （For Redhat & Fedora）
+    　　# apt-get install libmcrypt-dev
+    　　--------------------------------------------------------------------
+    　　错误十八
+    　　Configure: error: snmp.h not found. Check your SNMP installation.
+    　　解决方法：
+    　　# yum install net-snmp net-snmp-devel
+    　　--------------------------------------------------------------------
+    　　错误十九
+    　　configure:error:Cannot find ldap.h
+    　　解决方法：
+    　　#yum install openldap-devel openldap
+    　　错误二十
+    　　configure:error:xslt-config not found. Please reinstall the libxslt
+    >= 1.1.0 distribution
+    　　解决方法：
+    　　#yum install libxslt libxslt-devel
+    　　错误二十一
+    　　checking for libevent >=1.4.11 install prefix… configure: error:
+    Could not find libevent >=1.4.11 in /usr/local/php
+    　　解决方法：
+    　　安装libevent-1.4.11以上版本至/usr/local
+    　　tar xzvf libevent-1.4.14-stable.tar.gz
+    　　cd libevent-1.4.14-stable
+    　　./configure --prefix=/usr/local
+    　　make&&make install
+    　　在编译。/configure时添加--with-libevent-dir=/usr/local即可
+    　　错误二十二
+    　　cc1: out of memory allocating 2036 bytes after a total of 81846272
+    bytes
+    　　make: *** [ext/date/lib/parse_date.lo] Error 1
+    　　报错：
+    　　/usr/bin/ld: cannot find -lltdl
+    　　collect2: ld returned 1 exit status
+    　　make:*** [sapi/fpm/php-fpm] Error 1
+    　　解决方法：
+    　　安装ltdl
+    　　#cd /libmcrypt-2.5.7/libltdl/
+    　　#./configure --enable-ltdl-install
+    　　#ldconfig
+    　　#cd php-5.3.6
+    　　#make ZEND_EXTRA_LIBS='-liconv'
+</curl-dir></evp.h></url:http:></code></pre>
 
       
     </div>
@@ -606,7 +682,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag">#docker</a>
+            <a href="/tags/php/" rel="tag">#php</a>
           
         </div>
       
@@ -615,16 +691,16 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/03/docker01/" rel="next" title="浅析docker使用">
-                <i class="fa fa-chevron-left"></i> 浅析docker使用
+              <a href="/2015/12/25/Net/tcp10/" rel="next" title="Tcp协议概述">
+                <i class="fa fa-chevron-left"></i> Tcp协议概述
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/01/Python/python端口/" rel="prev" title="python编写一个端口扫描器">
-                python编写一个端口扫描器 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/01/Net/Tcp11/" rel="prev" title="TCP连接的建立与中止">
+                TCP连接的建立与中止 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -651,8 +727,8 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/04/docker02/"
-           data-title="浅析docker实现思想" data-url="https://iceziyao.github.io/2016/04/04/docker02/">
+      <div class="ds-thread" data-thread-key="2016/01/01/lnmp/php/"
+           data-title="PHP编译出错" data-url="https://iceziyao.github.io/2016/01/01/lnmp/php/">
       </div>
     
   </div>
@@ -697,7 +773,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -761,7 +837,7 @@ cpu虚拟化：可以模拟不同CPU，例如bochs
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从虚拟化的种类和层级说起"><span class="nav-number">1.</span> <span class="nav-text">从虚拟化的种类和层级说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker的原理"><span class="nav-number">2.</span> <span class="nav-text">docker的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

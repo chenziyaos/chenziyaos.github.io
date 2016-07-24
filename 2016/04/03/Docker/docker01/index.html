@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="php," />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -86,28 +86,22 @@
 
 
 
-<meta name="description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
-   　　collect2: ld returned 1 exit status
-   　　make:*** [sapi/fpm/php-fpm] Error 1
-   　　解决方法：
-   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
+<meta name="description" content="docker是什么？
+简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
+Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP编译出错">
-<meta property="og:url" content="https://iceziyao.github.io/2016/01/01/php/index.html">
+<meta property="og:title" content="浅析docker使用">
+<meta property="og:url" content="https://iceziyao.github.io/2016/04/03/Docker/docker01/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
-   　　collect2: ld returned 1 exit status
-   　　make:*** [sapi/fpm/php-fpm] Error 1
-   　　解决方法：
-   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
-<meta property="og:updated_time" content="2016-07-09T21:55:23.922Z">
+<meta property="og:description" content="docker是什么？
+简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
+Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
+<meta property="og:updated_time" content="2016-07-10T17:39:49.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP编译出错">
-<meta name="twitter:description" content="/libxmlrpc/encoding.c:101:undefined reference to &apos;libiconv_close&apos;
-   　　collect2: ld returned 1 exit status
-   　　make:*** [sapi/fpm/php-fpm] Error 1
-   　　解决方法：
-   　　#make ZEND_EXTRA_LIBS=&apos;-liconv&apos;">
+<meta name="twitter:title" content="浅析docker使用">
+<meta name="twitter:description" content="docker是什么？
+简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
+Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
 
 
 
@@ -128,9 +122,9 @@
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/2016/01/01/php/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/04/03/Docker/docker01/"/>
 
-  <title> PHP编译出错 | 非衣 </title>
+  <title> 浅析docker使用 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -418,7 +412,7 @@
             
             
               
-                PHP编译出错
+                浅析docker使用
               
             
           </h1>
@@ -430,8 +424,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-01T00:00:00+08:00" content="2016-01-01">
-              2016-01-01
+            <time itemprop="dateCreated" datetime="2016-04-03T00:00:00+08:00" content="2016-04-03">
+              2016-04-03
             </time>
           </span>
 
@@ -444,8 +438,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/lnmp/" itemprop="url" rel="index">
-                    <span itemprop="name">lnmp</span>
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
                   </a>
                 </span>
 
@@ -460,8 +454,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/01/php/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/01/php/" itemprop="commentsCount"></span>
+                <a href="/2016/04/03/Docker/docker01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/Docker/docker01/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -470,7 +464,7 @@
           
           
           
-             <span id="/2016/01/01/php/" class="leancloud_visitors" data-flag-title="PHP编译出错">
+             <span id="/2016/04/03/Docker/docker01/" class="leancloud_visitors" data-flag-title="浅析docker使用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -492,158 +486,119 @@
       
 
       
-        <pre><code>
-   /libxmlrpc/encoding.c:101:undefined reference to 'libiconv_close'
-   　　collect2: ld returned 1 exit status
-   　　make:*** [sapi/fpm/php-fpm] Error 1
-   　　解决方法：
-   　　#make ZEND_EXTRA_LIBS='-liconv'
-   　　错误一、编译php出错
-   　　/php-5.3.2/ext/fileinfo/libmagic/apprentice.c:147:internal compiler
-   error:Segmentation fault
-   　　Please submit a full bug report,
-   　　with preprocessed source if appropriate.
-   　　See <url:http: bugzilla.redhat.com="" bugzilla=""> for instructions.
-   　　The bug is not reproducible,so it is likely a hardware or OS problem.
-   　　make:*** [ext/fileinfo/libmagic/apprentice.lo] Error 1
-   　　解决方法：内存大于1G即可，这是php5.3.2的一个bug
-    或者在./configure加上选项:--disable-fileinfo
-    　　--------------------------------------------------------------------
-    　　错误二、重新构造configure文件出错
-    　　./buildconf --force
-    　　Forcing buildconf
-    　　buildconf:checking installation…
-    　　buildconf:autoconf version 2.59 （ok）
-    　　buildconf:Your version of autoconf likely contains buggy cache code.
-    　　Running vcsclean for you.
-    　　To avoid this,install autoconf-2.13.
-    　　Can't figure out your VCS, not cleaning.
-    　　解决方法：编译安装autoconf-2.13
-    　　再将autoconf-2.13的auotconf文件至/usr/local/autoconf
-    　　--------------------------------------------------------------------
-    　　错误三、编译时缺少库
-    　　configure: error: libXpm.（a|so） not found.
-    　　解决方法：yum install libXpm-devel
-    　　--------------------------------------------------------------------
-    　　错误四、编译时缺少gmp.h文件
-    　　configure: error: Unable to locate gmp.h
-    　　解决方法：yum install gmp-devel
-    　　--------------------------------------------------------------------
-    　　错误五
-    　　Configure: error: xml2-config not found. Please check your libxml2
-    installation.
-    　　解决方法：
-    　　#yum install libxml2 libxml2-devel （For Redhat & Fedora）
-    　　# aptitude install libxml2-dev      （For ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误六
-    　　Checking for pkg-config… /usr/bin/pkg-config
-    　　configure: error: Cannot find OpenSSL’s <evp.h>
-    　　解决方法：
-    　　#yum install openssl openssl-devel
-    　　--------------------------------------------------------------------
-    　　错误七
-    　　Configure: error: Please reinstall the BZip2 distribution
-    　　解决方法：
-    　　# yum install bzip2 bzip2-devel
-    　　--------------------------------------------------------------------
-    　　错误八
-    　　Configure: error: Please reinstall the libcurl distribution -
-    　　easy.h should be in <curl-dir>/include/curl/
-    　　解决方法：
-    　　# yum install curl curl-devel   （For Redhat & Fedora）
-    　　# install libcurl4-gnutls-dev    （For Ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误九：
-    　　Configure: error: libjpeg.（also） not found.
-    　　解决方法：
-    　　# yum install libjpeg libjpeg-devel
-    　　--------------------------------------------------------------------
-    　　错误十
-    　　Configure: error: libpng.（also） not found.
-    　　--------------------------------------------------------------------
-    　　解决方法：
-    　　# yum install libpng libpng-devel
-    　　--------------------------------------------------------------------
-    　　错误十一
-    　　Configure: error: freetype.h not found.
-    　　解决方法：
-    　　#yum install freetype-devel
-    　　--------------------------------------------------------------------
-    　　错误十二
-    　　Configure: error: Unable to locate gmp.h
-    　　解决方法：
-    　　# yum install gmp-devel
-    　　--------------------------------------------------------------------
-    　　错误十三
-    　　Configure: error: Cannot find MySQL header files under /usr.
-    　　Note that the MySQL client library is not bundled anymore!
-    　　解决方法：
-    　　# yum install mysql-devel            （For Redhat & Fedora）
-    　　# apt-get install libmysql++-dev      （For Ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误十四
-    　　Configure: error: Please reinstall the ncurses distribution
-    　　解决方法：
-    　　# yum install ncurses ncurses-devel
-    　　--------------------------------------------------------------------
-    　　错误十五
-    　　Checking for unixODBC support… configure: error: ODBC header file ‘
-    /usr/include/sqlext.h’ not found!
-    　　解决方法：
-    　　# yum install unixODBC-devel
-    　　--------------------------------------------------------------------
-    　　错误十六
-    　　Configure: error: Cannot find pspell
-    　　解决方法：
-    　　# yum install pspell-devel
-    　　--------------------------------------------------------------------
-    　　错误十七
-    　　configure: error: mcrypt.h not found. Please reinstall libmcrypt.
-    　　解决方法：
-    　　# yum install libmcrypt libmcrypt-devel    （For Redhat & Fedora）
-    　　# apt-get install libmcrypt-dev
-    　　--------------------------------------------------------------------
-    　　错误十八
-    　　Configure: error: snmp.h not found. Check your SNMP installation.
-    　　解决方法：
-    　　# yum install net-snmp net-snmp-devel
-    　　--------------------------------------------------------------------
-    　　错误十九
-    　　configure:error:Cannot find ldap.h
-    　　解决方法：
-    　　#yum install openldap-devel openldap
-    　　错误二十
-    　　configure:error:xslt-config not found. Please reinstall the libxslt
-    >= 1.1.0 distribution
-    　　解决方法：
-    　　#yum install libxslt libxslt-devel
-    　　错误二十一
-    　　checking for libevent >=1.4.11 install prefix… configure: error:
-    Could not find libevent >=1.4.11 in /usr/local/php
-    　　解决方法：
-    　　安装libevent-1.4.11以上版本至/usr/local
-    　　tar xzvf libevent-1.4.14-stable.tar.gz
-    　　cd libevent-1.4.14-stable
-    　　./configure --prefix=/usr/local
-    　　make&&make install
-    　　在编译。/configure时添加--with-libevent-dir=/usr/local即可
-    　　错误二十二
-    　　cc1: out of memory allocating 2036 bytes after a total of 81846272
-    bytes
-    　　make: *** [ext/date/lib/parse_date.lo] Error 1
-    　　报错：
-    　　/usr/bin/ld: cannot find -lltdl
-    　　collect2: ld returned 1 exit status
-    　　make:*** [sapi/fpm/php-fpm] Error 1
-    　　解决方法：
-    　　安装ltdl
-    　　#cd /libmcrypt-2.5.7/libltdl/
-    　　#./configure --enable-ltdl-install
-    　　#ldconfig
-    　　#cd php-5.3.6
-    　　#make ZEND_EXTRA_LIBS='-liconv'
-</curl-dir></evp.h></url:http:></code></pre>
+        <h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul>
+<li>简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案<br>Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器</li>
+<li>Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   <blockquote>
+<ul>
+<li>普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  </li>
+<li>每个container拥有自己独立的各种命名空间(亦即资源)包括:<br>PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等<br>与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  </li>
+<li>虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker 概念及相互作用<blockquote>
+<ul>
+<li>主机， 运行容器的机器。</li>
+<li>镜像，文件的层次结构，以及包含如何运行容器的元数据</li>
+<li>容器，一个从镜像中启动，包含正在运行的程序的进程</li>
+<li>Registry， 镜像仓库</li>
+<li>卷，容器外的存储  </li>
+<li>Dockerfile， 用于创建镜像的脚本  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="docker能用来干什么？"><a href="#docker能用来干什么？" class="headerlink" title="docker能用来干什么？"></a>docker能用来干什么？</h2><ul>
+<li>快速交付你的应用程序<br>Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。</li>
+<li>开发和拓展更加简单<br>Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。<br>Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。</li>
+<li>达到高密度和更多负载<br>Docker轻巧快速，它提供了一个可行的、 符合成本效益的替代基于虚拟机管理程序的虚拟机。这在高密度的环境下尤其有用。例如，构建你自己的云平台或者PaaS，在中小的部署环境下同样可以获取到更多的资源性能。</li>
+</ul>
+<h2 id="docker主要组成有哪些？"><a href="#docker主要组成有哪些？" class="headerlink" title="docker主要组成有哪些？"></a>docker主要组成有哪些？</h2><ul>
+<li>Docker有两个主要的部件：  <blockquote>
+<p>Docker: 开源的容器虚拟化平台。<br>Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。</p>
+</blockquote>
+</li>
+<li>Docker的内部<blockquote>
+<ul>
+<li>Docker镜像 (Docker images)。</li>
+<li>Docker仓库 (Docker registeries)。</li>
+<li>Docker容器(Docker containers)。</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker镜像<blockquote>
+<ul>
+<li>Docker镜像是一个只读的模板。举个例子，一个镜像可以包含一个运行在Apache上的Web应用和其使用的Ubuntu操作系统。</li>
+<li>镜像是用来创建容器的。Docker提供了简单的放来来建立新的镜像或者升级现有的镜像，你也可以下载别人已经创建好的镜像。Docker镜像是Docker的 构造 部分</li>
+</ul>
+</blockquote>
+</li>
+<li>Docker仓库<blockquote>
+<p>Docker仓库用来保存镜像。可以理解为代码控制中的代码仓库。同样的，Docker仓库也有公有和私有的概念。公有的Docker仓库名字是Docker Hub。Docker Hub提供了庞大的镜像集合供使用。这些镜像可以是你自己创建的，或者你也可以在别人的镜像基础上创建。Docker仓库是Docker的 分发 部分。</p>
+</blockquote>
+</li>
+<li>Docker容器<blockquote>
+<p>Docker容器和文件夹很类似。一个Docker容器包含了所有的某个应用运行所需要的环境。每一个Docker容器都是从Docker镜像创建 的。Docker容器可以运行、开始、停止、移动和删除。每一个Docker容器都是独立和安全的应用平台。Docker容器是Docker的 运行 部分。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ol>
+<li>首先更新yum源，添加rhel7.1的iso镜像，来更新内核kernel(因为docker对内核有要求，rhel7.0时启动慢)  <blockquote>
+<p>1.自己下载cestos7.1的镜像，构建本地yum<br>2.使用163或者网易的yum源<br>yum update kernel -y<br>rpm -q kernel</p>
+<blockquote>
+<p>kernel-3.10.0-123.el7.x86_64<br>kernel-3.10.0-229.el7.x86_64  </p>
+</blockquote>
+<p>重启，选择kernel-3.10.0-229.el7.x86_64进入系统</p>
+</blockquote>
+</li>
+<li>更新相关组件  <blockquote>
+<p>yum update device-mapper -y<br>rpm -qa | grep device-mapper</p>
+<blockquote>
+<p>device-mapper-persistent-data-0.3.2-1.el7.x86_64<br>device-mapper-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-0.4.9-66.el7.x86_64<br>device-mapper-event-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-libs-0.4.9-66.el7.x86_64<br>device-mapper-event-1.02.93-3.el7.x86_64<br>device-mapper-1.02.93-3.el7.x86_64  </p>
+</blockquote>
+</blockquote>
+</li>
+<li>安装docker  <blockquote>
+<p>3.1 执行Docker安装脚本</p>
+<blockquote>
+<p> curl -sSL <a href="https://get.docker.com/" target="_blank" rel="external">https://get.docker.com/</a> | sh<br>yum install -y docker-selinux<br>这个脚本会添加 docker.repo 配置并安装Docker。</p>
+</blockquote>
+<p>3.2 自动添加添加yum仓库<br><pre><code><br>cat &gt;/etc/yum.repos.d/docker.repo &lt;&lt;-EOF<br>[dockerrepo]<br>name=Docker Repository<br>baseurl=<a href="https://yum.dockerproject.org/repo/main/centos/7" target="_blank" rel="external">https://yum.dockerproject.org/repo/main/centos/7</a><br>enabled=1<br>gpgcheck=1<br>gpgkey=<a href="https://yum.dockerproject.org/gpg" target="_blank" rel="external">https://yum.dockerproject.org/gpg</a><br>EOF<br></code></pre><br>安装Docker包<br>yum install -y docker-engine<br>yum install -y docker-selinux<br>yum list installed | grep docker  </p>
+<blockquote>
+<p>docker-engine.x86_64             1.8.1-1.el7.centos                    @dockerrepo<br>docker-selinux.x86_64            1.7.1-108.el7.centos                  @extras  </p>
+</blockquote>
+<p>3.3 rpm安装</p>
+<blockquote>
+<p>yum install docker-engine-1.8.3-1.el7.centos.x86_64.rpm  -y</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>启动docker<blockquote>
+<p>systemctl start docker<br>docker version   </p>
+<blockquote>
+<p>Client:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+<p>Server:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="docker使用"><a href="#docker使用" class="headerlink" title="docker使用"></a>docker使用</h2><ol>
+<li>有关镜像的操作  <blockquote>
+<p>$ docker images  # 查看所有镜像.<br>$ docker import  # 从tarball创建镜像<br>$ docker build   # 通过Dockerfile创建镜像<br>$ docker commit  # 从容器中创建镜像<br>$ docker rmi     # 删除镜像<br>$ docker history # 列出镜像的变更历史  </p>
+</blockquote>
+</li>
+<li>运行的容器  <blockquote>
+<p>$ docker create  # 创建一个容器，但不启动它<br>$ docker run     #  创建并启动一个容器<br>$ docker stop    # 停止容器<br>$ docker start   #  启动容器<br>$ docker restart # 重启容器<br>$ docker rm      # 删除容器<br>$ docker kill    #  给容器发送kill信号<br>$ docker attach  # 连接到正在运行的容器中<br>$ docker wait    # 阻塞直到容器停止为止<br>$ docker exec    # 在运行的容器中执行一条命令  </p>
+</blockquote>
+</li>
+<li>检查容器  <blockquote>
+<p>$ docker ps      # 显示运行的容器<br>$ docker inspect # 显示容器信息（包括ip地址）<br>$ docker logs    # 获取容器中的日志<br>$ docker events  # 获取容器事件<br>$ docker port    # 显示容器的公开端口<br>$ docker top     # 显示容器中运行的进程<br>$ docker diff    # 查看容器文件系统中改变的文件<br>$ docker stats   # 查看各种纬度数据、内存、CPU、文件系统等  </p>
+</blockquote>
+</li>
+</ol>
+<p>之后的会继续更新博客</p>
 
       
     </div>
@@ -682,7 +637,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/php/" rel="tag">#php</a>
+            <a href="/tags/docker/" rel="tag">#docker</a>
           
         </div>
       
@@ -691,16 +646,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/01/Net/Tcp11/" rel="next" title="TCP连接的建立与中止">
-                <i class="fa fa-chevron-left"></i> TCP连接的建立与中止
+              <a href="/2016/02/01/Lvs/lvs1/" rel="next" title="Lvs负载均衡">
+                <i class="fa fa-chevron-left"></i> Lvs负载均衡
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/01/Memcached/" rel="prev" title="Memcached简介">
-                Memcached简介 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/04/Docker/docker02/" rel="prev" title="浅析docker实现思想">
+                浅析docker实现思想 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -727,8 +682,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/01/php/"
-           data-title="PHP编译出错" data-url="https://iceziyao.github.io/2016/01/01/php/">
+      <div class="ds-thread" data-thread-key="2016/04/03/Docker/docker01/"
+           data-title="浅析docker使用" data-url="https://iceziyao.github.io/2016/04/03/Docker/docker01/">
       </div>
     
   </div>
@@ -773,7 +728,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -837,7 +792,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker是什么？"><span class="nav-number">1.</span> <span class="nav-text">docker是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker能用来干什么？"><span class="nav-number">2.</span> <span class="nav-text">docker能用来干什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker主要组成有哪些？"><span class="nav-number">3.</span> <span class="nav-text">docker主要组成有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装docker"><span class="nav-number">4.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker使用"><span class="nav-number">5.</span> <span class="nav-text">docker使用</span></a></li></ol></div>
             
           </div>
         </section>

@@ -86,22 +86,43 @@
 
 
 
-<meta name="description" content="docker是什么？
-简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
-Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
+<meta name="description" content="从虚拟化的种类和层级说起
+
+cpu虚拟化：可以模拟不同CPU，例如bochs
+完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
+半虚拟化
+硬件虚拟化：可以当作获得硬件加速的完全虚拟化
+系统虚拟化：host和guest共享一样的内核，例如Openvz
+语言沙盒：只能在语言的范围内使用
+
+虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析docker使用">
-<meta property="og:url" content="https://iceziyao.github.io/2016/04/03/docker01/index.html">
+<meta property="og:title" content="浅析docker实现思想">
+<meta property="og:url" content="https://iceziyao.github.io/2016/04/04/Docker/docker02/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="docker是什么？
-简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
-Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
-<meta property="og:updated_time" content="2016-07-10T17:39:49.100Z">
+<meta property="og:description" content="从虚拟化的种类和层级说起
+
+cpu虚拟化：可以模拟不同CPU，例如bochs
+完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
+半虚拟化
+硬件虚拟化：可以当作获得硬件加速的完全虚拟化
+系统虚拟化：host和guest共享一样的内核，例如Openvz
+语言沙盒：只能在语言的范围内使用
+
+虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
+<meta property="og:updated_time" content="2016-07-10T18:32:38.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析docker使用">
-<meta name="twitter:description" content="docker是什么？
-简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器
-Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核">
+<meta name="twitter:title" content="浅析docker实现思想">
+<meta name="twitter:description" content="从虚拟化的种类和层级说起
+
+cpu虚拟化：可以模拟不同CPU，例如bochs
+完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware
+半虚拟化
+硬件虚拟化：可以当作获得硬件加速的完全虚拟化
+系统虚拟化：host和guest共享一样的内核，例如Openvz
+语言沙盒：只能在语言的范围内使用
+
+虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快">
 
 
 
@@ -122,9 +143,9 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/2016/04/03/docker01/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2016/04/04/Docker/docker02/"/>
 
-  <title> 浅析docker使用 | 非衣 </title>
+  <title> 浅析docker实现思想 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -412,7 +433,7 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
             
             
               
-                浅析docker使用
+                浅析docker实现思想
               
             
           </h1>
@@ -424,8 +445,8 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T00:00:00+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2016-04-04T00:00:00+08:00" content="2016-04-04">
+              2016-04-04
             </time>
           </span>
 
@@ -454,8 +475,8 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/03/docker01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/docker01/" itemprop="commentsCount"></span>
+                <a href="/2016/04/04/Docker/docker02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/04/Docker/docker02/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -464,7 +485,7 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
           
           
           
-             <span id="/2016/04/03/docker01/" class="leancloud_visitors" data-flag-title="浅析docker使用">
+             <span id="/2016/04/04/Docker/docker02/" class="leancloud_visitors" data-flag-title="浅析docker实现思想">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -486,119 +507,67 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
       
 
       
-        <h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul>
-<li>简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案<br>Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器</li>
-<li>Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   <blockquote>
+        <h2 id="从虚拟化的种类和层级说起"><a href="#从虚拟化的种类和层级说起" class="headerlink" title="从虚拟化的种类和层级说起"></a>从虚拟化的种类和层级说起</h2><blockquote>
 <ul>
-<li>普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  </li>
-<li>每个container拥有自己独立的各种命名空间(亦即资源)包括:<br>PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等<br>与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  </li>
-<li>虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。</li>
+<li>cpu虚拟化：可以模拟不同CPU，例如bochs</li>
+<li>完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware</li>
+<li>半虚拟化</li>
+<li>硬件虚拟化：可以当作获得硬件加速的完全虚拟化</li>
+<li>系统虚拟化：host和guest共享一样的内核，例如Openvz</li>
+<li>语言沙盒：只能在语言的范围内使用</li>
 </ul>
-</blockquote>
-</li>
-<li>Docker 概念及相互作用<blockquote>
+<p>虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？</p>
 <ul>
-<li>主机， 运行容器的机器。</li>
-<li>镜像，文件的层次结构，以及包含如何运行容器的元数据</li>
-<li>容器，一个从镜像中启动，包含正在运行的程序的进程</li>
-<li>Registry， 镜像仓库</li>
-<li>卷，容器外的存储  </li>
-<li>Dockerfile， 用于创建镜像的脚本  </li>
+<li>cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在</li>
+<li>半虚拟化时，guest内核必须存在补丁<ul>
+<li>系统虚拟化时，用户不能控制自己的内核</li>
+<li>语言沙盒时，用户没有使用api的自由</li>
 </ul>
-</blockquote>
 </li>
 </ul>
-<h2 id="docker能用来干什么？"><a href="#docker能用来干什么？" class="headerlink" title="docker能用来干什么？"></a>docker能用来干什么？</h2><ul>
-<li>快速交付你的应用程序<br>Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。</li>
-<li>开发和拓展更加简单<br>Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。<br>Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。</li>
-<li>达到高密度和更多负载<br>Docker轻巧快速，它提供了一个可行的、 符合成本效益的替代基于虚拟机管理程序的虚拟机。这在高密度的环境下尤其有用。例如，构建你自己的云平台或者PaaS，在中小的部署环境下同样可以获取到更多的资源性能。</li>
-</ul>
-<h2 id="docker主要组成有哪些？"><a href="#docker主要组成有哪些？" class="headerlink" title="docker主要组成有哪些？"></a>docker主要组成有哪些？</h2><ul>
-<li>Docker有两个主要的部件：  <blockquote>
-<p>Docker: 开源的容器虚拟化平台。<br>Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。</p>
+</blockquote>
+<h2 id="docker的原理"><a href="#docker的原理" class="headerlink" title="docker的原理"></a>docker的原理</h2><ul>
+<li>doceker实现结构<br>–&gt;lxc<br>–&gt;namespace: 仅沙盒隔离，不限制资源。<br>–&gt;cgroup: 仅限制资源，不沙盒隔离。<br>–&gt;aufs<br>–&gt;image管理  </li>
+<li>底层技术<blockquote>
+<p>Docker使用Go语言编写，并且使用了一系列Linux内核提供的性能来实现我们已经看到的这些功能。</p>
 </blockquote>
 </li>
-<li>Docker的内部<blockquote>
+<li>lxc<blockquote>
+<p>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术,linux原生支持的容器.</p>
 <ul>
-<li>Docker镜像 (Docker images)。</li>
-<li>Docker仓库 (Docker registeries)。</li>
-<li>Docker容器(Docker containers)。</li>
+<li>XC可以在操作系统层次上为进程提供的虚拟的执行环境，一个虚拟的执行环境就是一个容器。可以为容器绑定特定的cpu和memory节点，分配特定比例的cpu时间、IO时间，限制可以使用的内存大小（包括内存和是swap空间），提供device访问控制，提供独立的namespace（网络、pid、ipc、mnt、uts）。</li>
 </ul>
 </blockquote>
 </li>
-<li>Docker镜像<blockquote>
+<li>命名空间(Namespaces)<blockquote>
 <ul>
-<li>Docker镜像是一个只读的模板。举个例子，一个镜像可以包含一个运行在Apache上的Web应用和其使用的Ubuntu操作系统。</li>
-<li>镜像是用来创建容器的。Docker提供了简单的放来来建立新的镜像或者升级现有的镜像，你也可以下载别人已经创建好的镜像。Docker镜像是Docker的 构造 部分</li>
+<li>Docker充分利用了一项称为namespaces的技术来提供隔离的工作空间，我们称之为 container(容器)。当你运行一个容器的时候，Docker为该容器创建了一个命名空间集合。其实我们在c++也见过类似的namespace    </li>
+<li>这样提供了一个隔离层，每一个应用在它们自己的命名空间中运行而且不会访问到命名空间之外。<br>通俗来讲，就是给将每一个应用放在小房子的，也就是容器，使不同应用不会冲突。  </li>
 </ul>
-</blockquote>
-</li>
-<li>Docker仓库<blockquote>
-<p>Docker仓库用来保存镜像。可以理解为代码控制中的代码仓库。同样的，Docker仓库也有公有和私有的概念。公有的Docker仓库名字是Docker Hub。Docker Hub提供了庞大的镜像集合供使用。这些镜像可以是你自己创建的，或者你也可以在别人的镜像基础上创建。Docker仓库是Docker的 分发 部分。</p>
-</blockquote>
-</li>
-<li>Docker容器<blockquote>
-<p>Docker容器和文件夹很类似。一个Docker容器包含了所有的某个应用运行所需要的环境。每一个Docker容器都是从Docker镜像创建 的。Docker容器可以运行、开始、停止、移动和删除。每一个Docker容器都是独立和安全的应用平台。Docker容器是Docker的 运行 部分。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ol>
-<li>首先更新yum源，添加rhel7.1的iso镜像，来更新内核kernel(因为docker对内核有要求，rhel7.0时启动慢)  <blockquote>
-<p>1.自己下载cestos7.1的镜像，构建本地yum<br>2.使用163或者网易的yum源<br>yum update kernel -y<br>rpm -q kernel</p>
-<blockquote>
-<p>kernel-3.10.0-123.el7.x86_64<br>kernel-3.10.0-229.el7.x86_64  </p>
-</blockquote>
-<p>重启，选择kernel-3.10.0-229.el7.x86_64进入系统</p>
-</blockquote>
-</li>
-<li>更新相关组件  <blockquote>
-<p>yum update device-mapper -y<br>rpm -qa | grep device-mapper</p>
-<blockquote>
-<p>device-mapper-persistent-data-0.3.2-1.el7.x86_64<br>device-mapper-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-0.4.9-66.el7.x86_64<br>device-mapper-event-libs-1.02.93-3.el7.x86_64<br>device-mapper-multipath-libs-0.4.9-66.el7.x86_64<br>device-mapper-event-1.02.93-3.el7.x86_64<br>device-mapper-1.02.93-3.el7.x86_64  </p>
-</blockquote>
-</blockquote>
-</li>
-<li>安装docker  <blockquote>
-<p>3.1 执行Docker安装脚本</p>
-<blockquote>
-<p> curl -sSL <a href="https://get.docker.com/" target="_blank" rel="external">https://get.docker.com/</a> | sh<br>yum install -y docker-selinux<br>这个脚本会添加 docker.repo 配置并安装Docker。</p>
-</blockquote>
-<p>3.2 自动添加添加yum仓库<br><pre><code><br>cat &gt;/etc/yum.repos.d/docker.repo &lt;&lt;-EOF<br>[dockerrepo]<br>name=Docker Repository<br>baseurl=<a href="https://yum.dockerproject.org/repo/main/centos/7" target="_blank" rel="external">https://yum.dockerproject.org/repo/main/centos/7</a><br>enabled=1<br>gpgcheck=1<br>gpgkey=<a href="https://yum.dockerproject.org/gpg" target="_blank" rel="external">https://yum.dockerproject.org/gpg</a><br>EOF<br></code></pre><br>安装Docker包<br>yum install -y docker-engine<br>yum install -y docker-selinux<br>yum list installed | grep docker  </p>
-<blockquote>
-<p>docker-engine.x86_64             1.8.1-1.el7.centos                    @dockerrepo<br>docker-selinux.x86_64            1.7.1-108.el7.centos                  @extras  </p>
-</blockquote>
-<p>3.3 rpm安装</p>
-<blockquote>
-<p>yum install docker-engine-1.8.3-1.el7.centos.x86_64.rpm  -y</p>
-</blockquote>
-</blockquote>
-</li>
-</ol>
+<p>一些Docker使用到的命名空间有：</p>
 <ul>
-<li>启动docker<blockquote>
-<p>systemctl start docker<br>docker version   </p>
-<blockquote>
-<p>Client:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
-<p>Server:<br>Version:      1.8.1<br>API version:  1.20<br>Go version:   go1.4.2<br>Git commit:   d12ea79<br>Built:        Thu Aug 13 02:19:43 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+<li>pid命名空间: 使用在进程隔离(PID: Process ID)。</li>
+<li>net命名空间: 使用在管理网络接口(NET: Networking</li>
+<li>ipc命名空间: 使用在管理进程间通信资源 (IPC: InterProcess Communication)</li>
+<li>mnt命名空间: 使用在管理挂载点 (MNT: Mount)。</li>
+<li>uts命名空间: 使用在隔离内核和版本标识 (UTS: Unix Timesharing System)。</li>
+</ul>
 </blockquote>
+</li>
+<li>群组控制(cgroup)<blockquote>
+<p>Docker还使用到了cgroups技术来管理群组。使应用隔离运行的关键是让它们只使用你想要的资源。这样可以确保在机器上运行的容器都是良民(good multi-tenant citizens)。群组控制允许Docker分享或者限制容器使用硬件资源。例如，限制指定的容器的内容使用</p>
+</blockquote>
+</li>
+<li>联合文件系统(UnionFS)<blockquote>
+<p>联合文件系统(UnionFS)是用来操作创建层的，使它们轻巧快速。Docker使用UnionFS提供容器的构造块。Docker可以使用很多种类的UnionFS包括AUFS, btrfs, vfs, and DeviceMapper。</p>
 </blockquote>
 </li>
 </ul>
-<h2 id="docker使用"><a href="#docker使用" class="headerlink" title="docker使用"></a>docker使用</h2><ol>
-<li>有关镜像的操作  <blockquote>
-<p>$ docker images  # 查看所有镜像.<br>$ docker import  # 从tarball创建镜像<br>$ docker build   # 通过Dockerfile创建镜像<br>$ docker commit  # 从容器中创建镜像<br>$ docker rmi     # 删除镜像<br>$ docker history # 列出镜像的变更历史  </p>
-</blockquote>
-</li>
-<li>运行的容器  <blockquote>
-<p>$ docker create  # 创建一个容器，但不启动它<br>$ docker run     #  创建并启动一个容器<br>$ docker stop    # 停止容器<br>$ docker start   #  启动容器<br>$ docker restart # 重启容器<br>$ docker rm      # 删除容器<br>$ docker kill    #  给容器发送kill信号<br>$ docker attach  # 连接到正在运行的容器中<br>$ docker wait    # 阻塞直到容器停止为止<br>$ docker exec    # 在运行的容器中执行一条命令  </p>
-</blockquote>
-</li>
-<li>检查容器  <blockquote>
-<p>$ docker ps      # 显示运行的容器<br>$ docker inspect # 显示容器信息（包括ip地址）<br>$ docker logs    # 获取容器中的日志<br>$ docker events  # 获取容器事件<br>$ docker port    # 显示容器的公开端口<br>$ docker top     # 显示容器中运行的进程<br>$ docker diff    # 查看容器文件系统中改变的文件<br>$ docker stats   # 查看各种纬度数据、内存、CPU、文件系统等  </p>
-</blockquote>
-</li>
-</ol>
-<p>之后的会继续更新博客</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><ul>
+<li>为什么使用go语言实现docker<br>部署简单，依赖性小，开发效率高(相比C/C++)，性能好(相比JAVA)  </li>
+<li>docker与LXC的联系<br>在我理解，docker是LXC的一个高速引擎</li>
+<li>为什么我只解析了docker实现思想<br>我不会go语言，也不了解LXC，我只是一个使用者，只是在自己的理解下探讨docker实现了什么。</li>
+</ul>
 
       
     </div>
@@ -646,16 +615,16 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/01/Lvs/lvs1/" rel="next" title="Lvs负载均衡">
-                <i class="fa fa-chevron-left"></i> Lvs负载均衡
+              <a href="/2016/04/03/Docker/docker01/" rel="next" title="浅析docker使用">
+                <i class="fa fa-chevron-left"></i> 浅析docker使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/04/docker02/" rel="prev" title="浅析docker实现思想">
-                浅析docker实现思想 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/01/Python/python端口/" rel="prev" title="python编写一个端口扫描器">
+                python编写一个端口扫描器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -682,8 +651,8 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/03/docker01/"
-           data-title="浅析docker使用" data-url="https://iceziyao.github.io/2016/04/03/docker01/">
+      <div class="ds-thread" data-thread-key="2016/04/04/Docker/docker02/"
+           data-title="浅析docker实现思想" data-url="https://iceziyao.github.io/2016/04/04/Docker/docker02/">
       </div>
     
   </div>
@@ -728,7 +697,7 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -792,7 +761,7 @@ Docker container和普通的虚拟机Image相比, 最大的区别是它并不包
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker是什么？"><span class="nav-number">1.</span> <span class="nav-text">docker是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker能用来干什么？"><span class="nav-number">2.</span> <span class="nav-text">docker能用来干什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker主要组成有哪些？"><span class="nav-number">3.</span> <span class="nav-text">docker主要组成有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装docker"><span class="nav-number">4.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker使用"><span class="nav-number">5.</span> <span class="nav-text">docker使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从虚拟化的种类和层级说起"><span class="nav-number">1.</span> <span class="nav-text">从虚拟化的种类和层级说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker的原理"><span class="nav-number">2.</span> <span class="nav-text">docker的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
           </div>
         </section>

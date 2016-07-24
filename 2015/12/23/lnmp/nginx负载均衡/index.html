@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -86,15 +86,40 @@
 
 
 
-<meta name="description" content="linux运维,python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="非衣">
-<meta property="og:url" content="https://iceziyao.github.io/tags/Linux/index.html">
+<meta name="description" content="安装nginx请参考lnmp架构
+
+nginx 反向代理nginx的负载均衡基于反向代理  
+
+1.1 正向代理  
+
+ 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  
+
+1.2反">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx负载均衡">
+<meta property="og:url" content="https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/index.html">
 <meta property="og:site_name" content="非衣">
-<meta property="og:description" content="linux运维,python">
+<meta property="og:description" content="安装nginx请参考lnmp架构
+
+nginx 反向代理nginx的负载均衡基于反向代理  
+
+1.1 正向代理  
+
+ 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  
+
+1.2反">
+<meta property="og:updated_time" content="2016-07-09T21:35:22.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非衣">
-<meta name="twitter:description" content="linux运维,python">
+<meta name="twitter:title" content="nginx负载均衡">
+<meta name="twitter:description" content="安装nginx请参考lnmp架构
+
+nginx 反向代理nginx的负载均衡基于反向代理  
+
+1.1 正向代理  
+
+ 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  
+
+1.2反">
 
 
 
@@ -115,9 +140,9 @@
 
 
 
-  <link rel="canonical" href="https://iceziyao.github.io/tags/Linux/"/>
+  <link rel="canonical" href="https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/"/>
 
-  <title> 标签: Linux | 非衣 </title>
+  <title> nginx负载均衡 | 非衣 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +163,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -384,46 +409,265 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Linux
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nginx负载均衡
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-23T21:49:33+08:00" content="2015-12-23">
+              2015-12-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/23/lnmp/nginx负载均衡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/lnmp/nginx负载均衡/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+             <span id="/2015/12/23/lnmp/nginx负载均衡/" class="leancloud_visitors" data-flag-title="nginx负载均衡">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html" target="_blank" rel="external">lnmp架构</a></p>
+<ol>
+<li><p>nginx 反向代理<br>nginx的负载均衡基于反向代理  </p>
+<blockquote>
+<p>1.1 正向代理  </p>
+<blockquote>
+<p> 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  </p>
+</blockquote>
+<p>1.2反向代理</p>
+<blockquote>
+<p>反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。</p>
+</blockquote>
+<p>区别:</p>
+<blockquote>
+<p>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。<br>正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>upstream</p>
+<blockquote>
+<p>2.1 负载均衡算法</p>
+<blockquote>
+<p>2.1.1 轮循<br>当weight不指定时，各服务器weight相同，<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  </p>
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
+</code></pre>
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+<pre><code>
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+</code></pre>
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+<pre><code>
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+</code></pre>
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+</code></pre>
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+<pre><code>
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+</code></pre>
 
-      <h1 class="post-title">
+</blockquote>
+<p>2.2 参数</p>
+<blockquote>
+<p>1.down 表示单前的server暂时不参与负载<br>2.weight 默认为1.weight越大，负载的权重就越大。<br>3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误<br>4.fail_timeout:max_fails次失败后，暂停的时间。<br>5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。<br>nginx支持同时设置多组的负载均衡，用来给不用的server来使用。<br>client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug<br>client_body_temp_path 设置记录文件的目录 可以设置最多3层目录<br>location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  </p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>示例<br>3.1 网络拓扑<br>反向代理服务器 server1.example.com<br>后端服务器：<br>server2.example.com<br>server3.example.com<br>3.2 配置<br>3.2.1 server1</p>
+<pre><code>
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/10/06/linux基础/" itemprop="url">
-              
-                <span itemprop="name">Linux基础</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>生活不仅是眼前的苟且，还有远方的梦</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/upload/weixin.jpg" alt="陈子瑶 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-06T00:00:00+08:00"
-              content="2015-10-06" >
-          10-06
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/23/lnmp/nginx配置文件详解/" rel="next" title="nginx配置文件详解">
+                <i class="fa fa-chevron-left"></i> nginx配置文件详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/25/Net/tcp10/" rel="prev" title="Tcp协议概述">
+                Tcp协议概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -431,6 +675,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/23/lnmp/nginx负载均衡/"
+           data-title="nginx负载均衡" data-url="https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -450,8 +702,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/upload/avar.jpg"
@@ -519,6 +780,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nginx"><span class="nav-number">1.</span> <span class="nav-text">安装nginx</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -622,6 +894,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
