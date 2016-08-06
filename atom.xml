@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-07-23T13:33:42.189Z</updated>
+  <updated>2016-08-06T14:48:39.012Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://iceziyao.github.io/2016/06/17/Ycm%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     <id>https://iceziyao.github.io/2016/06/17/Ycm自动化运维/</id>
     <published>2016-06-16T16:00:00.000Z</published>
-    <updated>2016-07-23T13:33:42.189Z</updated>
+    <updated>2016-08-06T14:48:39.012Z</updated>
     
     <content type="html">&lt;h3 id=&quot;我的运维之路&quot;&gt;&lt;a href=&quot;#我的运维之路&quot; class=&quot;headerlink&quot; title=&quot;我的运维之路&quot;&gt;&lt;/a&gt;我的运维之路&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;手动ssh&lt;br&gt;每次弄服务器时，总是ssh连上去，执行命令   &lt;/li&gt;
@@ -32,7 +32,8 @@
 &lt;/ul&gt;
 &lt;ol&gt;
 &lt;li&gt;自动化运维工具&lt;br&gt;4.1 ansible&lt;br&gt;4.2 puppet&lt;br&gt;4.3 saltstack&lt;/li&gt;
-&lt;li&gt;写一个属于自己的自动化运维平台&lt;/li&gt;
+&lt;li&gt;写一个属于自己的自动化运维平台&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;Ycm是一个基于python的B-S自动化运维平台&quot;&gt;&lt;a href=&quot;#Ycm是一个基于python的B-S自动化运维平台&quot; class=&quot;headerlink&quot; title=&quot;Ycm是一个基于python的B/S自动化运维平台&quot;&gt;&lt;/a&gt;Ycm是一个基于python的B/S自动化运维平台&lt;/h3&gt;&lt;p&gt;当然，我也是站在巨人的肩膀上完成这个任务。感谢bingbing大神的代码，以及刘天斯的&amp;lt;&amp;lt;自动化运维&amp;gt;&amp;gt;一书&lt;br&gt;项目地址&lt;a href=&quot;https://github.com/iceziYao/Ycm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Ycm,我的自动化运维之路 &lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&quot;Ycm简介&quot;&gt;&lt;a href=&quot;#Ycm简介&quot; class=&quot;headerlink&quot; title=&quot;Ycm简介&quot;&gt;&lt;/a&gt;Ycm简介&lt;/h4&gt;&lt;h5 id=&quot;1-平台功能介绍&quot;&gt;&lt;a href=&quot;#1-平台功能介绍&quot; class=&quot;headerlink&quot; title=&quot;1.平台功能介绍&quot;&gt;&lt;/a&gt;1.平台功能介绍&lt;/h5&gt;&lt;ul&gt;
@@ -45,12 +46,22 @@
 &lt;li&gt;第三层为服务层&lt;br&gt;3.1 存储采用mysql&lt;br&gt;3.2 自动化运维ansible/Saltstack api&lt;br&gt;3.3 监控采用zabbix api&lt;br&gt;3.4 运维审计  &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h5 id=&quot;3-数据库设计&quot;&gt;&lt;a href=&quot;#3-数据库设计&quot; class=&quot;headerlink&quot; title=&quot;3.数据库设计&quot;&gt;&lt;/a&gt;3.数据库设计&lt;/h5&gt;&lt;ol&gt;
-&lt;li&gt;用户列表  &lt;table&gt;&lt;br&gt;&lt;tr&gt;&lt;br&gt;   &lt;td&gt;username&lt;/td&gt; &lt;td&gt;password&lt;/td&gt;&lt;br&gt;&lt;/tr&gt;&lt;br&gt;&lt;/table&gt;&lt;/li&gt;
-&lt;li&gt;资产管理&lt;br&gt;2.1 服务列表&lt;table&gt;&lt;br&gt;&lt;tr&gt;&lt;br&gt;&lt;td&gt;厂商&lt;/td&gt;&lt;br&gt;&lt;td&gt;产品型号   &lt;/td&gt;&lt;br&gt;&lt;td&gt;序列号&lt;/td&gt;&lt;br&gt;&lt;td&gt;CPU型号&lt;/td&gt;&lt;br&gt;&lt;td&gt;CPU线程数&lt;/td&gt;&lt;br&gt;&lt;td&gt;CPU物理核数&lt;/td&gt;&lt;br&gt;&lt;td&gt;内存大小&lt;/td&gt;&lt;br&gt;&lt;td&gt;硬盘大小&lt;/td&gt;&lt;br&gt;&lt;td&gt;RAID级别&lt;/td&gt;&lt;br&gt;&lt;td&gt;主机名&lt;/td&gt;&lt;br&gt;&lt;td&gt;IP地址&lt;/td&gt;&lt;br&gt;&lt;td&gt;MAC地址&lt;/td&gt;&lt;br&gt;&lt;td&gt;操作系统&lt;/td&gt;&lt;br&gt;&lt;td&gt;是否为虚拟机&lt;/td&gt;&lt;br&gt;&lt;td&gt;所属机房&lt;/td&gt;&lt;br&gt;&lt;/tr&gt;&lt;br&gt;&lt;/table&gt;&lt;br&gt;2.2 主机列表&lt;br&gt;&lt;table&gt;&lt;br&gt;&lt;tr&gt;&lt;br&gt;   &lt;td&gt;IP地址&lt;/td&gt;&lt;br&gt;   &lt;td&gt;主机名&lt;/td&gt;&lt;br&gt;   &lt;td&gt;产品&lt;/td&gt;&lt;br&gt;   &lt;td&gt;应用&lt;/td&gt;&lt;br&gt;   &lt;td&gt;机柜编号&lt;/td&gt;&lt;br&gt;   &lt;td&gt;使用状态&lt;/td&gt;&lt;br&gt;   &lt;td&gt;是否虚拟机&lt;/td&gt;&lt;br&gt;&lt;/tr&gt;&lt;br&gt;&lt;/table&gt;&lt;br&gt;2.3 IDC机房信息&lt;br&gt;&lt;table&gt;&lt;br&gt;&lt;tr&gt;&lt;br&gt;   &lt;td&gt;机房名称&lt;/td&gt;&lt;br&gt;   &lt;td&gt;机房类型&lt;/td&gt;&lt;br&gt;   &lt;td&gt;机房位置&lt;/td&gt;&lt;br&gt;   &lt;td&gt;合同时间/td&amp;gt;&lt;br&gt;   &lt;/td&gt;&lt;td&gt;联系电话&lt;/td&gt;&lt;br&gt;   &lt;td&gt;备注&lt;/td&gt;&lt;br&gt;&lt;/tr&gt;&lt;br&gt;&lt;/table&gt;&lt;/li&gt;
-&lt;li&gt;运维审计  &lt;table&gt;&lt;br&gt;&lt;tr&gt;&lt;br&gt;   &lt;td&gt;操作人员&lt;/td&gt;&lt;br&gt;   &lt;td&gt;时间&lt;/td&gt;&lt;br&gt;     &lt;td&gt;类型&lt;/td&gt;&lt;br&gt;     &lt;td&gt;动作&lt;/td&gt;&lt;br&gt;     &lt;td&gt;执行IP&lt;/td&gt;&lt;br&gt;   &lt;td&gt;内容&lt;/td&gt;&lt;br&gt;&lt;/tr&gt;&lt;br&gt;&lt;/table&gt;
+&lt;li&gt;&lt;p&gt;用户列表  &lt;/p&gt;
+&lt;ul&gt;
 
-&lt;/li&gt;
+   &lt;td&gt;username&lt;/td&gt; &lt;td&gt;password&lt;/td&gt;
+
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;资产管理&lt;br&gt;2.1 服务列表&lt;br&gt;&lt;ul&gt;&lt;td&gt;厂商&lt;/td&gt;&lt;td&gt;产品型号   &lt;/td&gt;&lt;td&gt;序列号&lt;/td&gt;&lt;td&gt;CPU型号&lt;/td&gt;&lt;td&gt;CPU线程数&lt;/td&gt;&lt;td&gt;CPU物理核数&lt;/td&gt;&lt;td&gt;内存大小&lt;/td&gt;&lt;td&gt;硬盘大小&lt;/td&gt;&lt;br&gt;&lt;td&gt;RAID级别&lt;/td&gt;&lt;br&gt;&lt;td&gt;主机名&lt;/td&gt;&lt;br&gt;&lt;td&gt;IP地址&lt;/td&gt;&lt;br&gt;&lt;td&gt;MAC地址&lt;/td&gt;&lt;br&gt;&lt;td&gt;操作系统&lt;/td&gt;&lt;br&gt;&lt;td&gt;是否为虚拟机&lt;/td&gt;&lt;br&gt;&lt;td&gt;所属机房&lt;/td&gt;
+
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;2.2 主机列表  &lt;/p&gt;
+&lt;ul&gt;&lt;br&gt;&lt;br&gt;      &lt;td&gt;IP地址&lt;/td&gt;&lt;br&gt;      &lt;td&gt;主机名&lt;/td&gt;&lt;br&gt;      &lt;td&gt;产品&lt;/td&gt;&lt;br&gt;      &lt;td&gt;应用&lt;/td&gt;&lt;br&gt;      &lt;td&gt;机柜编号&lt;/td&gt;&lt;br&gt;      &lt;td&gt;使用状态&lt;/td&gt;&lt;br&gt;      &lt;td&gt;是否虚拟机&lt;/td&gt;&lt;br&gt;&lt;br&gt;&lt;/ul&gt;&lt;br&gt;2.3 IDC机房信息&lt;br&gt;&lt;ul&gt;&lt;br&gt;    &lt;td&gt;机房名称&lt;/td&gt;&lt;br&gt;      &lt;td&gt;机房类型&lt;/td&gt;&lt;br&gt;      &lt;td&gt;机房位置&lt;/td&gt;&lt;br&gt;      &lt;td&gt;合同时间&lt;/td&gt;&lt;br&gt;      &lt;td&gt;联系电话&lt;/td&gt;&lt;br&gt;      &lt;td&gt;备注&lt;/td&gt;&lt;br&gt; &lt;/ul&gt;&lt;br&gt;3. 运维审计&lt;br&gt;&lt;ul&gt;&lt;br&gt;   &lt;tr&gt;&lt;br&gt;      &lt;td&gt;操作人员&lt;/td&gt;&lt;br&gt;      &lt;td&gt;时间&lt;/td&gt;&lt;br&gt;        &lt;td&gt;类型&lt;/td&gt;&lt;br&gt;        &lt;td&gt;动作&lt;/td&gt;&lt;br&gt;        &lt;td&gt;执行IP&lt;/td&gt;&lt;br&gt;      &lt;td&gt;内容&lt;/td&gt;&lt;br&gt;   &lt;/tr&gt;&lt;br&gt; &lt;/ul&gt;
+
 &lt;h4 id=&quot;Ycm开发环境&quot;&gt;&lt;a href=&quot;#Ycm开发环境&quot; class=&quot;headerlink&quot; title=&quot;Ycm开发环境&quot;&gt;&lt;/a&gt;Ycm开发环境&lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;cestos 7.0&lt;/li&gt;
 &lt;li&gt;python 2.75&lt;/li&gt;
@@ -69,7 +80,15 @@
     
       &lt;h3 id=&quot;我的运维之路&quot;&gt;&lt;a href=&quot;#我的运维之路&quot; class=&quot;headerlink&quot; title=&quot;我的运维之路&quot;&gt;&lt;/a&gt;我的运维之路&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;手动ssh&lt;br&gt;每次弄服务器时，总是ssh连上去，执行命令   &lt;/li&gt;
-&lt;li&gt;脚本&lt;br
+&lt;li&gt;脚本&lt;br&gt;把自己要执行的命令写入脚本&lt;/li&gt;
+&lt;li&gt;python&lt;br&gt;python提供了很多东西&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;pssh等类库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;自动化运维工具&lt;br&gt;4.1 ansible&lt;br&gt;4.2 puppet&lt;br&gt;4.3 saltstack&lt;/li&gt;
+&lt;li&gt;写一个属于自己的自动化运维平台
     
     </summary>
     
@@ -85,7 +104,7 @@
     <link href="https://iceziyao.github.io/2016/05/21/Python/Python_GIL/"/>
     <id>https://iceziyao.github.io/2016/05/21/Python/Python_GIL/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-07-24T14:21:03.432Z</updated>
+    <updated>2016-08-06T14:49:25.694Z</updated>
     
     <content type="html">&lt;h2 id=&quot;GIL是什么？&quot;&gt;&lt;a href=&quot;#GIL是什么？&quot; class=&quot;headerlink&quot; title=&quot;GIL是什么？&quot;&gt;&lt;/a&gt;GIL是什么？&lt;/h2&gt;&lt;p&gt;GIL并不是Python的特性，它是在实现Python解析器(CPython)时所引入的一个概念。就好比C++是一套语言（语法）标准，但是可以用不同的编译器来编译成可执行代码。&lt;/p&gt;
 &lt;ul&gt;
@@ -95,6 +114,7 @@
 &lt;p&gt;In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;一个防止多线程并发执行机器码的一个Mutex&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -148,7 +168,14 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;GIL是什么？&quot;&gt;&lt;a href=&quot;#GIL是什么？&quot; class=&quot;headerlink&quot; title=&quot;GIL是什么？&quot;&gt;&lt;/a&gt;GIL是什么？&lt;/h2&gt;&lt;p&gt;GIL并不是Python的特性，它是在实现Python解析器(CPython)时所引入的一个概念。就
+      &lt;h2 id=&quot;GIL是什么？&quot;&gt;&lt;a href=&quot;#GIL是什么？&quot; class=&quot;headerlink&quot; title=&quot;GIL是什么？&quot;&gt;&lt;/a&gt;GIL是什么？&lt;/h2&gt;&lt;p&gt;GIL并不是Python的特性，它是在实现Python解析器(CPython)时所引入的一个概念。就好比C++是一套语言（语法）标准，但是可以用不同的编译器来编译成可执行代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPython实现中的GIL？&lt;blockquote&gt;
+&lt;p&gt;Global Interpreter Lock  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一个防止多线程并发执行机器码的一个Mutex&lt;/p&gt;
     
     </summary>
     
@@ -164,13 +191,14 @@
     <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
     <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-07-23T14:45:10.233Z</updated>
+    <updated>2016-08-06T14:49:28.945Z</updated>
     
     <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
@@ -224,7 +252,10 @@
     <summary type="html">
     
       &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -240,14 +271,15 @@
     <link href="https://iceziyao.github.io/2016/05/06/nodejs/"/>
     <id>https://iceziyao.github.io/2016/05/06/nodejs/</id>
     <published>2016-05-06T13:49:33.000Z</published>
-    <updated>2016-07-10T17:39:53.226Z</updated>
+    <updated>2016-08-06T14:49:13.900Z</updated>
     
     <content type="html">&lt;h3 id=&quot;什么是node-js&quot;&gt;&lt;a href=&quot;#什么是node-js&quot; class=&quot;headerlink&quot; title=&quot;什么是node.js&quot;&gt;&lt;/a&gt;什么是node.js&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Node.js 是构建于Chrome的JavaScript引擎的&lt;br&gt;Google的浏览器Chrome，有一个非常快速的JavaScript引擎，叫做V8。这个JS引擎可以被独立出来，该解释器拥有另一个独特特征；可以下载该引擎并将其嵌入任何 应用程序。Node.js就是建立在V8之上的。这也是为什么Node.js会运行的如此之快。对于开发者来说，有几个好处：&lt;ul&gt;
 &lt;li&gt;js完全通用&lt;/li&gt;
-&lt;li&gt;v8的发展影响着node.js&lt;/li&gt;
+&lt;li&gt;v8的发展影响着node.js&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -304,7 +336,11 @@ res.output();
     <summary type="html">
     
       &lt;h3 id=&quot;什么是node-js&quot;&gt;&lt;a href=&quot;#什么是node-js&quot; class=&quot;headerlink&quot; title=&quot;什么是node.js&quot;&gt;&lt;/a&gt;什么是node.js&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，
+&lt;li&gt;&lt;p&gt;node.js != Javascript&lt;br&gt;事实上，Node.js采用C++语言编写而成，是一个Javascript的运行环境。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js 是构建于Chrome的JavaScript引擎的&lt;br&gt;Google的浏览器Chrome，有一个非常快速的JavaScript引擎，叫做V8。这个JS引擎可以被独立出来，该解释器拥有另一个独特特征；可以下载该引擎并将其嵌入任何 应用程序。Node.js就是建立在V8之上的。这也是为什么Node.js会运行的如此之快。对于开发者来说，有几个好处：&lt;ul&gt;
+&lt;li&gt;js完全通用&lt;/li&gt;
+&lt;li&gt;v8的发展影响着node.js
     
     </summary>
     
@@ -320,14 +356,15 @@ res.output();
     <link href="https://iceziyao.github.io/2016/05/01/Python/python%E7%AB%AF%E5%8F%A3/"/>
     <id>https://iceziyao.github.io/2016/05/01/Python/python端口/</id>
     <published>2016-04-30T16:00:00.000Z</published>
-    <updated>2016-07-23T13:39:03.205Z</updated>
+    <updated>2016-08-06T14:49:31.890Z</updated>
     
     <content type="html">&lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器&lt;/li&gt;
 &lt;li&gt;端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  &lt;ul&gt;
 &lt;li&gt;处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  &lt;/li&gt;
 &lt;li&gt;将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)&lt;/li&gt;
-&lt;li&gt;端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)&lt;/li&gt;
+&lt;li&gt;端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -357,7 +394,11 @@ res.output();
     <summary type="html">
     
       &lt;h3 id=&quot;编写一个端口扫描器&quot;&gt;&lt;a href=&quot;#编写一个端口扫描器&quot; class=&quot;headerlink&quot; title=&quot;编写一个端口扫描器&quot;&gt;&lt;/a&gt;编写一个端口扫描器&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的
+&lt;li&gt;任何一个靠谱的网络攻击，都是起步于侦察。所以攻击服务器，也就是检查服务的漏洞。我使用的两种方式无非是web注入和端口扫描。所以先编写一个端口扫描器&lt;/li&gt;
+&lt;li&gt;端口扫描是基于TCP的，一共分为三个步骤，分别编写三个方法：  &lt;ul&gt;
+&lt;li&gt;处理数据，也就是处理用户输入数据的，此处我们定义为main函数，用来获取主机名和端口  &lt;/li&gt;
+&lt;li&gt;将主机名转换为对应的IPv4互联网地址，采socket.gethostbyname(hostname),获取到IP,然后调用处理端口扫描的函数.定义为portScan(tgtHost,tgtPorts)&lt;/li&gt;
+&lt;li&gt;端口扫描，也是就TCP的全连接，对目标地址和端口进行连接。最后为了确定该端口上运行的什么服务，我们还会发送垃圾信息，并读取返回的Banner.函数定义为connScan(tgtHost,tgtPort)
     
     </summary>
     
@@ -373,7 +414,7 @@ res.output();
     <link href="https://iceziyao.github.io/2016/04/04/Docker/docker02/"/>
     <id>https://iceziyao.github.io/2016/04/04/Docker/docker02/</id>
     <published>2016-04-03T16:00:00.000Z</published>
-    <updated>2016-07-10T18:32:38.031Z</updated>
+    <updated>2016-08-06T14:50:37.949Z</updated>
     
     <content type="html">&lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
@@ -389,7 +430,8 @@ res.output();
 &lt;li&gt;cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在&lt;/li&gt;
 &lt;li&gt;半虚拟化时，guest内核必须存在补丁&lt;ul&gt;
 &lt;li&gt;系统虚拟化时，用户不能控制自己的内核&lt;/li&gt;
-&lt;li&gt;语言沙盒时，用户没有使用api的自由&lt;/li&gt;
+&lt;li&gt;语言沙盒时，用户没有使用api的自由&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -442,7 +484,19 @@ res.output();
     
       &lt;h2 id=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;a href=&quot;#从虚拟化的种类和层级说起&quot; class=&quot;headerlink&quot; title=&quot;从虚拟化的种类和层级说起&quot;&gt;&lt;/a&gt;从虚拟化的种类和层级说起&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;cpu虚拟化：可以模拟
+&lt;li&gt;cpu虚拟化：可以模拟不同CPU，例如bochs&lt;/li&gt;
+&lt;li&gt;完全虚拟化：只能模拟同样CPU，但是可以执行不同系统，例如vmware&lt;/li&gt;
+&lt;li&gt;半虚拟化&lt;/li&gt;
+&lt;li&gt;硬件虚拟化：可以当作获得硬件加速的完全虚拟化&lt;/li&gt;
+&lt;li&gt;系统虚拟化：host和guest共享一样的内核，例如Openvz&lt;/li&gt;
+&lt;li&gt;语言沙盒：只能在语言的范围内使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;虚拟化的级别越偏底层，速度越慢，用户越难察觉到虚拟化的存在。 虚拟化的级别越偏上层，速度越快，用户越容易感知。也就是虚拟幻的包装，如何一个虚拟化完全包装底层，呈现给用户一个新的操作系统，那么用户会知道他用的什么吗？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu虚拟化和完全虚拟化时，用户几乎可以阿不察觉到虚拟化的存在&lt;/li&gt;
+&lt;li&gt;半虚拟化时，guest内核必须存在补丁&lt;ul&gt;
+&lt;li&gt;系统虚拟化时，用户不能控制自己的内核&lt;/li&gt;
+&lt;li&gt;语言沙盒时，用户没有使用api的自由
     
     </summary>
     
@@ -458,20 +512,18 @@ res.output();
     <link href="https://iceziyao.github.io/2016/04/03/Docker/docker01/"/>
     <id>https://iceziyao.github.io/2016/04/03/Docker/docker01/</id>
     <published>2016-04-02T16:00:00.000Z</published>
-    <updated>2016-07-10T17:39:49.100Z</updated>
+    <updated>2016-08-06T14:50:42.253Z</updated>
     
     <content type="html">&lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
-&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   &lt;blockquote&gt;
+&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  &lt;/li&gt;
 &lt;li&gt;每个container拥有自己独立的各种命名空间(亦即资源)包括:&lt;br&gt;PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等&lt;br&gt;与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  &lt;/li&gt;
 &lt;li&gt;虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Docker 概念及相互作用&lt;blockquote&gt;
-&lt;ul&gt;
+&lt;li&gt;Docker 概念及相互作用&lt;/li&gt;
 &lt;li&gt;主机， 运行容器的机器。&lt;/li&gt;
 &lt;li&gt;镜像，文件的层次结构，以及包含如何运行容器的元数据&lt;/li&gt;
 &lt;li&gt;容器，一个从镜像中启动，包含正在运行的程序的进程&lt;/li&gt;
@@ -480,8 +532,6 @@ res.output();
 &lt;li&gt;Dockerfile， 用于创建镜像的脚本  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&quot;docker能用来干什么？&quot;&gt;&lt;a href=&quot;#docker能用来干什么？&quot; class=&quot;headerlink&quot; title=&quot;docker能用来干什么？&quot;&gt;&lt;/a&gt;docker能用来干什么？&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;快速交付你的应用程序&lt;br&gt;Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。&lt;/li&gt;
 &lt;li&gt;开发和拓展更加简单&lt;br&gt;Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。&lt;br&gt;Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。&lt;/li&gt;
@@ -578,7 +628,8 @@ res.output();
     <summary type="html">
     
       &lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Pr
+&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
+&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核
     
     </summary>
     
@@ -594,11 +645,11 @@ res.output();
     <link href="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/"/>
     <id>https://iceziyao.github.io/2016/02/01/Lvs/lvs1/</id>
     <published>2016-01-31T16:00:00.000Z</published>
-    <updated>2016-07-23T13:18:13.282Z</updated>
+    <updated>2016-08-06T14:49:36.591Z</updated>
     
     <content type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。&lt;br&gt;使用LVS技术要达到的目标是:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。&lt;/p&gt;
+&lt;p&gt;通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;LVS体系结构&quot;&gt;&lt;a href=&quot;#LVS体系结构&quot; class=&quot;headerlink&quot; title=&quot;LVS体系结构&quot;&gt;&lt;/a&gt;LVS体系结构&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;LVS体系结构下图所示：&lt;br&gt;&lt;img src=&quot;/upload/Lvs.png&quot; alt=&quot;Lvs&quot;&gt;&lt;/p&gt;
@@ -621,7 +672,9 @@ res.output();
     
     <summary type="html">
     
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Lin
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。&lt;br&gt;使用LVS技术要达到的目标是:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。&lt;br&gt;
     
     </summary>
     
@@ -637,9 +690,10 @@ res.output();
     <link href="https://iceziyao.github.io/2016/01/16/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/haproxy/</id>
     <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-10T18:34:17.947Z</updated>
+    <updated>2016-08-06T14:49:04.539Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;br&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt;    客户端侧的长连接(client-side keep-alive)&lt;br&gt;    TCP加速(TCP speedups)&lt;br&gt;    响应池(response buffering)&lt;br&gt;    RDP协议&lt;br&gt;    基于源的粘性(source-based stickiness)&lt;br&gt;    更好的统计数据接口(a much better stats interfaces)&lt;br&gt;    更详细的健康状态检测机制(more verbose health checks)&lt;br&gt;    基于流量的健康评估机制(traffic-based health)&lt;br&gt;    支持HTTP认证&lt;br&gt;    服务器管理命令行接口(server management from the CLI)&lt;br&gt;    基于ACL的持久性(ACL-based persistence)&lt;br&gt;    日志分析器&lt;br&gt;  1.1.2 内容交换和超强负载：&lt;br&gt;  衍生于1.2版本，并提供了额外的新特性。&lt;br&gt;    内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt;    ACL：编写内容交换规则；&lt;br&gt;    负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt;    内容探测(content inspection)：阻止非授权协议；&lt;br&gt;    透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt;    内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt;    分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt;    快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt;    会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt;    单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt;    O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt;    在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt;    借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt;    MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt;    树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt;    优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt;    精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
+    <content type="html">&lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt;    客户端侧的长连接(client-side keep-alive)&lt;br&gt;    TCP加速(TCP speedups)&lt;br&gt;    响应池(response buffering)&lt;br&gt;    RDP协议&lt;br&gt;    基于源的粘性(source-based stickiness)&lt;br&gt;    更好的统计数据接口(a much better stats interfaces)&lt;br&gt;    更详细的健康状态检测机制(more verbose health checks)&lt;br&gt;    基于流量的健康评估机制(traffic-based health)&lt;br&gt;    支持HTTP认证&lt;br&gt;    服务器管理命令行接口(server management from the CLI)&lt;br&gt;    基于ACL的持久性(ACL-based persistence)&lt;br&gt;    日志分析器&lt;br&gt;  1.1.2 内容交换和超强负载：&lt;br&gt;  衍生于1.2版本，并提供了额外的新特性。&lt;br&gt;    内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt;    ACL：编写内容交换规则；&lt;br&gt;    负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt;    内容探测(content inspection)：阻止非授权协议；&lt;br&gt;    透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt;    内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt;    分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt;    快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt;    会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt;    单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt;    O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt;    在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt;    借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt;    MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt;    树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt;    优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt;    精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
 &lt;h4 id=&quot;配置HAProxy&quot;&gt;&lt;a href=&quot;#配置HAProxy&quot; class=&quot;headerlink&quot; title=&quot;配置HAProxy&quot;&gt;&lt;/a&gt;配置HAProxy&lt;/h4&gt;&lt;p&gt;2.1 配置文件格式&lt;br&gt;HAProxy的配置处理3类来主要参数来源：&lt;br&gt;    ——最优先处理的命令行参数，&lt;br&gt;    ——“global”配置段，用于设定全局配置参数；&lt;br&gt;    ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；&lt;br&gt;2.2 时间格式&lt;br&gt;一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。&lt;br&gt;    us: 微秒(microseconds)，即1/1000000秒；&lt;br&gt;    ms: 毫秒(milliseconds)，即1/1000秒；&lt;br&gt;    s: 秒(seconds)；&lt;br&gt;    m: 分钟(minutes)；&lt;br&gt;    h：小时(hours)；&lt;br&gt;    d: 天(days)；&lt;br&gt;2.3 例子&lt;br&gt;下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
     global
@@ -1063,7 +1117,7 @@ backend mysqlservers
     
     <summary type="html">
     
-      &lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持
+      &lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科
     
     </summary>
     
@@ -1075,15 +1129,59 @@ backend mysqlservers
   </entry>
   
   <entry>
+    <title>高可用集群系列之基础篇1</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-08-06T14:50:31.530Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>高可用集群系列之基础篇2</title>
     <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
     <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
     <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-12T15:46:59.148Z</updated>
+    <updated>2016-08-06T14:50:28.516Z</updated>
     
     <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;/li&gt;
-&lt;li&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
@@ -1151,49 +1249,8 @@ backend mysqlservers
     
     <summary type="html">
     
-      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-07-11T23:41:40.975Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个
+      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.
     
     </summary>
     
@@ -1209,10 +1266,11 @@ backend mysqlservers
     <link href="https://iceziyao.github.io/2016/01/01/lnmp/Memcached/"/>
     <id>https://iceziyao.github.io/2016/01/01/lnmp/Memcached/</id>
     <published>2016-01-01T13:49:33.000Z</published>
-    <updated>2016-07-11T15:17:57.685Z</updated>
+    <updated>2016-08-06T14:50:03.790Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;memcached是以LiveJournal旗下Danga Interactive 公司的Brad Fitzpatric 为首开发的一款软件。现在&lt;br&gt;已成为mixi、hatena、Facebook、Vox、LiveJournal等众多服务中提高Web应用扩展性的重要因素。&lt;/p&gt;
 &lt;/li&gt;
@@ -1353,7 +1411,7 @@ server {
     <summary type="html">
     
       &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对
+&lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
     
     </summary>
     
@@ -1369,9 +1427,10 @@ server {
     <link href="https://iceziyao.github.io/2016/01/01/lnmp/php/"/>
     <id>https://iceziyao.github.io/2016/01/01/lnmp/php/</id>
     <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-07-09T21:55:23.922Z</updated>
+    <updated>2016-08-06T14:50:20.161Z</updated>
     
-    <content type="html">&lt;pre&gt;&lt;code&gt;
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;
    /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
    　　collect2: ld returned 1 exit status
    　　make:*** [sapi/fpm/php-fpm] Error 1
@@ -1527,10 +1586,11 @@ server {
     
     <summary type="html">
     
-      &lt;pre&gt;&lt;code&gt;
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;
    /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
    　　collect2: ld returned 1 exit status
-   　　make:*** [sap
+
     
     </summary>
     
@@ -1546,9 +1606,9 @@ server {
     <link href="https://iceziyao.github.io/2016/01/01/Net/Tcp11/"/>
     <id>https://iceziyao.github.io/2016/01/01/Net/Tcp11/</id>
     <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-07-24T10:22:57.740Z</updated>
+    <updated>2016-08-06T14:49:58.509Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h1&gt;&lt;h2 id=&quot;连接的建立&quot;&gt;&lt;a href=&quot;#连接的建立&quot; class=&quot;headerlink&quot; title=&quot;连接的建立&quot;&gt;&lt;/a&gt;连接的建立&lt;/h2&gt;&lt;h3 id=&quot;三次握手&quot;&gt;&lt;a href=&quot;#三次握手&quot; class=&quot;headerlink&quot; title=&quot;三次握手&quot;&gt;&lt;/a&gt;三次握手&lt;/h3&gt;&lt;p&gt;所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;TCP三次握手&lt;/p&gt;
@@ -1601,7 +1661,7 @@ server {
     
     <summary type="html">
     
-      &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的
+      &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;
     
     </summary>
     
@@ -1617,10 +1677,13 @@ server {
     <link href="https://iceziyao.github.io/2015/12/25/Net/tcp10/"/>
     <id>https://iceziyao.github.io/2015/12/25/Net/tcp10/</id>
     <published>2015-12-24T16:00:00.000Z</published>
-    <updated>2016-07-23T14:36:53.737Z</updated>
+    <updated>2016-08-06T14:49:54.535Z</updated>
     
     <content type="html">&lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; class=&quot;headerlink&quot; title=&quot;tcp报文格式&quot;&gt;&lt;/a&gt;tcp报文格式&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.&lt;br&gt;&lt;img src=&quot;/upload/tcp.jpg&quot; alt=&quot;tcp&quot;&gt;  &lt;blockquote&gt;
+&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/upload/tcp.jpg&quot; alt=&quot;tcp&quot;&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;源、目标端口号字段：占16比特。TCP协议通过使用”端口”来标识源端和目标端的应用进程。端口号可以使用0到65535之间的任何数字。在收到服务请求时，操作系统动态地为客户端的应用程序分配端口号。在服务器端，每种服务在”众所周知的端口”（Well-Know Port）为用户提供服务。  &lt;/li&gt;
 &lt;li&gt;顺序号字段：占32比特。用来标识从TCP源端向TCP目标端发送的数据字节流，它表示在这个报文段中的第一个数据字节。  &lt;/li&gt;
@@ -1641,8 +1704,6 @@ server {
 &lt;li&gt;选项字段：占32比特。可能包括”窗口扩大因子”、”时间戳”等选项。  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&quot;TCP传输&quot;&gt;&lt;a href=&quot;#TCP传输&quot; class=&quot;headerlink&quot; title=&quot;TCP传输&quot;&gt;&lt;/a&gt;TCP传输&lt;/h2&gt;&lt;p&gt;TCP和UDP处在同一层—运输层，但是TCP和UDP最不同的地方是，TCP提供了一种可靠的数据传输服务，TCP是面向连接的，也就是说，利用TCP通信的两台主机首先要经历一个“拨打电话”的过程，等到通信准备结束才开始传输数据，最后结束通话。所以TCP要比UDP可靠的多，UDP是把数据直接发出去，而不管对方是不是在收信，就算是UDP无法送达，也不会产生ICMP差错报文&lt;/p&gt;
 &lt;h3 id=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;a href=&quot;#TCP保证可靠性的简单工作原理&quot; class=&quot;headerlink&quot; title=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;/a&gt;TCP保证可靠性的简单工作原理&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的 数据报长度将保持不变。由TCP传递给IP的信息单位称为报文段或段&lt;/p&gt;
@@ -1671,7 +1732,8 @@ server {
     
     <summary type="html">
     
-      &lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; c
+      &lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; class=&quot;headerlink&quot; title=&quot;tcp报文格式&quot;&gt;&lt;/a&gt;tcp报文格式&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.
     
     </summary>
     
@@ -1687,9 +1749,10 @@ server {
     <link href="https://iceziyao.github.io/2015/12/23/lnmp/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>https://iceziyao.github.io/2015/12/23/lnmp/nginx配置文件详解/</id>
     <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-10T17:39:52.170Z</updated>
+    <updated>2016-08-06T14:50:16.766Z</updated>
     
-    <content type="html">&lt;pre&gt;&lt;code&gt;
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;
 
 
     #运行用户
@@ -1874,7 +1937,8 @@ server {
     
     <summary type="html">
     
-      &lt;pre&gt;&lt;code&gt;
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;
 
 
     #运行用户
@@ -1883,7 +1947,7 @@ server {
     worker_processes  1;
 
     #全局错误日志及PID文件
-    error_log  /var/log/ngin
+    error_
     
     </summary>
     
@@ -1899,11 +1963,12 @@ server {
     <link href="https://iceziyao.github.io/2015/12/23/lnmp/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     <id>https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/</id>
     <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-07-09T21:35:22.277Z</updated>
+    <updated>2016-08-06T14:50:07.903Z</updated>
     
     <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;/p&gt;
+&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;1.1 正向代理  &lt;/p&gt;
 &lt;blockquote&gt;
@@ -1918,7 +1983,7 @@ server {
 &lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
-&lt;/li&gt;
+&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
@@ -2014,7 +2079,9 @@ http {
     
     <summary type="html">
     
-      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%
+      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理
     
     </summary>
     
@@ -2028,11 +2095,12 @@ http {
     <link href="https://iceziyao.github.io/2015/12/06/Net/tcp4/"/>
     <id>https://iceziyao.github.io/2015/12/06/Net/tcp4/</id>
     <published>2015-12-05T16:00:00.000Z</published>
-    <updated>2016-07-23T14:01:42.047Z</updated>
+    <updated>2016-08-06T14:49:49.006Z</updated>
     
     <content type="html">&lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。&lt;br&gt;这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，&lt;br&gt;就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。&lt;br&gt;现在的具有路由功能的主机应该可以将单播数据定向转发，&lt;br&gt;而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;广播-unicast&quot;&gt;&lt;a href=&quot;#广播-unicast&quot; class=&quot;headerlink&quot; title=&quot;广播(unicast)&quot;&gt;&lt;/a&gt;广播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;广播是主机针对某一个网络上的所有主机发送数据包。这个网络可能是网络，可能是子网，还可能是所有的子网。如果是网络，例如A类网址的广播就是 netid.255.255.255，如果是子网，则是netid.netid.subnetid.255；如果是所有的子网（B类IP）则是则是 netid.netid.255.255。广播所用的MAC地址FF-FF-FF-FF-FF-FF。网络内所有的主机都会收到这个广播数据，网卡只要把 MAC地址为FF-FF-FF-FF-FF-FF的数据交给内核就可以了。一般说来ARP，或者路由协议RIP应该是以广播的形式播发的。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2051,7 +2119,8 @@ http {
     <summary type="html">
     
       &lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一
+&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。&lt;br&gt;这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，&lt;br&gt;就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。&lt;br&gt;现在的具有路由功能的主机应该可以将单播数据定向转发，&lt;br&gt;而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -2067,13 +2136,14 @@ http {
     <link href="https://iceziyao.github.io/2015/12/04/Net/tcp3/"/>
     <id>https://iceziyao.github.io/2015/12/04/Net/tcp3/</id>
     <published>2015-12-03T16:00:00.000Z</published>
-    <updated>2016-07-23T14:36:32.409Z</updated>
+    <updated>2016-08-06T14:49:45.957Z</updated>
     
     <content type="html">&lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。&lt;/p&gt;
 &lt;h2 id=&quot;IP&quot;&gt;&lt;a href=&quot;#IP&quot; class=&quot;headerlink&quot; title=&quot;IP&quot;&gt;&lt;/a&gt;IP&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;IP协议&lt;br&gt;IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  &lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;IP路由选择&lt;br&gt;当一个IP数据包准备好了的时候，IP数据包(或者说是路由器)是如何将数据包送到目的地的呢?它是怎么选择一个合适的路径来”送货”的呢?&lt;/p&gt;
@@ -2106,7 +2176,7 @@ http {
 &lt;h2 id=&quot;RARP协议&quot;&gt;&lt;a href=&quot;#RARP协议&quot; class=&quot;headerlink&quot; title=&quot;RARP协议&quot;&gt;&lt;/a&gt;RARP协议&lt;/h2&gt;&lt;p&gt;反向地址转换协议（RARP：Reverse Address Resolution Protocol） 反向地址转换协议（RARP）允许局域网的物理机器从网关服务器的 ARP 表或者缓存上请求其 IP 地址。网络管理员在局域网网关路由器里创建一个表以映射物理地址（MAC）和与其对应的 IP 地址。当设置一台新的机器时，其 RARP 客户机程序需要向路由器上的 RARP 服务器请求相应的 IP 地址。假设在路由表中已经设置了一个记录，RARP 服务器将会返回 IP 地址给机器，此机器就会存储起来以便日后使用。  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;工作原理  &lt;blockquote&gt;
-&lt;p&gt;1、网络上的每台设备都会有一个独一无二的硬件地址，通常是由设备厂商分配的MAC地址。PC1从网卡上读取MAC地址，然后在网络上发送一个RARP请求的广播数据包，请求RARP服务器回复该PC的IP地址。&lt;br&gt;2、RARP服务器收到了RARP请求数据包，为其分配IP地址，并将RARP回应发送给PC1。&lt;br&gt;3、PC1收到RARP回应后，就使用得到的IP地址进行通讯。 &lt;/p&gt;
+&lt;p&gt;1、网络上的每台设备都会有一个独一无二的硬件地址，通常是由设备厂商分配的MAC地址。PC1从网卡上读取MAC地址，然后在网络上发送一个RARP请求的广播数据包，请求RARP服务器回复该PC的IP地址。&lt;br&gt;2、RARP服务器收到了RARP请求数据包，为其分配IP地址，并将RARP回应发送给PC1。&lt;br&gt;3、PC1收到RARP回应后，就使用得到的IP地址进行通讯。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2114,7 +2184,11 @@ http {
     
     <summary type="html">
     
-      &lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消
+      &lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。&lt;/p&gt;
+&lt;h2 id=&quot;IP&quot;&gt;&lt;a href=&quot;#IP&quot; class=&quot;headerlink&quot; title=&quot;IP&quot;&gt;&lt;/a&gt;IP&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;IP协议&lt;br&gt;IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  &lt;/p&gt;
     
     </summary>
     
@@ -2130,14 +2204,14 @@ http {
     <link href="https://iceziyao.github.io/2015/12/03/Net/tcp2/"/>
     <id>https://iceziyao.github.io/2015/12/03/Net/tcp2/</id>
     <published>2015-12-02T16:00:00.000Z</published>
-    <updated>2016-07-23T14:15:55.920Z</updated>
+    <updated>2016-08-06T14:49:43.679Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数据链路层&quot;&gt;&lt;a href=&quot;#数据链路层&quot; class=&quot;headerlink&quot; title=&quot;数据链路层&quot;&gt;&lt;/a&gt;数据链路层&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;为IP模块发送和 接收IP数据报。&lt;/li&gt;
 &lt;li&gt;为ARP模块发送ARP请求和接收ARP应答。&lt;/li&gt;
 &lt;li&gt;为RARP发送RARP请 求和接收RARP应答&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。  &lt;/p&gt;
+&lt;p&gt;数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;详解&quot;&gt;&lt;a href=&quot;#详解&quot; class=&quot;headerlink&quot; title=&quot;详解&quot;&gt;&lt;/a&gt;详解&lt;/h2&gt;&lt;p&gt;linux里面的ifconfig -a命令&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;eth0: flags=4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt;  mtu 1500&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ether e0:3f:49:34:3a:1f  txqueuelen 1000  (Ethernet)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RX packets 0  bytes 0 (0.0 B)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RX errors 0  dropped 0  overruns 0  frame 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TX packets 0  bytes 0 (0.0 B)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;device interrupt 18&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;+shell&quot;&gt;lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 65536
         inet 127.0.0.1  netmask 255.0.0.0
@@ -2178,7 +2252,10 @@ lo       65536    10103      0      0 0         10103      0      0      0 LRU
     
       &lt;h2 id=&quot;数据链路层&quot;&gt;&lt;a href=&quot;#数据链路层&quot; class=&quot;headerlink&quot; title=&quot;数据链路层&quot;&gt;&lt;/a&gt;数据链路层&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;为IP模块发送和 接收IP数据报。&lt;/li&gt;
-&lt;li&gt;为ARP模块发送ARP请求和接收ARP应答。&lt;/l
+&lt;li&gt;为ARP模块发送ARP请求和接收ARP应答。&lt;/li&gt;
+&lt;li&gt;为RARP发送RARP请 求和接收RARP应答&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。&lt;br&gt;
     
     </summary>
     
