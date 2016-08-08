@@ -3,24 +3,39 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ftp+mysql搭建ftp认证 | 羽非衣</title>
+  <title>shell判断条件 | 羽非衣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
+  <meta name="description" content="###shell判断条件：
+1.字符串判断
+
+str1 = str2　　　　　　当两个串有相同内容、长度时为真str1 != str2　　　　　 当串str1和str2不等时为真-n str1　　　　　　　 当串的长度大于0时为真(串非空)-z str1　　　　　　　 当串的长度为0时为真(空串)  
+
+2.数字的判断
+
+int1 -eq int2　　　　两数相等为真int1 -ne int2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ftp+mysql搭建ftp认证">
-<meta property="og:url" content="https://iceziyao.github.io/2015/11/24/ftp+mysql/index.html">
+<meta property="og:title" content="shell判断条件">
+<meta property="og:url" content="https://iceziyao.github.io/2015/10/11/shell/shell-if/index.html">
 <meta property="og:site_name" content="羽非衣">
-<meta property="og:description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
-<meta property="og:updated_time" content="2016-08-06T14:48:58.896Z">
+<meta property="og:description" content="###shell判断条件：
+1.字符串判断
+
+str1 = str2　　　　　　当两个串有相同内容、长度时为真str1 != str2　　　　　 当串str1和str2不等时为真-n str1　　　　　　　 当串的长度大于0时为真(串非空)-z str1　　　　　　　 当串的长度为0时为真(空串)  
+
+2.数字的判断
+
+int1 -eq int2　　　　两数相等为真int1 -ne int2">
+<meta property="og:updated_time" content="2016-08-08T09:12:02.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ftp+mysql搭建ftp认证">
-<meta name="twitter:description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
+<meta name="twitter:title" content="shell判断条件">
+<meta name="twitter:description" content="###shell判断条件：
+1.字符串判断
+
+str1 = str2　　　　　　当两个串有相同内容、长度时为真str1 != str2　　　　　 当串str1和str2不等时为真-n str1　　　　　　　 当串的长度大于0时为真(串非空)-z str1　　　　　　　 当串的长度为0时为真(空串)  
+
+2.数字的判断
+
+int1 -eq int2　　　　两数相等为真int1 -ne int2">
   
     <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
   
@@ -116,7 +131,7 @@
                         
                             <li><a href="/">博客首页</a></li>
                         
-                            <li><a href="/about">关于本人</a></li>
+                            <li><a href="/about">求职简历</a></li>
                         
                             <li><a href="/archives">归档</a></li>
                         
@@ -142,7 +157,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
+                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 13.33px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
                     </div>
                 </section>
                 
@@ -185,7 +200,7 @@
                 
                     <li><a href="/">博客首页</a></li>
                 
-                    <li><a href="/about">关于本人</a></li>
+                    <li><a href="/about">求职简历</a></li>
                 
                     <li><a href="/archives">归档</a></li>
                 
@@ -210,11 +225,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-ftp+mysql" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-shell/shell-if" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/24/ftp+mysql/" class="article-date">
-      <time datetime="2015-11-24T03:49:33.000Z" itemprop="datePublished">2015-11-24</time>
+      <a href="/2015/10/11/shell/shell-if/" class="article-date">
+      <time datetime="2015-10-10T16:00:00.000Z" itemprop="datePublished">2015-10-11</time>
 </a>
     </div>
   
@@ -227,7 +242,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ftp+mysql搭建ftp认证
+      shell判断条件
     </h1>
   
 
@@ -236,13 +251,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/ftp/">ftp</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ftp/">ftp</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -252,82 +267,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="安装所需要程序"><a href="#安装所需要程序" class="headerlink" title="安装所需要程序"></a>安装所需要程序</h3><ol>
-<li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
-<li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
-# cd  pam_mysql-0.7RC1
-# ./configure --with-mysql=/usr --with-openssl
-# make
-# make install  
-</code></pre></li>
-<li>安装vsftpd<blockquote>
-<p><code>yum -y install vsftpd</code></p>
-<a id="more"></a>
-</blockquote>
-</li>
-</ol>
-<h3 id="创建虚拟用户账号"><a href="#创建虚拟用户账号" class="headerlink" title="创建虚拟用户账号"></a>创建虚拟用户账号</h3><ol>
-<li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
+        <p>###shell判断条件：</p>
+<p>1.字符串判断</p>
 <blockquote>
-<p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
+<p>str1 = str2　　　　　　当两个串有相同内容、长度时为真<br>str1 != str2　　　　　 当串str1和str2不等时为真<br>-n str1　　　　　　　 当串的长度大于0时为真(串非空)<br>-z str1　　　　　　　 当串的长度为0时为真(空串)  </p>
 </blockquote>
-</li>
-<li><p>添加测试的虚拟用户<br>根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.</p>
-<pre><code>mysql&gt; insert into users(name,password) values(&apos;tom&apos;,&apos;magedu&apos;);
-mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
-</code></pre></li>
-</ol>
-<h3 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h3><ol>
-<li><p>建立pam认证所需文件</p>
-<pre><code>#vi /etc/pam.d/vsftpd.mysql
-添加如下两行
-auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-account required /lib/security/pam_mysql.so user=vsftpd
-passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-</code></pre></li>
-<li><p>修改vsftpd的配置文件，使其适应mysql认证<br>建立虚拟用户映射的系统用户及对应的目录  </p>
-<pre><code>#useradd -s /sbin/nologin -d /var/ftproot vuser
-#chmod go+rx /var/ftproot
-</code></pre><p>请确保/etc/vsftpd.conf中已经启用了以下选项  </p>
+<p>2.数字的判断</p>
 <blockquote>
-<p>anonymous_enable=YES<br>local_enable=YES<br>write_enable=YES<br>anon_upload_enable=NO<br>anon_mkdir_write_enable=NO<br>chroot_local_user=YES<br>而后添加以下选项<br>guest_enable=YES<br>guest_username=vuser<br>并确保pam_service_name选项的值如下所示<br>pam_service_name=vsftpd.mysql  </p>
+<p>int1 -eq int2　　　　两数相等为真<br>int1 -ne int2　　　　两数不等为真<br>int1 -gt int2　　　　int1大于int2为真<br>int1 -ge int2　　　　int1大于等于int2为真<br>int1 -lt int2　　　　int1小于int2为真<br>int1 -le int2　　　　int1小于等于int2为真  </p>
 </blockquote>
-</li>
-</ol>
-<p>四、启动vsftpd服务</p>
-<pre><code># service vsftpd start
-# chkconfig vsftpd on
-</code></pre><p>查看端口开启情况  </p>
-<pre><code># netstat -tnlp |grep :21
-tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
-</code></pre><p>使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  </p>
-<pre><code># ftp localhost
-</code></pre><p>五、配置虚拟用户具有不同的访问权限<br>vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  </p>
-<ol>
-<li><p>配置vsftpd为虚拟用户使用配置文件目录</p>
-<pre><code># vim vsftpd.conf
-添加如下选项
-user_config_dir=/etc/vsftpd/vusers_dir
-</code></pre></li>
-<li><p>创建所需要目录，并为虚拟用户提供配置文件</p>
-<pre><code># mkdir /etc/vsftpd/vusers_dir/
-# cd /etc/vsftpd/vusers_dir/
-# touch tom jerry
-</code></pre></li>
-<li>配置虚拟用户的访问权限<br>虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。<br><code>anon_upload_enable=YES</code></li>
-</ol>
+<p>3.文件的判断</p>
+<blockquote>
+<p>-e file            若文件存在，则为真<br>-d file            若文件存在且是一个目录，则为真<br>-b file            若文件存在且是一个块特殊文件，则为真<br>-c file            若文件存在且是一个字符特殊文件，则为真<br>-f file            若文件存在且是一个规则文件，则为真<br>-g file            若文件存在且设置了SGID位的值，则为真<br>-h file            若文件存在且为一个符合链接，则为真<br>-k file            若文件存在且设置了”sticky”位的值<br>-p file            若文件存在且为一已命名管道，则为真<br>-r file            若文件存在且可读，则为真<br>-s file            若文件存在且其大小大于零,则为真<br>-u file            若文件存在且设置了SUID位，则为真<br>-w file            若文件存在且可写，则为真<br>-x file            若文件存在且可执行，则为真<br>-o file            若文件存在且被有效用户ID所拥有，则为真  </p>
+</blockquote>
+<p>4.逻辑判断</p>
+<blockquote>
+<p>!expr              若expr为假则复合表达式为真。expr可以是任何有效的测试表达式<br>expr1 -a expr2     若expr1和expr2都为真则整式为真<br>expr1 -o expr2     若expr1和expr2有一个为真则整式为真   </p>
+</blockquote>
+<p>5.系统变量</p>
+<blockquote>
+<p>$n                 该变量与脚本被激活时所带的参数相对应。n是正整数，与参数位置相对应($1,$2…)<br>$?                 前一个命令执行后的退出状态<br>$#                 提供脚本的参数号<br>$<em>                 所有这些参数都被双引号引住。若一个脚本接收两个参数，$</em>等于$1$2<br>$0                 正在被执行命令的名字。对于shell脚本而言，这是被激活命令的路径<br>$@                 所有这些参数都分别被双引号引住。若一个脚本接收到两个参数，$@等价于$1$2<br>$$                 当前shell的进程号。对于shell脚本，这是其正在执行时的进程ID<br>$!                 前一个后台命令的进程号  </p>
+</blockquote>
 
       
     </div>
@@ -336,13 +296,13 @@ user_config_dir=/etc/vsftpd/vusers_dir
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></p>
+        <p><span>本文标题:</span><a href="/2015/10/11/shell/shell-if/">shell判断条件</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
-        <p><span>发布时间:</span>2015年11月24日 - 11时49分</p>
-        <p><span>最后更新:</span>2016年08月06日 - 22时48分</p>
+        <p><span>发布时间:</span>2015年10月11日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年08月08日 - 17时12分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/11/24/ftp+mysql/" title="ftp+mysql搭建ftp认证">https://iceziyao.github.io/2015/11/24/ftp+mysql/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2015/11/24/ftp+mysql/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2015/10/11/shell/shell-if/" title="shell判断条件">https://iceziyao.github.io/2015/10/11/shell/shell-if/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2015/10/11/shell/shell-if/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -355,17 +315,17 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
 <nav id="article-nav">
   
-    <a href="/2015/12/03/Net/tcp1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/11/24/server/ftp+mysql/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          TCP/IP基础
+          ftp+mysql搭建ftp认证
         
       </div>
     </a>
   
   
-    <a href="/2015/10/11/shell编程/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/10/11/shell/shell编程/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">shell编程基础</div>
       <strong class="article-nav-caption">></strong>
     </a>
@@ -377,7 +337,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装所需要程序"><span class="toc-number">1.</span> <span class="toc-text">安装所需要程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建虚拟用户账号"><span class="toc-number">2.</span> <span class="toc-text">创建虚拟用户账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置vsftpd"><span class="toc-number">3.</span> <span class="toc-text">配置vsftpd</span></a></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -425,7 +385,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/11/24/ftp+mysql/" data-title="ftp+mysql搭建ftp认证" data-url="https://iceziyao.github.io/2015/11/24/ftp+mysql/"></div>
+    <div class="ds-thread" data-thread-key="2015/10/11/shell/shell-if/" data-title="shell判断条件" data-url="https://iceziyao.github.io/2015/10/11/shell/shell-if/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -448,18 +408,18 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/03/Net/tcp1/" title="上一篇: TCP/IP基础">
+            <a href="/2015/11/24/server/ftp+mysql/" title="上一篇: ftp+mysql搭建ftp认证">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2015/10/11/shell编程/" title="下一篇: shell编程基础">
+            <a href="/2015/10/11/shell/shell编程/" title="下一篇: shell编程基础">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/ajax/">ajax初探</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -489,17 +449,17 @@ user_config_dir=/etc/vsftpd/vusers_dir
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016 陈子瑶
+                &copy; 2016-08-08 陈子瑶
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+                <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >留影: 
+                        <span id="site-visit" >留影:
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -509,7 +469,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
+                        <span id="page-visit">足印:
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
