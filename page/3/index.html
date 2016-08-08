@@ -138,7 +138,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 13.33px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
+                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 13.33px;">ansible</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 16.67px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
                     </div>
                 </section>
                 
@@ -208,11 +208,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Net/tcp2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Net/tcp4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/03/Net/tcp2/" class="article-date">
-      <time datetime="2015-12-02T16:00:00.000Z" itemprop="datePublished">2015-12-03</time>
+      <a href="/2015/12/06/Net/tcp4/" class="article-date">
+      <time datetime="2015-12-05T16:00:00.000Z" itemprop="datePublished">2015-12-06</time>
 </a>
     </div>
   
@@ -225,7 +225,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/03/Net/tcp2/">数据链路层</a>
+      <a class="article-title" href="/2015/12/06/Net/tcp4/">多播和广播</a>
     </h1>
   
 
@@ -235,12 +235,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><ul>
-<li>为IP模块发送和 接收IP数据报。</li>
-<li>为ARP模块发送ARP请求和接收ARP应答。</li>
-<li>为RARP发送RARP请 求和接收RARP应答</li>
-</ul>
-<p>数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。<br>
+              <h3 id="单播-unicast"><a href="#单播-unicast" class="headerlink" title="单播(unicast)"></a>单播(unicast)</h3><blockquote>
+<p>单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。<br>这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，<br>就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。<br>现在的具有路由功能的主机应该可以将单播数据定向转发，<br>而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。</p>
+</blockquote>
           
       
     </div>
@@ -260,7 +257,77 @@
 
       
         <p class="article-more-link">
-          <a  href="/2015/12/03/Net/tcp2/#more">一览全貌 >></a>
+          <a  href="/2015/12/06/Net/tcp4/#more">一览全貌 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Net/tcp3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/04/Net/tcp3/" class="article-date">
+      <time datetime="2015-12-03T16:00:00.000Z" itemprop="datePublished">2015-12-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。</p>
+<h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><ol>
+<li><p>IP协议<br>IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送</p>
+<blockquote>
+<p>Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  </p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/网络/">网络</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/04/Net/tcp3/#more">一览全貌 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -329,6 +396,77 @@
       
         <p class="article-more-link">
           <a  href="/2015/12/03/Net/tcp1/#more">一览全貌 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Net/tcp2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/03/Net/tcp2/" class="article-date">
+      <time datetime="2015-12-02T16:00:00.000Z" itemprop="datePublished">2015-12-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/03/Net/tcp2/">数据链路层</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><ul>
+<li>为IP模块发送和 接收IP数据报。</li>
+<li>为ARP模块发送ARP请求和接收ARP应答。</li>
+<li>为RARP发送RARP请 求和接收RARP应答</li>
+</ul>
+<p>数据链路层的协议还是很多的，有我们最常用的以太网（就是平时我们用的网卡）协议，也有不太常见的令牌环，还有FDDI，当然，还有国内现在相当普及的PPP协议（就是adsl宽带），以及一个loopback协议。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/网络/">网络</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/03/Net/tcp2/#more">一览全貌 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -717,7 +855,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016-08-08 陈子瑶
+                &copy; 2016-08-09 陈子瑶
             </div>
             <div class="footer-right">
                 <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁

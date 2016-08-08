@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://iceziyao.github.io/2016/06/23/Auto/salt1/index.html">
 <meta property="og:site_name" content="羽非衣">
 <meta property="og:description" content="什么是Saltstack ？Saltstack 是一个具备puppet 与func 功能为一身的集中化管理平台，saltstack 基于python实现，功能十分强大，各模块融合度及复用性极高，官方极力推荐作为云计算平台的基础架构。">
-<meta property="og:updated_time" content="2016-08-08T10:22:44.329Z">
+<meta property="og:updated_time" content="2016-08-08T10:29:15.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Saltstack安装使用">
 <meta name="twitter:description" content="什么是Saltstack ？Saltstack 是一个具备puppet 与func 功能为一身的集中化管理平台，saltstack 基于python实现，功能十分强大，各模块融合度及复用性极高，官方极力推荐作为云计算平台的基础架构。">
@@ -136,7 +136,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 13.33px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
+                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 13.33px;">ansible</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 16.67px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
                     </div>
                 </section>
                 
@@ -249,10 +249,10 @@
         <h2 id="什么是Saltstack-？"><a href="#什么是Saltstack-？" class="headerlink" title="什么是Saltstack ？"></a>什么是Saltstack ？</h2><p>Saltstack 是一个具备puppet 与func 功能为一身的集中化管理平台，saltstack 基于python实现，功能十分强大，各模块融合度及复用性极高，官方极力推荐作为云计算平台的基础架构。<br><a id="more"></a></p>
 <h2 id="安装Saltstack"><a href="#安装Saltstack" class="headerlink" title="安装Saltstack"></a>安装Saltstack</h2><h3 id="6系列yum安装"><a href="#6系列yum安装" class="headerlink" title="6系列yum安装"></a>6系列yum安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http://mirrors.yun-idc.com/epel/6/x86_64/epel-release-6-8.noarch.rpm</div><div class="line">yum update</div><div class="line">yum install salt-master     #主控端</div><div class="line">yum install salt-minion     # 被控端</div></pre></td></tr></table></figure>
 <h3 id="7系列安装"><a href="#7系列安装" class="headerlink" title="7系列安装"></a>7系列安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm</div><div class="line">yum install salt-master     #主控端</div><div class="line">yum install salt-minion     # 被控端</div></pre></td></tr></table></figure>
-<h3 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install salt</div></pre></td></tr></table></figure>
-<h3 id="salt-bootstrap安装"><a href="#salt-bootstrap安装" class="headerlink" title="salt-bootstrap安装"></a>salt-bootstrap安装</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L https://bootstrap.saltstack.com -O install_salt.sh</div><div class="line">运行脚本查看用法</div></pre></td></tr></table></figure>
+<h3 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install salt</div></pre></td></tr></table></figure>
+<h3 id="salt-bootstrap安装"><a href="#salt-bootstrap安装" class="headerlink" title="salt-bootstrap安装"></a>salt-bootstrap安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L https://bootstrap.saltstack.com -O install_salt.sh</div><div class="line">运行脚本查看用法</div></pre></td></tr></table></figure>
 <h2 id="配置Saltstack"><a href="#配置Saltstack" class="headerlink" title="配置Saltstack"></a>配置Saltstack</h2><h3 id="主动端"><a href="#主动端" class="headerlink" title="主动端"></a>主动端</h3><h4 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/etc/salt/master        #主配置文件</div><div class="line">/etc/salt/master.d</div><div class="line">/etc/salt/pki/master</div><div class="line">/usr/bin/salt</div><div class="line">/usr/bin/salt-cp</div><div class="line">/usr/bin/salt-key</div><div class="line">/usr/bin/salt-master</div><div class="line">/usr/bin/salt-run</div><div class="line">/usr/bin/salt-unity</div></pre></td></tr></table></figure>
-<h4 id="配置文件-etc-salt-master"><a href="#配置文件-etc-salt-master" class="headerlink" title="配置文件 /etc/salt/master"></a>配置文件 /etc/salt/master</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">interface: 127.0.0.1        #监听端</div><div class="line">auto_accept: True           # 自动接受认证</div></pre></td></tr></table></figure>
+<h4 id="配置文件-etc-salt-master"><a href="#配置文件-etc-salt-master" class="headerlink" title="配置文件 /etc/salt/master"></a>配置文件 /etc/salt/master</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">interface: 127.0.0.1        #监听端</div><div class="line">auto_accept: True           # 自动接受认证</div></pre></td></tr></table></figure>
 <h3 id="控制端"><a href="#控制端" class="headerlink" title="控制端"></a>控制端</h3><h4 id="相关文件-1"><a href="#相关文件-1" class="headerlink" title="相关文件"></a>相关文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/etc/salt/minion</div><div class="line">/etc/salt/minion.d</div><div class="line">/etc/salt/pki/minion</div><div class="line">/etc/salt/proxy</div><div class="line">/usr/bin/salt-call</div><div class="line">/usr/bin/salt-minion</div><div class="line">/usr/bin/salt-proxy</div></pre></td></tr></table></figure>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">master: 172.25.254.135        #主控端</div><div class="line">id:salt-test                  #id，最好是主机名</div></pre></td></tr></table></figure>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="key认证"><a href="#key认证" class="headerlink" title="key认证"></a>key认证</h3><ul>
@@ -277,7 +277,7 @@
         <p><span>本文标题:</span><a href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
         <p><span>发布时间:</span>2016年06月23日 - 00时00分</p>
-        <p><span>最后更新:</span>2016年08月08日 - 18时22分</p>
+        <p><span>最后更新:</span>2016年08月08日 - 18时29分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/06/23/Auto/salt1/" title="Saltstack安装使用">https://iceziyao.github.io/2016/06/23/Auto/salt1/</a>
             <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/06/23/Auto/salt1/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -292,6 +292,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2016/07/01/Auto/ansible-api/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ansible的二次开发
+        
+      </div>
+    </a>
   
   
     <a href="/2016/06/17/Auto/Ycm自动化运维/" id="article-nav-older" class="article-nav-link-wrap">
@@ -377,7 +386,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/07/01/Auto/ansible-api/" title="上一篇: ansible的二次开发">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -386,7 +397,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/Auto/ansible-api/">ansible的二次开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -416,7 +427,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016-08-08 陈子瑶
+                &copy; 2016-08-09 陈子瑶
             </div>
             <div class="footer-right">
                 <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁

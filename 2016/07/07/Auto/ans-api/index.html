@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于Tornado的ansible的二次封装 | 羽非衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tornado简介FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Tornado的ansible的二次封装">
+<meta property="og:url" content="https://iceziyao.github.io/2016/07/07/Auto/ans-api/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="Tornado简介FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。">
+<meta property="og:updated_time" content="2016-08-08T23:15:08.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Tornado的ansible的二次封装">
+<meta name="twitter:description" content="Tornado简介FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。">
+  
+    <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">陈子瑶</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">心静如水</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">求职简历</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/guestbook">留言板</a></li>
+                        
+                            <li><a href="/404">公益404</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lenlue123@foxmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/icezeYao" title="github">github</a>
+                            
+                                <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/HA/" style="font-size: 13.33px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 13.33px;">ansible</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 13.33px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/saltstack/" style="font-size: 10px;">saltstack</a> <a href="/tags/shell/" style="font-size: 13.33px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 16.67px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 13.33px;">负载均衡</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">陈子瑶</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">陈子瑶</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">心静如水</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">求职简历</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/guestbook">留言板</a></li>
+                
+                    <li><a href="/404">公益404</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lenlue123@foxmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/icezeYao" title="github">github</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Auto/ans-api" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/07/Auto/ans-api/" class="article-date">
+      <time datetime="2016-07-06T16:00:00.000Z" itemprop="datePublished">2016-07-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于Tornado的ansible的二次封装
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/运维/">运维</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ansible/">ansible</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动化运维/">自动化运维</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Tornado"><a href="#Tornado" class="headerlink" title="Tornado"></a>Tornado</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。<br><a id="more"></a><br>Tornado 就是我们在 FriendFeed 的 Web 服务器及其常用工具的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快。得利于其 非阻塞的方式和对 epoll 的运用，Tornado 每秒可以处理数以千计的连接，因此 Tornado 是实时 Web 服务的一个 理想框架。我们开发这个 Web 服务器的主要目的就是为了处理 FriendFeed 的实时功能 ——在 FriendFeed 的应用里每一个活动用户都会保持着一个服务器连接。</p>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>以下是经典的 “Hello, world” 示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tornado.ioloop</div><div class="line"><span class="keyword">import</span> tornado.web</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></div><div class="line">        self.write(<span class="string">"Hello, world"</span>)</div><div class="line">application = tornado.web.Application([</div><div class="line">    (<span class="string">r"/"</span>, MainHandler),</div><div class="line">])</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    application.listen(<span class="number">8888</span>)</div><div class="line">    tornado.ioloop.IOLoop.instance().start()</div></pre></td></tr></table></figure></p>
+<h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><h4 id="自动安装"><a href="#自动安装" class="headerlink" title="自动安装"></a>自动安装</h4><p> Tornado 已经列入 PyPI ，因此可以通过 pip 或者 easy_install 来安装。如果你没有安装 libcurl 的话，你需要将其单独安装到系统中。</p>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>安装包 <a href="http://github.com/downloads/facebook/tornado/tornado-2.0.tar.gz" target="_blank" rel="external">下载 tornado-2.0.tar.gz</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar xvzf tornado-2.0.tar.gz</div><div class="line">cd tornado-2.0</div><div class="line">python setup.py build</div><div class="line">sudo python setup.py install</div></pre></td></tr></table></figure></p>
+<p>##开发历程  </p>
+<h3 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tornado.ioloop</div><div class="line"><span class="keyword">from</span> tornado.options <span class="keyword">import</span> define, options</div><div class="line"><span class="keyword">import</span> tornado.web</div><div class="line"><span class="keyword">import</span> ansible.runner</div><div class="line"><span class="keyword">from</span> ansible.inventory <span class="keyword">import</span> Inventory</div><div class="line"><span class="keyword">import</span> simplejson</div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">define(<span class="string">"key"</span>, default=<span class="string">'d41d8cd98f00b204e9800998ecf8427e'</span>)</div><div class="line"><span class="comment"># 加密/解谜</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getmd5</span><span class="params">(str)</span>:</span></div><div class="line">      m = hashlib.md5()   </div><div class="line">      m.update(str)</div><div class="line">      <span class="keyword">return</span> m.hexdigest()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></div><div class="line">        self.write(<span class="string">"Hello, world"</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line"><span class="string">'''</span></div><div class="line">    通过继承tornado.web.RequestHandler</div><div class="line">    改写post/get方法，获取json数据</div><div class="line">'''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self)</span>:</span></div><div class="line">        data = simplejson.loads(self.request.body)</div><div class="line">        badcmd = [<span class="string">'reboot'</span>,<span class="string">'rm'</span>,<span class="string">'kill'</span>,<span class="string">'pkill'</span>,<span class="string">'shutdown'</span>,<span class="string">'half'</span>,<span class="string">'mv'</span>,<span class="string">'dd'</span>,<span class="string">'mkfs'</span>,<span class="string">'wget'</span>]</div><div class="line">        type = data[<span class="string">'type'</span>]</div><div class="line">        cmd = data[<span class="string">'cmd'</span>]</div><div class="line">        host = data[<span class="string">'host'</span>]</div><div class="line">        token = data[<span class="string">'token'</span>]</div><div class="line">        cmdinfo = cmd.split(<span class="string">" "</span>,<span class="number">1</span>)</div><div class="line">        <span class="keyword">print</span> type,host,options.key</div><div class="line">        hotkey = type+host+options.key</div><div class="line">        <span class="keyword">print</span> hotkey</div><div class="line">        result = getmd5(hotkey)</div><div class="line">        <span class="keyword">print</span> result</div><div class="line"></div><div class="line">        <span class="keyword">if</span> sign != result:</div><div class="line">            self.write(<span class="string">"Sign is Error"</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">          <span class="keyword">if</span> cmdinfo[<span class="number">0</span>] <span class="keyword">in</span> badcmd:</div><div class="line">            self.write(<span class="string">"This is Danger Shell"</span>)</div><div class="line">          <span class="keyword">else</span>:</div><div class="line">            runner = ansible.runner.Runner(</div><div class="line">               module_name=type,</div><div class="line">               module_args=cmd,</div><div class="line">               pattern=host,</div><div class="line">               forks=<span class="number">10</span></div><div class="line">            )</div><div class="line">            datastructure = runner.run()</div><div class="line">            self.write(datastructure)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GetGroupHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></div><div class="line">      i = Inventory()</div><div class="line">      groups = i.list_groups()</div><div class="line">      self.write(<span class="string">'\n'</span>.join(groups))</div><div class="line"></div><div class="line">application = tornado.web.Application([</div><div class="line">    (<span class="string">r"/"</span>, MainHandler),</div><div class="line">    (<span class="string">r"/command"</span>, CommandHandler),</div><div class="line">    (<span class="string">r"/getgroup"</span>, GetGroupHandler),</div><div class="line">])</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    application.listen(<span class="number">8888</span>)</div><div class="line">    tornado.ioloop.IOLoop.instance().start()</div></pre></td></tr></table></figure>
+<p>上面实例，通过继承tornado.web.RequestHandler来得到 json数据，然后根据数据中的元素执行相应命令<br>然后调用 ansible的api接口，执行相应的命令。<br>这样，我们有一个思路</p>
+<ul>
+<li>用户认证，得到许可，拿到，server端返回token值</li>
+<li>客户端得到token值，以token作为认证，进行命令传递</li>
+<li>server端通过后，把执行结果以json回传</li>
+</ul>
+<h3 id="用户登陆"><a href="#用户登陆" class="headerlink" title="用户登陆"></a>用户登陆</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">user = ansible</div><div class="line">passwold = ansible</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span>:</span></div><div class="line">        creds = &#123;<span class="string">'username'</span>: self.get_arguments(<span class="string">'username'</span>)[<span class="number">0</span>],</div><div class="line">                <span class="string">'password'</span>: self.get_arguments(<span class="string">'password'</span>)[<span class="number">0</span>],</div><div class="line">                <span class="string">'eauth'</span>: self.get_arguments(<span class="string">'eauth'</span>)[<span class="number">0</span>],</div><div class="line">                &#125;</div><div class="line">        token = self.application.auth.mk_token(creds)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="string">'token'</span> <span class="keyword">in</span> token:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> nicer error message</span></div><div class="line">            self.send_error(<span class="number">401</span>)</div><div class="line">            <span class="keyword">return</span></div><div class="line">        ret = &#123;<span class="string">'return'</span>: [&#123;</div><div class="line">                <span class="string">'token'</span>: token[<span class="string">'token'</span>],</div><div class="line">                <span class="string">'expire'</span>: token[<span class="string">'expire'</span>],</div><div class="line">                <span class="string">'start'</span>: token[<span class="string">'start'</span>],</div><div class="line">                <span class="string">'user'</span>: token[<span class="string">'name'</span>],</div><div class="line">                <span class="string">'eauth'</span>: token[<span class="string">'eauth'</span>],</div><div class="line">                <span class="string">'perms'</span>: perms,</div><div class="line">        &#125;]&#125;</div><div class="line"></div><div class="line">        self.write(self.serialize(ret))</div><div class="line">        self.finish()</div></pre></td></tr></table></figure>
+<p>添加 https 认证<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">server = HTTPServer(application,ssl_options=&#123;</div><div class="line">           <span class="string">"certfile"</span>: os.path.join(os.path.abspath(<span class="string">"."</span>), <span class="string">"server.crt"</span>),</div><div class="line">           <span class="string">"keyfile"</span>: os.path.join(os.path.abspath(<span class="string">"."</span>), <span class="string">"server.key"</span>),</div><div class="line"></div><div class="line">       &#125;)</div></pre></td></tr></table></figure></p>
+<p>然后把相关的证书扔到 py 文件的目录下。改成相应的名字。  </p>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Ansible-API</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self)</span>:</span></div><div class="line">        data = simplejson.loads(self.request.body)</div><div class="line">        types = data[<span class="string">'fun'</span>]</div><div class="line">        cmd = data[<span class="string">'cmd'</span>]</div><div class="line">        host = data[<span class="string">'host'</span>]</div><div class="line">        token = data[<span class="string">'token'</span>]</div><div class="line">        cmdinfo = cmd.split(<span class="string">" "</span>,<span class="number">1</span>)</div><div class="line">        <span class="string">'''</span></div><div class="line">        监测token 省略，也就是所谓的用户认证，只做介绍</div><div class="line">        '''  </div><div class="line">        ruselt = Ansible-API.run(&#123;</div><div class="line">            <span class="string">'fun'</span>: types,</div><div class="line">            <span class="string">'cmd'</span> : cmd,</div><div class="line">            <span class="string">'tgt'</span>: host，</div><div class="line">            <span class="string">'arg'</span>: cmdinfo</div><div class="line">        &#125;)</div><div class="line">        ret = &#123;</div><div class="line">            <span class="string">'return'</span>:[</div><div class="line">                &#123;</div><div class="line">                    ruselt[<span class="string">'state'</span>],</div><div class="line">                &#125;</div><div class="line">            ]</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        self.write(self.serialize(ret))</div><div class="line">        self.finish()</div></pre></td></tr></table></figure>
+<h3 id="ansible二次封装"><a href="#ansible二次封装" class="headerlink" title="ansible二次封装"></a>ansible二次封装</h3><p>后续待开发,也就是把常用的模块封装起来<br>最简单的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ansible.runner  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ansible</span>-<span class="title">API</span><span class="params">()</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(data)</span>:</span></div><div class="line">        runner = ansible.runner.Runner(</div><div class="line">            module_name=data[<span class="string">'fun'</span>],</div><div class="line">            module_args=data[<span class="string">'cmd'</span>],</div><div class="line">            pattern=data[<span class="string">'tgt'</span>],</div><div class="line">            forks=<span class="number">10</span></div><div class="line">        )</div><div class="line">        <span class="keyword">return</span> runner</div></pre></td></tr></table></figure></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>把ansible用 Tornado加以修饰，也是为了自己的自动化运维平台更好的兼容ansible，也为了可以将web服务与ansible分离。<br>而且封装后，会使其它语言调用无障碍。ansible 会使运用一些危险的命令，我们可以在 server端进行控制</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
+        <p><span>发布时间:</span>2016年07月07日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年08月09日 - 07时15分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/07/Auto/ans-api/" title="基于Tornado的ansible的二次封装">https://iceziyao.github.io/2016/07/07/Auto/ans-api/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/07/07/Auto/ans-api/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/01/Auto/ansible-api/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ansible的二次开发</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tornado"><span class="toc-number">1.</span> <span class="toc-text">Tornado</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">1.2.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载与安装"><span class="toc-number">1.3.</span> <span class="toc-text">下载与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自动安装"><span class="toc-number">1.3.1.</span> <span class="toc-text">自动安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动安装"><span class="toc-number">1.3.2.</span> <span class="toc-text">手动安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单实例"><span class="toc-number">1.4.</span> <span class="toc-text">简单实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户登陆"><span class="toc-number">1.5.</span> <span class="toc-text">用户登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息传递"><span class="toc-number">1.6.</span> <span class="toc-text">消息传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ansible二次封装"><span class="toc-number">1.7.</span> <span class="toc-text">ansible二次封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">2.</span> <span class="toc-text">小结</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/07/07/Auto/ans-api/" data-title="基于Tornado的ansible的二次封装" data-url="https://iceziyao.github.io/2016/07/07/Auto/ans-api/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"chenziyao"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/07/01/Auto/ansible-api/" title="下一篇: ansible的二次开发">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/Auto/ansible-api/">ansible的二次开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016-08-09 陈子瑶
+            </div>
+            <div class="footer-right">
+                <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >留影:
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">足印:
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

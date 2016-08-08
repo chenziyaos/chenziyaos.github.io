@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-08-08T10:22:44.329Z</updated>
+  <updated>2016-08-08T23:15:08.151Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -16,19 +16,109 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>基于Tornado的ansible的二次封装</title>
+    <link href="https://iceziyao.github.io/2016/07/07/Auto/ans-api/"/>
+    <id>https://iceziyao.github.io/2016/07/07/Auto/ans-api/</id>
+    <published>2016-07-06T16:00:00.000Z</published>
+    <updated>2016-08-08T23:15:08.151Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Tornado&quot;&gt;&lt;a href=&quot;#Tornado&quot; class=&quot;headerlink&quot; title=&quot;Tornado&quot;&gt;&lt;/a&gt;Tornado&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;Tornado 就是我们在 FriendFeed 的 Web 服务器及其常用工具的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快。得利于其 非阻塞的方式和对 epoll 的运用，Tornado 每秒可以处理数以千计的连接，因此 Tornado 是实时 Web 服务的一个 理想框架。我们开发这个 Web 服务器的主要目的就是为了处理 FriendFeed 的实时功能 ——在 FriendFeed 的应用里每一个活动用户都会保持着一个服务器连接。&lt;/p&gt;
+&lt;h3 id=&quot;简单示例&quot;&gt;&lt;a href=&quot;#简单示例&quot; class=&quot;headerlink&quot; title=&quot;简单示例&quot;&gt;&lt;/a&gt;简单示例&lt;/h3&gt;&lt;p&gt;以下是经典的 “Hello, world” 示例：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.ioloop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.web&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MainHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.write(&lt;span class=&quot;string&quot;&gt;&quot;Hello, world&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;application = tornado.web.Application([&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (&lt;span class=&quot;string&quot;&gt;r&quot;/&quot;&lt;/span&gt;, MainHandler),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&quot;__main__&quot;&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    application.listen(&lt;span class=&quot;number&quot;&gt;8888&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tornado.ioloop.IOLoop.instance().start()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;下载与安装&quot;&gt;&lt;a href=&quot;#下载与安装&quot; class=&quot;headerlink&quot; title=&quot;下载与安装&quot;&gt;&lt;/a&gt;下载与安装&lt;/h3&gt;&lt;h4 id=&quot;自动安装&quot;&gt;&lt;a href=&quot;#自动安装&quot; class=&quot;headerlink&quot; title=&quot;自动安装&quot;&gt;&lt;/a&gt;自动安装&lt;/h4&gt;&lt;p&gt; Tornado 已经列入 PyPI ，因此可以通过 pip 或者 easy_install 来安装。如果你没有安装 libcurl 的话，你需要将其单独安装到系统中。&lt;/p&gt;
+&lt;h4 id=&quot;手动安装&quot;&gt;&lt;a href=&quot;#手动安装&quot; class=&quot;headerlink&quot; title=&quot;手动安装&quot;&gt;&lt;/a&gt;手动安装&lt;/h4&gt;&lt;p&gt;安装包 &lt;a href=&quot;http://github.com/downloads/facebook/tornado/tornado-2.0.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载 tornado-2.0.tar.gz&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;tar xvzf tornado-2.0.tar.gz&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cd tornado-2.0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;python setup.py build&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo python setup.py install&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;##开发历程  &lt;/p&gt;
+&lt;h3 id=&quot;简单实例&quot;&gt;&lt;a href=&quot;#简单实例&quot; class=&quot;headerlink&quot; title=&quot;简单实例&quot;&gt;&lt;/a&gt;简单实例&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;58&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;59&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;60&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;61&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;62&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;63&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;65&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;66&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;67&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;68&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.ioloop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; tornado.options &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; define, options&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.web&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ansible.runner&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; ansible.inventory &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; Inventory&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; simplejson&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; hashlib&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;define(&lt;span class=&quot;string&quot;&gt;&quot;key&quot;&lt;/span&gt;, default=&lt;span class=&quot;string&quot;&gt;&#39;d41d8cd98f00b204e9800998ecf8427e&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 加密/解谜&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getmd5&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(str)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      m = hashlib.md5()   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      m.update(str)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; m.hexdigest()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MainHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.write(&lt;span class=&quot;string&quot;&gt;&quot;Hello, world&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CommandHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&#39;&#39;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    通过继承tornado.web.RequestHandler&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    改写post/get方法，获取json数据&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&#39;&#39;&#39;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        data = simplejson.loads(self.request.body)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        badcmd = [&lt;span class=&quot;string&quot;&gt;&#39;reboot&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;rm&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;kill&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;pkill&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;shutdown&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;half&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;mv&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;dd&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;mkfs&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;wget&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        type = data[&lt;span class=&quot;string&quot;&gt;&#39;type&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        cmd = data[&lt;span class=&quot;string&quot;&gt;&#39;cmd&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        host = data[&lt;span class=&quot;string&quot;&gt;&#39;host&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        token = data[&lt;span class=&quot;string&quot;&gt;&#39;token&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        cmdinfo = cmd.split(&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; type,host,options.key&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        hotkey = type+host+options.key&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; hotkey&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        result = getmd5(hotkey)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; result&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; sign != result:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            self.write(&lt;span class=&quot;string&quot;&gt;&quot;Sign is Error&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; cmdinfo[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; badcmd:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            self.write(&lt;span class=&quot;string&quot;&gt;&quot;This is Danger Shell&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            runner = ansible.runner.Runner(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               module_name=type,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               module_args=cmd,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               pattern=host,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               forks=&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            )&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            datastructure = runner.run()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            self.write(datastructure)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;GetGroupHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      i = Inventory()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      groups = i.list_groups()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      self.write(&lt;span class=&quot;string&quot;&gt;&#39;\n&#39;&lt;/span&gt;.join(groups))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;application = tornado.web.Application([&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (&lt;span class=&quot;string&quot;&gt;r&quot;/&quot;&lt;/span&gt;, MainHandler),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (&lt;span class=&quot;string&quot;&gt;r&quot;/command&quot;&lt;/span&gt;, CommandHandler),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (&lt;span class=&quot;string&quot;&gt;r&quot;/getgroup&quot;&lt;/span&gt;, GetGroupHandler),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&quot;__main__&quot;&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    application.listen(&lt;span class=&quot;number&quot;&gt;8888&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tornado.ioloop.IOLoop.instance().start()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面实例，通过继承tornado.web.RequestHandler来得到 json数据，然后根据数据中的元素执行相应命令&lt;br&gt;然后调用 ansible的api接口，执行相应的命令。&lt;br&gt;这样，我们有一个思路&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户认证，得到许可，拿到，server端返回token值&lt;/li&gt;
+&lt;li&gt;客户端得到token值，以token作为认证，进行命令传递&lt;/li&gt;
+&lt;li&gt;server端通过后，把执行结果以json回传&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;用户登陆&quot;&gt;&lt;a href=&quot;#用户登陆&quot; class=&quot;headerlink&quot; title=&quot;用户登陆&quot;&gt;&lt;/a&gt;用户登陆&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;user = ansible&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;passwold = ansible&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Login&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;post&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        creds = &amp;#123;&lt;span class=&quot;string&quot;&gt;&#39;username&#39;&lt;/span&gt;: self.get_arguments(&lt;span class=&quot;string&quot;&gt;&#39;username&#39;&lt;/span&gt;)[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;password&#39;&lt;/span&gt;: self.get_arguments(&lt;span class=&quot;string&quot;&gt;&#39;password&#39;&lt;/span&gt;)[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;eauth&#39;&lt;/span&gt;: self.get_arguments(&lt;span class=&quot;string&quot;&gt;&#39;eauth&#39;&lt;/span&gt;)[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        token = self.application.auth.mk_token(creds)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;token&#39;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; token:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# &lt;span class=&quot;doctag&quot;&gt;TODO:&lt;/span&gt; nicer error message&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            self.send_error(&lt;span class=&quot;number&quot;&gt;401&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ret = &amp;#123;&lt;span class=&quot;string&quot;&gt;&#39;return&#39;&lt;/span&gt;: [&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;token&#39;&lt;/span&gt;: token[&lt;span class=&quot;string&quot;&gt;&#39;token&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;expire&#39;&lt;/span&gt;: token[&lt;span class=&quot;string&quot;&gt;&#39;expire&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;start&#39;&lt;/span&gt;: token[&lt;span class=&quot;string&quot;&gt;&#39;start&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;user&#39;&lt;/span&gt;: token[&lt;span class=&quot;string&quot;&gt;&#39;name&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;eauth&#39;&lt;/span&gt;: token[&lt;span class=&quot;string&quot;&gt;&#39;eauth&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &lt;span class=&quot;string&quot;&gt;&#39;perms&#39;&lt;/span&gt;: perms,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;]&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.write(self.serialize(ret))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.finish()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;添加 https 认证&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;server = HTTPServer(application,ssl_options=&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           &lt;span class=&quot;string&quot;&gt;&quot;certfile&quot;&lt;/span&gt;: os.path.join(os.path.abspath(&lt;span class=&quot;string&quot;&gt;&quot;.&quot;&lt;/span&gt;), &lt;span class=&quot;string&quot;&gt;&quot;server.crt&quot;&lt;/span&gt;),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           &lt;span class=&quot;string&quot;&gt;&quot;keyfile&quot;&lt;/span&gt;: os.path.join(os.path.abspath(&lt;span class=&quot;string&quot;&gt;&quot;.&quot;&lt;/span&gt;), &lt;span class=&quot;string&quot;&gt;&quot;server.key&quot;&lt;/span&gt;),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &amp;#125;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后把相关的证书扔到 py 文件的目录下。改成相应的名字。  &lt;/p&gt;
+&lt;h3 id=&quot;消息传递&quot;&gt;&lt;a href=&quot;#消息传递&quot; class=&quot;headerlink&quot; title=&quot;消息传递&quot;&gt;&lt;/a&gt;消息传递&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; Ansible-API&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CommandHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        data = simplejson.loads(self.request.body)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        types = data[&lt;span class=&quot;string&quot;&gt;&#39;fun&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        cmd = data[&lt;span class=&quot;string&quot;&gt;&#39;cmd&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        host = data[&lt;span class=&quot;string&quot;&gt;&#39;host&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        token = data[&lt;span class=&quot;string&quot;&gt;&#39;token&#39;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        cmdinfo = cmd.split(&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&#39;&#39;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        监测token 省略，也就是所谓的用户认证，只做介绍&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &#39;&#39;&#39;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ruselt = Ansible-API.run(&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&#39;fun&#39;&lt;/span&gt;: types,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&#39;cmd&#39;&lt;/span&gt; : cmd,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&#39;tgt&#39;&lt;/span&gt;: host，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&#39;arg&#39;&lt;/span&gt;: cmdinfo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ret = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&#39;return&#39;&lt;/span&gt;:[&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                    ruselt[&lt;span class=&quot;string&quot;&gt;&#39;state&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            ]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.write(self.serialize(ret))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.finish()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;ansible二次封装&quot;&gt;&lt;a href=&quot;#ansible二次封装&quot; class=&quot;headerlink&quot; title=&quot;ansible二次封装&quot;&gt;&lt;/a&gt;ansible二次封装&lt;/h3&gt;&lt;p&gt;后续待开发,也就是把常用的模块封装起来&lt;br&gt;最简单的&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ansible.runner  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Ansible&lt;/span&gt;-&lt;span class=&quot;title&quot;&gt;API&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(data)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        runner = ansible.runner.Runner(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            module_name=data[&lt;span class=&quot;string&quot;&gt;&#39;fun&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            module_args=data[&lt;span class=&quot;string&quot;&gt;&#39;cmd&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            pattern=data[&lt;span class=&quot;string&quot;&gt;&#39;tgt&#39;&lt;/span&gt;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            forks=&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        )&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; runner&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h2&gt;&lt;p&gt;把ansible用 Tornado加以修饰，也是为了自己的自动化运维平台更好的兼容ansible，也为了可以将web服务与ansible分离。&lt;br&gt;而且封装后，会使其它语言调用无障碍。ansible 会使运用一些危险的命令，我们可以在 server端进行控制&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Tornado&quot;&gt;&lt;a href=&quot;#Tornado&quot; class=&quot;headerlink&quot; title=&quot;Tornado&quot;&gt;&lt;/a&gt;Tornado&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
+    
+      <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ansible的二次开发</title>
+    <link href="https://iceziyao.github.io/2016/07/01/Auto/ansible-api/"/>
+    <id>https://iceziyao.github.io/2016/07/01/Auto/ansible-api/</id>
+    <published>2016-06-30T16:00:00.000Z</published>
+    <updated>2016-08-08T23:19:46.610Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;ansible-api&quot;&gt;&lt;a href=&quot;#ansible-api&quot; class=&quot;headerlink&quot; title=&quot;ansible api&quot;&gt;&lt;/a&gt;ansible api&lt;/h2&gt;&lt;p&gt;ansible是个好东西,但好的东西也要来折腾下，最近看了看ansible的api，于是就探究了下&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;简单实例&quot;&gt;&lt;a href=&quot;#简单实例&quot; class=&quot;headerlink&quot; title=&quot;简单实例&quot;&gt;&lt;/a&gt;简单实例&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import ansible.runner&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;fun = ansible.runner.Runner(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        module_name = &#39;shell&#39;,        #调用shell模块，这个代码是为了示例执行shell命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        module_args = &#39;hostname&#39;,     #shell命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        host_list = &#39;aa.py&#39;,          #host文件路径，我这调用的是dynamic inventory脚本，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        pattern = &#39;AA&#39;,               #host组名，需要执行shell命令的ip组，AA是在上面aa.py中定义的&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        )                             #其它没写的参数，都为是系统默认的&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ruselt = fun.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Runner类详解&quot;&gt;&lt;a href=&quot;#Runner类详解&quot; class=&quot;headerlink&quot; title=&quot;Runner类详解&quot;&gt;&lt;/a&gt;Runner类详解&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runner&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(object)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;&#39;&#39; core API interface to ansible &#39;&#39;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# see bin/ansible for how this is used...&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self,&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        host_list=C.DEFAULT_HOST_LIST,      这里不仅可以放 静态的hosts文件，也可以放 inventory的脚本，脚本要&lt;span class=&quot;number&quot;&gt;777&lt;/span&gt;权限。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        module_path=None,               这个是ansible的路径，一般不用写&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        module_name=C.DEFAULT_MODULE_NAME,      模块的名字，模块的位置要选定在/usr/share/absible下，不然会识别不到。   要注意下～&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        module_args=C.DEFAULT_MODULE_ARGS,  # ex: &lt;span class=&quot;string&quot;&gt;&quot;src=/tmp/a dest=/tmp/b&quot;&lt;/span&gt;   模块的参数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        forks=C.DEFAULT_FORKS,              # parallelism level   进程的数目，他的逻辑是这样，你如果填入了&lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;个进程，他会判断你的list_hosts是否有&lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;个，没有的话，他就会根据主机的数目来派生进程，如果超过&lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;个，那就用multiprocess进程池pool来调度。mulitiprocess本身有个isalive的东西，来判断分离出去进程的存活状态。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        timeout=C.DEFAULT_TIMEOUT,       这个就是超时的时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        pattern=C.DEFAULT_PATTERN,          # which hosts?  ex: &lt;span class=&quot;string&quot;&gt;&#39;all&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;acme.example.org&#39;&lt;/span&gt;   这个是做相关的匹配，是关于inventory的匹配&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        remote_user=C.DEFAULT_REMOTE_USER,  # ex: &lt;span class=&quot;string&quot;&gt;&#39;username&#39;&lt;/span&gt;  远端用户的选择&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        remote_pass=C.DEFAULT_REMOTE_PASS,  # ex: &lt;span class=&quot;string&quot;&gt;&#39;password123&#39;&lt;/span&gt; or None if using key 远端密码的选择&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        remote_port=None,                   # if SSH on different ports   远端端口的选择&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        private_key_file=C.DEFAULT_PRIVATE_KEY_FILE, # if not using keys/passwords  还可以用指定key&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sudo_pass=C.DEFAULT_SUDO_PASS,      # ex: &lt;span class=&quot;string&quot;&gt;&#39;password123&#39;&lt;/span&gt; or None   sudo之后的密码的推送&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        background=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,                       # async poll every X seconds, else &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; for non-async  看字眼就知道他是做什么的了，他非常的像 saltstack的 event, 当派生出了一个任务后，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        产生一个ansible_job_id,然后时不时的去拿数据&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        transport=C.DEFAULT_TRANSPORT,      # &lt;span class=&quot;string&quot;&gt;&#39;ssh&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;paramiko&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;local&#39;&lt;/span&gt;  这里是选择你的链接得到方式，默认是用的 paramiko&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        conditional=&lt;span class=&quot;string&quot;&gt;&#39;True&#39;&lt;/span&gt;,                 # run only if this fact expression evals to true     这个是什么呢？  相当与 puppet saltstack 里面的require,状态的判断。  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        callbacks=None,                     # used for output  回调的输出&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sudo=False,                         # whether to run sudo or not 是否是sudo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sudo_user=C.DEFAULT_SUDO_USER,      # ex: &lt;span class=&quot;string&quot;&gt;&#39;root&#39;&lt;/span&gt;  sudo的时候，用到的用户名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ):              &lt;span class=&quot;comment&quot;&gt;# 参数结束&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            实现&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;ansible-playbook-api&quot;&gt;&lt;a href=&quot;#ansible-playbook-api&quot; class=&quot;headerlink&quot; title=&quot;ansible_playbook api&quot;&gt;&lt;/a&gt;ansible_playbook api&lt;/h3&gt;&lt;p&gt;ansible_playbook api 部分在官方文档上并没有提，不过通过查看ansible模块的帮助信息可以看到其是支持的。&lt;/p&gt;
+&lt;h4 id=&quot;实例&quot;&gt;&lt;a href=&quot;#实例&quot; class=&quot;headerlink&quot; title=&quot;实例&quot;&gt;&lt;/a&gt;实例&lt;/h4&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ansible.playbook&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; ansible &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; callbacks&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; ansible &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; utils&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;stats = callbacks.AggregateStats()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;playbook_cb = callbacks.PlaybookCallbacks(verbose=utils.VERBOSITY)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;runner_cb = callbacks.PlaybookRunnerCallbacks(stats, verbose=utils.VERBOSITY)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;pb = ansible.playbook.PlayBook(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    playbook=&lt;span class=&quot;string&quot;&gt;&quot;nseries.yml&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    stats=stats,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    callbacks=playbook_cb,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    runner_callbacks=runner_cb,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    check=&lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (play_ds, play_basedir) &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; zip(pb.playbook, pb.play_basedirs):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ipdb&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ipdb.set_trace()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Can play around here to see what&#39;s going on.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;pb.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;注意&quot;&gt;&lt;a href=&quot;#注意&quot; class=&quot;headerlink&quot; title=&quot;注意&quot;&gt;&lt;/a&gt;注意&lt;/h4&gt;&lt;p&gt;在用api的方式执行playbook的时候，playbook，stats，callbacks，runner_callbacks这几个参数是必须的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;执行流程&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;arguments = []&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if playbook is None:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    arguments.append(&#39;playbook&#39;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if callbacks is None:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    arguments.append(&#39;callbacks&#39;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if runner_callbacks is None:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    arguments.append(&#39;runner_callbacks&#39;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if stats is None:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    arguments.append(&#39;stats&#39;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if arguments:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    raise Exception(&#39;PlayBook missing required arguments: %s&#39; % &#39;, &#39;.join(arguments))&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;playbook用来指定playbook的yaml文件&lt;br&gt;stats用来收集playbook执行期间的状态信息，最后会进行汇总&lt;br&gt;callbacks用来输出playbook执行的结果&lt;br&gt;runner_callbacks用来输出playbook执行期间的结果。但是它返回的结果太简单，我想让它详细点，如果用自定义callback的方法插入到mongo里面的话也行，或者是直接输出，但是我想所有task都执行完后，把每个task的详细信息输出到终端上，最后发现结果输出都是靠callbacks.py里的AggregateStats这个类，在每执行完一个task后，都会调用AggregateStats进行计算，汇总。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;当需要先对前一次作任务执行的结果进行处理，并将相应的结果对应的作为输入再在一次任务传入时，这里使用api 更方便；&lt;/li&gt;
+&lt;li&gt;需要对结果输出进行整形时，也比较api 方便；&lt;/li&gt;
+&lt;li&gt;playbook 之间进行调用或都playbook比较复杂时，想要理清任务之间的关系势必累显麻烦，而通过api，从上一层任务到下一层任务之间的调用关系明子。而且playbook之间可以是平行的关系。方便小的功能模块的复用。&lt;/li&gt;
+&lt;li&gt;方便二次开发及和其他程序之间的耦合调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;后续会进行基于Tornado的ansible的二次封装&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ansible-api&quot;&gt;&lt;a href=&quot;#ansible-api&quot; class=&quot;headerlink&quot; title=&quot;ansible api&quot;&gt;&lt;/a&gt;ansible api&lt;/h2&gt;&lt;p&gt;ansible是个好东西,但好的东西也要来折腾下，最近看了看ansible的api，于是就探究了下&lt;br&gt;
+    
+    </summary>
+    
+      <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
+    
+      <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Saltstack安装使用</title>
     <link href="https://iceziyao.github.io/2016/06/23/Auto/salt1/"/>
     <id>https://iceziyao.github.io/2016/06/23/Auto/salt1/</id>
     <published>2016-06-22T16:00:00.000Z</published>
-    <updated>2016-08-08T10:22:44.329Z</updated>
+    <updated>2016-08-08T10:29:15.243Z</updated>
     
     <content type="html">&lt;h2 id=&quot;什么是Saltstack-？&quot;&gt;&lt;a href=&quot;#什么是Saltstack-？&quot; class=&quot;headerlink&quot; title=&quot;什么是Saltstack ？&quot;&gt;&lt;/a&gt;什么是Saltstack ？&lt;/h2&gt;&lt;p&gt;Saltstack 是一个具备puppet 与func 功能为一身的集中化管理平台，saltstack 基于python实现，功能十分强大，各模块融合度及复用性极高，官方极力推荐作为云计算平台的基础架构。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;安装Saltstack&quot;&gt;&lt;a href=&quot;#安装Saltstack&quot; class=&quot;headerlink&quot; title=&quot;安装Saltstack&quot;&gt;&lt;/a&gt;安装Saltstack&lt;/h2&gt;&lt;h3 id=&quot;6系列yum安装&quot;&gt;&lt;a href=&quot;#6系列yum安装&quot; class=&quot;headerlink&quot; title=&quot;6系列yum安装&quot;&gt;&lt;/a&gt;6系列yum安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;rpm -ivh http://mirrors.yun-idc.com/epel/6/x86_64/epel-release-6-8.noarch.rpm&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yum update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yum install salt-master     #主控端&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yum install salt-minion     # 被控端&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;7系列安装&quot;&gt;&lt;a href=&quot;#7系列安装&quot; class=&quot;headerlink&quot; title=&quot;7系列安装&quot;&gt;&lt;/a&gt;7系列安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yum install salt-master     #主控端&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yum install salt-minion     # 被控端&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;pip安装&quot;&gt;&lt;a href=&quot;#pip安装&quot; class=&quot;headerlink&quot; title=&quot;pip安装&quot;&gt;&lt;/a&gt;pip安装&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;pip install salt&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;salt-bootstrap安装&quot;&gt;&lt;a href=&quot;#salt-bootstrap安装&quot; class=&quot;headerlink&quot; title=&quot;salt-bootstrap安装&quot;&gt;&lt;/a&gt;salt-bootstrap安装&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -L https://bootstrap.saltstack.com -O install_salt.sh&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;运行脚本查看用法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;pip安装&quot;&gt;&lt;a href=&quot;#pip安装&quot; class=&quot;headerlink&quot; title=&quot;pip安装&quot;&gt;&lt;/a&gt;pip安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;pip install salt&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;salt-bootstrap安装&quot;&gt;&lt;a href=&quot;#salt-bootstrap安装&quot; class=&quot;headerlink&quot; title=&quot;salt-bootstrap安装&quot;&gt;&lt;/a&gt;salt-bootstrap安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -L https://bootstrap.saltstack.com -O install_salt.sh&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;运行脚本查看用法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;配置Saltstack&quot;&gt;&lt;a href=&quot;#配置Saltstack&quot; class=&quot;headerlink&quot; title=&quot;配置Saltstack&quot;&gt;&lt;/a&gt;配置Saltstack&lt;/h2&gt;&lt;h3 id=&quot;主动端&quot;&gt;&lt;a href=&quot;#主动端&quot; class=&quot;headerlink&quot; title=&quot;主动端&quot;&gt;&lt;/a&gt;主动端&lt;/h3&gt;&lt;h4 id=&quot;相关文件&quot;&gt;&lt;a href=&quot;#相关文件&quot; class=&quot;headerlink&quot; title=&quot;相关文件&quot;&gt;&lt;/a&gt;相关文件&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/master        #主配置文件&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/master.d&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/pki/master&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-cp&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-key&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-master&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-run&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-unity&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;配置文件-etc-salt-master&quot;&gt;&lt;a href=&quot;#配置文件-etc-salt-master&quot; class=&quot;headerlink&quot; title=&quot;配置文件 /etc/salt/master&quot;&gt;&lt;/a&gt;配置文件 /etc/salt/master&lt;/h4&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;interface: 127.0.0.1        #监听端&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;auto_accept: True           # 自动接受认证&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;配置文件-etc-salt-master&quot;&gt;&lt;a href=&quot;#配置文件-etc-salt-master&quot; class=&quot;headerlink&quot; title=&quot;配置文件 /etc/salt/master&quot;&gt;&lt;/a&gt;配置文件 /etc/salt/master&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;interface: 127.0.0.1        #监听端&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;auto_accept: True           # 自动接受认证&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;控制端&quot;&gt;&lt;a href=&quot;#控制端&quot; class=&quot;headerlink&quot; title=&quot;控制端&quot;&gt;&lt;/a&gt;控制端&lt;/h3&gt;&lt;h4 id=&quot;相关文件-1&quot;&gt;&lt;a href=&quot;#相关文件-1&quot; class=&quot;headerlink&quot; title=&quot;相关文件&quot;&gt;&lt;/a&gt;相关文件&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/minion&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/minion.d&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/pki/minion&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/salt/proxy&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-call&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-minion&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/usr/bin/salt-proxy&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h4 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h4&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;master: 172.25.254.135        #主控端&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;id:salt-test                  #id，最好是主机名&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h2&gt;&lt;h3 id=&quot;key认证&quot;&gt;&lt;a href=&quot;#key认证&quot; class=&quot;headerlink&quot; title=&quot;key认证&quot;&gt;&lt;/a&gt;key认证&lt;/h3&gt;&lt;ul&gt;
@@ -53,9 +143,9 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="saltstack" scheme="https://iceziyao.github.io/tags/saltstack/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -100,9 +190,9 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
       <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -693,139 +783,6 @@ res.output();
   </entry>
   
   <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:31.530Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇2</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:28.516Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;primitive：可以理解为主资源，有时候看到的会是native，都是一个意思，该资源只在主节点上有。（当然备份节点一旦将资源夺过来了，也就成了主节点，因此，主节点是相对来说的）&lt;/li&gt;
-&lt;li&gt;group：组资源，将多个资源绑定在一个同一个组上面且运行在同一个节点上。&lt;/li&gt;
-&lt;li&gt;clone：是将primitive资源克隆n份且运行在每一个节点上&lt;/li&gt;
-&lt;li&gt;master/slave：也是将primitive克隆2份、其中master和slave节点各运行一份，且只能在这2个节点上运行。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源约束&quot;&gt;&lt;a href=&quot;#资源约束&quot; class=&quot;headerlink&quot; title=&quot;资源约束&quot;&gt;&lt;/a&gt;资源约束&lt;/h4&gt;&lt;p&gt;对于某些集群服务来说，启动相关的资源是有先后顺序的。例如启动一个mysql集群服务，首先应该先挂载共享存储设备，否则即时mysql服务启动起来了，用户也访问不了数据。因此,要对资源一个约束.  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;位置约束（location）：资源对节点的倾向程度，通常可以使用一个分数（score）来定义，当score为正值时，表示资源倾向与此节点；负值表示资源倾向逃离于此节点。也可以将score定义为-inf(负无穷大)和inf（正无穷大）。例如：有三个节点rs1、rs2、rs3当rs1是主节点且发生故障时，则比较rs2和rs3的score值，谁是正值，则资源将会转移到哪个节点上去。  &lt;/li&gt;
-&lt;li&gt;排列约束（colocation）：用来定义资源是否可以在一起，通常也是使用一个score来定义的。当score是正值表示资源可以在一起；否则表示不可以在一起。通过定义资源类型为group也可以来将所有资源绑定在一起。  &lt;/li&gt;
-&lt;li&gt;顺序约束（order）：用来定义资源启动和停止的顺序。web为例子,备用节点上线后,VIP必须先转移到本地,其次共享存储到位,最后才是开启web服务器.  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源转移&quot;&gt;&lt;a href=&quot;#资源转移&quot; class=&quot;headerlink&quot; title=&quot;资源转移&quot;&gt;&lt;/a&gt;资源转移&lt;/h4&gt;&lt;p&gt;将有故障节点的VIP设置到另一个节点上去，并在另一个节点启用相应的服务，挂载相应的存储设备等等都可以叫做资源转移。  &lt;/p&gt;
-&lt;h2 id=&quot;HA实现原理&quot;&gt;&lt;a href=&quot;#HA实现原理&quot; class=&quot;headerlink&quot; title=&quot;HA实现原理&quot;&gt;&lt;/a&gt;HA实现原理&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;在高可用集群的各节点中定义了一个抽象层,信息传递层(Messaing Layer),用来传递集群之间的事务(Transaction)信息.事务信息中包含了节点的心跳信息(是否在线),节点的主机名、IP等一系列信息&lt;/li&gt;
-&lt;li&gt;通过一个程序获取信息传递层的信息，进行服务调配，资源管理.(资源管理层)&lt;/li&gt;
-&lt;li&gt;服务代理，通过策略代理各节点服务。(资源代理层)&lt;br&gt;信息层传递信息，资源管理层通过监听信息层的信息进行相应规则的资源调配和服务迁移。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;Messaging-Layer（信息传递层）&quot;&gt;&lt;a href=&quot;#Messaging-Layer（信息传递层）&quot; class=&quot;headerlink&quot; title=&quot;Messaging  Layer（信息传递层）&quot;&gt;&lt;/a&gt;Messaging  Layer（信息传递层）&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;主要的作用是传递当前节点的心跳信息，并告知给对方，这样对方就知道其他节点是否在线。如果不在线，则可以实现资源转移，这样另一台节点就可以充当主节点，并正常提供服务。传递心跳信息一般使用一根心跳线连接，该线接口可以使用串行接口也可以是以太网接口来连接。每一个节点上都包含信息层。&lt;br&gt;常见软件:  &lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;hearbeat&lt;/li&gt;
-&lt;li&gt;keepalived&lt;/li&gt;
-&lt;li&gt;ultramonkey&lt;/li&gt;
-&lt;li&gt;Corosync&lt;/li&gt;
-&lt;li&gt;cman&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;ha-aware-CRM-资源管理层&quot;&gt;&lt;a href=&quot;#ha-aware-CRM-资源管理层&quot; class=&quot;headerlink&quot; title=&quot;ha-aware/CRM (资源管理层)&quot;&gt;&lt;/a&gt;ha-aware/CRM (资源管理层)&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Cluster  Resource Messager,资源管理器，它主要是用来提供那些不具有高可用的服务提供高可用性的。它需要借助Messaging  Layer来实现工作，因此工作在Messaging Layer上层。&lt;/li&gt;
-&lt;li&gt;资源管理器的主要工作是根据messaging Layer传递的健康信息来决定服务的启动、停止和资源转移、资源的定义和资源分配。在每一个节点上都包含一个CRM，且每个CRM都维护这一个CIB（Cluster Internet  Base，集群信息库），只有在主节点上的CIB是可以修改的，其他节点上的CIB都是从主节点那里复制而来的。在CRM中还包含LRM和DC等组件。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;CIB&quot;&gt;&lt;a href=&quot;#CIB&quot; class=&quot;headerlink&quot; title=&quot;CIB&quot;&gt;&lt;/a&gt;CIB&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;集群信息库 XML文档&lt;br&gt;集群资源管理器必须借助于Messageing Layer通告给每一个节点，自动的广播或组播给每一个节点，这样就保证了每一个节点上的信息都是一样的，而这些数据在计算机中又怎么样来交互数据的呢，这里就要基于扩展标记语言来实现数据的格式传递的，这种叫半结构化数据基于XML的，所以在各节点之间实现配置信息保存都是通过XML文件保存的，而要能够理解这个XML文件保存的信息使用到一个工具叫CIB(Cluster Information Base集群信息库)；只要能连接到CRM上都可以去配置这个XML文件，首先它会先保存到DC的XML中，然后再由DC同步支每个节点上的XML文件中去的；&lt;br&gt;对于CIB，只有工作在DC（主节点）上的文档是可以修改的，其他CIB都是复制DC上的那个文档而来的。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;LRM&quot;&gt;&lt;a href=&quot;#LRM&quot; class=&quot;headerlink&quot; title=&quot;LRM&quot;&gt;&lt;/a&gt;LRM&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Local Resource  Messager，叫做本地资源管理器，它是CRM的一个子组件，用来获取某个资源的状态，并且管理本地资源的。&lt;br&gt;对于LRM,是执行CRM传递过来的在本地执行某个资源的执行和停止的具体执行人，当某个节点发生故障之后，是由DC通过PE（策略引擎）和TE（实施引擎）来决定是否抢夺资源。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;DC&quot;&gt;&lt;a href=&quot;#DC&quot; class=&quot;headerlink&quot; title=&quot;DC&quot;&gt;&lt;/a&gt;DC&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;事务调节员.当DC所在的主机挂了就会先选出一个DC，再由DC做出事物的决策。&lt;br&gt;任何DC上会额外运行两个进程，一个叫PE(Policy Engine策略引擎)，所谓策略引擎就是将底层信息层收集整个集群中所有节点上的信息在本地生成一个大图big pic来策略节点运行在哪个节点上，并通知其实节点上的资源管理器来实现资源的启动和关闭等操作；一个叫TE(Transition Engine 实施引擎)，它主要是把PE做出的决策通告给对应节点的CRM；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;PE和TE是DC的子组件&lt;/p&gt;
-&lt;h4 id=&quot;PE（策略引擎）&quot;&gt;&lt;a href=&quot;#PE（策略引擎）&quot; class=&quot;headerlink&quot; title=&quot;PE（策略引擎）&quot;&gt;&lt;/a&gt;PE（策略引擎）&lt;/h4&gt;&lt;p&gt;来定义资源转移的一整套转移方式，但只是做策略者，并不亲自来参加资源转移的过程，而是让TE来执行自己的策略。&lt;/p&gt;
-&lt;h4 id=&quot;TE-实施引擎）&quot;&gt;&lt;a href=&quot;#TE-实施引擎）&quot; class=&quot;headerlink&quot; title=&quot;TE (实施引擎）&quot;&gt;&lt;/a&gt;TE (实施引擎）&lt;/h4&gt;&lt;p&gt;执行PE做出的策略的并且只有DC上才运行PE和TE。&lt;/p&gt;
-&lt;h3 id=&quot;实施软件&quot;&gt;&lt;a href=&quot;#实施软件&quot; class=&quot;headerlink&quot; title=&quot;实施软件&quot;&gt;&lt;/a&gt;实施软件&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;可以提供CRM的软件有：  &lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;heartbeat v1自带的资源管理为haresource&lt;/li&gt;
-&lt;li&gt;heartbeat v2自带的资源管理有haresource和crm&lt;/li&gt;
-&lt;li&gt;Pacemaker  &lt;/li&gt;
-&lt;li&gt;Cman 是红帽开发的一个资源管理器,是红帽开发的一个资源管理器,6.x版本后红帽也开始使用强大的pacemaker  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;资源代理层（Resource-Agents）&quot;&gt;&lt;a href=&quot;#资源代理层（Resource-Agents）&quot; class=&quot;headerlink&quot; title=&quot;资源代理层（Resource Agents）&quot;&gt;&lt;/a&gt;资源代理层（Resource Agents）&lt;/h2&gt;&lt;p&gt;集群资源代理(能够管理本节点上的属于集群资源的某一资源的启动，停止和状态信息的脚本)&lt;/p&gt;
-&lt;h3 id=&quot;LSB&quot;&gt;&lt;a href=&quot;#LSB&quot; class=&quot;headerlink&quot; title=&quot;LSB&quot;&gt;&lt;/a&gt;LSB&lt;/h3&gt;&lt;p&gt;常见的如/etc/init.d/下的标准linux脚本风格。&lt;/p&gt;
-&lt;h3 id=&quot;OCF&quot;&gt;&lt;a href=&quot;#OCF&quot; class=&quot;headerlink&quot; title=&quot;OCF&quot;&gt;&lt;/a&gt;OCF&lt;/h3&gt;&lt;p&gt;比LSB更高级  &lt;/p&gt;
-&lt;h3 id=&quot;Legacy-heartbeat&quot;&gt;&lt;a href=&quot;#Legacy-heartbeat&quot; class=&quot;headerlink&quot; title=&quot;Legacy heartbeat&quot;&gt;&lt;/a&gt;Legacy heartbeat&lt;/h3&gt;&lt;p&gt;heartbeat自带的  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Haproxy负载均衡</title>
     <link href="https://iceziyao.github.io/2016/01/16/server/haproxy/"/>
     <id>https://iceziyao.github.io/2016/01/16/server/haproxy/</id>
@@ -1269,6 +1226,139 @@ backend mysqlservers
   </entry>
   
   <entry>
+    <title>高可用集群系列之基础篇1</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-08-06T14:50:31.530Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高可用集群系列之基础篇2</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-08-06T14:50:28.516Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;primitive：可以理解为主资源，有时候看到的会是native，都是一个意思，该资源只在主节点上有。（当然备份节点一旦将资源夺过来了，也就成了主节点，因此，主节点是相对来说的）&lt;/li&gt;
+&lt;li&gt;group：组资源，将多个资源绑定在一个同一个组上面且运行在同一个节点上。&lt;/li&gt;
+&lt;li&gt;clone：是将primitive资源克隆n份且运行在每一个节点上&lt;/li&gt;
+&lt;li&gt;master/slave：也是将primitive克隆2份、其中master和slave节点各运行一份，且只能在这2个节点上运行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;资源约束&quot;&gt;&lt;a href=&quot;#资源约束&quot; class=&quot;headerlink&quot; title=&quot;资源约束&quot;&gt;&lt;/a&gt;资源约束&lt;/h4&gt;&lt;p&gt;对于某些集群服务来说，启动相关的资源是有先后顺序的。例如启动一个mysql集群服务，首先应该先挂载共享存储设备，否则即时mysql服务启动起来了，用户也访问不了数据。因此,要对资源一个约束.  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;位置约束（location）：资源对节点的倾向程度，通常可以使用一个分数（score）来定义，当score为正值时，表示资源倾向与此节点；负值表示资源倾向逃离于此节点。也可以将score定义为-inf(负无穷大)和inf（正无穷大）。例如：有三个节点rs1、rs2、rs3当rs1是主节点且发生故障时，则比较rs2和rs3的score值，谁是正值，则资源将会转移到哪个节点上去。  &lt;/li&gt;
+&lt;li&gt;排列约束（colocation）：用来定义资源是否可以在一起，通常也是使用一个score来定义的。当score是正值表示资源可以在一起；否则表示不可以在一起。通过定义资源类型为group也可以来将所有资源绑定在一起。  &lt;/li&gt;
+&lt;li&gt;顺序约束（order）：用来定义资源启动和停止的顺序。web为例子,备用节点上线后,VIP必须先转移到本地,其次共享存储到位,最后才是开启web服务器.  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;资源转移&quot;&gt;&lt;a href=&quot;#资源转移&quot; class=&quot;headerlink&quot; title=&quot;资源转移&quot;&gt;&lt;/a&gt;资源转移&lt;/h4&gt;&lt;p&gt;将有故障节点的VIP设置到另一个节点上去，并在另一个节点启用相应的服务，挂载相应的存储设备等等都可以叫做资源转移。  &lt;/p&gt;
+&lt;h2 id=&quot;HA实现原理&quot;&gt;&lt;a href=&quot;#HA实现原理&quot; class=&quot;headerlink&quot; title=&quot;HA实现原理&quot;&gt;&lt;/a&gt;HA实现原理&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在高可用集群的各节点中定义了一个抽象层,信息传递层(Messaing Layer),用来传递集群之间的事务(Transaction)信息.事务信息中包含了节点的心跳信息(是否在线),节点的主机名、IP等一系列信息&lt;/li&gt;
+&lt;li&gt;通过一个程序获取信息传递层的信息，进行服务调配，资源管理.(资源管理层)&lt;/li&gt;
+&lt;li&gt;服务代理，通过策略代理各节点服务。(资源代理层)&lt;br&gt;信息层传递信息，资源管理层通过监听信息层的信息进行相应规则的资源调配和服务迁移。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;Messaging-Layer（信息传递层）&quot;&gt;&lt;a href=&quot;#Messaging-Layer（信息传递层）&quot; class=&quot;headerlink&quot; title=&quot;Messaging  Layer（信息传递层）&quot;&gt;&lt;/a&gt;Messaging  Layer（信息传递层）&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;主要的作用是传递当前节点的心跳信息，并告知给对方，这样对方就知道其他节点是否在线。如果不在线，则可以实现资源转移，这样另一台节点就可以充当主节点，并正常提供服务。传递心跳信息一般使用一根心跳线连接，该线接口可以使用串行接口也可以是以太网接口来连接。每一个节点上都包含信息层。&lt;br&gt;常见软件:  &lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;hearbeat&lt;/li&gt;
+&lt;li&gt;keepalived&lt;/li&gt;
+&lt;li&gt;ultramonkey&lt;/li&gt;
+&lt;li&gt;Corosync&lt;/li&gt;
+&lt;li&gt;cman&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;ha-aware-CRM-资源管理层&quot;&gt;&lt;a href=&quot;#ha-aware-CRM-资源管理层&quot; class=&quot;headerlink&quot; title=&quot;ha-aware/CRM (资源管理层)&quot;&gt;&lt;/a&gt;ha-aware/CRM (资源管理层)&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Cluster  Resource Messager,资源管理器，它主要是用来提供那些不具有高可用的服务提供高可用性的。它需要借助Messaging  Layer来实现工作，因此工作在Messaging Layer上层。&lt;/li&gt;
+&lt;li&gt;资源管理器的主要工作是根据messaging Layer传递的健康信息来决定服务的启动、停止和资源转移、资源的定义和资源分配。在每一个节点上都包含一个CRM，且每个CRM都维护这一个CIB（Cluster Internet  Base，集群信息库），只有在主节点上的CIB是可以修改的，其他节点上的CIB都是从主节点那里复制而来的。在CRM中还包含LRM和DC等组件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;CIB&quot;&gt;&lt;a href=&quot;#CIB&quot; class=&quot;headerlink&quot; title=&quot;CIB&quot;&gt;&lt;/a&gt;CIB&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;集群信息库 XML文档&lt;br&gt;集群资源管理器必须借助于Messageing Layer通告给每一个节点，自动的广播或组播给每一个节点，这样就保证了每一个节点上的信息都是一样的，而这些数据在计算机中又怎么样来交互数据的呢，这里就要基于扩展标记语言来实现数据的格式传递的，这种叫半结构化数据基于XML的，所以在各节点之间实现配置信息保存都是通过XML文件保存的，而要能够理解这个XML文件保存的信息使用到一个工具叫CIB(Cluster Information Base集群信息库)；只要能连接到CRM上都可以去配置这个XML文件，首先它会先保存到DC的XML中，然后再由DC同步支每个节点上的XML文件中去的；&lt;br&gt;对于CIB，只有工作在DC（主节点）上的文档是可以修改的，其他CIB都是复制DC上的那个文档而来的。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;LRM&quot;&gt;&lt;a href=&quot;#LRM&quot; class=&quot;headerlink&quot; title=&quot;LRM&quot;&gt;&lt;/a&gt;LRM&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Local Resource  Messager，叫做本地资源管理器，它是CRM的一个子组件，用来获取某个资源的状态，并且管理本地资源的。&lt;br&gt;对于LRM,是执行CRM传递过来的在本地执行某个资源的执行和停止的具体执行人，当某个节点发生故障之后，是由DC通过PE（策略引擎）和TE（实施引擎）来决定是否抢夺资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;DC&quot;&gt;&lt;a href=&quot;#DC&quot; class=&quot;headerlink&quot; title=&quot;DC&quot;&gt;&lt;/a&gt;DC&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;事务调节员.当DC所在的主机挂了就会先选出一个DC，再由DC做出事物的决策。&lt;br&gt;任何DC上会额外运行两个进程，一个叫PE(Policy Engine策略引擎)，所谓策略引擎就是将底层信息层收集整个集群中所有节点上的信息在本地生成一个大图big pic来策略节点运行在哪个节点上，并通知其实节点上的资源管理器来实现资源的启动和关闭等操作；一个叫TE(Transition Engine 实施引擎)，它主要是把PE做出的决策通告给对应节点的CRM；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PE和TE是DC的子组件&lt;/p&gt;
+&lt;h4 id=&quot;PE（策略引擎）&quot;&gt;&lt;a href=&quot;#PE（策略引擎）&quot; class=&quot;headerlink&quot; title=&quot;PE（策略引擎）&quot;&gt;&lt;/a&gt;PE（策略引擎）&lt;/h4&gt;&lt;p&gt;来定义资源转移的一整套转移方式，但只是做策略者，并不亲自来参加资源转移的过程，而是让TE来执行自己的策略。&lt;/p&gt;
+&lt;h4 id=&quot;TE-实施引擎）&quot;&gt;&lt;a href=&quot;#TE-实施引擎）&quot; class=&quot;headerlink&quot; title=&quot;TE (实施引擎）&quot;&gt;&lt;/a&gt;TE (实施引擎）&lt;/h4&gt;&lt;p&gt;执行PE做出的策略的并且只有DC上才运行PE和TE。&lt;/p&gt;
+&lt;h3 id=&quot;实施软件&quot;&gt;&lt;a href=&quot;#实施软件&quot; class=&quot;headerlink&quot; title=&quot;实施软件&quot;&gt;&lt;/a&gt;实施软件&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;可以提供CRM的软件有：  &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;heartbeat v1自带的资源管理为haresource&lt;/li&gt;
+&lt;li&gt;heartbeat v2自带的资源管理有haresource和crm&lt;/li&gt;
+&lt;li&gt;Pacemaker  &lt;/li&gt;
+&lt;li&gt;Cman 是红帽开发的一个资源管理器,是红帽开发的一个资源管理器,6.x版本后红帽也开始使用强大的pacemaker  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;资源代理层（Resource-Agents）&quot;&gt;&lt;a href=&quot;#资源代理层（Resource-Agents）&quot; class=&quot;headerlink&quot; title=&quot;资源代理层（Resource Agents）&quot;&gt;&lt;/a&gt;资源代理层（Resource Agents）&lt;/h2&gt;&lt;p&gt;集群资源代理(能够管理本节点上的属于集群资源的某一资源的启动，停止和状态信息的脚本)&lt;/p&gt;
+&lt;h3 id=&quot;LSB&quot;&gt;&lt;a href=&quot;#LSB&quot; class=&quot;headerlink&quot; title=&quot;LSB&quot;&gt;&lt;/a&gt;LSB&lt;/h3&gt;&lt;p&gt;常见的如/etc/init.d/下的标准linux脚本风格。&lt;/p&gt;
+&lt;h3 id=&quot;OCF&quot;&gt;&lt;a href=&quot;#OCF&quot; class=&quot;headerlink&quot; title=&quot;OCF&quot;&gt;&lt;/a&gt;OCF&lt;/h3&gt;&lt;p&gt;比LSB更高级  &lt;/p&gt;
+&lt;h3 id=&quot;Legacy-heartbeat&quot;&gt;&lt;a href=&quot;#Legacy-heartbeat&quot; class=&quot;headerlink&quot; title=&quot;Legacy heartbeat&quot;&gt;&lt;/a&gt;Legacy heartbeat&lt;/h3&gt;&lt;p&gt;heartbeat自带的  &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Memcached简介</title>
     <link href="https://iceziyao.github.io/2016/01/01/lnmp/Memcached/"/>
     <id>https://iceziyao.github.io/2016/01/01/lnmp/Memcached/</id>
@@ -1426,6 +1516,77 @@ server {
     
     
       <category term="缓存" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP连接的建立与中止</title>
+    <link href="https://iceziyao.github.io/2016/01/01/Net/Tcp11/"/>
+    <id>https://iceziyao.github.io/2016/01/01/Net/Tcp11/</id>
+    <published>2015-12-31T16:00:00.000Z</published>
+    <updated>2016-08-06T14:49:58.509Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h1&gt;&lt;h2 id=&quot;连接的建立&quot;&gt;&lt;a href=&quot;#连接的建立&quot; class=&quot;headerlink&quot; title=&quot;连接的建立&quot;&gt;&lt;/a&gt;连接的建立&lt;/h2&gt;&lt;h3 id=&quot;三次握手&quot;&gt;&lt;a href=&quot;#三次握手&quot; class=&quot;headerlink&quot; title=&quot;三次握手&quot;&gt;&lt;/a&gt;三次握手&lt;/h3&gt;&lt;p&gt;所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;TCP三次握手&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端的TCP进程也首先创建传输控制模块TCB，然后向服务端发出连接请求报文段，该报文段首部中的SYN=1，ACK=0，同时选择一个初始序号 seq=i。TCP规定，SYN=1的报文段不能携带数据，但要消耗掉一个序号。这时，TCP客户进程进入SYN—SENT（同步已发送）状态，这是 TCP连接的第一次握手。&lt;/li&gt;
+&lt;li&gt;服务端收到客户端发来的请求报文后，如果同意建立连接，则向客户端发送确认。确认报文中的SYN=1，ACK=1，确认号ack=i+1，同时为自己 选择一个初始序号seq=j。同样该报文段也是SYN=1的报文段，不能携带数据，但同样要消耗掉一个序号。这时，TCP服务端进入SYN—RCVD（同 步收到）状态，这是TCP连接的第二次握手。&lt;/li&gt;
+&lt;li&gt;TCP客户端进程收到服务端进程的确认后，还要向服务端给出确认。确认报文段的ACK=1，确认号ack=j+1，而自己的序号为seq=i+1。 TCP的标准规定，ACK报文段可以携带数据，但如果不携带数据则不消耗序号，因此，如果不携带数据，则下一个报文段的序号仍为seq=i+1。这 时，TCP连接已经建立，客户端进入ESTABLISHED（已建立连接）状态。这是TCP连接的第三次握手，可以看出第三次握手客户端已经可以发送携带 数据的报文段了。&lt;br&gt;当服务端收到确认后，也进入ESTABLISHED（已建立连接）状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为什么要三次握手&lt;br&gt;目的是为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;已失效的连接请求报文段&lt;/strong&gt; 的产生在这样一种情况下：   &lt;blockquote&gt;
+&lt;p&gt;client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。若不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。&lt;br&gt;.&lt;br&gt;三次握手是双方建立连接认证的最小保证。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP三次握手失败&lt;br&gt;我们总是要考虑网络是不可靠的。所以三次握手是存在失败的概率的。&lt;ul&gt;
+&lt;li&gt;如果server端接到了clien发的SYN后回了SYN-ACK后，之后server没有收到clien发送的ACK，会怎么样？  &lt;blockquote&gt;
+&lt;p&gt;此时server端处于SYN—RCVD,根据TCP的重发机制，在server发送SYN-ACK后，会启动一个重传定时器，当在指定时间内没有收到客户端发来的ACK报文时，就会重新发送SYN-ACK报文，并重置记时器。当然，这也不是无休止的，在Linux下，默认重试次数为5次，重试的间隔时间从1s开始每次都翻售，5次的重试时间间隔为1s, 2s, 4s, 8s, 16s，总共31s，第5次发出后还要等32s都知道第5次也超时了。Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;那么client端会怎么样呢？&lt;blockquote&gt;
+&lt;p&gt;客户端认为连接建立，写数据时，会触发RST&lt;br&gt;如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。&lt;br&gt;但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SYN攻击&lt;br&gt;当正常TCP连接开始时，目的地主机将收到源主机发出的SYN(synchronize/start)信息包，并发回同步应答(同步承认)。 连接建立之前，目的地主机必须监听SYN ACK的ACK（确认）。&lt;br&gt;等待同步应答（SYN ACK）的确认（ACK）时，目的地主机上的大小有限的连接队列将记录等待完成的连接。 因为ACK预计在同步应答后几毫秒内到达，此队列通常迅速倒空。&lt;br&gt;TCP SYN攻击利用了此设计，由攻击源主机（相对于受害主机）生成带有随机源地址的TCP同步信息包。 受害目的地主机发送同步应答回到随机源地址，并且在连接队列中添加新条目。 因为同步应答指定用于不正确或不存在的主机，因此“三方握手”的最后部件永远不会完成，并且条目保留在连接队列中，直到计时器到期，保留时间通常为一分钟。 从随机IP地址快速生成欺骗性TCP同步信息包，有可能填满连接队列，并拒绝合法用户请求的TCP服务。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;连接的中断&quot;&gt;&lt;a href=&quot;#连接的中断&quot; class=&quot;headerlink&quot; title=&quot;连接的中断&quot;&gt;&lt;/a&gt;连接的中断&lt;/h2&gt;&lt;h3 id=&quot;四次挥手&quot;&gt;&lt;a href=&quot;#四次挥手&quot; class=&quot;headerlink&quot; title=&quot;四次挥手&quot;&gt;&lt;/a&gt;四次挥手&lt;/h3&gt;&lt;p&gt;所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;TCP四次挥手&lt;br&gt;由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。&lt;ul&gt;
+&lt;li&gt;第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。&lt;/li&gt;
+&lt;li&gt;第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。&lt;/li&gt;
+&lt;li&gt;第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。&lt;/li&gt;
+&lt;li&gt;第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。&lt;br&gt;其实四次挥手只是两次挥手的叠交，一方为被动关闭。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;为什么要四次挥手&quot;&gt;&lt;a href=&quot;#为什么要四次挥手&quot; class=&quot;headerlink&quot; title=&quot;为什么要四次挥手&quot;&gt;&lt;/a&gt;为什么要四次挥手&lt;/h3&gt;&lt;p&gt;TCP协议是一种面向连接的、可靠的、基于字节流的运输层通信协议。TCP是全双工模式，这就意味着，当client发出FIN报文段时，只是表示client已经没有数据要发送了，client告诉server，数据传输完毕；但是server还有数据要穿，所以client还要继续接受server的数据；当server返回ACK报文段时，表示它已经知道client没有数据发送了，但是server还是可以发送数据到client的；当server也发送了FIN报文段时，这个时候就表示server也没有数据要发送了，就会告诉client，我也没有数据要发送了，之后彼此就会愉快的中断这次TCP连接。如果要正确的理解四次分手的原理，就需要了解四次分手过程中的状态变化。  &lt;/p&gt;
+&lt;h3 id=&quot;四次挥手的状态&quot;&gt;&lt;a href=&quot;#四次挥手的状态&quot; class=&quot;headerlink&quot; title=&quot;四次挥手的状态&quot;&gt;&lt;/a&gt;四次挥手的状态&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;FIN_WAIT_1: 这个状态要好好解释一下，其实FIN_WAIT_1和FIN_WAIT_2状态的真正含义都是表示等待对方的FIN报文。而这两种状态的区别是：FIN_WAIT_1状态实际上是当SOCKET在ESTABLISHED状态时，它想主动关闭连接，向对方发送了FIN报文，此时该SOCKET即进入到FIN_WAIT_1状态。而当对方回应ACK报文后，则进入到FIN_WAIT_2状态，当然在实际的正常情况下，无论对方何种情况下，都应该马上回应ACK报文，所以FIN_WAIT_1状态一般是比较难见到的，而FIN_WAIT_2状态还有时常常可以用netstat看到。（主动方）&lt;/li&gt;
+&lt;li&gt;FIN_WAIT_2：上面已经详细解释了这种状态，实际上FIN_WAIT_2状态下的SOCKET，表示半连接，也即有一方要求close连接，但另外还告诉对方，我暂时还有点数据需要传送给你(ACK信息)，稍后再关闭连接。（主动方）&lt;/li&gt;
+&lt;li&gt;CLOSE_WAIT：这种状态的含义其实是表示在等待关闭。怎么理解呢？当对方close一个SOCKET后发送FIN报文给自己，你系统毫无疑问地会回应一个ACK报文给对方，此时则进入到CLOSE_WAIT状态。接下来呢，实际上你真正需要考虑的事情是察看你是否还有数据发送给对方，如果没有的话，那么你也就可以 close这个SOCKET，发送FIN报文给对方，也即关闭连接。所以你在CLOSE_WAIT状态下，需要完成的事情是等待你去关闭连接。（被动方）&lt;/li&gt;
+&lt;li&gt;LAST_ACK: 这个状态还是比较容易好理解的，它是被动关闭一方在发送FIN报文后，最后等待对方的ACK报文。当收到ACK报文后，也即可以进入到CLOSED可用状态了。（被动方）&lt;/li&gt;
+&lt;li&gt;TIME_WAIT: 表示收到了对方的FIN报文，并发送出了ACK报文，就等2MSL后即可回到CLOSED可用状态了。如果FINWAIT1状态下，收到了对方同时带FIN标志和ACK标志的报文时，可以直接进入到TIME_WAIT状态，而无须经过FIN_WAIT_2状态。（主动方）&lt;br&gt;注：&lt;br&gt;为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？&lt;br&gt;答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。&lt;br&gt;如果目前连接的通信双方都已经调用了close()，假定双方都到达CLOSED状态，而没有TIME_WAIT状态时，就会出现如下的情况。现在有一个新的连接被建立起来，使用的IP地址与端口与先前的完全相同，后建立的连接又称作是原先连接的一个化身。还假定原先的连接中有数据报残存于网络之中，这样新的连接收到的数据报中有可能是先前连接的数据报。为了防止这一点，TCP不允许从处于TIME_WAIT状态的socket建立一个连接。处于TIME_WAIT状态的socket在等待两倍的MSL时间以后（之所以是两倍的MSL，是由于MSL是一个数据报在网络中单向发出到认定丢失的时间，一个数据报有可能在发送图中或是其响应过程中成为残余数据报，确认一个数据报及其响应的丢弃的需要两倍的MSL），将会转变为CLOSED状态。这就意味着，一个成功建立的连接，必然使得先前网络中残余的数据报都丢失了。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
     
   </entry>
   
@@ -1609,77 +1770,6 @@ server {
   </entry>
   
   <entry>
-    <title>TCP连接的建立与中止</title>
-    <link href="https://iceziyao.github.io/2016/01/01/Net/Tcp11/"/>
-    <id>https://iceziyao.github.io/2016/01/01/Net/Tcp11/</id>
-    <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:58.509Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h1&gt;&lt;h2 id=&quot;连接的建立&quot;&gt;&lt;a href=&quot;#连接的建立&quot; class=&quot;headerlink&quot; title=&quot;连接的建立&quot;&gt;&lt;/a&gt;连接的建立&lt;/h2&gt;&lt;h3 id=&quot;三次握手&quot;&gt;&lt;a href=&quot;#三次握手&quot; class=&quot;headerlink&quot; title=&quot;三次握手&quot;&gt;&lt;/a&gt;三次握手&lt;/h3&gt;&lt;p&gt;所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;TCP三次握手&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;客户端的TCP进程也首先创建传输控制模块TCB，然后向服务端发出连接请求报文段，该报文段首部中的SYN=1，ACK=0，同时选择一个初始序号 seq=i。TCP规定，SYN=1的报文段不能携带数据，但要消耗掉一个序号。这时，TCP客户进程进入SYN—SENT（同步已发送）状态，这是 TCP连接的第一次握手。&lt;/li&gt;
-&lt;li&gt;服务端收到客户端发来的请求报文后，如果同意建立连接，则向客户端发送确认。确认报文中的SYN=1，ACK=1，确认号ack=i+1，同时为自己 选择一个初始序号seq=j。同样该报文段也是SYN=1的报文段，不能携带数据，但同样要消耗掉一个序号。这时，TCP服务端进入SYN—RCVD（同 步收到）状态，这是TCP连接的第二次握手。&lt;/li&gt;
-&lt;li&gt;TCP客户端进程收到服务端进程的确认后，还要向服务端给出确认。确认报文段的ACK=1，确认号ack=j+1，而自己的序号为seq=i+1。 TCP的标准规定，ACK报文段可以携带数据，但如果不携带数据则不消耗序号，因此，如果不携带数据，则下一个报文段的序号仍为seq=i+1。这 时，TCP连接已经建立，客户端进入ESTABLISHED（已建立连接）状态。这是TCP连接的第三次握手，可以看出第三次握手客户端已经可以发送携带 数据的报文段了。&lt;br&gt;当服务端收到确认后，也进入ESTABLISHED（已建立连接）状态。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;为什么要三次握手&lt;br&gt;目的是为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;已失效的连接请求报文段&lt;/strong&gt; 的产生在这样一种情况下：   &lt;blockquote&gt;
-&lt;p&gt;client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。若不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。&lt;br&gt;.&lt;br&gt;三次握手是双方建立连接认证的最小保证。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;TCP三次握手失败&lt;br&gt;我们总是要考虑网络是不可靠的。所以三次握手是存在失败的概率的。&lt;ul&gt;
-&lt;li&gt;如果server端接到了clien发的SYN后回了SYN-ACK后，之后server没有收到clien发送的ACK，会怎么样？  &lt;blockquote&gt;
-&lt;p&gt;此时server端处于SYN—RCVD,根据TCP的重发机制，在server发送SYN-ACK后，会启动一个重传定时器，当在指定时间内没有收到客户端发来的ACK报文时，就会重新发送SYN-ACK报文，并重置记时器。当然，这也不是无休止的，在Linux下，默认重试次数为5次，重试的间隔时间从1s开始每次都翻售，5次的重试时间间隔为1s, 2s, 4s, 8s, 16s，总共31s，第5次发出后还要等32s都知道第5次也超时了。Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;那么client端会怎么样呢？&lt;blockquote&gt;
-&lt;p&gt;客户端认为连接建立，写数据时，会触发RST&lt;br&gt;如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。&lt;br&gt;但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;SYN攻击&lt;br&gt;当正常TCP连接开始时，目的地主机将收到源主机发出的SYN(synchronize/start)信息包，并发回同步应答(同步承认)。 连接建立之前，目的地主机必须监听SYN ACK的ACK（确认）。&lt;br&gt;等待同步应答（SYN ACK）的确认（ACK）时，目的地主机上的大小有限的连接队列将记录等待完成的连接。 因为ACK预计在同步应答后几毫秒内到达，此队列通常迅速倒空。&lt;br&gt;TCP SYN攻击利用了此设计，由攻击源主机（相对于受害主机）生成带有随机源地址的TCP同步信息包。 受害目的地主机发送同步应答回到随机源地址，并且在连接队列中添加新条目。 因为同步应答指定用于不正确或不存在的主机，因此“三方握手”的最后部件永远不会完成，并且条目保留在连接队列中，直到计时器到期，保留时间通常为一分钟。 从随机IP地址快速生成欺骗性TCP同步信息包，有可能填满连接队列，并拒绝合法用户请求的TCP服务。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;连接的中断&quot;&gt;&lt;a href=&quot;#连接的中断&quot; class=&quot;headerlink&quot; title=&quot;连接的中断&quot;&gt;&lt;/a&gt;连接的中断&lt;/h2&gt;&lt;h3 id=&quot;四次挥手&quot;&gt;&lt;a href=&quot;#四次挥手&quot; class=&quot;headerlink&quot; title=&quot;四次挥手&quot;&gt;&lt;/a&gt;四次挥手&lt;/h3&gt;&lt;p&gt;所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;TCP四次挥手&lt;br&gt;由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。&lt;ul&gt;
-&lt;li&gt;第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。&lt;/li&gt;
-&lt;li&gt;第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。&lt;/li&gt;
-&lt;li&gt;第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。&lt;/li&gt;
-&lt;li&gt;第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。&lt;br&gt;其实四次挥手只是两次挥手的叠交，一方为被动关闭。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;为什么要四次挥手&quot;&gt;&lt;a href=&quot;#为什么要四次挥手&quot; class=&quot;headerlink&quot; title=&quot;为什么要四次挥手&quot;&gt;&lt;/a&gt;为什么要四次挥手&lt;/h3&gt;&lt;p&gt;TCP协议是一种面向连接的、可靠的、基于字节流的运输层通信协议。TCP是全双工模式，这就意味着，当client发出FIN报文段时，只是表示client已经没有数据要发送了，client告诉server，数据传输完毕；但是server还有数据要穿，所以client还要继续接受server的数据；当server返回ACK报文段时，表示它已经知道client没有数据发送了，但是server还是可以发送数据到client的；当server也发送了FIN报文段时，这个时候就表示server也没有数据要发送了，就会告诉client，我也没有数据要发送了，之后彼此就会愉快的中断这次TCP连接。如果要正确的理解四次分手的原理，就需要了解四次分手过程中的状态变化。  &lt;/p&gt;
-&lt;h3 id=&quot;四次挥手的状态&quot;&gt;&lt;a href=&quot;#四次挥手的状态&quot; class=&quot;headerlink&quot; title=&quot;四次挥手的状态&quot;&gt;&lt;/a&gt;四次挥手的状态&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;FIN_WAIT_1: 这个状态要好好解释一下，其实FIN_WAIT_1和FIN_WAIT_2状态的真正含义都是表示等待对方的FIN报文。而这两种状态的区别是：FIN_WAIT_1状态实际上是当SOCKET在ESTABLISHED状态时，它想主动关闭连接，向对方发送了FIN报文，此时该SOCKET即进入到FIN_WAIT_1状态。而当对方回应ACK报文后，则进入到FIN_WAIT_2状态，当然在实际的正常情况下，无论对方何种情况下，都应该马上回应ACK报文，所以FIN_WAIT_1状态一般是比较难见到的，而FIN_WAIT_2状态还有时常常可以用netstat看到。（主动方）&lt;/li&gt;
-&lt;li&gt;FIN_WAIT_2：上面已经详细解释了这种状态，实际上FIN_WAIT_2状态下的SOCKET，表示半连接，也即有一方要求close连接，但另外还告诉对方，我暂时还有点数据需要传送给你(ACK信息)，稍后再关闭连接。（主动方）&lt;/li&gt;
-&lt;li&gt;CLOSE_WAIT：这种状态的含义其实是表示在等待关闭。怎么理解呢？当对方close一个SOCKET后发送FIN报文给自己，你系统毫无疑问地会回应一个ACK报文给对方，此时则进入到CLOSE_WAIT状态。接下来呢，实际上你真正需要考虑的事情是察看你是否还有数据发送给对方，如果没有的话，那么你也就可以 close这个SOCKET，发送FIN报文给对方，也即关闭连接。所以你在CLOSE_WAIT状态下，需要完成的事情是等待你去关闭连接。（被动方）&lt;/li&gt;
-&lt;li&gt;LAST_ACK: 这个状态还是比较容易好理解的，它是被动关闭一方在发送FIN报文后，最后等待对方的ACK报文。当收到ACK报文后，也即可以进入到CLOSED可用状态了。（被动方）&lt;/li&gt;
-&lt;li&gt;TIME_WAIT: 表示收到了对方的FIN报文，并发送出了ACK报文，就等2MSL后即可回到CLOSED可用状态了。如果FINWAIT1状态下，收到了对方同时带FIN标志和ACK标志的报文时，可以直接进入到TIME_WAIT状态，而无须经过FIN_WAIT_2状态。（主动方）&lt;br&gt;注：&lt;br&gt;为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？&lt;br&gt;答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。&lt;br&gt;如果目前连接的通信双方都已经调用了close()，假定双方都到达CLOSED状态，而没有TIME_WAIT状态时，就会出现如下的情况。现在有一个新的连接被建立起来，使用的IP地址与端口与先前的完全相同，后建立的连接又称作是原先连接的一个化身。还假定原先的连接中有数据报残存于网络之中，这样新的连接收到的数据报中有可能是先前连接的数据报。为了防止这一点，TCP不允许从处于TIME_WAIT状态的socket建立一个连接。处于TIME_WAIT状态的socket在等待两倍的MSL时间以后（之所以是两倍的MSL，是由于MSL是一个数据报在网络中单向发出到认定丢失的时间，一个数据报有可能在发送图中或是其响应过程中成为残余数据报，确认一个数据报及其响应的丢弃的需要两倍的MSL），将会转变为CLOSED状态。这就意味着，一个成功建立的连接，必然使得先前网络中残余的数据报都丢失了。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Tcp协议概述</title>
     <link href="https://iceziyao.github.io/2015/12/25/Net/tcp10/"/>
     <id>https://iceziyao.github.io/2015/12/25/Net/tcp10/</id>
@@ -1748,138 +1838,6 @@ server {
     
     
       <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx负载均衡</title>
-    <link href="https://iceziyao.github.io/2015/12/23/lnmp/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    <id>https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/</id>
-    <published>2015-12-23T13:49:33.000Z</published>
-    <updated>2016-08-06T14:50:07.903Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.1 正向代理  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;1.2反向代理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;区别:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.2 weight    
-指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
-如果后端服务器down掉，能自动剔除。
-比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com weight=1;
-server server2.example.com weight=2;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.3 ip_hash        
-每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-ip_hash
-server server1.example.com;
-server server2.example.com;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.4 fair  
-按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-fair;
-}
-&lt;/code&gt;&lt;/pre&gt;
-2.1.5 url_hash  
-按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
-在upstream中加入hash语句，hash_method是使用的hash算法。  
-&lt;pre&gt;&lt;code&gt;
-upstream bakend {
-server server1.example.com;
-server server2.example.com;
-hash $request_uri;
-hash_method crc32;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;p&gt;2.2 参数&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-user nginx;
-worker_processes 1;
-events {
- use epoll;
- worker_connections  1024;
-}
-http {
- include       mime.types;
- default_type  application/octet-stream;
- sendfile        on;
- keepalive_timeout  65;
- upstream nginx.com{
-        server server2.example.com:80;
-        server server3.example.com:80;
- }  
- server {
-     listen       80;
-     server_name  localhost;
-     location / {
-         proxy_pass http://nginx.com;
-     proxy_set_header  X-Real-IP  $remote_addr;
-   }
- error_page   500 502 503 504  /50x.html;
- location = /50x.html {
-         root   html;
- }  
-}  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
     
   </entry>
   
@@ -2098,111 +2056,134 @@ http {
   </entry>
   
   <entry>
-    <title>多播和广播</title>
-    <link href="https://iceziyao.github.io/2015/12/06/Net/tcp4/"/>
-    <id>https://iceziyao.github.io/2015/12/06/Net/tcp4/</id>
-    <published>2015-12-05T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:49.006Z</updated>
+    <title>nginx负载均衡</title>
+    <link href="https://iceziyao.github.io/2015/12/23/lnmp/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    <id>https://iceziyao.github.io/2015/12/23/lnmp/nginx负载均衡/</id>
+    <published>2015-12-23T13:49:33.000Z</published>
+    <updated>2016-08-06T14:50:07.903Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。&lt;br&gt;这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，&lt;br&gt;就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。&lt;br&gt;现在的具有路由功能的主机应该可以将单播数据定向转发，&lt;br&gt;而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;广播-unicast&quot;&gt;&lt;a href=&quot;#广播-unicast&quot; class=&quot;headerlink&quot; title=&quot;广播(unicast)&quot;&gt;&lt;/a&gt;广播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;广播是主机针对某一个网络上的所有主机发送数据包。这个网络可能是网络，可能是子网，还可能是所有的子网。如果是网络，例如A类网址的广播就是 netid.255.255.255，如果是子网，则是netid.netid.subnetid.255；如果是所有的子网（B类IP）则是则是 netid.netid.255.255。广播所用的MAC地址FF-FF-FF-FF-FF-FF。网络内所有的主机都会收到这个广播数据，网卡只要把 MAC地址为FF-FF-FF-FF-FF-FF的数据交给内核就可以了。一般说来ARP，或者路由协议RIP应该是以广播的形式播发的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;多播-multicast&quot;&gt;&lt;a href=&quot;#多播-multicast&quot; class=&quot;headerlink&quot; title=&quot;多播(multicast)&quot;&gt;&lt;/a&gt;多播(multicast)&lt;/h3&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;可以说广播是多播的特例，多播就是给一组特定的主机（多播组）发送数据，这样，数据的播发范围会小一些(实际上播发的范围一点也没有变小)，多播的MAC地址是最高字节的低位为一，例 如01-00-00-00-00-00。多播组的地址是D类IP，规定是224.0.0.0-239.255.255.255。  &lt;/li&gt;
-&lt;li&gt;虽然多播比较特殊，但是究其原理，多播的数据还是要通过数据链路层进行MAC地址绑定然后进行发送。所以一个以太网卡在绑定了一个多播IP地址之后，必 定还要绑定一个多播的MAC地址，才能使得其可以像单播那样工作。这个多播的IP和多播MAC地址有一个对应的算法，在书的p133到p134之间。可以看到 这个对应不是一一对应的，主机还是要对多播数据进行过滤。  &lt;/li&gt;
-&lt;li&gt;个人觉得：广播和多播的性质是一样的，路由器会把数据放到局域网里面，然后网卡对这些数据进行过滤，只拿到自己打算要的数据，比如自己感兴趣的多 播数据，自己感兴趣的组播数据。当一个主机运行了一个处理某一个多播IP的进程的时候，这个进程会给网卡绑定一个虚拟的多播mac地址，并做出来一个多播 ip。这样，网卡就会让带有这个多播mac地址的数据进来，从而实现通信，而那些没有监听这些数据的主机就会把这些数据过滤掉。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;IGMP协议&quot;&gt;&lt;a href=&quot;#IGMP协议&quot; class=&quot;headerlink&quot; title=&quot;IGMP协议&quot;&gt;&lt;/a&gt;IGMP协议&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;IGMP的作用在于，让其他所有需要知道自己处于哪个多播组的主机和路由器知道自己的状态。一般多播路由器根本不需要知道某一个多播组里面有多少个主机，而只要知道自己的子网内还有没有处于某个多播组的主机就可以了。只要某一个多播组还有一台主机，多播路由器就会把数据传输出去，这样，接受方就会通过网卡过滤功能来得到自己想要的数据。为了知道多播组的信息，多播路由器需要定时的发送IGMP查询，IGMP的格式可以看书，各个多播组里面的主机要根据查询来回复自己的状态。路由器来决定有几个多播组，自己要对某一个多播组发送什么样的数据。&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;单播-unicast&quot;&gt;&lt;a href=&quot;#单播-unicast&quot; class=&quot;headerlink&quot; title=&quot;单播(unicast)&quot;&gt;&lt;/a&gt;单播(unicast)&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。&lt;br&gt;这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，&lt;br&gt;就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。&lt;br&gt;现在的具有路由功能的主机应该可以将单播数据定向转发，&lt;br&gt;而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IP协议,ARP协议和RARP协议</title>
-    <link href="https://iceziyao.github.io/2015/12/04/Net/tcp3/"/>
-    <id>https://iceziyao.github.io/2015/12/04/Net/tcp3/</id>
-    <published>2015-12-03T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:45.957Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。&lt;/p&gt;
-&lt;h2 id=&quot;IP&quot;&gt;&lt;a href=&quot;#IP&quot; class=&quot;headerlink&quot; title=&quot;IP&quot;&gt;&lt;/a&gt;IP&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;IP协议&lt;br&gt;IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  &lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;1.1 正向代理  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 正向代理 是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.2反向代理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;反向代理正好相反，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;区别:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。另外，反向代理还可以启用高级URL策略和管理技术，从而使处于不同web服务器系统的web页面同时存在于同一个URL空间下。&lt;br&gt;正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此你必须采取安全措施以确保仅为经过授权的客户端提供服务。反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;upstream&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1 负载均衡算法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.1.1 轮循&lt;br&gt;当weight不指定时，各服务器weight相同，&lt;br&gt;每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.2 weight    
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+如果后端服务器down掉，能自动剔除。
+比如以下配置，则1.11服务器的访问量为1.10服务器的两倍。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com weight=1;
+server server2.example.com weight=2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.3 ip_hash        
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+ip_hash
+server server1.example.com;
+server server2.example.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.4 fair  
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+fair;
+}
+&lt;/code&gt;&lt;/pre&gt;
+2.1.5 url_hash  
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。
+在upstream中加入hash语句，hash_method是使用的hash算法。  
+&lt;pre&gt;&lt;code&gt;
+upstream bakend {
+server server1.example.com;
+server server2.example.com;
+hash $request_uri;
+hash_method crc32;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;p&gt;2.2 参数&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.down 表示单前的server暂时不参与负载&lt;br&gt;2.weight 默认为1.weight越大，负载的权重就越大。&lt;br&gt;3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误&lt;br&gt;4.fail_timeout:max_fails次失败后，暂停的时间。&lt;br&gt;5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。&lt;br&gt;nginx支持同时设置多组的负载均衡，用来给不用的server来使用。&lt;br&gt;client_body_in_file_only 设置为On 可以讲client post过来的数据记录到文件中用来做debug&lt;br&gt;client_body_temp_path 设置记录文件的目录 可以设置最多3层目录&lt;br&gt;location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡  &lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;IP路由选择&lt;br&gt;当一个IP数据包准备好了的时候，IP数据包(或者说是路由器)是如何将数据包送到目的地的呢?它是怎么选择一个合适的路径来”送货”的呢?&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;最特殊的情况是目的主机和主机直连，那么主机根本不用寻找路由，直接把数据传递过去就可以了。至于是怎么直接传递的，这就要靠ARP协议了，后面会讲到。&lt;/li&gt;
-&lt;li&gt;稍微一般一点的情况是，主机通过若干个路由器(router)和目的主机连接。那么路由器就要通过ip包的信息来为ip包寻找到一个合适的目标来进行传递，比如合适的主机，或者合适的路由。路由器或者主机将会用如下的方式来处理某一个IP数据包&lt;/li&gt;
-&lt;li&gt;如果IP数据包的TTL(生命周期)以到，则该IP数据包就被抛弃。&lt;/li&gt;
-&lt;li&gt;搜索路由表，优先搜索匹配主机，如果能找到和IP地址完全一致的目标主机，则将该包发向目标主机&lt;/li&gt;
-&lt;li&gt;搜索路由表，如果匹配主机失败，则匹配同子网的路由器，这需要“子网掩码(1.3.)”的协助。如果找到路由器，则将该包发向路由器。&lt;ul&gt;
-&lt;li&gt;搜索路由表，如果匹配同子网路由器失败，则匹配同网号(第一章有讲解)路由器，如果找到路由器，则将该包发向路由器。&lt;/li&gt;
-&lt;li&gt;搜索陆游表，如果以上都失败了，就搜索默认路由，如果默认路由存在，则发包  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果都失败了，就丢掉这个包。&lt;br&gt;&lt;strong&gt;这再一次证明了，ip包是不可靠的。因为它不保证送达。&lt;/strong&gt;  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;子网寻址&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;IP地址的定义是网络号+主机号。但是现在所有的主机都要求子网编址，也就是说，把主机号在细分成子网号+主机号。最终一个IP地址就成为 网络号码+子网号+主机号。例如一个B类地址：210.30.109.134。一般情况下，这个IP地址的红色部分就是网络号，而蓝色部分就是子网号，绿色部分就是主机号。至于有多少位代表子网号这个问题上，这没有一个硬性的规定，取而代之的则是子网掩码，校园网相信大多数人都用过，在校园网的设定里面有一个255.255.255.0的东西，这就是子网掩码。子网掩码是由32bit的二进制数字序列,形式为是一连串的1和一连串的0，例如：255.255.255.0(二进制就是11111111.11111111.11111111.00000000)对于刚才的那个B类地址，因为210.30是网络号，那么后面的109.134就是子网号和主机号的组合，又因为子网掩码只有后八bit为0，所以主机号就是IP地址的后八个bit，就是134，而剩下的就是子网号码–109。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;li&gt;&lt;p&gt;示例&lt;br&gt;3.1 网络拓扑&lt;br&gt;反向代理服务器 server1.example.com&lt;br&gt;后端服务器：&lt;br&gt;server2.example.com&lt;br&gt;server3.example.com&lt;br&gt;3.2 配置&lt;br&gt;3.2.1 server1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+user nginx;
+worker_processes 1;
+events {
+ use epoll;
+ worker_connections  1024;
+}
+http {
+ include       mime.types;
+ default_type  application/octet-stream;
+ sendfile        on;
+ keepalive_timeout  65;
+ upstream nginx.com{
+        server server2.example.com:80;
+        server server3.example.com:80;
+ }  
+ server {
+     listen       80;
+     server_name  localhost;
+     location / {
+         proxy_pass http://nginx.com;
+     proxy_set_header  X-Real-IP  $remote_addr;
+   }
+ error_page   500 502 503 504  /50x.html;
+ location = /50x.html {
+         root   html;
+ }  
+}  
+}  
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;ARP协议&quot;&gt;&lt;a href=&quot;#ARP协议&quot; class=&quot;headerlink&quot; title=&quot;ARP协议&quot;&gt;&lt;/a&gt;ARP协议&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;数据链路层的以太网的协议中，每一个数据包都有一个MAC地址头么?我们知道每一块以太网卡都有一个MAC地址，这个地址是唯一的，那么IP包是如何知道这个MAC地址的?这就是ARP协议的工作。  &lt;/li&gt;
-&lt;li&gt;ARP(地址解析)协议是一种解析协议，本来主机是完全不知道这个IP对应的是哪个主机的哪个接口，当主机要发送一个IP包的时候，会首先查一下自己的ARP高速缓存(就是一个IP-MAC地址对应表缓存)，如果查询的IP-MAC值对不存在，那么主机就向网络发送一个ARP协议广播包，这个广播包里面就有待查询的IP地址，而直接收到这份广播的包的所有主机都会查询自己的IP地址，如果收到广播包的某一个主机发现自己符合条件，那么就准备好一个包含自己的MAC地址的ARP包传送给发送ARP广播的主机，而广播主机拿到ARP包后会更新自己的ARP缓存(就是存放IP-MAC对应表的地方)。发送广播的主机就会用新的ARP缓存数据准备好数据链路层的的数据包发送工作。   &lt;/li&gt;
-&lt;li&gt;一个典型的arp缓存信息如下，在任意一个系统里面用“arp -a”命令就可以看到&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;RARP协议&quot;&gt;&lt;a href=&quot;#RARP协议&quot; class=&quot;headerlink&quot; title=&quot;RARP协议&quot;&gt;&lt;/a&gt;RARP协议&lt;/h2&gt;&lt;p&gt;反向地址转换协议（RARP：Reverse Address Resolution Protocol） 反向地址转换协议（RARP）允许局域网的物理机器从网关服务器的 ARP 表或者缓存上请求其 IP 地址。网络管理员在局域网网关路由器里创建一个表以映射物理地址（MAC）和与其对应的 IP 地址。当设置一台新的机器时，其 RARP 客户机程序需要向路由器上的 RARP 服务器请求相应的 IP 地址。假设在路由表中已经设置了一个记录，RARP 服务器将会返回 IP 地址给机器，此机器就会存储起来以便日后使用。  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;工作原理  &lt;blockquote&gt;
-&lt;p&gt;1、网络上的每台设备都会有一个独一无二的硬件地址，通常是由设备厂商分配的MAC地址。PC1从网卡上读取MAC地址，然后在网络上发送一个RARP请求的广播数据包，请求RARP服务器回复该PC的IP地址。&lt;br&gt;2、RARP服务器收到了RARP请求数据包，为其分配IP地址，并将RARP回应发送给PC1。&lt;br&gt;3、PC1收到RARP回应后，就使用得到的IP地址进行通讯。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;网络层&quot;&gt;&lt;a href=&quot;#网络层&quot; class=&quot;headerlink&quot; title=&quot;网络层&quot;&gt;&lt;/a&gt;网络层&lt;/h2&gt;&lt;p&gt;把这三个协议放到一起学习是因为这三个协议处于同一层，ARP协议用来找到目标主机的Ethernet网卡Mac地址，IP则承载要发送的消息。数据链路层可以从ARP得到数据的传送信息，而从IP得到要传输的数据信息。&lt;/p&gt;
-&lt;h2 id=&quot;IP&quot;&gt;&lt;a href=&quot;#IP&quot; class=&quot;headerlink&quot; title=&quot;IP&quot;&gt;&lt;/a&gt;IP&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;IP协议&lt;br&gt;IP协议是TCP/IP协议族中最为核心的协议。它提供不可靠、无连接的服务，也即依赖其他层的协议进行差错控制。在局域网环境，IP协议往往被封装在以太网帧中传送。而所有的TCP、UDP、ICMP、IGMP数据都被封装在IP数据报中传送&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Ethemet帧头 | IP头部 | TCP头部 | 上层数据 | FCS  &lt;/p&gt;
+      &lt;h3 id=&quot;安装nginx&quot;&gt;&lt;a href=&quot;#安装nginx&quot; class=&quot;headerlink&quot; title=&quot;安装nginx&quot;&gt;&lt;/a&gt;安装nginx&lt;/h3&gt;&lt;p&gt;请参考&lt;a href=&quot;http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html&quot;&gt;lnmp架构&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;nginx 反向代理&lt;br&gt;nginx的负载均衡基于反向代理
     
     </summary>
     
-      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
     
-    
-      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
+      <category term="nginx" scheme="https://iceziyao.github.io/tags/nginx/"/>
     
   </entry>
   
