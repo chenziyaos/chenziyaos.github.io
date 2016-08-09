@@ -51,11 +51,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
-    
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -97,11 +97,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
-    
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -110,7 +110,7 @@
     <link href="https://iceziyao.github.io/2016/06/28/Auto/salt-api/"/>
     <id>https://iceziyao.github.io/2016/06/28/Auto/salt-api/</id>
     <published>2016-06-27T16:00:00.000Z</published>
-    <updated>2016-08-09T13:05:57.780Z</updated>
+    <updated>2016-08-09T13:21:39.653Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Salt-API安装配置及使用&quot;&gt;&lt;a href=&quot;#Salt-API安装配置及使用&quot; class=&quot;headerlink&quot; title=&quot;Salt-API安装配置及使用&quot;&gt;&lt;/a&gt;Salt-API安装配置及使用&lt;/h2&gt;&lt;p&gt;SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。&lt;br&gt;具体使用请参考:&lt;a href=&quot;http://salt-api.readthedocs.org/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;salt-api手册&lt;/a&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;环境说明&quot;&gt;&lt;a href=&quot;#环境说明&quot; class=&quot;headerlink&quot; title=&quot;环境说明&quot;&gt;&lt;/a&gt;环境说明&lt;/h2&gt;&lt;ul&gt;
@@ -157,60 +157,67 @@
 &lt;h4 id=&quot;查询Minion的信息&quot;&gt;&lt;a href=&quot;#查询Minion的信息&quot; class=&quot;headerlink&quot; title=&quot;查询Minion的信息&quot;&gt;&lt;/a&gt;查询Minion的信息&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Request&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -k https://172.25.254.135:8000/minions/minion.example.com \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;Accept: application/x-yaml&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;其中 X-Auth-Token 后边的串为之前Login获取到的Token串, 如果请求的URL不包含 minion.example.com ，则请求的为所有Minion的信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* Response&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;return:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -k https://172.25.254.135:8000/minions/minion.example.com \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;Accept: application/x-yaml&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd&amp;quot;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中 X-Auth-Token 后边的串为之前Login获取到的Token串, 如果请求的URL不包含 minion.example.com ，则请求的为所有Minion的信息&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;minion.example.com:&lt;br&gt;  SSDs: []&lt;br&gt;  biosreleasedate: 12/10/2013&lt;br&gt;  biosversion: X450LCP.205&lt;br&gt;  cpu_flags:&lt;ul&gt;
-&lt;li&gt;fpu&lt;/li&gt;
-&lt;li&gt;vme&lt;/li&gt;
-&lt;li&gt;de&lt;/li&gt;
-&lt;li&gt;pse&lt;/li&gt;
-&lt;li&gt;tsc&lt;br&gt;略&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#### 远程执行模块&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* Request&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
+&lt;li&gt;Response&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;return:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- minion.example.com:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    SSDs: []&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    biosreleasedate: 12/10/2013&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    biosversion: X450LCP.205&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    cpu_flags:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - fpu&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - vme&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - de&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - pse&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - tsc&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    略&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;远程执行模块&quot;&gt;&lt;a href=&quot;#远程执行模块&quot; class=&quot;headerlink&quot; title=&quot;远程执行模块&quot;&gt;&lt;/a&gt;远程执行模块&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Request&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;curl -k &lt;a href=&quot;https://172.25.254.135:8000/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://172.25.254.135:8000/&lt;/a&gt; \&lt;br&gt;     -H “Accept: application/x-yaml” \&lt;br&gt;     -H “X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd” \&lt;br&gt;     -d client=’local’ \&lt;br&gt;     -d tgt=’*’ \&lt;br&gt;     -d fun=’test.ping’&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;* Response&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;return:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -k https://172.25.254.135:8000/ \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;Accept: application/x-yaml&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -d client=&amp;apos;local&amp;apos; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -d tgt=&amp;apos;*&amp;apos; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -d fun=&amp;apos;test.ping&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;minion.example.com: true&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#### 运行runner&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* Request&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
+&lt;li&gt;Response  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;curl -k &lt;a href=&quot;https://172.25.254.135:8000/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://172.25.254.135:8000/&lt;/a&gt; \&lt;br&gt;     -H “Accept: application/x-yaml” \&lt;br&gt;     -H “X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd” \&lt;br&gt;     -d client=’runner’ \&lt;br&gt;     -d fun=’manage.status’&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;* Response&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;return:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;return:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- minion.example.com: true&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;运行runner&quot;&gt;&lt;a href=&quot;#运行runner&quot; class=&quot;headerlink&quot; title=&quot;运行runner&quot;&gt;&lt;/a&gt;运行runner&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -k https://172.25.254.135:8000/ \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;Accept: application/x-yaml&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -H &amp;quot;X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd&amp;quot; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -d client=&amp;apos;runner&amp;apos; \&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     -d fun=&amp;apos;manage.status&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;down: []&lt;br&gt;up:&lt;ul&gt;
-&lt;li&gt;minion.example.com&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 总结&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Salt API几乎涵盖了所有的salt操作，功能强劲，尤其是需要salt和第三方系统集成的场景  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 背后的原理  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;学过socket编程的同学都知道，server端接受客户端传送的数据，如果用户输入命令的话，那么调用os.popen(command,mode)等，是可以执行命令的，并且将结果返回给客户端。那么就能完成一个基于socket的远程控制系统。  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 本地API&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;saltstack是用python写成，我们可以在安装salt的主机上，通过python调用  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* LocalClient&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
+&lt;li&gt;Response&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;return:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- down: []&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  up:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  -  minion.example.com&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;&lt;p&gt;Salt API几乎涵盖了所有的salt操作，功能强劲，尤其是需要salt和第三方系统集成的场景  &lt;/p&gt;
+&lt;h3 id=&quot;背后的原理&quot;&gt;&lt;a href=&quot;#背后的原理&quot; class=&quot;headerlink&quot; title=&quot;背后的原理&quot;&gt;&lt;/a&gt;背后的原理&lt;/h3&gt;&lt;p&gt;学过socket编程的同学都知道，server端接受客户端传送的数据，如果用户输入命令的话，那么调用os.popen(command,mode)等，是可以执行命令的，并且将结果返回给客户端。那么就能完成一个基于socket的远程控制系统。  &lt;/p&gt;
+&lt;h3 id=&quot;本地API&quot;&gt;&lt;a href=&quot;#本地API&quot; class=&quot;headerlink&quot; title=&quot;本地API&quot;&gt;&lt;/a&gt;本地API&lt;/h3&gt;&lt;p&gt;saltstack是用python写成，我们可以在安装salt的主机上，通过python调用  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LocalClient  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;In [1]: import salt.client&lt;br&gt;In [2]: local = salt.client.LocalClient()&lt;br&gt;In [3]: local.cmd(“*”,’cmd.run’,[‘whoami’])&lt;br&gt;Out[3]: {‘minion.example.com’: ‘root’}&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* Salt Caller&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;In [1]: import salt.client&lt;/p&gt;
-&lt;p&gt;In [2]: caller = salt.client.Caller()&lt;/p&gt;
-&lt;p&gt;In [3]: caller.cmd(‘test.ping’)&lt;br&gt;Out[3]: True&lt;/p&gt;
-&lt;p&gt;In [4]: caller.function(‘test.ping’)        #早期版本不支持 caller.cmd&lt;br&gt;Out[4]: True&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* RunnerClient&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;In [6]: import salt.config&lt;/p&gt;
-&lt;p&gt;In [7]: opts =salt.config.master_config(‘/etc/salt/master’)&lt;/p&gt;
-&lt;p&gt;In [8]: runner = salt.runner.R&lt;br&gt;salt.runner.Runner        salt.runner.RunnerClient  &lt;/p&gt;
-&lt;p&gt;In [8]: runner = salt.runner.RunnerClient(opts)&lt;/p&gt;
-&lt;p&gt;In [9]: runner.cmd(‘jobs.list_jobs’,[])&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;返回值&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;20160809195307041368&quot;&gt;&lt;a href=&quot;#20160809195307041368&quot; class=&quot;headerlink&quot; title=&quot;20160809195307041368:&quot;&gt;&lt;/a&gt;20160809195307041368:&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Arguments:
-Function:
-    grains.items
-StartTime:
-    2016, Aug 09 19:53:07.041368
-Target:
-    *
-Target-type:
-    glob
-User:
-    salt
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Out[9]:&lt;br&gt;{‘20160809195307041368’: {‘Arguments’: [],&lt;br&gt;  ‘Function’: ‘grains.items’,&lt;br&gt;  ‘StartTime’: ‘2016, Aug 09 19:53:07.041368’,&lt;br&gt;  ‘Target’: ‘&lt;em&gt;‘,&lt;br&gt;  ‘Target-type’: ‘glob’,&lt;br&gt;  ‘User’: ‘salt’},&lt;br&gt; ‘20160809195645164703’: {‘Arguments’: [],&lt;br&gt;  ‘Function’: ‘test.ping’,&lt;br&gt;  ‘StartTime’: ‘2016, Aug 09 19:56:45.164703’,&lt;br&gt;  ‘Target’: ‘&lt;/em&gt;‘,&lt;br&gt;  ‘Target-type’: ‘glob’,&lt;br&gt;  ‘User’: ‘salt’},&lt;br&gt; ‘20160809200031579904’: {‘Arguments’: [],&lt;br&gt;  ‘Function’: ‘test.ping’,&lt;br&gt;  ‘StartTime’: ‘2016, Aug 09 20:00:31.579904’,&lt;br&gt;  ‘Target’: ‘&lt;em&gt;‘,&lt;br&gt;  ‘Target-type’: ‘glob’,&lt;br&gt;  ‘User’: ‘root’},&lt;br&gt; ‘20160809200943103937’: {‘Arguments’: [‘whoami’],&lt;br&gt;  ‘Function’: ‘cmd.run’,&lt;br&gt;  ‘StartTime’: ‘2016, Aug 09 20:09:43.103937’,&lt;br&gt;  ‘Target’: ‘&lt;/em&gt;‘,&lt;br&gt;  ‘Target-type’: ‘glob’,&lt;br&gt;  ‘User’: ‘root’}}&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 实现&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;salt-api 是用 Tornado 封装了一个程式，通过继承tornado.web.RequestHandler，获取传递参数  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;然后根据参数，调用不同的salt命令，返回结果&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;简易实现如下&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;import tornado.ioloop&lt;br&gt;import tornado.web&lt;/p&gt;
-&lt;p&gt;class SaltAPI(tornado.web.RequestHandler):&lt;br&gt;    def get(self):&lt;br&gt;        self.write(“Hello, world”)&lt;br&gt;    def post(self):&lt;br&gt;        data = simplejson.loads(self.request.body)&lt;br&gt;        获取数据&lt;br&gt;        调用 salt&lt;br&gt;        self.write(ruselt)&lt;br&gt;application = tornado.web.Application([&lt;br&gt;    (r”/“, SaltAPI),&lt;br&gt;])&lt;/p&gt;
-&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == “&lt;strong&gt;main&lt;/strong&gt;“:&lt;br&gt;    application.listen(8000)&lt;br&gt;    tornado.ioloop.IOLoop.instance().start()&lt;br&gt;```&lt;br&gt;更具体的实现，可以看salt-api源码&lt;br&gt;地址: &lt;a href=&quot;https://github.com/saltstack/salt-api&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;salt-api&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;In [1]: import salt.client&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [2]: local = salt.client.LocalClient()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [3]: local.cmd(&amp;quot;*&amp;quot;,&amp;apos;cmd.run&amp;apos;,[&amp;apos;whoami&amp;apos;])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Out[3]: &amp;#123;&amp;apos;minion.example.com&amp;apos;: &amp;apos;root&amp;apos;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Salt Caller  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;In [1]: import salt.client&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [2]: caller = salt.client.Caller()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [3]: caller.cmd(&amp;apos;test.ping&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Out[3]: True&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [4]: caller.function(&amp;apos;test.ping&amp;apos;)        #早期版本不支持 caller.cmd&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Out[4]: True&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;RunnerClient&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;In [6]: import salt.config&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [7]: opts =salt.config.master_config(&amp;apos;/etc/salt/master&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [8]: runner = salt.runner.R&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;salt.runner.Runner        salt.runner.RunnerClient  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [8]: runner = salt.runner.RunnerClient(opts)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;In [9]: runner.cmd(&amp;apos;jobs.list_jobs&amp;apos;,[])&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;返回值  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;20160809195307041368:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ----------&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Arguments:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Function:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        grains.items&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    StartTime:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        2016, Aug 09 19:53:07.041368&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Target:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        *&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Target-type:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        glob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    User:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        salt&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Out[9]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;apos;20160809195307041368&amp;apos;: &amp;#123;&amp;apos;Arguments&amp;apos;: [],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Function&amp;apos;: &amp;apos;grains.items&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;StartTime&amp;apos;: &amp;apos;2016, Aug 09 19:53:07.041368&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target&amp;apos;: &amp;apos;*&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target-type&amp;apos;: &amp;apos;glob&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;User&amp;apos;: &amp;apos;salt&amp;apos;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;apos;20160809195645164703&amp;apos;: &amp;#123;&amp;apos;Arguments&amp;apos;: [],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Function&amp;apos;: &amp;apos;test.ping&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;StartTime&amp;apos;: &amp;apos;2016, Aug 09 19:56:45.164703&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target&amp;apos;: &amp;apos;*&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target-type&amp;apos;: &amp;apos;glob&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;User&amp;apos;: &amp;apos;salt&amp;apos;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;apos;20160809200031579904&amp;apos;: &amp;#123;&amp;apos;Arguments&amp;apos;: [],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Function&amp;apos;: &amp;apos;test.ping&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;StartTime&amp;apos;: &amp;apos;2016, Aug 09 20:00:31.579904&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target&amp;apos;: &amp;apos;*&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target-type&amp;apos;: &amp;apos;glob&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;User&amp;apos;: &amp;apos;root&amp;apos;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;apos;20160809200943103937&amp;apos;: &amp;#123;&amp;apos;Arguments&amp;apos;: [&amp;apos;whoami&amp;apos;],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Function&amp;apos;: &amp;apos;cmd.run&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;StartTime&amp;apos;: &amp;apos;2016, Aug 09 20:09:43.103937&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target&amp;apos;: &amp;apos;*&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;Target-type&amp;apos;: &amp;apos;glob&amp;apos;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;apos;User&amp;apos;: &amp;apos;root&amp;apos;&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;p&gt;salt-api 是用 Tornado 封装了一个程式，通过继承tornado.web.RequestHandler，获取传递参数&lt;br&gt;然后根据参数，调用不同的salt命令，返回结果&lt;br&gt;简易实现如下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import tornado.ioloop
+import tornado.web
+
+class SaltAPI(tornado.web.RequestHandler):
+    def get(self):
+        self.write(&amp;quot;Hello, world&amp;quot;)
+    def post(self):
+        data = simplejson.loads(self.request.body)
+        获取数据
+        调用 salt
+        self.write(ruselt)  
+application = tornado.web.Application([
+    (r&amp;quot;/&amp;quot;, SaltAPI),
+])
+
+if __name__ == &amp;quot;__main__&amp;quot;:
+    application.listen(8000)
+    tornado.ioloop.IOLoop.instance().start()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更具体的实现，可以看salt-api源码&lt;br&gt;地址: &lt;a href=&quot;https://github.com/saltstack/salt-api&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;salt-api&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -313,89 +320,9 @@ User:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
+    
       <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python的内存管理机制</title>
-    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
-    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
-    <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:28.945Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;引用计数减少情况  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&gt;&gt; import sys
-&gt;&gt; x = 1
-&gt;&gt; sys.getrefcount(x)
-599
-&gt;&gt; y = x
-&gt;&gt; sys.getrefcount(x)
-600
-&gt;&gt; del y
-&gt;&gt; sys.getrefcount(x)
-599
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
-　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
-　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;原因  &lt;ul&gt;
-&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -476,6 +403,86 @@ User:
 &lt;p&gt;In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;一个防止多线程并发执行机器码的一个Mutex&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python的内存管理机制</title>
+    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
+    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
+    <published>2016-05-20T16:00:00.000Z</published>
+    <updated>2016-08-06T14:49:28.945Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;引用计数减少情况  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&gt;&gt; import sys
+&gt;&gt; x = 1
+&gt;&gt; sys.getrefcount(x)
+599
+&gt;&gt; y = x
+&gt;&gt; sys.getrefcount(x)
+600
+&gt;&gt; del y
+&gt;&gt; sys.getrefcount(x)
+599
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
+　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
+　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;原因  &lt;ul&gt;
+&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
