@@ -3,24 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ftp+mysql搭建ftp认证 | 羽非衣</title>
+  <title>SaltApi安装使用 | 羽非衣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
+  <meta name="description" content="Salt-API安装配置及使用SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。具体使用请参考:salt-api手册">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ftp+mysql搭建ftp认证">
-<meta property="og:url" content="https://iceziyao.github.io/2015/11/24/server/ftp+mysql/index.html">
+<meta property="og:title" content="SaltApi安装使用">
+<meta property="og:url" content="https://iceziyao.github.io/2016/06/28/Auto/salt-api/index.html">
 <meta property="og:site_name" content="羽非衣">
-<meta property="og:description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
-<meta property="og:updated_time" content="2016-08-06T14:48:58.896Z">
+<meta property="og:description" content="Salt-API安装配置及使用SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。具体使用请参考:salt-api手册">
+<meta property="og:updated_time" content="2016-08-09T12:53:03.305Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ftp+mysql搭建ftp认证">
-<meta name="twitter:description" content="安装所需要程序
-事先安装好开发环境和mysql数据库;# yum -y install mysql-server mysql-devel# yum -y groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;  
-安装pam_mysql-0.7RC1  # tar zxvf  pam_mysql-0.">
+<meta name="twitter:title" content="SaltApi安装使用">
+<meta name="twitter:description" content="Salt-API安装配置及使用SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。具体使用请参考:salt-api手册">
   
     <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
   
@@ -210,11 +204,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-server/ftp+mysql" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Auto/salt-api" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/24/server/ftp+mysql/" class="article-date">
-      <time datetime="2015-11-24T03:49:33.000Z" itemprop="datePublished">2015-11-24</time>
+      <a href="/2016/06/28/Auto/salt-api/" class="article-date">
+      <time datetime="2016-06-27T16:00:00.000Z" itemprop="datePublished">2016-06-28</time>
 </a>
     </div>
   
@@ -227,7 +221,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ftp+mysql搭建ftp认证
+      SaltApi安装使用
     </h1>
   
 
@@ -236,13 +230,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/ftp/">ftp</a>
+    <a class="article-category-link" href="/categories/运维/">运维</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ftp/">ftp</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/saltstack/">saltstack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动化运维/">自动化运维</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -252,82 +246,99 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="安装所需要程序"><a href="#安装所需要程序" class="headerlink" title="安装所需要程序"></a>安装所需要程序</h3><ol>
-<li>事先安装好开发环境和mysql数据库;<br><code># yum -y install mysql-server mysql-devel</code><br><code># yum -y groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code>  </li>
-<li>安装pam_mysql-0.7RC1  <pre><code># tar zxvf  pam_mysql-0.7RC1.tar.gz
-# cd  pam_mysql-0.7RC1
-# ./configure --with-mysql=/usr --with-openssl
-# make
-# make install  
-</code></pre></li>
-<li>安装vsftpd<blockquote>
-<p><code>yum -y install vsftpd</code></p>
-<a id="more"></a>
-</blockquote>
+        <h2 id="Salt-API安装配置及使用"><a href="#Salt-API安装配置及使用" class="headerlink" title="Salt-API安装配置及使用"></a>Salt-API安装配置及使用</h2><p>SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。<br>具体使用请参考:<a href="http://salt-api.readthedocs.org/en/latest/" target="_blank" rel="external">salt-api手册</a><br><a id="more"></a></p>
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
+<li>操作系统环境: CentOS 6.4/ Centos 7</li>
+<li>Salt Master/Minion版本: 0.17.2, Master IP地址为172.25.254.135, 用于本次测试的Minion ID为 minion.example.com</li>
+</ul>
+<h2 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>7系列  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm</div><div class="line">yum install salt-master</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<h3 id="创建虚拟用户账号"><a href="#创建虚拟用户账号" class="headerlink" title="创建虚拟用户账号"></a>创建虚拟用户账号</h3><ol>
-<li><p>准备数据库及相关表<br>首先请确保mysql服务已经正常启动。而后，按需要建立存储虚拟用户的数据库即可，这里将其创建为vsftpd数据库。  </p>
-<blockquote>
-<p>create database vsftpd;<br>grant select on vsftpd.<em> to vsftpd@localhost identified by ‘www.magedu.com’;<br>mysql&gt; grant select on vsftpd.</em> to vsftpd@127.0.0.1 identified by ‘www.magedu.com’;<br>mysql&gt; flush privileges;<br>mysql&gt; use vsftpd;<br>mysql&gt; create table users (<br> -&gt; id int AUTO_INCREMENT NOT NULL,<br> -&gt; name char(20) binary NOT NULL,<br> -&gt; password char(48) binary NOT NULL,<br> -&gt; primary key(id)<br> -&gt; );  </p>
-</blockquote>
+<li><p>6系列  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">安装salt-api</div><div class="line">pip install salt-api</div><div class="line"># 下载服务维护脚本</div><div class="line">wget https://raw.github.com/saltstack/salt-api/develop/pkg/rpm/salt-api -O /etc/init.d/salt-api</div><div class="line">chmod +x /etc/init.d/salt-api</div><div class="line">chkconfig salt-api on</div></pre></td></tr></table></figure>
 </li>
-<li><p>添加测试的虚拟用户<br>根据需要添加所需要的用户，需要说明的是，这里将其密码采用明文格式存储，原因是pam_mysql的password()函数与MySQL的password()函数可能会有所不同.</p>
-<pre><code>mysql&gt; insert into users(name,password) values(&apos;tom&apos;,&apos;magedu&apos;);
-mysql&gt; insert into users(name,password) values(&apos;jerry&apos;,&apos;magedu&apos;);
-</code></pre></li>
-</ol>
-<h3 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h3><ol>
-<li><p>建立pam认证所需文件</p>
-<pre><code>#vi /etc/pam.d/vsftpd.mysql
-添加如下两行
-auth required /lib/security/pam_mysql.so   user=vsftpd passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-account required /lib/security/pam_mysql.so user=vsftpd
-passwd=www.magedu.com
-host=localhost
-db=vsftpd
-table=users
-usercolumn=name
-passwdcolumn=password
-crypt=0
-</code></pre></li>
-<li><p>修改vsftpd的配置文件，使其适应mysql认证<br>建立虚拟用户映射的系统用户及对应的目录  </p>
-<pre><code>#useradd -s /sbin/nologin -d /var/ftproot vuser
-#chmod go+rx /var/ftproot
-</code></pre><p>请确保/etc/vsftpd.conf中已经启用了以下选项  </p>
-<blockquote>
-<p>anonymous_enable=YES<br>local_enable=YES<br>write_enable=YES<br>anon_upload_enable=NO<br>anon_mkdir_write_enable=NO<br>chroot_local_user=YES<br>而后添加以下选项<br>guest_enable=YES<br>guest_username=vuser<br>并确保pam_service_name选项的值如下所示<br>pam_service_name=vsftpd.mysql  </p>
-</blockquote>
+</ul>
+<h3 id="配置Salt-API"><a href="#配置Salt-API" class="headerlink" title="配置Salt-API"></a>配置Salt-API</h3><h4 id="生成自签名证书-用于ssl"><a href="#生成自签名证书-用于ssl" class="headerlink" title="生成自签名证书(用于ssl)"></a>生成自签名证书(用于ssl)</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd  /etc/pki/tls/certs</div><div class="line"># 生成自签名证书, 过程中需要输入key密码及RDNs</div><div class="line">make testcert</div><div class="line">cd /etc/pki/tls/private/</div><div class="line"># 解密key文件，生成无密码的key文件, 过程中需要输入key密码，该密码为之前生成证书时设置的密码</div><div class="line">openssl rsa -in localhost.key -out salt_nopass.key</div></pre></td></tr></table></figure>
+<h4 id="Salt-API配置"><a href="#Salt-API配置" class="headerlink" title="Salt-API配置"></a>Salt-API配置</h4><ul>
+<li><p>创建用于salt-api的用户  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">useradd -M -s /sbin/nologin salt</div><div class="line">echo &quot;salt&quot; | passwd salt —stdin</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>四、启动vsftpd服务</p>
-<pre><code># service vsftpd start
-# chkconfig vsftpd on
-</code></pre><p>查看端口开启情况  </p>
-<pre><code># netstat -tnlp |grep :21
-tcp         0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      23286/vsftpd
-</code></pre><p>使用虚拟用户登录,验正配置结果，以下为本机的命令方式测试，你也可以在其它Win Box上用IE或者FTP客户端工具登录验正  </p>
-<pre><code># ftp localhost
-</code></pre><p>五、配置虚拟用户具有不同的访问权限<br>vsftpd可以在配置文件目录中为每个用户提供单独的配置文件以定义其ftp服务访问权限，每个虚拟用户的配置文件名同虚拟用户的用户名。配置文件目录可以是任意未使用目录，只需要在vsftpd.conf指定其路径及名称即可。  </p>
-<ol>
-<li><p>配置vsftpd为虚拟用户使用配置文件目录</p>
-<pre><code># vim vsftpd.conf
-添加如下选项
-user_config_dir=/etc/vsftpd/vusers_dir
-</code></pre></li>
-<li><p>创建所需要目录，并为虚拟用户提供配置文件</p>
-<pre><code># mkdir /etc/vsftpd/vusers_dir/
-# cd /etc/vsftpd/vusers_dir/
-# touch tom jerry
-</code></pre></li>
-<li>配置虚拟用户的访问权限<br>虚拟用户对vsftpd服务的访问权限是通过匿名用户的相关指令进行的。比如，如果需要让tom用户具有上传文件的权限，可以修改/etc/vsftpd/vusers/tom文件，在里面添加如下选项即可。<br><code>anon_upload_enable=YES</code></li>
-</ol>
+<li><p>配置eauth, /etc/salt/master.d/eauth.conf  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">external_auth:</div><div class="line">  pam:</div><div class="line">    salt:           #此处的用户与上述创建的用户一致</div><div class="line">      - .*</div><div class="line">      - '@wheel'</div><div class="line">      - '@runner'</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置Salt-API, /etc/salt/master.d/api.conf</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rest_cherrypy:</div><div class="line">  port: 8000        #开放端口</div><div class="line">  ssl_crt: /etc/pki/tls/certs/localhost.crt     </div><div class="line">  ssl_key: /etc/pki/tls/private/salt_nopass.key</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动Salt-API<br><code>service salt-api start</code></p>
+</li>
+</ul>
+<h3 id="Salt-API使用"><a href="#Salt-API使用" class="headerlink" title="Salt-API使用"></a>Salt-API使用</h3><ul>
+<li>使用自带的curl</li>
+</ul>
+<h4 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h4><ul>
+<li>请求</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">curl -k https://172.25.254.135:8000/login -H &quot;Accept: application/x-yaml&quot; \</div><div class="line">     -d username=&apos;salt&apos; \</div><div class="line">     -d password=&apos;salt&apos; \</div><div class="line">     -d eauth=&apos;pam&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>返回</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span>:</div><div class="line">- eauth: pam</div><div class="line">  expire: <span class="number">1470786521.466763</span></div><div class="line">  perms:</div><div class="line">  - .*</div><div class="line">  - <span class="string">'@wheel'</span></div><div class="line">  - <span class="string">'@runner'</span></div><div class="line">  start: <span class="number">1470743321.466762</span></div><div class="line">  token: f59484ca66f52173fb34742fc014f7dc5b027bdd</div><div class="line">  user: salt</div><div class="line">```  </div><div class="line">其中 token 后边的串为认证成功后获取的token串，之后可以不用再次输入密码，直接使用本Token即可</div><div class="line"></div><div class="line"><span class="comment">#### 查询Minion的信息</span></div><div class="line">* Request</div></pre></td></tr></table></figure>
+<p>curl -k <a href="https://172.25.254.135:8000/minions/minion.example.com" target="_blank" rel="external">https://172.25.254.135:8000/minions/minion.example.com</a> \<br>     -H “Accept: application/x-yaml” \<br>     -H “X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">其中 X-Auth-Token 后边的串为之前Login获取到的Token串, 如果请求的URL不包含 minion.example.com ，则请求的为所有Minion的信息</div><div class="line">* Response</div></pre></td></tr></table></figure>
+<p>return:</p>
+<ul>
+<li>minion.example.com:<br>  SSDs: []<br>  biosreleasedate: 12/10/2013<br>  biosversion: X450LCP.205<br>  cpu_flags:<ul>
+<li>fpu</li>
+<li>vme</li>
+<li>de</li>
+<li>pse</li>
+<li>tsc<br>略<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 远程执行模块</div><div class="line">* Request</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>curl -k <a href="https://172.25.254.135:8000/" target="_blank" rel="external">https://172.25.254.135:8000/</a> \<br>     -H “Accept: application/x-yaml” \<br>     -H “X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd” \<br>     -d client=’local’ \<br>     -d tgt=’*’ \<br>     -d fun=’test.ping’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* Response</div></pre></td></tr></table></figure></p>
+<p>return:</p>
+<ul>
+<li>minion.example.com: true<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 运行runner</div><div class="line">* Request</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>curl -k <a href="https://172.25.254.135:8000/" target="_blank" rel="external">https://172.25.254.135:8000/</a> \<br>     -H “Accept: application/x-yaml” \<br>     -H “X-Auth-Token: f59484ca66f52173fb34742fc014f7dc5b027bdd” \<br>     -d client=’runner’ \<br>     -d fun=’manage.status’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* Response</div></pre></td></tr></table></figure></p>
+<p>return:</p>
+<ul>
+<li>down: []<br>up:<ul>
+<li>minion.example.com<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 总结</div><div class="line">Salt API几乎涵盖了所有的salt操作，功能强劲，尤其是需要salt和第三方系统集成的场景  </div><div class="line">### 背后的原理  </div><div class="line">学过socket编程的同学都知道，server端接受客户端传送的数据，如果用户输入命令的话，那么调用os.popen(command,mode)等，是可以执行命令的，并且将结果返回给客户端。那么就能完成一个基于socket的远程控制系统。  </div><div class="line"></div><div class="line">### 本地API</div><div class="line">saltstack是用python写成，我们可以在安装salt的主机上，通过python调用  </div><div class="line">* LocalClient</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>In [1]: import salt.client<br>In [2]: local = salt.client.LocalClient()<br>In [3]: local.cmd(“*”,’cmd.run’,[‘whoami’])<br>Out[3]: {‘minion.example.com’: ‘root’}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* Salt Caller</div></pre></td></tr></table></figure></p>
+<p>In [1]: import salt.client</p>
+<p>In [2]: caller = salt.client.Caller()</p>
+<p>In [3]: caller.cmd(‘test.ping’)<br>Out[3]: True</p>
+<p>In [4]: caller.function(‘test.ping’)        #早期版本不支持 caller.cmd<br>Out[4]: True<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* RunnerClient</div></pre></td></tr></table></figure></p>
+<p>In [6]: import salt.config</p>
+<p>In [7]: opts =salt.config.master_config(‘/etc/salt/master’)</p>
+<p>In [8]: runner = salt.runner.R<br>salt.runner.Runner        salt.runner.RunnerClient  </p>
+<p>In [8]: runner = salt.runner.RunnerClient(opts)</p>
+<p>In [9]: runner.cmd(‘jobs.list_jobs’,[])</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">返回值</div></pre></td></tr></table></figure>
+<h2 id="20160809195307041368"><a href="#20160809195307041368" class="headerlink" title="20160809195307041368:"></a>20160809195307041368:</h2><pre><code>Arguments:
+Function:
+    grains.items
+StartTime:
+    2016, Aug 09 19:53:07.041368
+Target:
+    *
+Target-type:
+    glob
+User:
+    salt
+</code></pre><p>Out[9]:<br>{‘20160809195307041368’: {‘Arguments’: [],<br>  ‘Function’: ‘grains.items’,<br>  ‘StartTime’: ‘2016, Aug 09 19:53:07.041368’,<br>  ‘Target’: ‘<em>‘,<br>  ‘Target-type’: ‘glob’,<br>  ‘User’: ‘salt’},<br> ‘20160809195645164703’: {‘Arguments’: [],<br>  ‘Function’: ‘test.ping’,<br>  ‘StartTime’: ‘2016, Aug 09 19:56:45.164703’,<br>  ‘Target’: ‘</em>‘,<br>  ‘Target-type’: ‘glob’,<br>  ‘User’: ‘salt’},<br> ‘20160809200031579904’: {‘Arguments’: [],<br>  ‘Function’: ‘test.ping’,<br>  ‘StartTime’: ‘2016, Aug 09 20:00:31.579904’,<br>  ‘Target’: ‘<em>‘,<br>  ‘Target-type’: ‘glob’,<br>  ‘User’: ‘root’},<br> ‘20160809200943103937’: {‘Arguments’: [‘whoami’],<br>  ‘Function’: ‘cmd.run’,<br>  ‘StartTime’: ‘2016, Aug 09 20:09:43.103937’,<br>  ‘Target’: ‘</em>‘,<br>  ‘Target-type’: ‘glob’,<br>  ‘User’: ‘root’}}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 实现</div><div class="line">salt-api 是用 Tornado 封装了一个程式，通过继承tornado.web.RequestHandler，获取传递参数  </div><div class="line">然后根据参数，调用不同的salt命令，返回结果</div><div class="line">简易实现如下</div></pre></td></tr></table></figure></p>
+<p>import tornado.ioloop<br>import tornado.web</p>
+<p>class SaltAPI(tornado.web.RequestHandler):<br>    def get(self):<br>        self.write(“Hello, world”)<br>    def post(self):<br>        data = simplejson.loads(self.request.body)<br>        获取数据<br>        调用 salt<br>        self.write(ruselt)<br>application = tornado.web.Application([<br>    (r”/“, SaltAPI),<br>])</p>
+<p>if <strong>name</strong> == “<strong>main</strong>“:<br>    application.listen(8000)<br>    tornado.ioloop.IOLoop.instance().start()<br>```<br>更具体的实现，可以看salt-api源码<br>地址: <a href="https://github.com/saltstack/salt-api" target="_blank" rel="external">salt-api</a></p>
 
       
     </div>
@@ -336,13 +347,13 @@ user_config_dir=/etc/vsftpd/vusers_dir
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/28/Auto/salt-api/">SaltApi安装使用</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
-        <p><span>发布时间:</span>2015年11月24日 - 11时49分</p>
-        <p><span>最后更新:</span>2016年08月06日 - 22时48分</p>
+        <p><span>发布时间:</span>2016年06月28日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年08月09日 - 20时53分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/11/24/server/ftp+mysql/" title="ftp+mysql搭建ftp认证">https://iceziyao.github.io/2015/11/24/server/ftp+mysql/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2015/11/24/server/ftp+mysql/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/28/Auto/salt-api/" title="SaltApi安装使用">https://iceziyao.github.io/2016/06/28/Auto/salt-api/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/06/28/Auto/salt-api/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -355,18 +366,18 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
 <nav id="article-nav">
   
-    <a href="/2015/12/03/Net/tcp2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/01/Auto/ansible-api/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          数据链路层
+          ansible的二次开发
         
       </div>
     </a>
   
   
-    <a href="/2015/10/11/shell/shell-if/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">shell判断条件</div>
+    <a href="/2016/06/23/Auto/salt1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Saltstack安装使用</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -377,7 +388,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装所需要程序"><span class="toc-number">1.</span> <span class="toc-text">安装所需要程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建虚拟用户账号"><span class="toc-number">2.</span> <span class="toc-text">创建虚拟用户账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置vsftpd"><span class="toc-number">3.</span> <span class="toc-text">配置vsftpd</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Salt-API安装配置及使用"><span class="toc-number">1.</span> <span class="toc-text">Salt-API安装配置及使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境说明"><span class="toc-number">2.</span> <span class="toc-text">环境说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实施"><span class="toc-number">3.</span> <span class="toc-text">实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Salt-API"><span class="toc-number">3.2.</span> <span class="toc-text">配置Salt-API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生成自签名证书-用于ssl"><span class="toc-number">3.2.1.</span> <span class="toc-text">生成自签名证书(用于ssl)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Salt-API配置"><span class="toc-number">3.2.2.</span> <span class="toc-text">Salt-API配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Salt-API使用"><span class="toc-number">3.3.</span> <span class="toc-text">Salt-API使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Login"><span class="toc-number">3.3.1.</span> <span class="toc-text">Login</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20160809195307041368"><span class="toc-number">4.</span> <span class="toc-text">20160809195307041368:</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -425,7 +436,7 @@ user_config_dir=/etc/vsftpd/vusers_dir
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/11/24/server/ftp+mysql/" data-title="ftp+mysql搭建ftp认证" data-url="https://iceziyao.github.io/2015/11/24/server/ftp+mysql/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/28/Auto/salt-api/" data-title="SaltApi安装使用" data-url="https://iceziyao.github.io/2016/06/28/Auto/salt-api/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -448,13 +459,13 @@ user_config_dir=/etc/vsftpd/vusers_dir
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/03/Net/tcp2/" title="上一篇: 数据链路层">
+            <a href="/2016/07/01/Auto/ansible-api/" title="上一篇: ansible的二次开发">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2015/10/11/shell/shell-if/" title="下一篇: shell判断条件">
+            <a href="/2016/06/23/Auto/salt1/" title="下一篇: Saltstack安装使用">
                 <i class="fa fa-angle-right"></i>
             </a>
         
