@@ -494,6 +494,74 @@ if __name__ == &amp;quot;__main__&amp;quot;:
   </entry>
   
   <entry>
+    <title>Redis基础篇</title>
+    <link href="https://iceziyao.github.io/2016/05/07/Redis/redis1/"/>
+    <id>https://iceziyao.github.io/2016/05/07/Redis/redis1/</id>
+    <published>2016-05-06T16:00:00.000Z</published>
+    <updated>2016-08-29T23:05:12.121Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h1&gt;&lt;p&gt;Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;优势&quot;&gt;&lt;a href=&quot;#优势&quot; class=&quot;headerlink&quot; title=&quot;优势&quot;&gt;&lt;/a&gt;优势&lt;/h2&gt;&lt;h3 id=&quot;Redis特点&quot;&gt;&lt;a href=&quot;#Redis特点&quot; class=&quot;headerlink&quot; title=&quot;Redis特点&quot;&gt;&lt;/a&gt;Redis特点&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Redis是完全在内存中保存数据的数据库，使用磁盘只是为了持久性目的；&lt;/li&gt;
+&lt;li&gt;Redis相比许多键值数据存储系统有相对丰富的数据类型；&lt;/li&gt;
+&lt;li&gt;Redis可以将数据复制到任意数量的从服务器中；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Redis优势&quot;&gt;&lt;a href=&quot;#Redis优势&quot; class=&quot;headerlink&quot; title=&quot;Redis优势&quot;&gt;&lt;/a&gt;Redis优势&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;异常快速 : Redis是非常快的，每秒可以执行大约110000设置操作，81000个/每秒的读取操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持丰富的数据类型 : Redis支持最大多数开发人员已经知道如列表，集合，可排序集合，哈希等数据类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;这使得在应用中很容易解决的各种问题，因为我们知道哪些问题处理使用哪种数据类型更好解决。&lt;br&gt;操作都是原子的 : 所有 Redis 的操作都是原子，从而确保当两个客户同时访问 Redis 服务器得到的是更新后的值（最新值）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MultiUtility工具：Redis是一个多功能实用工具，可以在很多如：缓存，消息传递队列中使用（Redis原生支持发布/订阅），在应用程序中，如：Web应用程序会话，网站页面点击数等任何短暂的数据；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Redis环境&quot;&gt;&lt;a href=&quot;#Redis环境&quot; class=&quot;headerlink&quot; title=&quot;Redis环境&quot;&gt;&lt;/a&gt;Redis环境&lt;/h2&gt;&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;h4 id=&quot;Centos-Redhat&quot;&gt;&lt;a href=&quot;#Centos-Redhat&quot; class=&quot;headerlink&quot; title=&quot;Centos/Redhat&quot;&gt;&lt;/a&gt;Centos/Redhat&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ wget http://download.redis.io/releases/redis-2.8.17.tar.gz&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ tar xzf redis-2.8.17.tar.gz&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ cd redis-2.8.17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ make  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ cp redis-server /usr/local/bin/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$cp redis-cli /usr/local/bin/&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;Ubuntu&quot;&gt;&lt;a href=&quot;#Ubuntu&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu&quot;&gt;&lt;/a&gt;Ubuntu&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get install redis-server&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h3&gt;&lt;h4 id=&quot;启动redis&quot;&gt;&lt;a href=&quot;#启动redis&quot; class=&quot;headerlink&quot; title=&quot;启动redis&quot;&gt;&lt;/a&gt;启动redis&lt;/h4&gt;&lt;p&gt;&lt;code&gt;redis-server&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;使用-1&quot;&gt;&lt;a href=&quot;#使用-1&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h4&gt;&lt;p&gt;&lt;code&gt;redis-cli&lt;/code&gt;&lt;br&gt;&lt;code&gt;redis 127.0.0.1:6379&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; ping&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PONG&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Redis数据类型&quot;&gt;&lt;a href=&quot;#Redis数据类型&quot; class=&quot;headerlink&quot; title=&quot;Redis数据类型&quot;&gt;&lt;/a&gt;Redis数据类型&lt;/h2&gt;&lt;p&gt;Redis 支持5种数据类型，说明如下：&lt;/p&gt;
+&lt;h3 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h3&gt;&lt;p&gt;Redis 字符串是一个字节序列。在 Redis 中字符串是二进制安全的，这意味着它们没有任何特殊终端字符来确定长度，所以可以存储任何长度为 512 兆的字符串。&lt;br&gt;示例&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; SET name &amp;quot;yiibai&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OK&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; GET name&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;quot;yiibai&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中，SET 和 GET 是 Redis 命令，name 和 &amp;quot;yiibai&amp;quot; 是存储在 Redis 的键和字符串值。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 哈希&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis哈希是键值对的集合。 Redis哈希是字符串字段和字符串值之间的映射，所以它们用来表示对象。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; HMSET user:1 username yiibai password yiibai points 200&lt;br&gt;OK&lt;br&gt;redis 127.0.0.1:6379&amp;gt; HGETALL user:1&lt;/p&gt;
+&lt;p&gt;1) “username”&lt;br&gt;2) “yiibai”&lt;br&gt;3) “password”&lt;br&gt;4) “yiibai”&lt;br&gt;5) “points”&lt;br&gt;6) “200”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中，哈希数据类型用于存储包含用户基本信息的用户对象。这里 HSET，HEXTALL 是 Redis 命令同时 user:1 也是一个键。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 列表&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis 列表是简单的字符串列表，通过插入顺序排序。可以添加一个元素到 Redis 列表的头部或尾部。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; lpush tutoriallist redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; lpush tutoriallist mongodb&lt;br&gt;(integer) 2&lt;br&gt;redis 127.0.0.1:6379&amp;gt; lpush tutoriallist rabitmq&lt;br&gt;(integer) 3&lt;br&gt;redis 127.0.0.1:6379&amp;gt; lrange tutoriallist 0 10&lt;/p&gt;
+&lt;p&gt;1) “rabitmq”&lt;br&gt;2) “mongodb”&lt;br&gt;3) “redis”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;列表的最大长度为  232 - 1 个元素（4294967295，每个列表的元素超过四十亿）。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 集合&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis 集合是字符串的无序集合。在 Redis 可以添加，删除和测试成员存在的时间复杂度为 O（1）。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; sadd tutoriallist redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; sadd tutoriallist mongodb&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; sadd tutoriallist redis&lt;br&gt;(integer) 1&lt;br&gt;127.0.0.1:6379&amp;gt; smembers tutoriallist&lt;br&gt;1) “mongodb”&lt;br&gt;2) “redis”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中 redis 被添加两次，但由于它是只集合具有唯一特性。集合中的成员最大数量为 232 - 1（4294967295，每个集合有超过四十亿条记录）。  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;不同的是，一个有序集合的每个成员都可以排序，就是为了按有序集合排序获取它们，按权重分值从最小到最大排序。虽然成员都是独一无二的，按权重分数值可能会重复。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; zadd tutoriallist 0 redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; zadd tutoriallist 0 mongodb&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; zadd tutoriallist 0 rabitmq&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; zadd tutoriallist 0 rabitmq&lt;br&gt;(integer) 0&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZRANGEBYSCORE tutoriallist 0 1000&lt;/p&gt;
+&lt;p&gt;1) “redis”&lt;br&gt;2) “mongodb”&lt;br&gt;3) “rabitmq”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;### Redis键&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis 中的 keys 命令用于管理 redis 中的键。Redis keys命令使用的语法如下所示：   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;语法&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; COMMAND KEY_NAME&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; SET yiibai redis&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OK&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; DEL yiibai&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;(integer) 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中 DEL 是一个命令，而 yiibai 是一个键。如果键被成功删除，则该命令的输出将是（整数）1，否则这将是（整数）0；&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Redis字符串&quot;&gt;&lt;a href=&quot;#Redis字符串&quot; class=&quot;headerlink&quot; title=&quot;Redis字符串&quot;&gt;&lt;/a&gt;Redis字符串&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Redis 的字符串命令用于管理 redis 的字符串值。Redis 的字符串命令语法的使用如下所示：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;语法&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; COMMAND KEY_NAME&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; SET yiibai redis&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OK&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;redis 127.0.0.1:6379&amp;gt; GET yiibai&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;quot;redis&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在上面示例中 SET 和 GET 是 Redis 的命令，这里 yiibai 就是一个键（key）；&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### Redis哈希&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Redis哈希是字符串字段和字符串值之间的映射，所以它是用来表示对象的一个完美的数据类型，Redis 的哈希值最多可存储超过4十亿字段-值对。&lt;br&gt;示例&lt;br&gt;redis 127.0.0.1:6379&amp;gt; HMSET yiibai name “redis tutorial” description “redis basic commands for caching” likes 20 visitors 23000&lt;br&gt;OK&lt;br&gt;redis 127.0.0.1:6379&amp;gt; HGETALL yiibai&lt;/p&gt;
+&lt;p&gt;1) “name”&lt;br&gt;2) “redis tutorial”&lt;br&gt;3) “description”&lt;br&gt;4) “redis basic commands for caching”&lt;br&gt;5) “likes”&lt;br&gt;6) “20”&lt;br&gt;7) “visitors”&lt;br&gt;8) “23000”&lt;br&gt;在上面的例子，我们在设置一个名为 yiibai Redis的哈希的教程详细信息（name, description, likes, visitors）。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;### Redis列表&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis列表是简单的字符串列表，通过插入顺序排序。您可以在Redis 列表的头或列表尾添加元素。列表的最大长度为  232 - 1 个元素（4294967295，每个列表可有超过四十亿个元素）。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; LPUSH tutorials redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; LPUSH tutorials mongodb&lt;br&gt;(integer) 2&lt;br&gt;redis 127.0.0.1:6379&amp;gt; LPUSH tutorials mysql&lt;br&gt;(integer) 3&lt;br&gt;redis 127.0.0.1:6379&amp;gt; LRANGE tutorials 0 10&lt;/p&gt;
+&lt;p&gt;1) “mysql”&lt;br&gt;2) “mongodb”&lt;br&gt;3) “redis”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中的三个值由命令LPUSH 插入到 redis 名称为 tutorials 的列表。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### Redis集合&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis集合是唯一字符串的无序集合。唯一集合是不允许数据有重复的键的。在 Redis 集合中添加，删除和测试成会是否存的时间复杂度为O（1）（恒定的时间，无论集合内包含元素的数量）。集合的最大长度为   232 - 1 个元素（4294967295，每个集合中超过四十亿个元素）。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; SADD yiibai redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; SADD yiibai mongodb&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; SADD yiibai mysql&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; SADD yiibai mysql&lt;br&gt;(integer) 0&lt;br&gt;redis 127.0.0.1:6379&amp;gt; SMEMBERS yiibai&lt;/p&gt;
+&lt;p&gt;1) “mysql”&lt;br&gt;2) “mongodb”&lt;br&gt;3) “redis”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;在上面的例子中的三个值被 Redis 的命令SADD插入到一个名为 yiibai 集合。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### Redis有序集合&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis的有序集合类似于 Redis 的集合，但是存储的值在集合中具有唯一性。另外有序集合的每个成员都使用分值（score）的东西，这个分值就是用于将有序集合排序，从分值最小到最大来排序。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在 Redis 有序集合添加，删除和测试成员的存在的时间复杂度为 O（1）（恒定时间，无论集合内包含元素的数量）。列表的最大长度为 232 - 1 个元素（4294967295，每个集合的元素超过四十亿）。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; ZADD yiibai 1 redis&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZADD yiibai 2 mongodb&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZADD yiibai 3 mysql&lt;br&gt;(integer) 1&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZADD yiibai 3 mysql&lt;br&gt;(integer) 0&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZADD yiibai 4 mysql&lt;br&gt;(integer) 0&lt;br&gt;redis 127.0.0.1:6379&amp;gt; ZRANGE yiibai 0 10 WITHSCORES&lt;/p&gt;
+&lt;p&gt;1) “redis”&lt;br&gt;2) “1”&lt;br&gt;3) “mongodb”&lt;br&gt;4) “2”&lt;br&gt;5) “mysql”&lt;br&gt;6) “4”&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;下面的例子说明了 HyperLogLog Redis 的工作原理：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; PFADD tutorials “redis”&lt;/p&gt;
+&lt;p&gt;1) (integer) 1&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; PFADD tutorials “mongodb”&lt;/p&gt;
+&lt;p&gt;1) (integer) 1&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; PFADD tutorials “mysql”&lt;/p&gt;
+&lt;p&gt;1) (integer) 1&lt;/p&gt;
+&lt;p&gt;redis 127.0.0.1:6379&amp;gt; PFCOUNT tutorials&lt;/p&gt;
+&lt;p&gt;(integer) 3&lt;br&gt;```&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h1&gt;&lt;p&gt;Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="DB" scheme="https://iceziyao.github.io/categories/DB/"/>
+    
+    
+      <category term="redis" scheme="https://iceziyao.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初探node.js</title>
     <link href="https://iceziyao.github.io/2016/05/06/%E5%89%8D%E7%AB%AF/nodejs/"/>
     <id>https://iceziyao.github.io/2016/05/06/前端/nodejs/</id>
@@ -872,11 +940,11 @@ res.output();
     <link href="https://iceziyao.github.io/2016/02/12/Lvs/LVS2/"/>
     <id>https://iceziyao.github.io/2016/02/12/Lvs/LVS2/</id>
     <published>2016-02-11T16:00:00.000Z</published>
-    <updated>2016-08-29T21:56:07.074Z</updated>
+    <updated>2016-08-29T22:08:49.765Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;工作原理&quot;&gt;&lt;a href=&quot;#工作原理&quot; class=&quot;headerlink&quot; title=&quot;工作原理&quot;&gt;&lt;/a&gt;工作原理&lt;/h2&gt;&lt;p&gt;LVS分为两个部件：ipvs和ipvsadm&lt;br&gt;      ipvs ： 工作于内核空间，主要用于使用户定义的策略生效；&lt;br&gt;      ipvsadm : 工作于用户空间，主要用于用户定义和管理集群服务的工具；&lt;/p&gt;
-&lt;h3 id=&quot;LVS内核模型&quot;&gt;&lt;a href=&quot;#LVS内核模型&quot; class=&quot;headerlink&quot; title=&quot;LVS内核模型&quot;&gt;&lt;/a&gt;LVS内核模型&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/upload/lvs.jpg&quot; alt=&quot;lv内核模型&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;LVS内核模型&quot;&gt;&lt;a href=&quot;#LVS内核模型&quot; class=&quot;headerlink&quot; title=&quot;LVS内核模型&quot;&gt;&lt;/a&gt;LVS内核模型&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/upload/Lvs.jpg&quot; alt=&quot;lv内核模型&quot;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;当客户端的请求到达负载均衡器的内核空间时，首先会到达PREROUTING链。&lt;/li&gt;
 &lt;li&gt;当内核发现请求数据包的目的地址是本机时，将数据包送往INPUT链。&lt;/li&gt;
@@ -903,7 +971,7 @@ res.output();
     
     <summary type="html">
     
-      &lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，
+      &lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。&lt;br&gt;
     
     </summary>
     
@@ -1951,78 +2019,6 @@ server {
     <summary type="html">
     
       &lt;h2 id=&quot;TCP协议&quot;&gt;&lt;a href=&quot;#TCP协议&quot; class=&quot;headerlink&quot; title=&quot;TCP协议&quot;&gt;&lt;/a&gt;TCP协议&lt;/h2&gt;&lt;p&gt;TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。&lt;br&gt;TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://iceziyao.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tcp协议概述</title>
-    <link href="https://iceziyao.github.io/2015/12/25/Net/tcp10/"/>
-    <id>https://iceziyao.github.io/2015/12/25/Net/tcp10/</id>
-    <published>2015-12-24T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:54.535Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; class=&quot;headerlink&quot; title=&quot;tcp报文格式&quot;&gt;&lt;/a&gt;tcp报文格式&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;/upload/tcp.jpg&quot; alt=&quot;tcp&quot;&gt;  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;源、目标端口号字段：占16比特。TCP协议通过使用”端口”来标识源端和目标端的应用进程。端口号可以使用0到65535之间的任何数字。在收到服务请求时，操作系统动态地为客户端的应用程序分配端口号。在服务器端，每种服务在”众所周知的端口”（Well-Know Port）为用户提供服务。  &lt;/li&gt;
-&lt;li&gt;顺序号字段：占32比特。用来标识从TCP源端向TCP目标端发送的数据字节流，它表示在这个报文段中的第一个数据字节。  &lt;/li&gt;
-&lt;li&gt;确认号字段：占32比特。只有ACK标志为1时，确认号字段才有效。它包含目标端所期望收到源端的下一个数据字节  &lt;/li&gt;
-&lt;li&gt;头部长度字段：占4比特。给出头部占32比特的数目。没有任何选项字段的TCP头部长度为20字节；最多可以有60字节的TCP头部。&lt;/li&gt;
-&lt;li&gt;标志位字段（U、A、P、R、S、F）：占6比特。各比特的含义如下   &lt;ul&gt;
-&lt;li&gt;URG：紧急指针（urgent pointer）有效  &lt;/li&gt;
-&lt;li&gt;ACK：确认序号有效  &lt;/li&gt;
-&lt;li&gt;PSH：接收方应该尽快将这个报文段交给应用层  &lt;/li&gt;
-&lt;li&gt;RST：重建连接  &lt;/li&gt;
-&lt;li&gt;SYN：发起一个连接  &lt;/li&gt;
-&lt;li&gt;FIN：释放一个连接  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;窗口大小字段：占16比特。此字段用来进行流量控制。单位为字节数，这个值是本机期望一次接收的字节数  &lt;/li&gt;
-&lt;li&gt;TCP校验和字段：占16比特。对整个TCP报文段，即TCP头部和TCP数据进行校验和计算，并由目标端进行验证  &lt;/li&gt;
-&lt;li&gt;紧急指针字段：占16比特。它是一个偏移量，和序号字段中的值相加表示紧急数据最后一个字节的序号  &lt;/li&gt;
-&lt;li&gt;选项字段：占32比特。可能包括”窗口扩大因子”、”时间戳”等选项。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;TCP传输&quot;&gt;&lt;a href=&quot;#TCP传输&quot; class=&quot;headerlink&quot; title=&quot;TCP传输&quot;&gt;&lt;/a&gt;TCP传输&lt;/h2&gt;&lt;p&gt;TCP和UDP处在同一层—运输层，但是TCP和UDP最不同的地方是，TCP提供了一种可靠的数据传输服务，TCP是面向连接的，也就是说，利用TCP通信的两台主机首先要经历一个“拨打电话”的过程，等到通信准备结束才开始传输数据，最后结束通话。所以TCP要比UDP可靠的多，UDP是把数据直接发出去，而不管对方是不是在收信，就算是UDP无法送达，也不会产生ICMP差错报文&lt;/p&gt;
-&lt;h3 id=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;a href=&quot;#TCP保证可靠性的简单工作原理&quot; class=&quot;headerlink&quot; title=&quot;TCP保证可靠性的简单工作原理&quot;&gt;&lt;/a&gt;TCP保证可靠性的简单工作原理&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的 数据报长度将保持不变。由TCP传递给IP的信息单位称为报文段或段&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;当TCP发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能 及时收到一个确认，将重发这个报文段。在第21章我们将了解TCP协议中自适应的超时 及重传策略。&lt;/li&gt;
-&lt;li&gt;当TCP收到发自TCP连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒，这将在1 9.3节讨论。&lt;/li&gt;
-&lt;li&gt;TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输 过程中的任何变化。如果收到段的检验和有差错， T P将丢弃这个报文段和不确认收到此报文段（希望发端超时并重发）。&lt;/li&gt;
-&lt;li&gt;既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段 的到达也可能会失序。如果必要， TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。&lt;/li&gt;
-&lt;li&gt;TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从这段话中可以看到，TCP中保持可靠性的方式就是&lt;strong&gt;超时重发&lt;/strong&gt;，虽然TCP也可以用各种各样的ICMP报文来处理这些，但是这也不是可靠的，最可靠的方式就是只要不得到确认，就重新发送数据报，直到得到对方的确认为止。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;连接&quot;&gt;&lt;a href=&quot;#连接&quot; class=&quot;headerlink&quot; title=&quot;连接&quot;&gt;&lt;/a&gt;连接&lt;/h3&gt;&lt;p&gt;TCP的首部和UDP首部一样，都有发送端口号和接收端口号。但是显然，TCP的首部信息要比UDP的多，可以看到，TCP协议提供了发送和确认所需要的所有必要的信息。这在P171-173有详细地介绍。可以想象一个TCP数据的发送应该是如下的一个过程。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;双方建立连接&lt;ul&gt;
-&lt;li&gt;发送方给接受方TCP数据报，然后等待对方的确认TCP数据报，如果没有，就重新发，如果有，就发送下一个数据报。&lt;/li&gt;
-&lt;li&gt;接受方等待发送方的数据报，如果得到数据报并检验无误，就发送ACK(确认)数据报，并等待下一个TCP数据报的到来。直到接收到FIN(发送完成数据报)&lt;/li&gt;
-&lt;li&gt;中止连接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;可以想见，为了建立一个TCP连接，系统可能会建立一个新的进程（最差也是一个线程），来进行数据的传送&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;tcp协议族位于传输层&quot;&gt;&lt;a href=&quot;#tcp协议族位于传输层&quot; class=&quot;headerlink&quot; title=&quot;tcp协议族位于传输层&quot;&gt;&lt;/a&gt;tcp协议族位于传输层&lt;/h4&gt;&lt;h2 id=&quot;tcp报文格式&quot;&gt;&lt;a href=&quot;#tcp报文格式&quot; class=&quot;headerlink&quot; title=&quot;tcp报文格式&quot;&gt;&lt;/a&gt;tcp报文格式&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.
     
     </summary>
     

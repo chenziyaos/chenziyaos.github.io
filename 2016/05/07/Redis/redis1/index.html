@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis基础篇 | 羽非衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RedisRedis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis基础篇">
+<meta property="og:url" content="https://iceziyao.github.io/2016/05/07/Redis/redis1/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="RedisRedis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。">
+<meta property="og:updated_time" content="2016-08-29T23:05:12.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis基础篇">
+<meta name="twitter:description" content="RedisRedis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。">
+  
+    <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">陈子瑶</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">心静如水</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">求职简历</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/guestbook">留言板</a></li>
+                        
+                            <li><a href="/404">公益404</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lenlue123@foxmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/icezeYao" title="github">github</a>
+                            
+                                <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/HA/" style="font-size: 12px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 12px;">ansible</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/lvs/" style="font-size: 12px;">lvs</a> <a href="/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/saltstack/" style="font-size: 12px;">saltstack</a> <a href="/tags/shell/" style="font-size: 12px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 18px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">陈子瑶</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">陈子瑶</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">心静如水</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">求职简历</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/guestbook">留言板</a></li>
+                
+                    <li><a href="/404">公益404</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lenlue123@foxmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/icezeYao" title="github">github</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Redis/redis1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/07/Redis/redis1/" class="article-date">
+      <time datetime="2016-05-06T16:00:00.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis基础篇
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/DB/">DB</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>Redis是一个开源（BSD许可），内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理。它支持字符串、哈希表、列表、集合、有序集合，位图，hyperloglogs等数据类型。内置复制、Lua脚本、LRU收回、事务以及不同级别磁盘持久化功能，同时通过Redis Sentinel提供高可用，通过Redis Cluster提供自动分区。<br><a id="more"></a></p>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><h3 id="Redis特点"><a href="#Redis特点" class="headerlink" title="Redis特点"></a>Redis特点</h3><ul>
+<li>Redis是完全在内存中保存数据的数据库，使用磁盘只是为了持久性目的；</li>
+<li>Redis相比许多键值数据存储系统有相对丰富的数据类型；</li>
+<li>Redis可以将数据复制到任意数量的从服务器中；</li>
+</ul>
+<h3 id="Redis优势"><a href="#Redis优势" class="headerlink" title="Redis优势"></a>Redis优势</h3><ul>
+<li><p>异常快速 : Redis是非常快的，每秒可以执行大约110000设置操作，81000个/每秒的读取操作。</p>
+</li>
+<li><p>支持丰富的数据类型 : Redis支持最大多数开发人员已经知道如列表，集合，可排序集合，哈希等数据类型。</p>
+</li>
+<li><p>这使得在应用中很容易解决的各种问题，因为我们知道哪些问题处理使用哪种数据类型更好解决。<br>操作都是原子的 : 所有 Redis 的操作都是原子，从而确保当两个客户同时访问 Redis 服务器得到的是更新后的值（最新值）。</p>
+</li>
+<li><p>MultiUtility工具：Redis是一个多功能实用工具，可以在很多如：缓存，消息传递队列中使用（Redis原生支持发布/订阅），在应用程序中，如：Web应用程序会话，网站页面点击数等任何短暂的数据；</p>
+</li>
+</ul>
+<h2 id="Redis环境"><a href="#Redis环境" class="headerlink" title="Redis环境"></a>Redis环境</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="Centos-Redhat"><a href="#Centos-Redhat" class="headerlink" title="Centos/Redhat"></a>Centos/Redhat</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ wget http://download.redis.io/releases/redis-2.8.17.tar.gz</div><div class="line">$ tar xzf redis-2.8.17.tar.gz</div><div class="line">$ cd redis-2.8.17</div><div class="line">$ make  </div><div class="line">$ cp redis-server /usr/local/bin/</div><div class="line">$cp redis-cli /usr/local/bin/</div></pre></td></tr></table></figure>
+<h4 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install redis-server</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h4><p><code>redis-server</code></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p><code>redis-cli</code><br><code>redis 127.0.0.1:6379&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis 127.0.0.1:6379&gt; ping</div><div class="line">PONG</div></pre></td></tr></table></figure></p>
+<h2 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h2><p>Redis 支持5种数据类型，说明如下：</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>Redis 字符串是一个字节序列。在 Redis 中字符串是二进制安全的，这意味着它们没有任何特殊终端字符来确定长度，所以可以存储任何长度为 512 兆的字符串。<br>示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">redis 127.0.0.1:6379&gt; SET name &quot;yiibai&quot;</div><div class="line">OK</div><div class="line">redis 127.0.0.1:6379&gt; GET name</div><div class="line">&quot;yiibai&quot;</div><div class="line">```   </div><div class="line">在上面的例子中，SET 和 GET 是 Redis 命令，name 和 &quot;yiibai&quot; 是存储在 Redis 的键和字符串值。</div><div class="line">### 哈希</div><div class="line">Redis哈希是键值对的集合。 Redis哈希是字符串字段和字符串值之间的映射，所以它们用来表示对象。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; HMSET user:1 username yiibai password yiibai points 200<br>OK<br>redis 127.0.0.1:6379&gt; HGETALL user:1</p>
+<p>1) “username”<br>2) “yiibai”<br>3) “password”<br>4) “yiibai”<br>5) “points”<br>6) “200”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在上面的例子中，哈希数据类型用于存储包含用户基本信息的用户对象。这里 HSET，HEXTALL 是 Redis 命令同时 user:1 也是一个键。</div><div class="line">### 列表</div><div class="line">Redis 列表是简单的字符串列表，通过插入顺序排序。可以添加一个元素到 Redis 列表的头部或尾部。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; lpush tutoriallist redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; lpush tutoriallist mongodb<br>(integer) 2<br>redis 127.0.0.1:6379&gt; lpush tutoriallist rabitmq<br>(integer) 3<br>redis 127.0.0.1:6379&gt; lrange tutoriallist 0 10</p>
+<p>1) “rabitmq”<br>2) “mongodb”<br>3) “redis”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">列表的最大长度为  232 - 1 个元素（4294967295，每个列表的元素超过四十亿）。</div><div class="line">### 集合</div><div class="line">Redis 集合是字符串的无序集合。在 Redis 可以添加，删除和测试成员存在的时间复杂度为 O（1）。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; sadd tutoriallist redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; sadd tutoriallist mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; sadd tutoriallist redis<br>(integer) 1<br>127.0.0.1:6379&gt; smembers tutoriallist<br>1) “mongodb”<br>2) “redis”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">在上面的例子中 redis 被添加两次，但由于它是只集合具有唯一特性。集合中的成员最大数量为 232 - 1（4294967295，每个集合有超过四十亿条记录）。  </div><div class="line">不同的是，一个有序集合的每个成员都可以排序，就是为了按有序集合排序获取它们，按权重分值从最小到最大排序。虽然成员都是独一无二的，按权重分数值可能会重复。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 rabitmq<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 rabitmq<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZRANGEBYSCORE tutoriallist 0 1000</p>
+<p>1) “redis”<br>2) “mongodb”<br>3) “rabitmq”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">### Redis键</div><div class="line">Redis 中的 keys 命令用于管理 redis 中的键。Redis keys命令使用的语法如下所示：   </div><div class="line">```  </div><div class="line">语法</div><div class="line">redis 127.0.0.1:6379&gt; COMMAND KEY_NAME</div><div class="line">示例</div><div class="line">redis 127.0.0.1:6379&gt; SET yiibai redis</div><div class="line">OK</div><div class="line">redis 127.0.0.1:6379&gt; DEL yiibai</div><div class="line">(integer) 1</div><div class="line">在上面的例子中 DEL 是一个命令，而 yiibai 是一个键。如果键被成功删除，则该命令的输出将是（整数）1，否则这将是（整数）0；</div></pre></td></tr></table></figure></p>
+<h3 id="Redis字符串"><a href="#Redis字符串" class="headerlink" title="Redis字符串"></a>Redis字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Redis 的字符串命令用于管理 redis 的字符串值。Redis 的字符串命令语法的使用如下所示：</div><div class="line">语法</div><div class="line">redis 127.0.0.1:6379&gt; COMMAND KEY_NAME</div><div class="line">示例</div><div class="line">redis 127.0.0.1:6379&gt; SET yiibai redis</div><div class="line">OK</div><div class="line">redis 127.0.0.1:6379&gt; GET yiibai</div><div class="line">&quot;redis&quot;</div><div class="line">在上面示例中 SET 和 GET 是 Redis 的命令，这里 yiibai 就是一个键（key）；</div><div class="line">```  </div><div class="line">### Redis哈希</div></pre></td></tr></table></figure>
+<p>Redis哈希是字符串字段和字符串值之间的映射，所以它是用来表示对象的一个完美的数据类型，Redis 的哈希值最多可存储超过4十亿字段-值对。<br>示例<br>redis 127.0.0.1:6379&gt; HMSET yiibai name “redis tutorial” description “redis basic commands for caching” likes 20 visitors 23000<br>OK<br>redis 127.0.0.1:6379&gt; HGETALL yiibai</p>
+<p>1) “name”<br>2) “redis tutorial”<br>3) “description”<br>4) “redis basic commands for caching”<br>5) “likes”<br>6) “20”<br>7) “visitors”<br>8) “23000”<br>在上面的例子，我们在设置一个名为 yiibai Redis的哈希的教程详细信息（name, description, likes, visitors）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">### Redis列表</div><div class="line">Redis列表是简单的字符串列表，通过插入顺序排序。您可以在Redis 列表的头或列表尾添加元素。列表的最大长度为  232 - 1 个元素（4294967295，每个列表可有超过四十亿个元素）。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; LPUSH tutorials redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; LPUSH tutorials mongodb<br>(integer) 2<br>redis 127.0.0.1:6379&gt; LPUSH tutorials mysql<br>(integer) 3<br>redis 127.0.0.1:6379&gt; LRANGE tutorials 0 10</p>
+<p>1) “mysql”<br>2) “mongodb”<br>3) “redis”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在上面的例子中的三个值由命令LPUSH 插入到 redis 名称为 tutorials 的列表。</div><div class="line"></div><div class="line">### Redis集合</div><div class="line">Redis集合是唯一字符串的无序集合。唯一集合是不允许数据有重复的键的。在 Redis 集合中添加，删除和测试成会是否存的时间复杂度为O（1）（恒定的时间，无论集合内包含元素的数量）。集合的最大长度为   232 - 1 个元素（4294967295，每个集合中超过四十亿个元素）。</div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; SADD yiibai redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD yiibai mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD yiibai mysql<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD yiibai mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; SMEMBERS yiibai</p>
+<p>1) “mysql”<br>2) “mongodb”<br>3) “redis”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在上面的例子中的三个值被 Redis 的命令SADD插入到一个名为 yiibai 集合。</div><div class="line"></div><div class="line">### Redis有序集合</div><div class="line">Redis的有序集合类似于 Redis 的集合，但是存储的值在集合中具有唯一性。另外有序集合的每个成员都使用分值（score）的东西，这个分值就是用于将有序集合排序，从分值最小到最大来排序。</div><div class="line">在 Redis 有序集合添加，删除和测试成员的存在的时间复杂度为 O（1）（恒定时间，无论集合内包含元素的数量）。列表的最大长度为 232 - 1 个元素（4294967295，每个集合的元素超过四十亿）。</div><div class="line"></div><div class="line">示例</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; ZADD yiibai 1 redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD yiibai 2 mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD yiibai 3 mysql<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD yiibai 3 mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZADD yiibai 4 mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZRANGE yiibai 0 10 WITHSCORES</p>
+<p>1) “redis”<br>2) “1”<br>3) “mongodb”<br>4) “2”<br>5) “mysql”<br>6) “4”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。</div><div class="line"></div><div class="line">在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</div><div class="line"></div><div class="line"></div><div class="line">示例</div><div class="line">下面的例子说明了 HyperLogLog Redis 的工作原理：</div></pre></td></tr></table></figure></p>
+<p>redis 127.0.0.1:6379&gt; PFADD tutorials “redis”</p>
+<p>1) (integer) 1</p>
+<p>redis 127.0.0.1:6379&gt; PFADD tutorials “mongodb”</p>
+<p>1) (integer) 1</p>
+<p>redis 127.0.0.1:6379&gt; PFADD tutorials “mysql”</p>
+<p>1) (integer) 1</p>
+<p>redis 127.0.0.1:6379&gt; PFCOUNT tutorials</p>
+<p>(integer) 3<br>```</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/05/07/Redis/redis1/">Redis基础篇</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
+        <p><span>发布时间:</span>2016年05月07日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年08月30日 - 07时05分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/07/Redis/redis1/" title="Redis基础篇">https://iceziyao.github.io/2016/05/07/Redis/redis1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/05/07/Redis/redis1/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/05/21/Python/Python_GIL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Python GIL那些事
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/06/前端/nodejs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初探node.js</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis"><span class="toc-number">1.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#优势"><span class="toc-number">1.1.</span> <span class="toc-text">优势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis特点"><span class="toc-number">1.1.1.</span> <span class="toc-text">Redis特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis优势"><span class="toc-number">1.1.2.</span> <span class="toc-text">Redis优势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis环境"><span class="toc-number">1.2.</span> <span class="toc-text">Redis环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.2.1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Centos-Redhat"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Centos/Redhat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ubuntu"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Ubuntu</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启动redis"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">启动redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.1.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis字符串"><span class="toc-number">1.3.2.</span> <span class="toc-text">Redis字符串</span></a></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/05/07/Redis/redis1/" data-title="Redis基础篇" data-url="https://iceziyao.github.io/2016/05/07/Redis/redis1/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"chenziyao"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/21/Python/Python_GIL/" title="上一篇: Python GIL那些事">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/05/06/前端/nodejs/" title="下一篇: 初探node.js">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/Auto/ansible-api/">ansible的二次开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/Auto/salt-api/">SaltApi安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/07/Redis/redis1/">Redis基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/12/Lvs/LVS2/">深入了解LVS</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016-08-30 陈子瑶
+            </div>
+            <div class="footer-right">
+                <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >留影:
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">足印:
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
