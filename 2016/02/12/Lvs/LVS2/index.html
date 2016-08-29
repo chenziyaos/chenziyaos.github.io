@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Memcached简介 | 羽非衣</title>
+  <title>深入了解LVS | 羽非衣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。">
+  <meta name="description" content="LVS的工作原理LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Ser">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Memcached简介">
-<meta property="og:url" content="https://iceziyao.github.io/2016/01/01/lnmp/Memcached/index.html">
+<meta property="og:title" content="深入了解LVS">
+<meta property="og:url" content="https://iceziyao.github.io/2016/02/12/Lvs/LVS2/index.html">
 <meta property="og:site_name" content="羽非衣">
-<meta property="og:description" content="Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。">
-<meta property="og:updated_time" content="2016-08-06T14:50:03.790Z">
+<meta property="og:description" content="LVS的工作原理LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Ser">
+<meta property="og:image" content="https://iceziyao.github.io/upload/lvs.jpg">
+<meta property="og:updated_time" content="2016-08-29T21:56:07.074Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Memcached简介">
-<meta name="twitter:description" content="Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。">
+<meta name="twitter:title" content="深入了解LVS">
+<meta name="twitter:description" content="LVS的工作原理LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Ser">
+<meta name="twitter:image" content="https://iceziyao.github.io/upload/lvs.jpg">
   
     <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
   
@@ -204,11 +206,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-lnmp/Memcached" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Lvs/LVS2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/01/lnmp/Memcached/" class="article-date">
-      <time datetime="2016-01-01T13:49:33.000Z" itemprop="datePublished">2016-01-01</time>
+      <a href="/2016/02/12/Lvs/LVS2/" class="article-date">
+      <time datetime="2016-02-11T16:00:00.000Z" itemprop="datePublished">2016-02-12</time>
 </a>
     </div>
   
@@ -221,7 +223,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Memcached简介
+      深入了解LVS
     </h1>
   
 
@@ -230,13 +232,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/缓存/">缓存</a>
+    <a class="article-category-link" href="/categories/负载均衡/">负载均衡</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/缓存/">缓存</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs/">lvs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/负载均衡/">负载均衡</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -246,144 +248,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ul>
-<li><p>Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。</p>
-<a id="more"></a>
-</li>
-<li><p>memcached是以LiveJournal旗下Danga Interactive 公司的Brad Fitzpatric 为首开发的一款软件。现在<br>已成为mixi、hatena、Facebook、Vox、LiveJournal等众多服务中提高Web应用扩展性的重要因素。</p>
-</li>
+        <h2 id="LVS的工作原理"><a href="#LVS的工作原理" class="headerlink" title="LVS的工作原理"></a>LVS的工作原理</h2><p>LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>LVS分为两个部件：ipvs和ipvsadm<br>      ipvs ： 工作于内核空间，主要用于使用户定义的策略生效；<br>      ipvsadm : 工作于用户空间，主要用于用户定义和管理集群服务的工具；</p>
+<h3 id="LVS内核模型"><a href="#LVS内核模型" class="headerlink" title="LVS内核模型"></a>LVS内核模型</h3><p><img src="/upload/lvs.jpg" alt="lv内核模型"></p>
+<ol>
+<li>当客户端的请求到达负载均衡器的内核空间时，首先会到达PREROUTING链。</li>
+<li>当内核发现请求数据包的目的地址是本机时，将数据包送往INPUT链。</li>
+<li>LVS由用户空间的ipvsadm和内核空间的IPVS组成，ipvsadm用来定义规则，IPVS利用ipvsadm定义的规则工作，IPVS工作在INPUT链上,当数据包到达INPUT链时，首先会被IPVS检查，如果数据包里面的目的地址及端口没有在规则里面，那么这条数据包将被放行至用户空间。</li>
+<li>如果数据包里面的目的地址及端口在规则里面，那么这条数据报文将被修改目的地址为事先定义好的后端服务器，并送往POSTROUTING链。</li>
+<li>最后经由POSTROUTING链发往后端服务器。  </li>
+</ol>
+<h3 id="LVS对-IP包的处理模式"><a href="#LVS对-IP包的处理模式" class="headerlink" title="LVS对 IP包的处理模式"></a>LVS对 IP包的处理模式</h3><p>IP包处理用Linux内核的Netfilter框架完成<br>通俗的说，netfilter的架构就是在整个网络流程的若干位置放置了一些检测点（HOOK），而在每个检测点上上登记了一些处理函数进行处理（如包过滤，NAT等，甚至可以是用户自定义的功能）。<br>&gt;</p>
+<ul>
+<li>NF_IP_PRE_ROUTING：刚刚进入网络层的数据包通过此点（刚刚进行完版本号，校验和等检测），源地址转换在此点进行;  </li>
+<li>NF_IP_LOCAL_IN：经路由查找后，送往本机的通过此检查点,INPUT包过滤在此点进行;  </li>
+<li>NF_IP_FORWARD：要转发的包通过此检测点,FORWORD包过滤在此点进行;  </li>
+<li>NF_IP_LOCAL_OUT：本机进程发出的包通过此检测点，OUTPUT包过滤在此点进行;  </li>
+<li>NF_IP_POST_ROUTING：所有马上便要通过网络设备出去的包通过此检测点，内置的目的地址转换功能（包括地址伪装）在此点进行。  </li>
 </ul>
-<p>Memcached是一款开发工具，它既不是一个代码加速器，也不是数据库中间件。其设计哲学思想主要反映在如下方面：</p>
-<blockquote>
-<ol>
-<li>简单key/value存储：服务器不关心数据本身的意义及结构，只要是可序列化数据即可。存储项由“键、过期时间、可选的标志及数据”四个部分组成；  </li>
-<li>功能的实现一半依赖于客户端，一半基于服务器端：客户负责发送存储项至服务器端、从服务端获取数据以及无法连接至服务器时采用相应的动作；服务端负责接收、存储数据，并负责数据项的超时过期；  </li>
-<li>各服务器间彼此无视：不在服务器间进行数据同步；  </li>
-<li>O(1)的执行效率  </li>
-<li>清理超期数据：默认情况下，Memcached是一个LRU缓存，同时，它按事先预订的时长清理超期数据；<br>但事实上，memcached不会删除任何已缓存数据，只是在其过期之后不再为客户所见；<br>而且，memcached也不会真正按期限清理缓存，而仅是当get命令到达时检查其时长；   </li>
-</ol>
-</blockquote>
-<p>Memcached提供了为数不多的几个命令来完成与服务器端的交互，这些命令基于memcached的协议实现。  </p>
-<blockquote>
-<p>存储类命令：set, add, replace, append, prepend<br>获取数据类命令：get, delete, incr/decr<br>统计类命令：stats, stats items, stats slabs, stats sizes<br>清理命令： flush_all  </p>
-</blockquote>
-<p>一、安装libevent<br>memcached依赖于libevent API，因此要事先安装之，项目主页：<a href="http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：" target="_blank" rel="external">http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：</a></p>
-<pre><code>
-# tar xf libevent-2.0.20-stable.tar.gz
-# cd libevent-2.0.20
-# ./configure --prefix=/usr/local/libevent
-# make && make install
-
-# echo "/usr/local/libevent/lib" > /etc/ld.so.conf.d/libevent.conf
-# ldconfig
-</code></pre>
-二、安装配置memcached
-
-1. 安装memcached
-<pre><code>
-# tar xf memcached-1.4.15.tar.gz
-# cd memcached-1.4.15
-# ./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
-# make && make install
-</code></pre>
-2. memcached SysV的startup脚本代码如下所示，将其建立为/etc/init.d/memcached文件：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#</div><div class="line"># Init file for memcached</div><div class="line">#</div><div class="line"># chkconfig: - 86 14</div><div class="line"># description: Distributed memory caching daemon</div><div class="line">#</div><div class="line"># processname: memcached</div><div class="line"># config: /etc/sysconfig/memcached</div><div class="line">. /etc/rc.d/init.d/functions</div><div class="line">## Default variables</div><div class="line">PORT=&quot;11211&quot;</div><div class="line">USER=&quot;nobody&quot;</div><div class="line">MAXCONN=&quot;1024&quot;</div><div class="line">CACHESIZE=&quot;64&quot;</div><div class="line">OPTIONS=&quot;&quot;</div><div class="line">RETVAL=0</div><div class="line">prog=&quot;/usr/local/memcached/bin/memcached&quot;</div><div class="line">desc=&quot;Distributed memory caching&quot;</div><div class="line">lockfile=&quot;/var/lock/subsys/memcached&quot;</div><div class="line">start() &#123;</div><div class="line">        echo -n $&quot;Starting $desc (memcached): &quot;</div><div class="line">        daemon $prog -d -p $PORT -u $USER -c $MAXCONN -m $CACHESIZE -o &quot;$OPTIONS&quot;</div><div class="line">        RETVAL=$?</div><div class="line">        echo</div><div class="line">        [ $RETVAL -eq 0 ] &amp;&amp; touch $lockfile</div><div class="line">        return $RETVAL</div><div class="line">&#125;</div><div class="line">stop() &#123;</div><div class="line">        echo -n $&quot;Shutting down $desc (memcached): &quot;</div><div class="line">        killproc $prog</div><div class="line">        RETVAL=$?</div><div class="line">        echo</div><div class="line">        [ $RETVAL -eq 0 ] &amp;&amp; rm -f $lockfile</div><div class="line">        return $RETVAL</div><div class="line">&#125;</div><div class="line">restart() &#123;</div><div class="line">        stop</div><div class="line">        start</div><div class="line">&#125;</div><div class="line">reload() &#123;</div><div class="line">        echo -n $&quot;Reloading $desc ($prog): &quot;</div><div class="line">        killproc $prog -HUP</div><div class="line">        RETVAL=$?</div><div class="line">        echo</div><div class="line">        return $RETVAL</div><div class="line">&#125;</div><div class="line">case &quot;$1&quot; in</div><div class="line">  start)</div><div class="line">        start</div><div class="line">        ;;</div><div class="line">  stop)</div><div class="line">        stop</div><div class="line">        ;;</div><div class="line">  restart)</div><div class="line">        restart</div><div class="line">        ;;</div><div class="line">  condrestart)</div><div class="line">        [ -e $lockfile ] &amp;&amp; restart</div><div class="line">        RETVAL=$?</div><div class="line">        ;;       </div><div class="line">  reload)</div><div class="line">        reload</div><div class="line">        ;;</div><div class="line">  status)</div><div class="line">        status $prog</div><div class="line">        RETVAL=$?</div><div class="line">        ;;</div><div class="line">   \*)</div><div class="line">        echo $&quot;Usage: $0 &#123;start|stop|restart|condrestart|status&#125;&quot;</div><div class="line">        RETVAL=1</div><div class="line">esac</div><div class="line">exit $RETVAL</div></pre></td></tr></table></figure>
-
-使用如下命令配置memcached成为系统服务：
-<pre><code>
-# chmod +x /etc/init.d/memcached
-# chkconfig --add memcached
-# service memcached start
-</code></pre>
-
-<ol>
-<li>使用telnet命令测试memcached的使用<br>Memcached提供一组基本命令用于基于命令行调用其服务或查看服务器状态等。<br><code>telnet 127.0.0.1 11211</code>  <blockquote>
-<p>add命令：<br>add keyname flag  timeout  datasize<br>如：<br>add mykey 0 10 12<br>Hello world!<br>get命令：<br>get keyname<br>如：get mykey<br>VALUE mykey 0 12<br>Hello world!<br>END  </p>
-</blockquote>
-</li>
-</ol>
-<p>4.memcached的常用选项说明</p>
-<pre><code>
--l <ip_addr>：指定进程监听的地址；
--d: 以服务模式运行；
--u <username>：以指定的用户身份运行memcached进程；
--m <num>：用于缓存数据的最大内存空间，单位为MB，默认为64MB；
--c <num>：最大支持的并发连接数，默认为1024；
--p <num>: 指定监听的TCP端口，默认为11211；
--U <num>：指定监听的UDP端口，默认为11211，0表示关闭UDP端口；
--t <threads>：用于处理入站请求的最大线程数，仅在memcached编译时开启了支持线程才有效；
--f <num>：设定Slab Allocator定义预先分配内存空间大小固定的块时使用的增长因子；
--M：当内存空间不够使用时返回错误信息，而不是按LRU算法利用空间；
--n: 指定最小的slab chunk大小；单位是字节；
--S: 启用sasl进行用户认证；
-</num></threads></num></num></num></num></username></ip_addr></code></pre>
-
-<p>三、安装Memcache的PHP扩展</p>
-<p>①安装PHP的memcache扩展</p>
-<pre><code>
-# tar xf memcache-2.2.5.tgz
-# cd memcache-2.2.5
-/usr/local/php/bin/phpize
-# ./configure --with-php-config=/usr/local/php/bin/php-config --enable-memcache
-# make && make install
-</code></pre>
-
-<p>上述安装完后会有类似以下的提示：</p>
-<blockquote>
-<p>Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/  </p>
-</blockquote>
-<p>②编辑/usr/local/php/lib/php.ini，在“动态模块”相关的位置添加如下一行来载入memcache扩展：<br>extension=/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/memcache.so<br>而后对memcached功能进行测试，在网站目录中建立测试页面test.php，添加如下内容：  </p>
-<pre><code>
-<?php
-$mem = new Memcache;
-$mem->connect("127.0.0.1", 11211)  or die("Could not connect");
-$version = $mem->getVersion();
-echo "Server's version: ".$version."<br>\n";
-$mem->set('testkey', 'Hello World', 0, 600) or die("Failed to save data at the memcached server");
-echo "Store data in the cache (data will expire in 600 seconds)<br>\n";
-$get_result = $mem->get('testkey');
-echo "$get_result is from memcached server.";         
-?>
-</code></pre>  
-
-<p>如果有输出”Hello World is from memcached”<br>等信息，则表明memcache已经能够正常工作</p>
-<p>四. 使用libmemcached的客户端工具:</p>
-<p>访问memcached的传统方法是使用基于perl语言开发的Cache::memcached模块，这个模块在大多数perl代码中都能良好的工作，但也有着众所周知的性能方面的问题。libMemcached则是基于C语言开发的开源的C/C++代码访问memcached的库文件，同时，它还提供了数个可以远程使用的memcached管理工具，如memcat, memping，memstat，memslap等。</p>
-<ol>
-<li>编译安装libmemcached<pre><code>
-# tar xf libmemcached-1.0.2.tar.gz
-# cd libmemcached-1.0.2
-# ./configure
-# make && make install
-# ldconfig
-</code></pre></li>
-<li>客户端工具<pre><code>
-# memcat --servers=127.0.0.1:11211 mykey
-# memping
-# memslap
-# memstat
-</code></pre>
-
-</li>
-</ol>
-<p>五. Nginx整合memcached:</p>
-<pre><code>
-server {
-        listen       80;
-        server_name  www.magedu.com;
-        #charset koi8-r;
-        #access_log  logs/host.access.log  main;
-        location / {
-                set $memcached_key $uri;
-                memcached_pass     127.0.0.1:11211;
-                default_type       text/html;
-                error_page         404 @fallback;
-        }
-        location @fallback {
-                proxy_pass http://172.16.0.1;
-        }
-}
-</code></pre>
+<h4 id="LVS中Netfiler的实现"><a href="#LVS中Netfiler的实现" class="headerlink" title="LVS中Netfiler的实现"></a>LVS中Netfiler的实现</h4><p>　　利用Netfilter，LVS处理数据报从左边进入系统，进行IP校验以后，数据报经过第一个钩子函数NF_IP_PRE_ROUTING [HOOK1]进行处理；然后进行路由选择，决定该数据报是需要转发还是发给本机；若该数据报是发被本机的，则该数据经过钩子函数 NF_IP_LOCAL_IN[HOOK2]处理后传递给上层协议；若该数据报应该被转发，则它被NF_IP_FORWARD[HOOK3]处理；经过转发的数据报经过最后一个钩子函数NF_IP_POST_ROUTING[HOOK4]处理以后，再传输到网络上。本地产生的数据经过钩子函数 NF_IP_LOCAL_OUT[HOOK5]处理后，进行路由选择处理，然后经过NF_IP_POST_ROUTING[HOOK4]处理后发送到网络上。<br>　　当启动IPVS加载ip_vs模块时，模块的初始化函数ip_vs_init( )注册了NF_IP_LOCAL_IN[HOOK2]、NF_IP_FORWARD[HOOK3]、NF_IP_POST_ROUTING[HOOK4] 钩子函数用于处理进出的数据报。  </p>
+<h4 id="NF-IP-LOCAL-IN处理过程"><a href="#NF-IP-LOCAL-IN处理过程" class="headerlink" title="NF_IP_LOCAL_IN处理过程"></a>NF_IP_LOCAL_IN处理过程</h4><p>　　用户向虚拟服务器发起请求，数据报经过NF_IP_LOCAL_IN[HOOK2],进入ip_vs_in( )进行处理。如果传入的是icmp数据报，则调用ip_vs_in_icmp( )；否则继续判断是否为tcp/udp数据报，如果不是tcp/udp数据报，则函数返回NF_ACCEPT(让内核继续处理该数据报)；余下情况便是处理tcp/udp数据报。首先，调用ip_vs_header_check( )检查报头，如果异常，则函数返回NF_DROP(丢弃该数据报)。接着，调用ip_vs_conn_in_get( )去ip_vs_conn_tab表中查找是否存在这样的连接：它的客户机和虚拟服务器的ip地址和端口号以及协议类型均与数据报中的相应信息一致。如果不存在相应连接，则意味着连接尚未建立，此时如果数据报为tcp的sync报文或udp数据报则查找相应的虚拟服务器；如果相应虚拟服务器存在但是已经满负荷，则返回NF_DROP；如果相应虚拟服务器存在并且未满负荷，那么调用ip_vs_schedule( )调度一个RS并创建一个新的连接，如果调度失败则调用ip_vs_leave( )继续传递或者丢弃数据报。如果存在相应连接，首先判断连接上的RS是否可用，如果不可用则处理相关信息后返回NF_DROP。找到已存在的连接或建立新的连接后，修改系统记录的相关信息如传入的数据报的个数等。如果这个连接在创建时绑定了特定的数据报传输函数，调用这个函数传输数据报，否则返回 NF_ACCEPT。</p>
+<p>　　ip_vs_in()调用的ip_vs_in_icmp( )处理icmp报文。函数开始时检查数据报的长度，如果异常则返回NF_DROP。函数只处理由tcp/udp报文传送错误引起的目的不可达、源端被关闭或超时的icmp报文，其他情况则让内核处理。针对上述三类报文，首先检查检验和。如果检验和错误，直接返回NF_DROP；否则，分析返回的icmp差错信息，查找相应的连接是否存在。如果连接不存在，返回NF_ACCEPT；如果连接存在，根据连接信息，依次修改差错信息包头的ip地址与端口号及 ICMP数据报包头的ip地址，并重新计算和修改各个包头中的检验和，之后查找路由调用ip_send( )发送修改过的数据报，并返回NF_STOLEN(退出数据报的处理过程)。</p>
+<p>　　ip_vs_in()调用的函数ip_vs_schedule( )为虚拟服务器调度可用的RS并建立相应连接。它将根据虚拟服务器绑定的调度算法分配一个RS，如果成功，则调用ip_vs_conn_new( )建立连接。ip_vs_conn_new( )将进行一系列初始化操作：设置连接的协议、ip地址、端口号、协议超时信息，绑定application helper、RS和数据报传输函数，最后调用ip_vs_conn_hash( )将这个连接插入哈希表ip_vs_conn_tab中。一个连接绑定的数据报传输函数，依据IPVS工作方式可分为ip_vs_nat_xmit( )、ip_vs_tunnel_xmit( )、ip_vs_dr_xmit( )。例如ip_vs_nat_xmit( )的主要操作是：修改报文的目的地址和目的端口为RS信息，重新计算并设置检验和，调用ip_send( )发送修改后的数据报。</p>
+<h4 id="NF-IP-FORWARD处理过程"><a href="#NF-IP-FORWARD处理过程" class="headerlink" title="NF_IP_FORWARD处理过程"></a>NF_IP_FORWARD处理过程</h4><p>　　数据报进入NF_IP_FORWARD后，将进入ip_vs_out( )进行处理。这个函数只在NAT方式下被调用。它首先判断数据报类型，如果为icmp数据报则直接调用ip_vs_out_icmp( )；其次判断是否为tcp/udp数据报，如果不是这二者则返回NF_ACCEPT。余下就是tcp/udp数据报的处理。首先，调用 ip_vs_header_check( )检查报头，如果异常则返回NF_DROP。其次，调用ip_vs_conn_out_get( )判断是否存在相应的连接。若不存在相应连接：调用ip_vs_lookup_real_service( )去哈希表中查找发送数据报的RS是否仍然存在，如果RS存在且报文是tcp非复位报文或udp 报文，则调用icmp_send( )给RS发送目的不可达icmp报文并返回NF_STOLEN；其余情况下均返回NF_ACCEPT。若存在相应连接：检查数据报的检验和，如果错误则返回NF_DROP，如果正确，修改数据报，将源地址修改为虚拟服务器ip地址，源端口修改为虚拟服务器端口号，重新计算并设置检验和，并返回 NF_ACCEPT。</p>
+<p>　　ip_vs_out_icmp( )的流程与ip_vs_in_icmp( )类似，只是修改数据报时有所区别：ip报头的源地址和差错信息中udp或tcp报头的目的地址均修改为虚拟服务器地址，差错信息中udp或tcp报头的目的端口号修改为虚拟服务器的端口号。</p>
+<h4 id="NF-IP-POST-ROUTING处理过程"><a href="#NF-IP-POST-ROUTING处理过程" class="headerlink" title="NF_IP_POST_ROUTING处理过程"></a>NF_IP_POST_ROUTING处理过程</h4><p>　　NF_IP_POST_ROUTING钩子函数只在NAT方式下使用。数据报进入NF_IP_POST_ROUTING后,由 ip_vs_post_routing( )进行处理。它首先判断数据报是否经过IPVS，如果未经过则返回NF_ACCEPT；否则立刻传输数据报，函数返回NF_STOLEN，防止数据报被 iptable的规则修改。</p>
 
       
     </div>
@@ -392,13 +281,13 @@ server {
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></p>
+        <p><span>本文标题:</span><a href="/2016/02/12/Lvs/LVS2/">深入了解LVS</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
-        <p><span>发布时间:</span>2016年01月01日 - 21时49分</p>
-        <p><span>最后更新:</span>2016年08月06日 - 22时50分</p>
+        <p><span>发布时间:</span>2016年02月12日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年08月30日 - 05时56分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/01/01/lnmp/Memcached/" title="Memcached简介">https://iceziyao.github.io/2016/01/01/lnmp/Memcached/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/01/01/lnmp/Memcached/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/12/Lvs/LVS2/" title="深入了解LVS">https://iceziyao.github.io/2016/02/12/Lvs/LVS2/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/02/12/Lvs/LVS2/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -411,18 +300,18 @@ server {
 
 <nav id="article-nav">
   
-    <a href="/2016/01/16/HA/高可用基础/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/03/Docker/docker01/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          高可用集群系列之基础篇2
+          浅析docker使用
         
       </div>
     </a>
   
   
-    <a href="/2016/01/01/lnmp/php/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PHP编译出错</div>
+    <a href="/2016/02/01/Lvs/lvs1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Lvs负载均衡</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -433,7 +322,7 @@ server {
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LVS的工作原理"><span class="toc-number">1.</span> <span class="toc-text">LVS的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作原理"><span class="toc-number">2.</span> <span class="toc-text">工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LVS内核模型"><span class="toc-number">2.1.</span> <span class="toc-text">LVS内核模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LVS对-IP包的处理模式"><span class="toc-number">2.2.</span> <span class="toc-text">LVS对 IP包的处理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LVS中Netfiler的实现"><span class="toc-number">2.2.1.</span> <span class="toc-text">LVS中Netfiler的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NF-IP-LOCAL-IN处理过程"><span class="toc-number">2.2.2.</span> <span class="toc-text">NF_IP_LOCAL_IN处理过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NF-IP-FORWARD处理过程"><span class="toc-number">2.2.3.</span> <span class="toc-text">NF_IP_FORWARD处理过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NF-IP-POST-ROUTING处理过程"><span class="toc-number">2.2.4.</span> <span class="toc-text">NF_IP_POST_ROUTING处理过程</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -481,7 +370,7 @@ server {
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/01/01/lnmp/Memcached/" data-title="Memcached简介" data-url="https://iceziyao.github.io/2016/01/01/lnmp/Memcached/"></div>
+    <div class="ds-thread" data-thread-key="2016/02/12/Lvs/LVS2/" data-title="深入了解LVS" data-url="https://iceziyao.github.io/2016/02/12/Lvs/LVS2/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -504,13 +393,13 @@ server {
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/01/16/HA/高可用基础/" title="上一篇: 高可用集群系列之基础篇2">
+            <a href="/2016/04/03/Docker/docker01/" title="上一篇: 浅析docker使用">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/01/01/lnmp/php/" title="下一篇: PHP编译出错">
+            <a href="/2016/02/01/Lvs/lvs1/" title="下一篇: Lvs负载均衡">
                 <i class="fa fa-angle-right"></i>
             </a>
         

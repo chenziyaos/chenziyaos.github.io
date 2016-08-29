@@ -138,7 +138,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/HA/" style="font-size: 12.5px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 12.5px;">ansible</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/saltstack/" style="font-size: 12.5px;">saltstack</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 17.5px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 12.5px;">负载均衡</a>
+                        <a href="/tags/HA/" style="font-size: 12px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 12px;">ansible</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/lvs/" style="font-size: 12px;">lvs</a> <a href="/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/saltstack/" style="font-size: 12px;">saltstack</a> <a href="/tags/shell/" style="font-size: 12px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 18px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
                     </div>
                 </section>
                 
@@ -276,6 +276,92 @@
 
 
   
+    <article id="post-Lvs/LVS2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/12/Lvs/LVS2/" class="article-date">
+      <time datetime="2016-02-11T16:00:00.000Z" itemprop="datePublished">2016-02-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/12/Lvs/LVS2/">深入了解LVS</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="LVS的工作原理"><a href="#LVS的工作原理" class="headerlink" title="LVS的工作原理"></a>LVS的工作原理</h2><p>LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>LVS分为两个部件：ipvs和ipvsadm<br>      ipvs ： 工作于内核空间，主要用于使用户定义的策略生效；<br>      ipvsadm : 工作于用户空间，主要用于用户定义和管理集群服务的工具；</p>
+<h3 id="LVS内核模型"><a href="#LVS内核模型" class="headerlink" title="LVS内核模型"></a>LVS内核模型</h3><p><img src="/upload/lvs.jpg" alt="lv内核模型"></p>
+<ol>
+<li>当客户端的请求到达负载均衡器的内核空间时，首先会到达PREROUTING链。</li>
+<li>当内核发现请求数据包的目的地址是本机时，将数据包送往INPUT链。</li>
+<li>LVS由用户空间的ipvsadm和内核空间的IPVS组成，ipvsadm用来定义规则，IPVS利用ipvsadm定义的规则工作，IPVS工作在INPUT链上,当数据包到达INPUT链时，首先会被IPVS检查，如果数据包里面的目的地址及端口没有在规则里面，那么这条数据包将被放行至用户空间。</li>
+<li>如果数据包里面的目的地址及端口在规则里面，那么这条数据报文将被修改目的地址为事先定义好的后端服务器，并送往POSTROUTING链。</li>
+<li>最后经由POSTROUTING链发往后端服务器。  </li>
+</ol>
+<h3 id="LVS对-IP包的处理模式"><a href="#LVS对-IP包的处理模式" class="headerlink" title="LVS对 IP包的处理模式"></a>LVS对 IP包的处理模式</h3><p>IP包处理用Linux内核的Netfilter框架完成<br>通俗的说，netfilter的架构就是在整个网络流程的若干位置放置了一些检测点（HOOK），而在每个检测点上上登记了一些处理函数进行处理（如包过滤，NAT等，甚至可以是用户自定义的功能）。<br>&gt;</p>
+<ul>
+<li>NF_IP_PRE_ROUTING：刚刚进入网络层的数据包通过此点（刚刚进行完版本号，校验和等检测），源地址转换在此点进行;  </li>
+<li>NF_IP_LOCAL_IN：经路由查找后，送往本机的通过此检查点,INPUT包过滤在此点进行;  </li>
+<li>NF_IP_FORWARD：要转发的包通过此检测点,FORWORD包过滤在此点进行;  </li>
+<li>NF_IP_LOCAL_OUT：本机进程发出的包通过此检测点，OUTPUT包过滤在此点进行;  </li>
+<li>NF_IP_POST_ROUTING：所有马上便要通过网络设备出去的包通过此检测点，内置的目的地址转换功能（包括地址伪装）在此点进行。  </li>
+</ul>
+<h4 id="LVS中Netfiler的实现"><a href="#LVS中Netfiler的实现" class="headerlink" title="LVS中Netfiler的实现"></a>LVS中Netfiler的实现</h4><p>　　利用Netfilter，LVS处理数据报从左边进入系统，进行IP校验以后，数据报经过第一个钩子函数NF_IP_PRE_ROUTING [HOOK1]进行处理；然后进行路由选择，决定该数据报是需要转发还是发给本机；若该数据报是发被本机的，则该数据经过钩子函数 NF_IP_LOCAL_IN[HOOK2]处理后传递给上层协议；若该数据报应该被转发，则它被NF_IP_FORWARD[HOOK3]处理；经过转发的数据报经过最后一个钩子函数NF_IP_POST_ROUTING[HOOK4]处理以后，再传输到网络上。本地产生的数据经过钩子函数 NF_IP_LOCAL_OUT[HOOK5]处理后，进行路由选择处理，然后经过NF_IP_POST_ROUTING[HOOK4]处理后发送到网络上。<br>　　当启动IPVS加载ip_vs模块时，模块的初始化函数ip_vs_init( )注册了NF_IP_LOCAL_IN[HOOK2]、NF_IP_FORWARD[HOOK3]、NF_IP_POST_ROUTING[HOOK4] 钩子函数用于处理进出的数据报。  </p>
+<h4 id="NF-IP-LOCAL-IN处理过程"><a href="#NF-IP-LOCAL-IN处理过程" class="headerlink" title="NF_IP_LOCAL_IN处理过程"></a>NF_IP_LOCAL_IN处理过程</h4><p>　　用户向虚拟服务器发起请求，数据报经过NF_IP_LOCAL_IN[HOOK2],进入ip_vs_in( )进行处理。如果传入的是icmp数据报，则调用ip_vs_in_icmp( )；否则继续判断是否为tcp/udp数据报，如果不是tcp/udp数据报，则函数返回NF_ACCEPT(让内核继续处理该数据报)；余下情况便是处理tcp/udp数据报。首先，调用ip_vs_header_check( )检查报头，如果异常，则函数返回NF_DROP(丢弃该数据报)。接着，调用ip_vs_conn_in_get( )去ip_vs_conn_tab表中查找是否存在这样的连接：它的客户机和虚拟服务器的ip地址和端口号以及协议类型均与数据报中的相应信息一致。如果不存在相应连接，则意味着连接尚未建立，此时如果数据报为tcp的sync报文或udp数据报则查找相应的虚拟服务器；如果相应虚拟服务器存在但是已经满负荷，则返回NF_DROP；如果相应虚拟服务器存在并且未满负荷，那么调用ip_vs_schedule( )调度一个RS并创建一个新的连接，如果调度失败则调用ip_vs_leave( )继续传递或者丢弃数据报。如果存在相应连接，首先判断连接上的RS是否可用，如果不可用则处理相关信息后返回NF_DROP。找到已存在的连接或建立新的连接后，修改系统记录的相关信息如传入的数据报的个数等。如果这个连接在创建时绑定了特定的数据报传输函数，调用这个函数传输数据报，否则返回 NF_ACCEPT。</p>
+<p>　　ip_vs_in()调用的ip_vs_in_icmp( )处理icmp报文。函数开始时检查数据报的长度，如果异常则返回NF_DROP。函数只处理由tcp/udp报文传送错误引起的目的不可达、源端被关闭或超时的icmp报文，其他情况则让内核处理。针对上述三类报文，首先检查检验和。如果检验和错误，直接返回NF_DROP；否则，分析返回的icmp差错信息，查找相应的连接是否存在。如果连接不存在，返回NF_ACCEPT；如果连接存在，根据连接信息，依次修改差错信息包头的ip地址与端口号及 ICMP数据报包头的ip地址，并重新计算和修改各个包头中的检验和，之后查找路由调用ip_send( )发送修改过的数据报，并返回NF_STOLEN(退出数据报的处理过程)。</p>
+<p>　　ip_vs_in()调用的函数ip_vs_schedule( )为虚拟服务器调度可用的RS并建立相应连接。它将根据虚拟服务器绑定的调度算法分配一个RS，如果成功，则调用ip_vs_conn_new( )建立连接。ip_vs_conn_new( )将进行一系列初始化操作：设置连接的协议、ip地址、端口号、协议超时信息，绑定application helper、RS和数据报传输函数，最后调用ip_vs_conn_hash( )将这个连接插入哈希表ip_vs_conn_tab中。一个连接绑定的数据报传输函数，依据IPVS工作方式可分为ip_vs_nat_xmit( )、ip_vs_tunnel_xmit( )、ip_vs_dr_xmit( )。例如ip_vs_nat_xmit( )的主要操作是：修改报文的目的地址和目的端口为RS信息，重新计算并设置检验和，调用ip_send( )发送修改后的数据报。</p>
+<h4 id="NF-IP-FORWARD处理过程"><a href="#NF-IP-FORWARD处理过程" class="headerlink" title="NF_IP_FORWARD处理过程"></a>NF_IP_FORWARD处理过程</h4><p>　　数据报进入NF_IP_FORWARD后，将进入ip_vs_out( )进行处理。这个函数只在NAT方式下被调用。它首先判断数据报类型，如果为icmp数据报则直接调用ip_vs_out_icmp( )；其次判断是否为tcp/udp数据报，如果不是这二者则返回NF_ACCEPT。余下就是tcp/udp数据报的处理。首先，调用 ip_vs_header_check( )检查报头，如果异常则返回NF_DROP。其次，调用ip_vs_conn_out_get( )判断是否存在相应的连接。若不存在相应连接：调用ip_vs_lookup_real_service( )去哈希表中查找发送数据报的RS是否仍然存在，如果RS存在且报文是tcp非复位报文或udp 报文，则调用icmp_send( )给RS发送目的不可达icmp报文并返回NF_STOLEN；其余情况下均返回NF_ACCEPT。若存在相应连接：检查数据报的检验和，如果错误则返回NF_DROP，如果正确，修改数据报，将源地址修改为虚拟服务器ip地址，源端口修改为虚拟服务器端口号，重新计算并设置检验和，并返回 NF_ACCEPT。</p>
+<p>　　ip_vs_out_icmp( )的流程与ip_vs_in_icmp( )类似，只是修改数据报时有所区别：ip报头的源地址和差错信息中udp或tcp报头的目的地址均修改为虚拟服务器地址，差错信息中udp或tcp报头的目的端口号修改为虚拟服务器的端口号。</p>
+<h4 id="NF-IP-POST-ROUTING处理过程"><a href="#NF-IP-POST-ROUTING处理过程" class="headerlink" title="NF_IP_POST_ROUTING处理过程"></a>NF_IP_POST_ROUTING处理过程</h4><p>　　NF_IP_POST_ROUTING钩子函数只在NAT方式下使用。数据报进入NF_IP_POST_ROUTING后,由 ip_vs_post_routing( )进行处理。它首先判断数据报是否经过IPVS，如果未经过则返回NF_ACCEPT；否则立刻传输数据报，函数返回NF_STOLEN，防止数据报被 iptable的规则修改。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/负载均衡/">负载均衡</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs/">lvs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/负载均衡/">负载均衡</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Lvs/lvs1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -320,7 +406,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/负载均衡/">负载均衡</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs/">lvs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/负载均衡/">负载均衡</a></li></ul>
     </div>
 
       
@@ -611,72 +697,6 @@
 
 
   
-    <article id="post-Net/Tcp11" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/01/Net/Tcp11/" class="article-date">
-      <time datetime="2015-12-31T16:00:00.000Z" itemprop="datePublished">2016-01-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。<br>TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络/">网络</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/01/Net/Tcp11/#more">一览全貌 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-lnmp/php" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -891,6 +911,72 @@
 
 
   
+    <article id="post-Net/Tcp11" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/01/Net/Tcp11/" class="article-date">
+      <time datetime="2015-12-31T16:00:00.000Z" itemprop="datePublished">2016-01-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。<br>TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/网络/">网络</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/01/Net/Tcp11/#more">一览全貌 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Net/tcp10" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -958,73 +1044,9 @@
 
 
   
-    <article id="post-lnmp/nginx负载均衡" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/23/lnmp/nginx负载均衡/" class="article-date">
-      <time datetime="2015-12-23T13:49:33.000Z" itemprop="datePublished">2015-12-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html">lnmp架构</a></p>
-<ol>
-<li>nginx 反向代理<br>nginx的负载均衡基于反向代理
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/23/lnmp/nginx负载均衡/#more">一览全貌 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
