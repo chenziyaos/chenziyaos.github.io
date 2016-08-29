@@ -110,7 +110,7 @@
     <link href="https://iceziyao.github.io/2016/06/28/Auto/salt-api/"/>
     <id>https://iceziyao.github.io/2016/06/28/Auto/salt-api/</id>
     <published>2016-06-27T16:00:00.000Z</published>
-    <updated>2016-08-09T13:21:39.653Z</updated>
+    <updated>2016-08-11T16:46:31.215Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Salt-API安装配置及使用&quot;&gt;&lt;a href=&quot;#Salt-API安装配置及使用&quot; class=&quot;headerlink&quot; title=&quot;Salt-API安装配置及使用&quot;&gt;&lt;/a&gt;Salt-API安装配置及使用&lt;/h2&gt;&lt;p&gt;SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。&lt;br&gt;具体使用请参考:&lt;a href=&quot;http://salt-api.readthedocs.org/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;salt-api手册&lt;/a&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;环境说明&quot;&gt;&lt;a href=&quot;#环境说明&quot; class=&quot;headerlink&quot; title=&quot;环境说明&quot;&gt;&lt;/a&gt;环境说明&lt;/h2&gt;&lt;ul&gt;
@@ -229,9 +229,9 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="saltstack" scheme="https://iceziyao.github.io/tags/saltstack/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -273,9 +273,9 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="saltstack" scheme="https://iceziyao.github.io/tags/saltstack/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -320,9 +320,89 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
       <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+  </entry>
+  
+  <entry>
+    <title>Python的内存管理机制</title>
+    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
+    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
+    <published>2016-05-20T16:00:00.000Z</published>
+    <updated>2016-08-06T14:49:28.945Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;引用计数减少情况  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&gt;&gt; import sys
+&gt;&gt; x = 1
+&gt;&gt; sys.getrefcount(x)
+599
+&gt;&gt; y = x
+&gt;&gt; sys.getrefcount(x)
+600
+&gt;&gt; del y
+&gt;&gt; sys.getrefcount(x)
+599
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
+　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
+　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;原因  &lt;ul&gt;
+&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -403,86 +483,6 @@ if __name__ == &amp;quot;__main__&amp;quot;:
 &lt;p&gt;In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;一个防止多线程并发执行机器码的一个Mutex&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python的内存管理机制</title>
-    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
-    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
-    <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:28.945Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;引用计数减少情况  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&gt;&gt; import sys
-&gt;&gt; x = 1
-&gt;&gt; sys.getrefcount(x)
-599
-&gt;&gt; y = x
-&gt;&gt; sys.getrefcount(x)
-600
-&gt;&gt; del y
-&gt;&gt; sys.getrefcount(x)
-599
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
-　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
-　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;原因  &lt;ul&gt;
-&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
@@ -872,7 +872,7 @@ res.output();
     <link href="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/"/>
     <id>https://iceziyao.github.io/2016/02/01/Lvs/lvs1/</id>
     <published>2016-01-31T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:36.591Z</updated>
+    <updated>2016-08-29T21:07:43.101Z</updated>
     
     <content type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。&lt;br&gt;使用LVS技术要达到的目标是:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -895,7 +895,18 @@ res.output();
 &lt;li&gt;隧道模式&lt;/li&gt;
 &lt;li&gt;FULL NAT 模式&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;算法&quot;&gt;&lt;a href=&quot;#算法&quot; class=&quot;headerlink&quot; title=&quot;算法&quot;&gt;&lt;/a&gt;算法&lt;/h2&gt;</content>
+&lt;h2 id=&quot;算法&quot;&gt;&lt;a href=&quot;#算法&quot; class=&quot;headerlink&quot; title=&quot;算法&quot;&gt;&lt;/a&gt;算法&lt;/h2&gt;&lt;p&gt;目前系统有八种负载均衡调度算法，具体如下:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;rr：轮循调度(Round-Robin) 它将请求依次分配不同的RS，也就是在RS中均摊请求。这种算法简单，但是只适合于RS处理性能相差不大的情况。&lt;/li&gt;
+&lt;li&gt;wrr：加权轮循调度(Weighted Round-Robin) 它将依据不同RS的权值分配任务。权值较高的RS将优先获得任务，并且分配到的连接数将比权值较低的RS更多。相同权值的RS得到相同数目的连接数。&lt;/li&gt;
+&lt;li&gt;dh：目的地址哈希调度 (Destination Hashing) 以目的地址为关键字查找一个静态hash表来获得需要的RS。&lt;/li&gt;
+&lt;li&gt;sh：源地址哈希调度(Source Hashing) 以源地址为关键字查找一个静态hash表来获得需要的RS。&lt;/li&gt;
+&lt;li&gt;Lc：最小连接数调度(Least-Connection) IPVS表存储了所有的活动的连接。把新的连接请求发送到当前连接数最小的RS。&lt;/li&gt;
+&lt;li&gt;Wlc：加权最小连接数调度(Weighted Least-Connection) 假设各台RS的权值依次为Wi（I = 1..n），当前的TCP连接数依次为Ti（I＝1..n），依次选取Ti/Wi为最小的RS作为下一个分配的RS。&lt;/li&gt;
+&lt;li&gt;Lblc：基于地址的最小连接数调度(Locality-Based Least-Connection) 将来自同一目的地址的请求分配给同一台RS如果这台服务器尚未满负荷，否则分配给连接数最小的RS，并以它为下一次分配的首先考虑。&lt;/li&gt;
+&lt;li&gt;Lblcr：基于地址的带重复最小连接数调度(Locality-Based Least-Connection with Replication) 对于某一目的地址，对应有一个RS子集。对此地址的请求，为它分配子集中连接数最小的RS；如果子集中所有的服务器均已满负荷，则从集群中选择一个连接数较小的服务器，将它加入到此子集并分配连接；若一定时间内，这个子集未被做任何修改，则将子集中负载最大的节点从子集删除。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
     
     <summary type="html">
     
@@ -909,48 +920,6 @@ res.output();
     
     
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:31.530Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
     
   </entry>
   
@@ -1394,6 +1363,48 @@ backend mysqlservers
     
     
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高可用集群系列之基础篇1</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-08-06T14:50:31.530Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
     
   </entry>
   

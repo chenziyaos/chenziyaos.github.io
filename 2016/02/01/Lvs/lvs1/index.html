@@ -16,7 +16,7 @@
 
 通过LVS提供的负载均衡技术和Li">
 <meta property="og:image" content="https://iceziyao.github.io/upload/Lvs.png">
-<meta property="og:updated_time" content="2016-08-06T14:49:36.591Z">
+<meta property="og:updated_time" content="2016-08-29T21:07:43.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lvs负载均衡">
 <meta name="twitter:description" content="简介LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。使用LVS技术要达到的目标是:
@@ -275,7 +275,18 @@
 <li>隧道模式</li>
 <li>FULL NAT 模式</li>
 </ol>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>目前系统有八种负载均衡调度算法，具体如下:</p>
+<ol>
+<li>rr：轮循调度(Round-Robin) 它将请求依次分配不同的RS，也就是在RS中均摊请求。这种算法简单，但是只适合于RS处理性能相差不大的情况。</li>
+<li>wrr：加权轮循调度(Weighted Round-Robin) 它将依据不同RS的权值分配任务。权值较高的RS将优先获得任务，并且分配到的连接数将比权值较低的RS更多。相同权值的RS得到相同数目的连接数。</li>
+<li>dh：目的地址哈希调度 (Destination Hashing) 以目的地址为关键字查找一个静态hash表来获得需要的RS。</li>
+<li>sh：源地址哈希调度(Source Hashing) 以源地址为关键字查找一个静态hash表来获得需要的RS。</li>
+<li>Lc：最小连接数调度(Least-Connection) IPVS表存储了所有的活动的连接。把新的连接请求发送到当前连接数最小的RS。</li>
+<li>Wlc：加权最小连接数调度(Weighted Least-Connection) 假设各台RS的权值依次为Wi（I = 1..n），当前的TCP连接数依次为Ti（I＝1..n），依次选取Ti/Wi为最小的RS作为下一个分配的RS。</li>
+<li>Lblc：基于地址的最小连接数调度(Locality-Based Least-Connection) 将来自同一目的地址的请求分配给同一台RS如果这台服务器尚未满负荷，否则分配给连接数最小的RS，并以它为下一次分配的首先考虑。</li>
+<li>Lblcr：基于地址的带重复最小连接数调度(Locality-Based Least-Connection with Replication) 对于某一目的地址，对应有一个RS子集。对此地址的请求，为它分配子集中连接数最小的RS；如果子集中所有的服务器均已满负荷，则从集群中选择一个连接数较小的服务器，将它加入到此子集并分配连接；若一定时间内，这个子集未被做任何修改，则将子集中负载最大的节点从子集删除。</li>
+</ol>
+
       
     </div>
     
@@ -286,7 +297,7 @@
         <p><span>本文标题:</span><a href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
         <p><span>发布时间:</span>2016年02月01日 - 00时00分</p>
-        <p><span>最后更新:</span>2016年08月06日 - 22时49分</p>
+        <p><span>最后更新:</span>2016年08月30日 - 05时07分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/02/01/Lvs/lvs1/" title="Lvs负载均衡">https://iceziyao.github.io/2016/02/01/Lvs/lvs1/</a>
             <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2016/02/01/Lvs/lvs1/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -312,8 +323,8 @@
     </a>
   
   
-    <a href="/2016/01/16/HA/高可用集群01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">高可用集群系列之基础篇1</div>
+    <a href="/2016/01/16/server/haproxy/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Haproxy负载均衡</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -401,12 +412,12 @@
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/01/16/HA/高可用集群01/" title="下一篇: 高可用集群系列之基础篇1">
+            <a href="/2016/01/16/server/haproxy/" title="下一篇: Haproxy负载均衡">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/Auto/ansible-api/">ansible的二次开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/Auto/salt-api/">SaltApi安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Auto/ans-api/">基于Tornado的ansible的二次封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/Auto/ansible-api/">ansible的二次开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/Auto/salt-api/">SaltApi安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/23/Auto/salt1/">Saltstack安装使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/Auto/Ycm自动化运维/">Ycm，我的自动化运维之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/python01/">Python的内存管理机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/Python/Python_GIL/">Python GIL那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/前端/nodejs/">初探node.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python/python端口/">python编写一个端口扫描器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/Docker/docker02/">浅析docker实现思想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/Docker/docker01/">浅析docker使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/Lvs/lvs1/">Lvs负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/server/haproxy/">Haproxy负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用集群01/">高可用集群系列之基础篇1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/HA/高可用基础/">高可用集群系列之基础篇2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/Memcached/">Memcached简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/Net/Tcp11/">TCP连接的建立与中止</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/lnmp/php/">PHP编译出错</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx负载均衡/">nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/23/lnmp/nginx配置文件详解/">nginx配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/Net/tcp4/">多播和广播</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/Net/tcp3/">IP协议,ARP协议和RARP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp1/">TCP/IP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Net/tcp2/">数据链路层</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/server/ftp+mysql/">ftp+mysql搭建ftp认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell编程/">shell编程基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/shell/shell-if/">shell判断条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/06/shell/linux基础/">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/02/前端/ajax/">ajax初探</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -436,7 +447,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016-08-09 陈子瑶
+                &copy; 2016-08-30 陈子瑶
             </div>
             <div class="footer-right">
                 <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁
