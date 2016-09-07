@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>导航</title>
+	<link rel="shortcut icon" type="image/x-icon" href="./导航_files/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<link rel="stylesheet" href="./导航_files/reset.css">
+	<link rel="stylesheet" href="./导航_files/index.css">
+</head>
+<body>
+	<!-- 导航 -->
+	<header>
+		<div id="topBar" class="topBar war">
+			<!-- 搜索 -->
+			<form name="f" onsubmit="return s4()" method="get">
+				<img class="logo" src="./导航_files/favicon.png">
+				<!-- <input type="text" name="k" placeholder="百度：搜索些什么..." size="28" onmouseover="this.focus()" onfocus="this.select()"> -->
+				<!-- <input type="submit" value="搜索"> -->
+			</form>
+			<div class="search-hd">
+			    <form action="https://www.baidu.com/s" method="get" id="searchForm">
+			        <div class="search-status">
+			            <div class="search-select">
+			                <input type="text" class="search-val" placeholder="请输入您要查找的内容" autocomplete="off" value="" name="wd" id="keywords">
+			                <ul class="options">
+			                    <li><a href="https://iceziyao.github.io">非衣</a></li>
+			                </ul>
+			            </div>
+			        </div>
+			        <input type="hidden" name="type" value="project" id="sType"><a class="search-hd-btn" href="javascript:;" target="_blank" rel="external"><i class="iconfont icon-search"></i></a>
+			    </form>
+			</div>
+			<!-- 导航 -->
+			<nav id="nav" class="nav"><ul id="nav_ul" class="nav_ul"><a href="https://iceziyao.github.io" class="nav_list"><li>我的主页</li></a></ul></nav>
+		</div>
+	</header>
+	<!-- 内容 -->
+<div id="content" class="content">
+    <div id="content_war" class="content_war war">
+        <div id="_page_0" class="content_list">
+            <div class="content_list_title">圈子</div>
+				<div class="content_list_main">
+					<div class="main_classify">
+						<div class="main_classify_name">LIUNX教程</div>
+					</div>
+				</div>
+				<div class="content_list_main">
+					<div class="main_classify">
+						<div class="main_classify_name">LINUX社区</div>
+					</div>
+				</div>
+				<div class="content_list_main">
+					<div class="main_classify">
+						<div class="main_classify_name">一起学习</div>
+						<div class="main_classify_war">
+							<a href="http://www.tianfeiyu.com" target="_blank">
+							<div class="main_classify_list">Linux运维-田飞雨</div></a>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="./导航_files/jquery.js"></script>
+<script type="text/javascript" src="./导航_files/index.js"></script>
+<script type="text/javascript" src="./导航_files/data.js"></script>
+</body>
+</html>
