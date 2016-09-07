@@ -51,11 +51,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
-    
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -97,11 +97,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
-    
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -320,9 +320,9 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
