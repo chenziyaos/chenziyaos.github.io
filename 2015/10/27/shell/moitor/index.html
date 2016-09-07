@@ -3,23 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tcp协议概述 | 羽非衣</title>
+  <title>主机信息监控脚本 | 羽非衣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="tcp协议族位于传输层tcp报文格式
-TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.">
+  <meta name="description" content="主机监控脚本主机监控的信息  
+
+系统信息 uname -a
+网络信息
+系统基本信息 top w who uptime  
+进程 ps">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tcp协议概述">
-<meta property="og:url" content="https://iceziyao.github.io/2015/12/25/Net/tcp10/index.html">
+<meta property="og:title" content="主机信息监控脚本">
+<meta property="og:url" content="https://iceziyao.github.io/2015/10/27/shell/moitor/index.html">
 <meta property="og:site_name" content="羽非衣">
-<meta property="og:description" content="tcp协议族位于传输层tcp报文格式
-TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.">
-<meta property="og:image" content="https://iceziyao.github.io/upload/tcp.jpg">
-<meta property="og:updated_time" content="2016-08-06T14:49:54.535Z">
+<meta property="og:description" content="主机监控脚本主机监控的信息  
+
+系统信息 uname -a
+网络信息
+系统基本信息 top w who uptime  
+进程 ps">
+<meta property="og:updated_time" content="2016-09-07T16:16:34.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tcp协议概述">
-<meta name="twitter:description" content="tcp协议族位于传输层tcp报文格式
-TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.">
-<meta name="twitter:image" content="https://iceziyao.github.io/upload/tcp.jpg">
+<meta name="twitter:title" content="主机信息监控脚本">
+<meta name="twitter:description" content="主机监控脚本主机监控的信息  
+
+系统信息 uname -a
+网络信息
+系统基本信息 top w who uptime  
+进程 ps">
   
     <link rel="alternative" href="/atom.xml" title="羽非衣" type="application/atom+xml">
   
@@ -209,11 +219,11 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Net/tcp10" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-shell/moitor" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/25/Net/tcp10/" class="article-date">
-      <time datetime="2015-12-24T16:00:00.000Z" itemprop="datePublished">2015-12-25</time>
+      <a href="/2015/10/27/shell/moitor/" class="article-date">
+      <time datetime="2015-10-26T16:00:00.000Z" itemprop="datePublished">2015-10-27</time>
 </a>
     </div>
   
@@ -226,7 +236,7 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
         
   
     <h1 class="article-title" itemprop="name">
-      Tcp协议概述
+      主机信息监控脚本
     </h1>
   
 
@@ -235,13 +245,13 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络/">网络</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -251,55 +261,15 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="tcp协议族位于传输层"><a href="#tcp协议族位于传输层" class="headerlink" title="tcp协议族位于传输层"></a>tcp协议族位于传输层</h4><h2 id="tcp报文格式"><a href="#tcp报文格式" class="headerlink" title="tcp报文格式"></a>tcp报文格式</h2><ul>
-<li>TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.  <a id="more"></a></li>
-</ul>
-<p><img src="/upload/tcp.jpg" alt="tcp">  </p>
-<blockquote>
-<ul>
-<li>源、目标端口号字段：占16比特。TCP协议通过使用”端口”来标识源端和目标端的应用进程。端口号可以使用0到65535之间的任何数字。在收到服务请求时，操作系统动态地为客户端的应用程序分配端口号。在服务器端，每种服务在”众所周知的端口”（Well-Know Port）为用户提供服务。  </li>
-<li>顺序号字段：占32比特。用来标识从TCP源端向TCP目标端发送的数据字节流，它表示在这个报文段中的第一个数据字节。  </li>
-<li>确认号字段：占32比特。只有ACK标志为1时，确认号字段才有效。它包含目标端所期望收到源端的下一个数据字节  </li>
-<li>头部长度字段：占4比特。给出头部占32比特的数目。没有任何选项字段的TCP头部长度为20字节；最多可以有60字节的TCP头部。</li>
-<li>标志位字段（U、A、P、R、S、F）：占6比特。各比特的含义如下   <ul>
-<li>URG：紧急指针（urgent pointer）有效  </li>
-<li>ACK：确认序号有效  </li>
-<li>PSH：接收方应该尽快将这个报文段交给应用层  </li>
-<li>RST：重建连接  </li>
-<li>SYN：发起一个连接  </li>
-<li>FIN：释放一个连接  </li>
-</ul>
+        <h1 id="主机监控脚本"><a href="#主机监控脚本" class="headerlink" title="主机监控脚本"></a>主机监控脚本</h1><p>主机监控的信息  </p>
+<ol>
+<li>系统信息<br> uname -a</li>
+<li>网络信息</li>
+<li>系统基本信息<br> top<br> w<br> who<br> uptime  </li>
+<li>进程<br> ps<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div></pre></td><td class="code"><pre><div class="line">#! /bin/bash</div><div class="line"># unset any variable which system may be using</div><div class="line"># clear the screen</div><div class="line"></div><div class="line">## 处理参数</div><div class="line">while getopts ivh name</div><div class="line">do</div><div class="line">        case $name in</div><div class="line">          i)iopt=1;;</div><div class="line">          v)vopt=1;;</div><div class="line">            h)hopt=1;;</div><div class="line">         *)echo &quot;Invalid arg&quot;;;</div><div class="line">        esac</div><div class="line">done</div><div class="line"></div><div class="line">#</div><div class="line">if [[ ! -z $iopt ]]; then  &#123;</div><div class="line">    wd=$(pwd)</div><div class="line">    basename &quot;$(test -L &quot;$0&quot; &amp;&amp; readlink &quot;$0&quot; || echo &quot;$0&quot;)&quot; &gt; /tmp/scriptname</div><div class="line">    scriptname=$(echo -e -n $wd/ &amp;&amp; cat /tmp/scriptname)</div><div class="line">    su -c &quot;cp $scriptname /usr/bin/monitor&quot; root &amp;&amp; echo &quot;Congratulations! Script Installed, now run monitor Command&quot; || echo &quot;Installation failed&quot;</div><div class="line">&#125;</div><div class="line">fi</div><div class="line"></div><div class="line">if [[ ! -z $vopt ]];then &#123;</div><div class="line">    echo -e &quot;tecmint_monitor version 0.1\nDesigned by Tecmint.com\nReleased Under Apache 2.0 License&quot;</div><div class="line">&#125;</div><div class="line">fi</div><div class="line"></div><div class="line">#判断是否请求帮助</div><div class="line">if [[ ! -z $hopt ]];then &#123;</div><div class="line">    echo -e &quot; -i                                Install script&quot;</div><div class="line">    echo -e &quot; -v                                Print version information and exit&quot;</div><div class="line">    echo -e &quot; -h                                Print help (this information) and exit&quot;</div><div class="line">&#125;</div><div class="line">fi</div><div class="line"></div><div class="line">#无参数时，直接运行脚本</div><div class="line">if [[ $# -eq 0 ]]; then</div><div class="line">    clear</div><div class="line">    unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage</div><div class="line"></div><div class="line">    # Define Variable tecreset</div><div class="line">    tecreset=$(tput sgr0)</div><div class="line"></div><div class="line">    # Check if connected to Internet or not</div><div class="line">    ping -c 1 www.baidu.com &amp;&gt; /dev/null &amp;&amp; echo -e &apos;\E[32m&apos;&quot;Internet: $tecreset Connected&quot; || echo -e &apos;\E[32m&apos;&quot;Internet: $tecreset Disconnected&quot;</div><div class="line"></div><div class="line">    # Check OS Type</div><div class="line">    os=$(uname -o)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Operating System Type :&quot; $tecreset $os</div><div class="line"></div><div class="line">    # Check OS Release Version and Name</div><div class="line">    ###################################</div><div class="line">    OS=`uname -s`</div><div class="line">    REV=`uname -r`</div><div class="line">    MACH=`uname -m`</div><div class="line"></div><div class="line">    GetVersionFromFile()&#123;</div><div class="line">        VERSION=`cat $1 | tr &quot;\n&quot; &apos; &apos; | sed s/.*VERSION.*=\ // `</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if [ &quot;$&#123;OS&#125;&quot; = &quot;SunOS&quot; ] ; then</div><div class="line">        OS=Solaris</div><div class="line">        ARCH=`uname -p`</div><div class="line">        OSSTR=&quot;$&#123;OS&#125; $&#123;REV&#125;($&#123;ARCH&#125; `uname -v`)&quot;</div><div class="line">    elif [ &quot;$&#123;OS&#125;&quot; = &quot;AIX&quot; ] ; then</div><div class="line">        OSSTR=&quot;$&#123;OS&#125; `oslevel` (`oslevel -r`)&quot;</div><div class="line">    elif [ &quot;$&#123;OS&#125;&quot; = &quot;Linux&quot; ] ; then</div><div class="line">        KERNEL=`uname -r`</div><div class="line"></div><div class="line">    if [ -f /etc/redhat-release ] ; then</div><div class="line">        DIST=&apos;RedHat&apos;</div><div class="line">        PSUEDONAME=`cat /etc/redhat-release | sed s/.*\(// | sed s/\)//`</div><div class="line">        REV=`cat /etc/redhat-release | sed s/.*release\ // | sed s/\ .*//`</div><div class="line">    elif [ -f /etc/SuSE-release ] ; then</div><div class="line">        DIST=`cat /etc/SuSE-release | tr &quot;\n&quot; &apos; &apos;| sed s/VERSION.*//`</div><div class="line">        REV=`cat /etc/SuSE-release | tr &quot;\n&quot; &apos; &apos; | sed s/.*=\ //`</div><div class="line">    elif [ -f /etc/mandrake-release ] ; then</div><div class="line">        DIST=&apos;Mandrake&apos;</div><div class="line">        PSUEDONAME=`cat /etc/mandrake-release | sed s/.*\(// | sed s/\)//`</div><div class="line">        REV=`cat /etc/mandrake-release | sed s/.*release\ // | sed s/\ .*//`</div><div class="line">    elif [ -f /etc/debian_version ] ; then</div><div class="line">        DIST=&quot;Debian `cat /etc/debian_version`&quot;</div><div class="line">        REV=&quot;&quot;</div><div class="line"></div><div class="line">    fi</div><div class="line">    if $&#123;OSSTR&#125; [ -f /etc/UnitedLinux-release ] ; then</div><div class="line">        DIST=&quot;$&#123;DIST&#125;[`cat /etc/UnitedLinux-release | tr &quot;\n&quot; &apos; &apos; | sed s/VERSION.*//`]&quot;</div><div class="line">    fi</div><div class="line"></div><div class="line">        OSSTR=&quot;$&#123;OS&#125; $&#123;DIST&#125; $&#123;REV&#125;($&#123;PSUEDONAME&#125; $&#123;KERNEL&#125; $&#123;MACH&#125;)&quot;</div><div class="line"></div><div class="line">    fi</div><div class="line"></div><div class="line">    ##################################</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;OS Version :&quot; $tecreset $OSSTR</div><div class="line"></div><div class="line">    architecture=$(uname -m)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Architecture :&quot; $tecreset $architecture</div><div class="line"></div><div class="line"></div><div class="line">    kernelrelease=$(uname -r)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Kernel Release :&quot; $tecreset $kernelrelease</div><div class="line"></div><div class="line"></div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Hostname :&quot; $tecreset $HOSTNAME</div><div class="line"></div><div class="line"></div><div class="line">    internalip=$(hostname -I)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Internal IP :&quot; $tecreset $internalip</div><div class="line"></div><div class="line">    externalip=$(curl -s ipecho.net/plain;echo)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;External IP : $tecreset &quot;$externalip</div><div class="line"></div><div class="line">    nameservers=$(cat /etc/resolv.conf | sed &apos;1 d&apos; | awk &apos;&#123;print $2&#125;&apos;)</div><div class="line"></div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Name Servers :&quot; $tecreset $nameservers</div><div class="line">    who&gt;/tmp/who</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Logged In users :&quot; $tecreset &amp;&amp; cat /tmp/who</div><div class="line">    free -h | grep -v + &gt; /tmp/ramcache</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Ram Usages :&quot; $tecreset</div><div class="line">    cat /tmp/ramcache | grep -v &quot;Swap&quot;</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Swap Usages :&quot; $tecreset</div><div class="line">    cat /tmp/ramcache | grep -v &quot;Mem&quot;</div><div class="line"></div><div class="line">    df -h &gt; /tmp/diskusage</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Disk Usages :&quot; $tecreset</div><div class="line">    cat /tmp/diskusage</div><div class="line">    loadaverage=$(top -n 1 -b | grep &quot;load average:&quot; | awk &apos;&#123;print $10 $11 $12&#125;&apos;)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Load Average :&quot; $tecreset $loadaverage</div><div class="line">    tecuptime=$(uptime | awk &apos;&#123;print $3,$4&#125;&apos; | cut -f1 -d,)</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;System Uptime Days/(HH:MM) :&quot; $tecreset $tecuptime</div><div class="line"></div><div class="line">    ##Process system</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;Process system :&quot; $tecreset</div><div class="line">    echo -e &apos;\E[32m&apos;&quot;CPU share of the top 10:&quot; $tecreset</div><div class="line">    ps -axo user,pid,%cpu,%mem,comm --sort -%cpu,-%mem| head -11</div><div class="line"></div><div class="line">    unset tecreset os architecture kernelrelease internalip externalip nameserver loadaverage</div><div class="line"></div><div class="line">    rm /tmp/who /tmp/ramcache /tmp/diskusage</div><div class="line">fi</div><div class="line">shift $(($OPTIND -1))</div><div class="line">#</div></pre></td></tr></table></figure>
 </li>
-<li>窗口大小字段：占16比特。此字段用来进行流量控制。单位为字节数，这个值是本机期望一次接收的字节数  </li>
-<li>TCP校验和字段：占16比特。对整个TCP报文段，即TCP头部和TCP数据进行校验和计算，并由目标端进行验证  </li>
-<li>紧急指针字段：占16比特。它是一个偏移量，和序号字段中的值相加表示紧急数据最后一个字节的序号  </li>
-<li>选项字段：占32比特。可能包括”窗口扩大因子”、”时间戳”等选项。  </li>
-</ul>
-</blockquote>
-<h2 id="TCP传输"><a href="#TCP传输" class="headerlink" title="TCP传输"></a>TCP传输</h2><p>TCP和UDP处在同一层—运输层，但是TCP和UDP最不同的地方是，TCP提供了一种可靠的数据传输服务，TCP是面向连接的，也就是说，利用TCP通信的两台主机首先要经历一个“拨打电话”的过程，等到通信准备结束才开始传输数据，最后结束通话。所以TCP要比UDP可靠的多，UDP是把数据直接发出去，而不管对方是不是在收信，就算是UDP无法送达，也不会产生ICMP差错报文</p>
-<h3 id="TCP保证可靠性的简单工作原理"><a href="#TCP保证可靠性的简单工作原理" class="headerlink" title="TCP保证可靠性的简单工作原理"></a>TCP保证可靠性的简单工作原理</h3><blockquote>
-<p>应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的 数据报长度将保持不变。由TCP传递给IP的信息单位称为报文段或段</p>
-<ul>
-<li>当TCP发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能 及时收到一个确认，将重发这个报文段。在第21章我们将了解TCP协议中自适应的超时 及重传策略。</li>
-<li>当TCP收到发自TCP连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒，这将在1 9.3节讨论。</li>
-<li>TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输 过程中的任何变化。如果收到段的检验和有差错， T P将丢弃这个报文段和不确认收到此报文段（希望发端超时并重发）。</li>
-<li>既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段 的到达也可能会失序。如果必要， TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。</li>
-<li>TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出。  </li>
-</ul>
-<p>从这段话中可以看到，TCP中保持可靠性的方式就是<strong>超时重发</strong>，虽然TCP也可以用各种各样的ICMP报文来处理这些，但是这也不是可靠的，最可靠的方式就是只要不得到确认，就重新发送数据报，直到得到对方的确认为止。</p>
-</blockquote>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>TCP的首部和UDP首部一样，都有发送端口号和接收端口号。但是显然，TCP的首部信息要比UDP的多，可以看到，TCP协议提供了发送和确认所需要的所有必要的信息。这在P171-173有详细地介绍。可以想象一个TCP数据的发送应该是如下的一个过程。</p>
-<blockquote>
-<ul>
-<li>双方建立连接<ul>
-<li>发送方给接受方TCP数据报，然后等待对方的确认TCP数据报，如果没有，就重新发，如果有，就发送下一个数据报。</li>
-<li>接受方等待发送方的数据报，如果得到数据报并检验无误，就发送ACK(确认)数据报，并等待下一个TCP数据报的到来。直到接收到FIN(发送完成数据报)</li>
-<li>中止连接</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>可以想见，为了建立一个TCP连接，系统可能会建立一个新的进程（最差也是一个线程），来进行数据的传送</p>
+</ol>
 
       
     </div>
@@ -308,13 +278,13 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/25/Net/tcp10/">Tcp协议概述</a></p>
+        <p><span>本文标题:</span><a href="/2015/10/27/shell/moitor/">主机信息监控脚本</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 陈子瑶 的个人博客">陈子瑶</a></p>
-        <p><span>发布时间:</span>2015年12月25日 - 00时00分</p>
-        <p><span>最后更新:</span>2016年08月06日 - 22时49分</p>
+        <p><span>发布时间:</span>2015年10月27日 - 00时00分</p>
+        <p><span>最后更新:</span>2016年09月08日 - 00时16分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/25/Net/tcp10/" title="Tcp协议概述">https://iceziyao.github.io/2015/12/25/Net/tcp10/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2015/12/25/Net/tcp10/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2015/10/27/shell/moitor/" title="主机信息监控脚本">https://iceziyao.github.io/2015/10/27/shell/moitor/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iceziyao.github.io/2015/10/27/shell/moitor/　　作者: 陈子瑶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -327,18 +297,18 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
 
 <nav id="article-nav">
   
-    <a href="/2016/01/01/lnmp/php/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/11/24/server/ftp+mysql/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          PHP编译出错
+          ftp+mysql搭建ftp认证
         
       </div>
     </a>
   
   
-    <a href="/2015/12/23/lnmp/nginx负载均衡/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nginx负载均衡</div>
+    <a href="/2015/10/11/shell/shell-if/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">shell判断条件</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -349,7 +319,7 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#tcp协议族位于传输层"><span class="toc-number">1.</span> <span class="toc-text">tcp协议族位于传输层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcp报文格式"><span class="toc-number"></span> <span class="toc-text">tcp报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP传输"><span class="toc-number"></span> <span class="toc-text">TCP传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP保证可靠性的简单工作原理"><span class="toc-number"></span> <span class="toc-text">TCP保证可靠性的简单工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接"><span class="toc-number"></span> <span class="toc-text">连接</span></a>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#主机监控脚本"><span class="toc-number">1.</span> <span class="toc-text">主机监控脚本</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -397,7 +367,7 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/25/Net/tcp10/" data-title="Tcp协议概述" data-url="https://iceziyao.github.io/2015/12/25/Net/tcp10/"></div>
+    <div class="ds-thread" data-thread-key="2015/10/27/shell/moitor/" data-title="主机信息监控脚本" data-url="https://iceziyao.github.io/2015/10/27/shell/moitor/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -420,13 +390,13 @@ TCP是一种可靠的、面向连接的字节流服务。源主机在传送数�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/01/01/lnmp/php/" title="上一篇: PHP编译出错">
+            <a href="/2015/11/24/server/ftp+mysql/" title="上一篇: ftp+mysql搭建ftp认证">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2015/12/23/lnmp/nginx负载均衡/" title="下一篇: nginx负载均衡">
+            <a href="/2015/10/11/shell/shell-if/" title="下一篇: shell判断条件">
                 <i class="fa fa-angle-right"></i>
             </a>
         
