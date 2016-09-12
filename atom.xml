@@ -51,11 +51,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -97,11 +97,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -320,9 +320,9 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
       <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -701,6 +701,89 @@ res.output();
   </entry>
   
   <entry>
+    <title>C语言实现ping</title>
+    <link href="https://iceziyao.github.io/2016/04/06/C/C_ping/"/>
+    <id>https://iceziyao.github.io/2016/04/06/C/C_ping/</id>
+    <published>2016-04-05T16:00:00.000Z</published>
+    <updated>2016-09-12T20:05:02.911Z</updated>
+    
+    <content type="html">&lt;p&gt;学习C网络编程笔记&lt;/p&gt;
+&lt;h1 id=&quot;ping-命令&quot;&gt;&lt;a href=&quot;#ping-命令&quot; class=&quot;headerlink&quot; title=&quot;ping 命令&quot;&gt;&lt;/a&gt;ping 命令&lt;/h1&gt;&lt;h2 id=&quot;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot;&gt;&lt;a href=&quot;#ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot; class=&quot;headerlink&quot; title=&quot;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot;&gt;&lt;/a&gt;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ping www.baidu.com&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PING www.a.shifen.com (180.97.33.107) 56(84) bytes of data.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64 bytes from 180.97.33.107: icmp_seq=1 ttl=50 time=42.2 ms&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64 bytes from 180.97.33.107: icmp_seq=2 ttl=50 time=37.4 ms&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;ping与ICMP&quot;&gt;&lt;a href=&quot;#ping与ICMP&quot; class=&quot;headerlink&quot; title=&quot;ping与ICMP&quot;&gt;&lt;/a&gt;ping与ICMP&lt;/h2&gt;&lt;p&gt;要真正了解 ping 命令实现原理，就要了解 ping 命令所使用到的 TCP/IP 协议：ICMP 协议。&lt;br&gt;ICMP 是（Internet Control Message Protocol）Internet 控制报文协议。它是 TCP/IP 协议族的一个子协议，用于在 IP 主机、路由器之间传递控制消息。&lt;br&gt;控制消息有：目的不可达消息，超时信息，重定向消息，时间戳请求和时间戳响应消息，回显请求和回显应答消息。&lt;br&gt;ping 命令使用回显请求和回显应答消息。具体表现是向网络上的另一个主机系统发送 ICMP 报文，如果指定系统得到了报文，它将把报文一模一样地传回给发送者。&lt;br&gt;回显请求报文其中类型为 0，代码为 0。&lt;br&gt;回显应答报文其中类型为 8，代码为 0。&lt;br&gt;校验和字段：包括数据在内的整个 ICMP 协议数据包的校验和，具体实现方法会在下面详细介绍。&lt;br&gt;标识符字段：用于唯一标识 ICMP 报文，本项目使用程序的进程 id。因为如果同时在两个命令行终端执行 ping 命令的话，每个 ping 命令都会接收到所有的回显应答，所以需要根据标识符来判断回显应答是否应该接收。&lt;br&gt;序号字段：ICMP 报文的序号。&lt;br&gt;数据字段：也就是报文，本项目中我们将发送报文的时间戳放入数据字段，这样当接收到该报文应答的时候可以取出发送时间戳，将接收应答的时间戳减去发送时间戳就是报文往返时间（rtt）。提前预告一下，这里使用gettimeofday()API函数获取时间戳，详细介绍会在函数介绍部分说明。&lt;/p&gt;
+&lt;h2 id=&quot;数据结构&quot;&gt;&lt;a href=&quot;#数据结构&quot; class=&quot;headerlink&quot; title=&quot;数据结构&quot;&gt;&lt;/a&gt;数据结构&lt;/h2&gt;&lt;p&gt;ICMP 报文 C 语言实现可以用下面的数据结构表示：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct icmp&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char   type;         // 类型&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char   code;         // 代码&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        unsigned short  checksum;     // 校验和&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        unsigned short  id;            // 标识符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        unsigned short  sequence;     // 序号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        struct timeval  timestamp;    // 时间戳&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;系统发送ICMP报文时会将ICMP报文作为IP的数据，也就是放入IP报文格式的数据字段  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```+C&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;struct ip&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char version:4;       // 版本&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char hlen:4;        // 首部长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char tos;             // 服务类型&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned short len;         // 总长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned short id;            // 标识符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned short offset;        // 标志和片偏移&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char ttl;            // 生存时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned char protocol;     // 协议&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned short checksum;    // 校验和&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct in_addr ipsrc;        // 32位源ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct in_addr ipdst;       // 32位目的ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;地址信息表示&quot;&gt;&lt;a href=&quot;#地址信息表示&quot; class=&quot;headerlink&quot; title=&quot;地址信息表示&quot;&gt;&lt;/a&gt;地址信息表示&lt;/h2&gt;&lt;p&gt;当我们编写网络应用程序时，必然要使用地址信息指定数据传输给网络上哪个主机，那么地址信息应该包含哪些呢？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;地址族，基于IPv4的地址族还是IPv6的地址族。&lt;/li&gt;
+&lt;li&gt;IP地址。&lt;/li&gt;
+&lt;li&gt;端口号。&lt;br&gt;为了便于记录地址信息，系统定义了如下结构体：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct sockaddr_in&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sa_family_t        sin_family;     // 地址族&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    uint16_t        sin_port;        // 端口号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct in_addr  sin_addr;          // 32位IP地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char             sin_zero[8];    // 不使用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其中struct in_addr定义&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct in_addr&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    in_addr_t     s_addr;        // 32位IP地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;in_addr_t使用如下宏指令定义，也就是无符号整型32位。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#define in_addr_t uint32_t&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;但实际上，还有一种结构体也可以表示地址信息，如下所示：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct sockaddr&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sa_family_t    sin_family;     // 地址族&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char         sa_data[14]; // IP地址和端口&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;成员sa_data保存的信息包含IP地址和端口号，剩余部分填充0。&lt;br&gt;在网络编程中，常用的是struct sockaddr_in结构体，因为相对于struct sockaddr结构体，前者填充数据比较方便。&lt;br&gt;不过网络编程接口函数定义使用的是struct sockaddr结构体类型，这是由于最先使用的是struct sockaddr结构体，struct sockaddr_in结构体是后来为了方便填充地址信息数据定义。这就出现矛盾了，不过也不用担心上面两个结构体之间是可以相互转换的。定义地址信息时使用struct sockaddr_in结构体，然后将该结构体类型转为struct sockaddr结构体类型传递给网络编程接口函数即可。  &lt;/p&gt;
+&lt;h2 id=&quot;相关函数&quot;&gt;&lt;a href=&quot;#相关函数&quot; class=&quot;headerlink&quot; title=&quot;相关函数&quot;&gt;&lt;/a&gt;相关函数&lt;/h2&gt;&lt;h4 id=&quot;gettimeofday&quot;&gt;&lt;a href=&quot;#gettimeofday&quot; class=&quot;headerlink&quot; title=&quot;gettimeofday()&quot;&gt;&lt;/a&gt;gettimeofday()&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;sys/time.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int gettimeofday(struct timeval *tv, struct timezone *tz);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该函数的作用是把当前的时间放入struct timeval结构体中返回。&lt;/p&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;1.精确级别,微妙级别  &lt;/p&gt;
+&lt;p&gt;2.受系统时间修改影响  &lt;/p&gt;
+&lt;p&gt;3.返回的秒数是从1970年1月1日0时0分0秒开始  &lt;/p&gt;
+&lt;p&gt;其参数tv是保存获取时间结果的结构体，参数tz用于保存时区结果。  &lt;/p&gt;
+&lt;p&gt;结构体timeval的定义为：  &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct timeval&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    long int tv_sec;      // 秒数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    long int tv_usec;     // 微秒数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;结构体timezone的定义为：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct timezone&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int tz_minuteswest;/*格林威治时间往西方的时差*/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int tz_dsttime;    /*DST 时间的修正方式*/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;timezone 参数若不使用则传入0即可，本项目传入0。  &lt;/p&gt;
+&lt;h4 id=&quot;inet-addr函数。&quot;&gt;&lt;a href=&quot;#inet-addr函数。&quot; class=&quot;headerlink&quot; title=&quot;inet_addr函数。&quot;&gt;&lt;/a&gt;inet_addr函数。&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;arpa/inet.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;in_addr_t inet_addr(const char *string);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该函数的作用是将用点分十进制字符串格式表示的IP地址转换成32位大端序整型。&lt;br&gt;成功时返回32位大端序整型数值，失败时返回INADDR_NONE。&lt;/p&gt;
+&lt;h4 id=&quot;gethostbyname&quot;&gt;&lt;a href=&quot;#gethostbyname&quot; class=&quot;headerlink&quot; title=&quot;gethostbyname&quot;&gt;&lt;/a&gt;gethostbyname&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;netdb.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;struct hostent * gethostbyname(const char * hostname);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该函数的作用是根据域名获取IP地址。&lt;br&gt;成功时返回hostent结构体地址，失败时返回NULL指针。&lt;br&gt;struct hosten结构体定义如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;struct hostent&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char *          h_name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char **     h_aliases;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char         h_addrtype;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char         h_length;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    char **     h_addr_list;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我们最关心的是h_addr_list成员，它保存的就是域名对应IP地址。由于一个域名对应的IP地址不止一个，所以h_addr_list成员是char **类型，相当于二维字符数组。&lt;/p&gt;
+&lt;h4 id=&quot;socket。&quot;&gt;&lt;a href=&quot;#socket。&quot; class=&quot;headerlink&quot; title=&quot;socket。&quot;&gt;&lt;/a&gt;socket。&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;sys/socket.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int socket(int family, int type, int protocol);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;校验&quot;&gt;&lt;a href=&quot;#校验&quot; class=&quot;headerlink&quot; title=&quot;校验&quot;&gt;&lt;/a&gt;校验&lt;/h1&gt;&lt;p&gt;检验和算法可以分成两步来实现。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先在发送端，有以下三步： 1.把校验和字段置为0。&lt;/li&gt;
+&lt;li&gt;对需要校验的数据看成以16bit为单位的数字组成，依次进行二进制求和。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;将上一步的求和结果取反，存入校验和字段。&lt;br&gt;其次在接收端，也有相应的三步：  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对需要校验的数据看成以16bit为单位的数字组成，依次进行二进制求和，包括校验和字段。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;将上一步的求和结果取反。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;判断最终结果是否为0。如果为0，说明校验和正确。如果不为0，则协议栈会丢掉接收到的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从上可以看出，归根到底，校验和算法就是二进制反码求和。由于先取反后相加与先相加后取反，得到的结果是一样的，所以上面的步骤都是先求和后取反。&lt;/p&gt;
+&lt;p&gt;下面用C语言来实现校验和算法，代码如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * addr 指向需校验数据缓冲区的指针&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * len  需校验数据的总长度（字节单位）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;unsigned short checkSum(unsigned short *addr, int len)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unsigned int sum = 0;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    while(len &amp;gt; 1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sum += *addr++;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        len -= 2;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 处理剩下的一个字节&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(len == 1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sum += *(unsigned char *)addr;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 将32位的高16位与低16位相加&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sum = (sum &amp;gt;&amp;gt; 16) + (sum &amp;amp; 0xffff);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sum += (sum &amp;gt;&amp;gt; 16);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return (unsigned short) ~sum;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面的代码首先定义了一个32位无符号整型的变量sum，用来保存16bit二进制数字相加的结果，由于16bit相加可能会产生进位，所以这里使用32位变量来保存结果，其中高16bit保存的是相加产生的进位。&lt;/p&gt;
+&lt;p&gt;然后下面的while循环，对数据按16bit累加求和。&lt;/p&gt;
+&lt;p&gt;接下来的if语句判断是否还剩下8bit（一字节）。如果校验的数据为奇数个字节，会剩下最后一字节。把最后一个字节视为一个2字节数据的高字节，这个2字节数据的低字节为0，继续累加。&lt;/p&gt;
+&lt;p&gt;之后的两行代码作用是将sum高16bit的值加到低16bit上，即把累加中最高位的进位加到最低位上。（sum &amp;gt;&amp;gt; 16）将高16bit右移到低16bit，（sum &amp;amp; 0xffff）将高16bit全部置为0。注意，这两步都不会改变sum原来的值。&lt;/p&gt;
+&lt;p&gt;进行了两次相加可以保证sum高16bit都为0，没有进位了。&lt;/p&gt;
+&lt;p&gt;最后取反，并返回。&lt;/p&gt;
+&lt;h1 id=&quot;实现思路&quot;&gt;&lt;a href=&quot;#实现思路&quot; class=&quot;headerlink&quot; title=&quot;实现思路&quot;&gt;&lt;/a&gt;实现思路&lt;/h1&gt;&lt;p&gt;第一步，首先创建原始套接字。&lt;/p&gt;
+&lt;p&gt;第二步，封装ICMP报文，向目的IP地址发送ICMP报文，1秒后接收ICMP响应报文，并打印TTL，RTT。&lt;/p&gt;
+&lt;p&gt;第三步：循环第二步N次，本项目设置为5。&lt;/p&gt;
+&lt;p&gt;第四步输出统计信息。&lt;br&gt;完整代码：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;58&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;59&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;60&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;61&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;62&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;63&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;65&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;66&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;67&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;68&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;69&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;70&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;71&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;72&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;73&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;74&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;75&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;76&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;77&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;78&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;79&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;80&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;81&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;82&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;83&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;84&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;85&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;86&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;87&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;88&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;89&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;90&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;91&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;92&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;93&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;94&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;95&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;96&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;97&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;98&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;99&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;100&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;101&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;102&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;103&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;104&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;105&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;106&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;107&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;108&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;109&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;110&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;111&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;112&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;113&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;114&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;115&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;116&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;117&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;118&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;119&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;120&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;121&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;122&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;123&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;124&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;125&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;126&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;127&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;128&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;129&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;130&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;131&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;132&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;133&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;134&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;135&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;136&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;137&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;138&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;139&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;140&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;141&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;142&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;143&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;144&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;145&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;146&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;147&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;148&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;149&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;150&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;151&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;152&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;153&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;154&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;155&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;156&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;157&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;158&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;159&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;160&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;161&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;162&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;163&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;164&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;165&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;166&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;167&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;168&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;169&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;170&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;171&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;172&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;173&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;174&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;175&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;176&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;177&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;178&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;179&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;180&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;181&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;182&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;183&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;184&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;185&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;186&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;187&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;188&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;189&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;190&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;191&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;192&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;193&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;194&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;195&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;196&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;197&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;198&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;199&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;200&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;201&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;202&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;203&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;204&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;205&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;206&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;207&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;208&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;209&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;210&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;211&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;212&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;213&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;214&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;215&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;216&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;217&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;218&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;219&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;220&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;221&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;222&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;223&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;224&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;225&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;226&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;227&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;228&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;229&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;230&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;231&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;232&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;233&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;234&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;235&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;236&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;string.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;unistd.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;sys/time.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;arpa/inet.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;netdb.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define ICMP_SIZE (sizeof(struct icmp))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define ICMP_ECHO 8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define ICMP_ECHOREPLY 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define BUF_SIZE 1024&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define NUM   5    // 发送报文次数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define UCHAR  unsigned char&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define USHORT unsigned short&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define UINT   unsigned int&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// ICMP报文数据结构&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;struct icmp&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR           type;      // 类型&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR           code;      // 代码&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT          checksum;  // 校验和&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT          id;        // 标识符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT          sequence;  // 序号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct timeval  timestamp; // 时间戳&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// IP首部数据结构&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;struct ip&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 主机字节序判断&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    #if __BYTE_ORDER == __LITTLE_ENDIAN&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   hlen:4;        // 首部长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   version:4;     // 版本      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    #endif&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    #if __BYTE_ORDER == __BIG_ENDIAN&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   version:4;       &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   hlen:4;    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    #endif    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   tos;             // 服务类型&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT  len;             // 总长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT  id;                // 标识符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT  offset;            // 标志和片偏移&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   ttl;            // 生存时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UCHAR   protocol;       // 协议&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    USHORT  checksum;       // 校验和&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct in_addr ipsrc;    // 32位源ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct in_addr ipdst;   // 32位目的ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;char buf[BUF_SIZE] = &amp;#123;0&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;USHORT checkSum(USHORT *, int); // 计算校验和&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;float timediff(struct timeval *, struct timeval *); // 计算时间差&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;void pack(struct icmp *, int);  // 封装一个ICMP报文&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int unpack(char *, int, char *);        // 对接收到的IP报文进行解包&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int main(int argc, char * argv[])&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct hostent *host;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct icmp sendicmp;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct sockaddr_in from;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    struct sockaddr_in to;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int fromlen = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int sockfd;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int nsend = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int nreceived = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int i, n;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    in_addr_t inaddr;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    memset(&amp;amp;from, 0, sizeof(struct sockaddr_in));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    memset(&amp;amp;to, 0, sizeof(struct sockaddr_in));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(argc &amp;lt; 2)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        printf(&amp;quot;use : %s hostname/IP address \n&amp;quot;, argv[0]);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        exit(1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 生成原始套接字&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if((sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP)) == -1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        printf(&amp;quot;socket() error \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        exit(1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 设置目的地址信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    to.sin_family = AF_INET;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 判断是域名还是ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(inaddr = inet_addr(argv[1]) == INADDR_NONE)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        // 是域名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        if((host = gethostbyname(argv[1])) == NULL)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            printf(&amp;quot;gethostbyname() error \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            exit(1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        to.sin_addr = *(struct in_addr *)host-&amp;gt;h_addr_list[0];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;else&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        // 是ip地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        to.sin_addr.s_addr = inaddr;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 输出域名ip地址信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    printf(&amp;quot;ping %s (%s) : %d bytes of data.\n&amp;quot;, argv[1], inet_ntoa(to.sin_addr), (int)ICMP_SIZE);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    //循环发送报文、接收报文&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    for(i = 0; i &amp;lt; NUM; i++)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        nsend++;  // 发送次数加1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        memset(&amp;amp;sendicmp, 0, ICMP_SIZE);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        pack(&amp;amp;sendicmp, nsend);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        // 发送报文&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        if(sendto(sockfd, &amp;amp;sendicmp, ICMP_SIZE, 0, (struct sockaddr *)&amp;amp;to, sizeof(to)) == -1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            printf(&amp;quot;sendto() error \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            continue;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        // 接收报文&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        if((n = recvfrom(sockfd, buf, BUF_SIZE, 0, (struct sockaddr *)&amp;amp;from, &amp;amp;fromlen)) &amp;lt; 0)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            printf(&amp;quot;recvform() error \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            continue;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        nreceived++;  // 接收次数加1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        if(unpack(buf, n, inet_ntoa(from.sin_addr)) == -1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            printf(&amp;quot;unpack() error \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sleep(1);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 输出统计信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    printf(&amp;quot;---  %s ping statistics ---\n&amp;quot;, argv[1]);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    printf(&amp;quot;%d packets transmitted, %d received, %%%d packet loss\n&amp;quot;, nsend, nreceived,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            (nsend - nreceived) / nsend * 100);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * addr 指向需校验数据缓冲区的指针&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * len  需校验数据的总长度（字节单位）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;USHORT checkSum(USHORT *addr, int len)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    UINT sum = 0;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    while(len &amp;gt; 1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sum += *addr++;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        len -= 2;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 处理剩下的一个字节&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(len == 1)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        sum += *(UCHAR *)addr;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 将32位的高16位与低16位相加&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sum = (sum &amp;gt;&amp;gt; 16) + (sum &amp;amp; 0xffff);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sum += (sum &amp;gt;&amp;gt; 16);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return (USHORT) ~sum;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * 返回值单位：ms&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * begin 开始时间戳&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * end   结束时间戳&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;float timediff(struct timeval *begin, struct timeval *end)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int n;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 先计算两个时间点相差多少微秒&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    n = ( end-&amp;gt;tv_sec - begin-&amp;gt;tv_sec ) * 1000000&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        + ( end-&amp;gt;tv_usec - begin-&amp;gt;tv_usec );&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 转化为毫秒返回&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return (float) (n / 1000);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * icmp 指向需要封装的ICMP报文结构体的指针&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * sequence 该报文的序号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;void pack(struct icmp * icmp, int sequence)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;type = ICMP_ECHO;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;code = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;checksum = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;id = getpid();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;sequence = sequence;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    gettimeofday(&amp;amp;icmp-&amp;gt;timestamp, 0);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    icmp-&amp;gt;checksum = checkSum((USHORT *)icmp, ICMP_SIZE);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * buf  指向接收到的IP报文缓冲区的指针&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * len  接收到的IP报文长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * addr 发送ICMP报文响应的主机IP地址&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int unpack(char * buf, int len, char * addr)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   int i, ipheadlen;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   struct ip * ip;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   struct icmp * icmp;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   float rtt;          // 记录往返时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   struct timeval end; // 记录接收报文的时间戳&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   ip = (struct ip *)buf;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 计算ip首部长度，即ip首部的长度标识乘4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   ipheadlen = ip-&amp;gt;hlen &amp;lt;&amp;lt; 2;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 越过ip首部，指向ICMP报文&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   icmp = (struct icmp *)(buf + ipheadlen);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // ICMP报文的总长度&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   len -= ipheadlen;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 如果小于ICMP报文首部长度8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   if(len &amp;lt; 8)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        printf(&amp;quot;ICMP packets\&amp;apos;s length is less than 8 \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return -1;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 确保是我们所发的ICMP ECHO回应&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   if(icmp-&amp;gt;type != ICMP_ECHOREPLY ||&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           icmp-&amp;gt;id != getpid())&amp;#123;    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       printf(&amp;quot;ICMP packets are not send by us \n&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       return -1;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 计算往返时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   gettimeofday(&amp;amp;end, 0);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   rtt = timediff(&amp;amp;icmp-&amp;gt;timestamp, &amp;amp;end);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 打印ttl，rtt，seq&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   printf(&amp;quot;%d bytes from %s : icmp_seq=%u ttl=%d rtt=%fms \n&amp;quot;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           len, addr, icmp-&amp;gt;sequence, ip-&amp;gt;ttl, rtt);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   return 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;将上面代码写入ping.c文件中，编译执行。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;学习C网络编程笔记&lt;/p&gt;
+&lt;h1 id=&quot;ping-命令&quot;&gt;&lt;a href=&quot;#ping-命令&quot; class=&quot;headerlink&quot; title=&quot;ping 命令&quot;&gt;&lt;/a&gt;ping 命令&lt;/h1&gt;&lt;h2 id=&quot;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot;&gt;&lt;a href=&quot;#ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot; class=&quot;headerlink&quot; title=&quot;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&quot;&gt;&lt;/a&gt;ping命令是用来查看网络上另一个主机系统的网络连接是否正常的一个工具。&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ping www.baidu.com&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PING www.a.shifen.com (180.97.33.107) 56(84) bytes of data.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64 bytes from 180.97.33.107: icmp_seq=1 ttl=50 time=42.2 ms&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64 bytes from 180.97.33.107: icmp_seq=2 ttl=50 time=37.4 ms&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="https://iceziyao.github.io/categories/C/"/>
+    
+    
+      <category term="C" scheme="https://iceziyao.github.io/tags/C/"/>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>浅析docker实现思想</title>
     <link href="https://iceziyao.github.io/2016/04/04/Docker/docker02/"/>
     <id>https://iceziyao.github.io/2016/04/04/Docker/docker02/</id>
@@ -1035,6 +1118,48 @@ res.output();
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     
       <category term="lvs" scheme="https://iceziyao.github.io/tags/lvs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高可用集群系列之基础篇1</title>
+    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
+    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
+    <published>2016-01-15T16:00:00.000Z</published>
+    <updated>2016-08-06T14:50:31.530Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
+&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
+&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+    
+      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
     
   </entry>
   
@@ -1482,48 +1607,6 @@ backend mysqlservers
   </entry>
   
   <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:31.530Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>高可用集群系列之基础篇2</title>
     <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
     <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
@@ -1843,185 +1926,6 @@ server {
     
     
       <category term="tcp" scheme="https://iceziyao.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP编译出错</title>
-    <link href="https://iceziyao.github.io/2016/01/01/lnmp/php/"/>
-    <id>https://iceziyao.github.io/2016/01/01/lnmp/php/</id>
-    <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:20.161Z</updated>
-    
-    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;pre&gt;&lt;code&gt;
-   /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
-   　　collect2: ld returned 1 exit status
-   　　make:*** [sapi/fpm/php-fpm] Error 1
-   　　解决方法：
-   　　#make ZEND_EXTRA_LIBS=&#39;-liconv&#39;
-   　　错误一、编译php出错
-   　　/php-5.3.2/ext/fileinfo/libmagic/apprentice.c:147:internal compiler
-   error:Segmentation fault
-   　　Please submit a full bug report,
-   　　with preprocessed source if appropriate.
-   　　See &lt;url:http: bugzilla.redhat.com=&quot;&quot; bugzilla=&quot;&quot;&gt; for instructions.
-   　　The bug is not reproducible,so it is likely a hardware or OS problem.
-   　　make:*** [ext/fileinfo/libmagic/apprentice.lo] Error 1
-   　　解决方法：内存大于1G即可，这是php5.3.2的一个bug
-    或者在./configure加上选项:--disable-fileinfo
-    　　--------------------------------------------------------------------
-    　　错误二、重新构造configure文件出错
-    　　./buildconf --force
-    　　Forcing buildconf
-    　　buildconf:checking installation…
-    　　buildconf:autoconf version 2.59 （ok）
-    　　buildconf:Your version of autoconf likely contains buggy cache code.
-    　　Running vcsclean for you.
-    　　To avoid this,install autoconf-2.13.
-    　　Can&#39;t figure out your VCS, not cleaning.
-    　　解决方法：编译安装autoconf-2.13
-    　　再将autoconf-2.13的auotconf文件至/usr/local/autoconf
-    　　--------------------------------------------------------------------
-    　　错误三、编译时缺少库
-    　　configure: error: libXpm.（a|so） not found.
-    　　解决方法：yum install libXpm-devel
-    　　--------------------------------------------------------------------
-    　　错误四、编译时缺少gmp.h文件
-    　　configure: error: Unable to locate gmp.h
-    　　解决方法：yum install gmp-devel
-    　　--------------------------------------------------------------------
-    　　错误五
-    　　Configure: error: xml2-config not found. Please check your libxml2
-    installation.
-    　　解决方法：
-    　　#yum install libxml2 libxml2-devel （For Redhat &amp; Fedora）
-    　　# aptitude install libxml2-dev      （For ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误六
-    　　Checking for pkg-config… /usr/bin/pkg-config
-    　　configure: error: Cannot find OpenSSL’s &lt;evp.h&gt;
-    　　解决方法：
-    　　#yum install openssl openssl-devel
-    　　--------------------------------------------------------------------
-    　　错误七
-    　　Configure: error: Please reinstall the BZip2 distribution
-    　　解决方法：
-    　　# yum install bzip2 bzip2-devel
-    　　--------------------------------------------------------------------
-    　　错误八
-    　　Configure: error: Please reinstall the libcurl distribution -
-    　　easy.h should be in &lt;curl-dir&gt;/include/curl/
-    　　解决方法：
-    　　# yum install curl curl-devel   （For Redhat &amp; Fedora）
-    　　# install libcurl4-gnutls-dev    （For Ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误九：
-    　　Configure: error: libjpeg.（also） not found.
-    　　解决方法：
-    　　# yum install libjpeg libjpeg-devel
-    　　--------------------------------------------------------------------
-    　　错误十
-    　　Configure: error: libpng.（also） not found.
-    　　--------------------------------------------------------------------
-    　　解决方法：
-    　　# yum install libpng libpng-devel
-    　　--------------------------------------------------------------------
-    　　错误十一
-    　　Configure: error: freetype.h not found.
-    　　解决方法：
-    　　#yum install freetype-devel
-    　　--------------------------------------------------------------------
-    　　错误十二
-    　　Configure: error: Unable to locate gmp.h
-    　　解决方法：
-    　　# yum install gmp-devel
-    　　--------------------------------------------------------------------
-    　　错误十三
-    　　Configure: error: Cannot find MySQL header files under /usr.
-    　　Note that the MySQL client library is not bundled anymore!
-    　　解决方法：
-    　　# yum install mysql-devel            （For Redhat &amp; Fedora）
-    　　# apt-get install libmysql++-dev      （For Ubuntu）
-    　　--------------------------------------------------------------------
-    　　错误十四
-    　　Configure: error: Please reinstall the ncurses distribution
-    　　解决方法：
-    　　# yum install ncurses ncurses-devel
-    　　--------------------------------------------------------------------
-    　　错误十五
-    　　Checking for unixODBC support… configure: error: ODBC header file ‘
-    /usr/include/sqlext.h’ not found!
-    　　解决方法：
-    　　# yum install unixODBC-devel
-    　　--------------------------------------------------------------------
-    　　错误十六
-    　　Configure: error: Cannot find pspell
-    　　解决方法：
-    　　# yum install pspell-devel
-    　　--------------------------------------------------------------------
-    　　错误十七
-    　　configure: error: mcrypt.h not found. Please reinstall libmcrypt.
-    　　解决方法：
-    　　# yum install libmcrypt libmcrypt-devel    （For Redhat &amp; Fedora）
-    　　# apt-get install libmcrypt-dev
-    　　--------------------------------------------------------------------
-    　　错误十八
-    　　Configure: error: snmp.h not found. Check your SNMP installation.
-    　　解决方法：
-    　　# yum install net-snmp net-snmp-devel
-    　　--------------------------------------------------------------------
-    　　错误十九
-    　　configure:error:Cannot find ldap.h
-    　　解决方法：
-    　　#yum install openldap-devel openldap
-    　　错误二十
-    　　configure:error:xslt-config not found. Please reinstall the libxslt
-    &gt;= 1.1.0 distribution
-    　　解决方法：
-    　　#yum install libxslt libxslt-devel
-    　　错误二十一
-    　　checking for libevent &gt;=1.4.11 install prefix… configure: error:
-    Could not find libevent &gt;=1.4.11 in /usr/local/php
-    　　解决方法：
-    　　安装libevent-1.4.11以上版本至/usr/local
-    　　tar xzvf libevent-1.4.14-stable.tar.gz
-    　　cd libevent-1.4.14-stable
-    　　./configure --prefix=/usr/local
-    　　make&amp;&amp;make install
-    　　在编译。/configure时添加--with-libevent-dir=/usr/local即可
-    　　错误二十二
-    　　cc1: out of memory allocating 2036 bytes after a total of 81846272
-    bytes
-    　　make: *** [ext/date/lib/parse_date.lo] Error 1
-    　　报错：
-    　　/usr/bin/ld: cannot find -lltdl
-    　　collect2: ld returned 1 exit status
-    　　make:*** [sapi/fpm/php-fpm] Error 1
-    　　解决方法：
-    　　安装ltdl
-    　　#cd /libmcrypt-2.5.7/libltdl/
-    　　#./configure --enable-ltdl-install
-    　　#ldconfig
-    　　#cd php-5.3.6
-    　　#make ZEND_EXTRA_LIBS=&#39;-liconv&#39;
-&lt;/curl-dir&gt;&lt;/evp.h&gt;&lt;/url:http:&gt;&lt;/code&gt;&lt;/pre&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;pre&gt;&lt;code&gt;
-   /libxmlrpc/encoding.c:101:undefined reference to &#39;libiconv_close&#39;
-   　　collect2: ld returned 1 exit status
-
-    
-    </summary>
-    
-      <category term="lnmp" scheme="https://iceziyao.github.io/categories/lnmp/"/>
-    
-    
-      <category term="php" scheme="https://iceziyao.github.io/tags/php/"/>
     
   </entry>
   

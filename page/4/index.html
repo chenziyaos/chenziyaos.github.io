@@ -140,7 +140,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/HA/" style="font-size: 12px;">HA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 12px;">ansible</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/lvs/" style="font-size: 12px;">lvs</a> <a href="/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/saltstack/" style="font-size: 12px;">saltstack</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 18px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
+                        <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/HA/" style="font-size: 12px;">HA</a> <a href="/tags/Linux/" style="font-size: 12px;">Linux</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ansible/" style="font-size: 12px;">ansible</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/lvs/" style="font-size: 12px;">lvs</a> <a href="/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 12px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/saltstack/" style="font-size: 12px;">saltstack</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/tcp/" style="font-size: 20px;">tcp</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a> <a href="/tags/自动化运维/" style="font-size: 18px;">自动化运维</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
                     </div>
                 </section>
                 
@@ -211,6 +211,88 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-shell/shell-if" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/11/shell/shell-if/" class="article-date">
+      <time datetime="2015-10-10T16:00:00.000Z" itemprop="datePublished">2015-10-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/11/shell/shell-if/">shell判断条件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>###shell判断条件：</p>
+<p>1.字符串判断</p>
+<blockquote>
+<p>str1 = str2　　　　　　当两个串有相同内容、长度时为真<br>str1 != str2　　　　　 当串str1和str2不等时为真<br>-n str1　　　　　　　 当串的长度大于0时为真(串非空)<br>-z str1　　　　　　　 当串的长度为0时为真(空串)  </p>
+</blockquote>
+<p>2.数字的判断</p>
+<blockquote>
+<p>int1 -eq int2　　　　两数相等为真<br>int1 -ne int2　　　　两数不等为真<br>int1 -gt int2　　　　int1大于int2为真<br>int1 -ge int2　　　　int1大于等于int2为真<br>int1 -lt int2　　　　int1小于int2为真<br>int1 -le int2　　　　int1小于等于int2为真  </p>
+</blockquote>
+<p>3.文件的判断</p>
+<blockquote>
+<p>-e file            若文件存在，则为真<br>-d file            若文件存在且是一个目录，则为真<br>-b file            若文件存在且是一个块特殊文件，则为真<br>-c file            若文件存在且是一个字符特殊文件，则为真<br>-f file            若文件存在且是一个规则文件，则为真<br>-g file            若文件存在且设置了SGID位的值，则为真<br>-h file            若文件存在且为一个符合链接，则为真<br>-k file            若文件存在且设置了”sticky”位的值<br>-p file            若文件存在且为一已命名管道，则为真<br>-r file            若文件存在且可读，则为真<br>-s file            若文件存在且其大小大于零,则为真<br>-u file            若文件存在且设置了SUID位，则为真<br>-w file            若文件存在且可写，则为真<br>-x file            若文件存在且可执行，则为真<br>-o file            若文件存在且被有效用户ID所拥有，则为真  </p>
+</blockquote>
+<p>4.逻辑判断</p>
+<blockquote>
+<p>!expr              若expr为假则复合表达式为真。expr可以是任何有效的测试表达式<br>expr1 -a expr2     若expr1和expr2都为真则整式为真<br>expr1 -o expr2     若expr1和expr2有一个为真则整式为真   </p>
+</blockquote>
+<p>5.系统变量</p>
+<blockquote>
+<p>$n                 该变量与脚本被激活时所带的参数相对应。n是正整数，与参数位置相对应($1,$2…)<br>$?                 前一个命令执行后的退出状态<br>$#                 提供脚本的参数号<br>$<em>                 所有这些参数都被双引号引住。若一个脚本接收两个参数，$</em>等于$1$2<br>$0                 正在被执行命令的名字。对于shell脚本而言，这是被激活命令的路径<br>$@                 所有这些参数都分别被双引号引住。若一个脚本接收到两个参数，$@等价于$1$2<br>$$                 当前shell的进程号。对于shell脚本，这是其正在执行时的进程ID<br>$!                 前一个后台命令的进程号  </p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-shell/shell编程" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -425,7 +507,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016-09-08 陈子瑶
+                &copy; 2016-09-13 陈子瑶
             </div>
             <div class="footer-right">
                 <a href="#" target="_blank"></a> Yao<a href="#" target="_blank"></a> 非衣小阁
