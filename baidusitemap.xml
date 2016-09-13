@@ -4,16 +4,38 @@
 
     
   <url>
-    <loc>https://iceziyao.github.io/2016/04/06/C/C_ping/</loc>
-    <lastmod>2016-09-12T20:05:02.911Z</lastmod>
+    <loc>https://iceziyao.github.io/2016/04/01/C/bin/pwd-ls/</loc>
+    <lastmod>2016-09-13T22:10:32.960Z</lastmod>
+    <data>
+        <display>
+        <title>C语言实现pwd,ls命令</title>
+        <pubTime>2016-03-31T16:00:00.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="https://iceziyao.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://iceziyao.github.io/2016/04/06/C/bin/C_ping/</loc>
+    <lastmod>2016-09-12T20:27:07.144Z</lastmod>
     <data>
         <display>
         <title>C语言实现ping</title>
         <pubTime>2016-04-05T16:00:00.000Z</pubTime>
         
-        <tag>C</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>C</tag>
          
          
            
@@ -148,11 +170,11 @@
         <title>ansible的二次开发</title>
         <pubTime>2016-06-30T16:00:00.000Z</pubTime>
         
+        <tag>自动化运维</tag>
+         
         <tag>ansible</tag>
          
         <tag>python</tag>
-         
-        <tag>自动化运维</tag>
          
          
            
@@ -172,11 +194,11 @@
         <title>基于Tornado的ansible的二次封装</title>
         <pubTime>2016-07-06T16:00:00.000Z</pubTime>
         
+        <tag>自动化运维</tag>
+         
         <tag>ansible</tag>
          
         <tag>python</tag>
-         
-        <tag>自动化运维</tag>
          
          
            
@@ -218,9 +240,9 @@
         <title>Ycm，我的自动化运维之路</title>
         <pubTime>2016-06-16T16:00:00.000Z</pubTime>
         
-        <tag>自动化运维</tag>
-         
         <tag>Python</tag>
+         
+        <tag>自动化运维</tag>
          
          
            
