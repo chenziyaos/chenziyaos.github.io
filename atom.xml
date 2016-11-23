@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-08-08T23:15:08.151Z</updated>
+  <updated>2016-11-23T23:09:53.428Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -16,11 +16,229 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>架构的演变</title>
+    <link href="https://iceziyao.github.io/2016/11/22/arch/%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8F%98/"/>
+    <id>https://iceziyao.github.io/2016/11/22/arch/架构演变/</id>
+    <published>2016-11-21T16:00:00.000Z</published>
+    <updated>2016-11-23T23:09:53.428Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;传统垂直应用架构&quot;&gt;&lt;a href=&quot;#传统垂直应用架构&quot; class=&quot;headerlink&quot; title=&quot;传统垂直应用架构&quot;&gt;&lt;/a&gt;传统垂直应用架构&lt;/h1&gt;&lt;h2 id=&quot;MVC架构&quot;&gt;&lt;a href=&quot;#MVC架构&quot; class=&quot;headerlink&quot; title=&quot;MVC架构&quot;&gt;&lt;/a&gt;MVC架构&lt;/h2&gt;&lt;p&gt;mvc架构，即spring+Struts+iBatis/Hibernate+Tomcat&lt;br&gt;MVC架构通常分为三层：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;视图展示层：&lt;/li&gt;
+&lt;li&gt;控制层&lt;/li&gt;
+&lt;li&gt;应用模型层  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;lnmp-lamp架构&quot;&gt;&lt;a href=&quot;#lnmp-lamp架构&quot; class=&quot;headerlink&quot; title=&quot;lnmp/lamp架构&quot;&gt;&lt;/a&gt;lnmp/lamp架构&lt;/h2&gt;所谓lnmp架构无非就是linux+apache/nginx+PHP（前后台页面和业务逻辑）+ mysql数据库（读写分离）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;RPC架构&quot;&gt;&lt;a href=&quot;#RPC架构&quot; class=&quot;headerlink&quot; title=&quot;RPC架构&quot;&gt;&lt;/a&gt;RPC架构&lt;/h1&gt;&lt;h1 id=&quot;SOA架构&quot;&gt;&lt;a href=&quot;#SOA架构&quot; class=&quot;headerlink&quot; title=&quot;SOA架构&quot;&gt;&lt;/a&gt;SOA架构&lt;/h1&gt;&lt;h1 id=&quot;微服务架构&quot;&gt;&lt;a href=&quot;#微服务架构&quot; class=&quot;headerlink&quot; title=&quot;微服务架构&quot;&gt;&lt;/a&gt;微服务架构&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;传统垂直应用架构&quot;&gt;&lt;a href=&quot;#传统垂直应用架构&quot; class=&quot;headerlink&quot; title=&quot;传统垂直应用架构&quot;&gt;&lt;/a&gt;传统垂直应用架构&lt;/h1&gt;&lt;h2 id=&quot;MVC架构&quot;&gt;&lt;a href=&quot;#MVC架构&quot; class=&quot;headerlink&quot; title=&quot;MVC架构&quot;&gt;&lt;/a&gt;MVC架构&lt;/h2&gt;&lt;p&gt;mvc架构，即spring+Struts+iBatis/Hibernate+Tomcat&lt;br&gt;MVC架构通常分为三层：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;视图展示层：&lt;/li&gt;
+&lt;li&gt;控制层&lt;/li&gt;
+&lt;li&gt;应用模型层
+    
+    </summary>
+    
+      <category term="架构" scheme="https://iceziyao.github.io/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="架构" scheme="https://iceziyao.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于hadoop的web日志分析</title>
+    <link href="https://iceziyao.github.io/2016/10/28/hadoop/hadoopweb%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
+    <id>https://iceziyao.github.io/2016/10/28/hadoop/hadoopweb日志分析/</id>
+    <published>2016-10-27T16:00:00.000Z</published>
+    <updated>2016-11-23T23:10:04.828Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;企业中，web服务占有很大比重，同时web服务产生大量的日志，而这些日志中包含了很多有用信息。随着业务量的增长，日志的数量也会急剧增加，当日志只有GB单位时，在处理日志时还可以使用grep，sed，awk处理；当数据量上升到百GB以上时，shell脚本，以及python多线程的处理方式就显得有些力不从心。所以使用hadoop处理海量日志分析，是必然趋势。&lt;br&gt;本次是构建一个web日志的kpi分析系统，通过获取相应key值的分析，获取潜在消息&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;目录：   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web日志分析概述&lt;/li&gt;
+&lt;li&gt;需求分析：KPI指标设计&lt;/li&gt;
+&lt;li&gt;算法模型：Hadoop并行算法&lt;/li&gt;
+&lt;li&gt;架构设计：日志KPI系统架构&lt;/li&gt;
+&lt;li&gt;程序开发  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Web日志分析概述&quot;&gt;&lt;a href=&quot;#Web日志分析概述&quot; class=&quot;headerlink&quot; title=&quot;Web日志分析概述&quot;&gt;&lt;/a&gt;Web日志分析概述&lt;/h1&gt;&lt;p&gt;Web日志由Web服务器产生，可能是Nginx, Apache, Tomcat等。从Web日志中，我们可以获取网站每类页面的PV值（PageView，页面访问量）、独立IP数；稍微复杂一些的，可以计算得出用户所检索的关键词排行榜、用户停留时间最高的页面等；更复杂的，构建广告点击模型、分析用户行为特征等等。&lt;br&gt;在Web日志中，每条日志通常代表着用户的一次访问行为&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;127.0.0.1 - - [19/Jul/2016:04:02:04 +0800] &amp;quot;GET /ss/bower/components/showdown/compressed/showdown.js HTTP/1.1&amp;quot; 304 0 &amp;quot;http://localhost/ss/&amp;quot; &amp;quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36&amp;quot;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;web日志，拆解为以下10个变量:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;remote_addr: 记录客户端的ip地址, 127.0.0.1&lt;/li&gt;
+&lt;li&gt;remote_user: 记录客户端用户名称, –&lt;/li&gt;
+&lt;li&gt;time_local: 记录访问时间与时区, [19/Jul/2016:04:02:04 +0800]&lt;/li&gt;
+&lt;li&gt;request_method: 记录请求的url与http协议, GET&lt;/li&gt;
+&lt;li&gt;source: /ss/bower/components/showdown/compressed/showdown.js&lt;/li&gt;
+&lt;li&gt;vesion: HTTP/1.1&lt;/li&gt;
+&lt;li&gt;status: 记录请求状态,304&lt;/li&gt;
+&lt;li&gt;body_bytes_sent: 记录发送给客户端文件主体内容大小, 19939&lt;/li&gt;
+&lt;li&gt;http_referer: 用来记录从那个页面链接访问过来的, &lt;a href=&quot;http://localhost/ss/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost/ss/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;http_user_agent: 记录客户浏览器的相关信息, Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;需求分析：KPI指标设计&quot;&gt;&lt;a href=&quot;#需求分析：KPI指标设计&quot; class=&quot;headerlink&quot; title=&quot;需求分析：KPI指标设计&quot;&gt;&lt;/a&gt;需求分析：KPI指标设计&lt;/h1&gt;&lt;p&gt;KPI指标设计：  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* PV(PageView): 网站文件访问统计
+* IP: 独立IP的访问量统计
+* Time: 网站分钟级请求数统计
+* SIP：用户来源域名的统计   
+* Browser: 用户的访问设备统计   
+* Status：状态码分析
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;算法模型：Hadoop并行算法&quot;&gt;&lt;a href=&quot;#算法模型：Hadoop并行算法&quot; class=&quot;headerlink&quot; title=&quot;算法模型：Hadoop并行算法&quot;&gt;&lt;/a&gt;算法模型：Hadoop并行算法&lt;/h1&gt;&lt;p&gt;并行算法的设计：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PV(PageView): 网站文件访问统计&lt;ul&gt;
+&lt;li&gt;Map过程{key:$source,value:1}&lt;/li&gt;
+&lt;li&gt;Reduce过程{key:$source,value:求和(sum)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IP: IP的访问量统计&lt;ul&gt;
+&lt;li&gt;Map: {key:$remote_addr,value:$1}&lt;/li&gt;
+&lt;li&gt;Reduce: {key:$remote_addr,value:求和(sum}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Time: 网站分钟级请求数统计&lt;ul&gt;
+&lt;li&gt;Map: {key:$time_local,value:1}&lt;/li&gt;
+&lt;li&gt;Reduce: {key:$time_local,value:求和(sum)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SIP: 用户来源域名的统计&lt;ul&gt;
+&lt;li&gt;Map: {key:$http_referer,value:1}&lt;/li&gt;
+&lt;li&gt;Reduce: {key:$http_referer,value:求和(sum)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Browser: 用户的访问设备统计&lt;ul&gt;
+&lt;li&gt;Map: {key:$http_user_agent,value:1}&lt;/li&gt;
+&lt;li&gt;Reduce: {key:$http_user_agent,value:求和(sum)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Status：状态码分析&lt;ul&gt;
+&lt;li&gt;Map: {key:$status,value:1}&lt;/li&gt;
+&lt;li&gt;Reduce: {key:$status,value:求和(sum)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;架构设计：日志KPI系统架构&quot;&gt;&lt;a href=&quot;#架构设计：日志KPI系统架构&quot; class=&quot;headerlink&quot; title=&quot;架构设计：日志KPI系统架构&quot;&gt;&lt;/a&gt;架构设计：日志KPI系统架构&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;日志集中保存&lt;/li&gt;
+&lt;li&gt;设置系统定时器CRON，夜间在0点后，向HDFS导入昨天的日志文件。&lt;/li&gt;
+&lt;li&gt;完成导入后，设置系统定时器，启动MapReduce程序，提取并计算统计指标。&lt;/li&gt;
+&lt;li&gt;完成计算后，设置系统定时器，从HDFS导出统计指标数据到数据库，方便以后的即使查询。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;程序开发&quot;&gt;&lt;a href=&quot;#程序开发&quot; class=&quot;headerlink&quot; title=&quot;程序开发&quot;&gt;&lt;/a&gt;程序开发&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;集中日志  crontab&lt;/li&gt;
+&lt;li&gt;MapReduce程序实现开发流程：&lt;ol&gt;
+&lt;li&gt;对日志行的解析&lt;/li&gt;
+&lt;li&gt;Map函数实现&lt;/li&gt;
+&lt;li&gt;Reduce函数实现&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;日志集中&quot;&gt;&lt;a href=&quot;#日志集中&quot; class=&quot;headerlink&quot; title=&quot;日志集中&quot;&gt;&lt;/a&gt;日志集中&lt;/h2&gt;&lt;p&gt;crontab，内容如下：&lt;br&gt;&lt;code&gt;59 23 * * *  /usr/bin/python /hadoop/logserver/hdfsput.py &amp;gt;&amp;gt; /dev/null 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import subprocess&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import sys&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import datatime&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;webid=&amp;quot;****&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;currdate=datetime.datetime.now().strftime(&amp;apos;%Y%m%d&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;logspath=&amp;quot;/data/logs/&amp;quot;+currdate+&amp;quot;/access.log&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;logname=&amp;quot;access.log.&amp;quot;+webid&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;try:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    subprocess.Popen([&amp;quot;/usr/local/hadoop-1.2.1/bin/hadoop&amp;quot;, &amp;quot;dfs&amp;quot;, &amp;quot;-mkdir&amp;quot;, &amp;quot;hdfs://192.168.1.20:9000/user/root/website.com/&amp;quot;+currdate], stdout=subprocess.PIPE)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;except Exception,e:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   pass&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;putinfo=subprocess.Popen([&amp;quot;/usr/local/hadoop-1.2.1/bin/hadoop&amp;quot;, &amp;quot;dfs&amp;quot;, &amp;quot;-put&amp;quot;, logspath, &amp;quot;hdfs://192.168.1.20:9000/user/root/website.com/&amp;quot;+currdate+&amp;quot;/&amp;quot;+logname], stdout=subprocess.PIPE)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;for line in putinfo.stdout:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    print line&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;统计分析&quot;&gt;&lt;a href=&quot;#统计分析&quot; class=&quot;headerlink&quot; title=&quot;统计分析&quot;&gt;&lt;/a&gt;统计分析&lt;/h2&gt;&lt;p&gt;统计分析语言采用python，使用Mrjob框架编写Mapreduce。避免臃肿的代码量。  &lt;/p&gt;
+&lt;h3 id=&quot;PV-PageView-网站文件访问统计&quot;&gt;&lt;a href=&quot;#PV-PageView-网站文件访问统计&quot; class=&quot;headerlink&quot; title=&quot;PV(PageView): 网站文件访问统计&quot;&gt;&lt;/a&gt;PV(PageView): 网站文件访问统计&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	i=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for url in line.split():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    if i==6:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            	yield url, 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    i+=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, url, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield url, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;IP-独立IP的访问量统计&quot;&gt;&lt;a href=&quot;#IP-独立IP的访问量统计&quot; class=&quot;headerlink&quot; title=&quot;IP: 独立IP的访问量统计&quot;&gt;&lt;/a&gt;IP: 独立IP的访问量统计&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;IP_RE = re.compile(r&amp;quot;\d&amp;#123;1,3&amp;#125;\.\d&amp;#123;1,3&amp;#125;\.\d&amp;#123;1,3&amp;#125;\.\d&amp;#123;1,3&amp;#125;&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for ip in IP_RE.findall(line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            yield ip, 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, ip, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield ip, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Time-网站分钟级请求数统计&quot;&gt;&lt;a href=&quot;#Time-网站分钟级请求数统计&quot; class=&quot;headerlink&quot; title=&quot;Time: 网站分钟级请求数统计&quot;&gt;&lt;/a&gt;Time: 网站分钟级请求数统计&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	i=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for dt in line.split():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    if i==3:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		timerow=dt.split(&amp;quot;:&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		hm=timerow[1]+&amp;quot;:&amp;quot;+timerow[2]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            	yield hm, 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    i+=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, key, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield key, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;SIP：用户来源域名的统计&quot;&gt;&lt;a href=&quot;#SIP：用户来源域名的统计&quot; class=&quot;headerlink&quot; title=&quot;SIP：用户来源域名的统计&quot;&gt;&lt;/a&gt;SIP：用户来源域名的统计&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	i=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for dt in line.split():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    if i==11:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		timerow=dt.split(&amp;quot;:&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield sip, 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    i+=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, key, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield key, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Browser-用户的访问设备统计&quot;&gt;&lt;a href=&quot;#Browser-用户的访问设备统计&quot; class=&quot;headerlink&quot; title=&quot;Browser: 用户的访问设备统计&quot;&gt;&lt;/a&gt;Browser: 用户的访问设备统计&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	i=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for dt in line.split():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    if i==12:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		timerow=dt.split(&amp;quot;:&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield browser , 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    i+=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, key, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield key, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Status：状态码分析&quot;&gt;&lt;a href=&quot;#Status：状态码分析&quot; class=&quot;headerlink&quot; title=&quot;Status：状态码分析&quot;&gt;&lt;/a&gt;Status：状态码分析&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;from mrjob.job import MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import re&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;class MRCounter(MRJob):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def mapper(self, key, line):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	i=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        for httpcode in line.split():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    if i==8 and re.match(r&amp;quot;\d&amp;#123;1,3&amp;#125;&amp;quot;,httpcode):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            	yield httpcode, 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	    i+=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer(self, httpcode, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        yield httpcode, sum(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def reducer_sorted(self, httpcode, occurrences):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	yield httpcode, sorted(occurrences)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    def steps(self):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return [self.mr(mapper=self.mapper),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                self.mr(reducer=self.reducer)]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;apos;__main__&amp;apos;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MRCounter.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;未完待续  &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;企业中，web服务占有很大比重，同时web服务产生大量的日志，而这些日志中包含了很多有用信息。随着业务量的增长，日志的数量也会急剧增加，当日志只有GB单位时，在处理日志时还可以使用grep，sed，awk处理；当数据量上升到百GB以上时，shell脚本，以及python多线程的处理方式就显得有些力不从心。所以使用hadoop处理海量日志分析，是必然趋势。&lt;br&gt;本次是构建一个web日志的kpi分析系统，通过获取相应key值的分析，获取潜在消息&lt;br&gt;
+    
+    </summary>
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/categories/hadoop/"/>
+    
+    
+      <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/tags/hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hadoop的安装与使用</title>
+    <link href="https://iceziyao.github.io/2016/10/13/hadoop/hadoop%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://iceziyao.github.io/2016/10/13/hadoop/hadoop安装与使用/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-11-23T21:33:10.663Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;未完成&quot;&gt;&lt;a href=&quot;#未完成&quot; class=&quot;headerlink&quot; title=&quot;未完成&quot;&gt;&lt;/a&gt;未完成&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;未完成&quot;&gt;&lt;a href=&quot;#未完成&quot; class=&quot;headerlink&quot; title=&quot;未完成&quot;&gt;&lt;/a&gt;未完成&lt;/h1&gt;
+    
+    </summary>
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/categories/hadoop/"/>
+    
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/tags/hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识hadoop</title>
+    <link href="https://iceziyao.github.io/2016/10/09/hadoop/%E5%88%9D%E8%AF%86hadoop/"/>
+    <id>https://iceziyao.github.io/2016/10/09/hadoop/初识hadoop/</id>
+    <published>2016-10-08T16:00:00.000Z</published>
+    <updated>2016-11-23T23:10:13.050Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Hadoop历史&quot;&gt;&lt;a href=&quot;#Hadoop历史&quot; class=&quot;headerlink&quot; title=&quot;Hadoop历史&quot;&gt;&lt;/a&gt;Hadoop历史&lt;/h1&gt;&lt;p&gt;雏形开始于2002年的Apache的Nutch，Nutch是一个开源Java 实现的搜索引擎。它提供了我们运行自己的搜索引擎所需的全部工具。包括全文搜索和Web爬虫。&lt;br&gt;随后在2003年Google发表了一篇技术学术论文谷歌文件系统（GFS）。GFS也就是google File System，google公司为了存储海量搜索数据而设计的专用文件系统。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;2004年Nutch创始人Doug Cutting基于Google的GFS论文实现了分布式文件存储系统名为NDFS。&lt;br&gt;2004年Google又发表了一篇技术学术论文MapReduce。MapReduce是一种编程模型，用于大规模数据集（大于1TB）的并行分析运算。&lt;br&gt;2005年Doug Cutting又基于MapReduce，在Nutch搜索引擎实现了该功能。&lt;br&gt;2006年，Yahoo雇用了Doug Cutting，Doug Cutting将NDFS和MapReduce升级命名为Hadoop，Yahoo开建了一个独立的团队给Goug Cutting专门研究发展Hadoop。&lt;br&gt;不得不说Google和Yahoo对Hadoop的贡献功不可没。  &lt;/p&gt;
+&lt;h1 id=&quot;Hadoop核心&quot;&gt;&lt;a href=&quot;#Hadoop核心&quot; class=&quot;headerlink&quot; title=&quot;Hadoop核心&quot;&gt;&lt;/a&gt;Hadoop核心&lt;/h1&gt;&lt;p&gt;Hadoop的核心就是HDFS和MapReduce，而两者只是理论基础，不是具体可使用的高级应用，Hadoop旗下有很多经典子项目，比如HBase、Hive等，这些都是基于HDFS和MapReduce发展出来的。要想了解Hadoop，就必须知道HDFS和MapReduce是什么。&lt;/p&gt;
+&lt;h2 id=&quot;HDFS&quot;&gt;&lt;a href=&quot;#HDFS&quot; class=&quot;headerlink&quot; title=&quot;HDFS&quot;&gt;&lt;/a&gt;HDFS&lt;/h2&gt;&lt;p&gt;HDFS（Hadoop Distributed File System，Hadoop分布式文件系统），它是一个高度容错性的系统，适合部署在廉价的机器上。HDFS能提供高吞吐量的数据访问，适合那些有着超大数据集（large data set）的应用程序。&lt;/p&gt;
+&lt;p&gt;HDFS的设计特点是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;大数据文件，非常适合上T级别的大文件或者一堆大数据文件的存储，如果文件只有几个G甚至更小就没啥意思了。&lt;/li&gt;
+&lt;li&gt;文件分块存储，HDFS会将一个完整的大文件平均分块存储到不同计算器上，它的意义在于读取文件时可以同时从多个主机取不同区块的文件，多主机读取比单主机读取效率要高得多得都。&lt;/li&gt;
+&lt;li&gt;流式数据访问，一次写入多次读写，这种模式跟传统文件不同，它不支持动态改变文件内容，而是要求让文件一次写入就不做变化，要变化也只能在文件末添加内容。&lt;/li&gt;
+&lt;li&gt;廉价硬件，HDFS可以应用在普通PC机上，这种机制能够让给一些公司用几十台廉价的计算机就可以撑起一个大数据集群。&lt;/li&gt;
+&lt;li&gt;硬件故障，HDFS认为所有计算机都可能会出问题，为了防止某个主机失效读取不到该主机的块文件，它将同一个文件块副本分配到其它某几个主机上，如果其中一台主机失效，可以迅速找另一块副本取文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;HDFS的关键元素：&lt;br&gt;Block：将一个文件进行分块，通常是64M。&lt;br&gt;NameNode：保存整个文件系统的目录信息、文件信息及分块信息，这是由唯一一台主机专门保存，当然这台主机如果出错，NameNode就失效了。在Hadoop2.*开始支持activity-standy模式—-如果主NameNode失效，启动备用主机运行NameNode。&lt;br&gt;DataNode：分布在廉价的计算机上，用于存储Block块文件。&lt;/p&gt;
+&lt;h2 id=&quot;MapReduce&quot;&gt;&lt;a href=&quot;#MapReduce&quot; class=&quot;headerlink&quot; title=&quot;MapReduce&quot;&gt;&lt;/a&gt;MapReduce&lt;/h2&gt;&lt;p&gt;通俗说MapReduce是一套从海量·源数据提取分析元素最后返回结果集的编程模型，将文件分布式存储到硬盘是第一步，而从海量数据中提取分析我们需要的内容就是MapReduce做的事了。&lt;/p&gt;
+&lt;p&gt;下面以一个计算海量数据最大值为例：12306需要统计每天访问量最多的ip，按照传统的计算方式，我们会这样：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;awk&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果计算的数组长度少的话，这样实现是不会有问题的，还是面对海量数据的时候就会有问题。&lt;br&gt;MapReduce会这样做：首先数字是分布存储在不同块中的，以某几个块为一个Map，计算出Map中最大的值，然后将每个Map中的最大值做Reduce操作，Reduce再取最大值给用户。&lt;/p&gt;
+&lt;p&gt;MapReduce的基本原理就是：将大的数据分析分成小块逐个分析，最后再将提取出来的数据汇总分析，最终获得我们想要的内容。当然怎么分块分析，怎么做Reduce操作非常复杂，Hadoop已经提供了数据分析的实现，我们只需要编写简单的需求命令即可达成我们想要的数据。&lt;/p&gt;
+&lt;h1 id=&quot;Hadoop架构&quot;&gt;&lt;a href=&quot;#Hadoop架构&quot; class=&quot;headerlink&quot; title=&quot;Hadoop架构&quot;&gt;&lt;/a&gt;Hadoop架构&lt;/h1&gt;&lt;p&gt;Hadoop使用主/从（Master/Slave）架构，主要角色有NameNode，DataNode，secondary NameNode，JobTracker，TaskTracker组成。  &lt;/p&gt;
+&lt;p&gt;其中NameNode，secondary NameNode，JobTracker运行在Master节点上，DataNode和TaskTracker运行在Slave节点上。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;NameNode&lt;br&gt;NameNode是HDFS的守护程序，负责记录文件是如何分割成数据块的，以及这些数据块被存储到哪些数据节点上。它的功能是对内存及I/O进行集中管理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;DataNode&lt;br&gt;集群中每个从服务器都运行一个DataNode后台程序，后台程序负责把HDFS数据块读写到本地文件系统。需要读写数据时，由NameNode告诉客户端去哪个DataNode进行具体的读写操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Secondary NameNode&lt;br&gt;Secondary NameNode是一个用来监控HDFS状态的辅助后台程序，如果NameNode发生问题，可以使用Secondary NameNode作为备用的NameNode。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;JobTracker&lt;br&gt;JobTracker后台程序用来连接应用程序与Hadoop，用户应用提交到集群后，由JobTracker决定哪个文件处理哪个task执行，一旦某个task失败，JobTracker会自动开启这个task。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;TaskTracker&lt;br&gt;TaskTracker负责存储数据的DataNode相结合，位于从节点，负责各自的task。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Hadoop历史&quot;&gt;&lt;a href=&quot;#Hadoop历史&quot; class=&quot;headerlink&quot; title=&quot;Hadoop历史&quot;&gt;&lt;/a&gt;Hadoop历史&lt;/h1&gt;&lt;p&gt;雏形开始于2002年的Apache的Nutch，Nutch是一个开源Java 实现的搜索引擎。它提供了我们运行自己的搜索引擎所需的全部工具。包括全文搜索和Web爬虫。&lt;br&gt;随后在2003年Google发表了一篇技术学术论文谷歌文件系统（GFS）。GFS也就是google File System，google公司为了存储海量搜索数据而设计的专用文件系统。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/categories/hadoop/"/>
+    
+    
+      <category term="hadoop" scheme="https://iceziyao.github.io/tags/hadoop/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于Tornado的ansible的二次封装</title>
     <link href="https://iceziyao.github.io/2016/07/07/Auto/ans-api/"/>
     <id>https://iceziyao.github.io/2016/07/07/Auto/ans-api/</id>
     <published>2016-07-06T16:00:00.000Z</published>
-    <updated>2016-08-08T23:15:08.151Z</updated>
+    <updated>2016-09-13T22:12:35.340Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Tornado&quot;&gt;&lt;a href=&quot;#Tornado&quot; class=&quot;headerlink&quot; title=&quot;Tornado&quot;&gt;&lt;/a&gt;Tornado&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;FriendFeed使用了一款使用 Python 编写的，相对简单的 非阻塞式 Web 服务器。其应用程序使用的 Web 框架看起来有些像 web.py 或者 Google 的 webapp， 不过为了能有效利用非阻塞式服务器环境，这个 Web 框架还包含了一些相关的有用工具 和优化。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;Tornado 就是我们在 FriendFeed 的 Web 服务器及其常用工具的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快。得利于其 非阻塞的方式和对 epoll 的运用，Tornado 每秒可以处理数以千计的连接，因此 Tornado 是实时 Web 服务的一个 理想框架。我们开发这个 Web 服务器的主要目的就是为了处理 FriendFeed 的实时功能 ——在 FriendFeed 的应用里每一个活动用户都会保持着一个服务器连接。&lt;/p&gt;
 &lt;h3 id=&quot;简单示例&quot;&gt;&lt;a href=&quot;#简单示例&quot; class=&quot;headerlink&quot; title=&quot;简单示例&quot;&gt;&lt;/a&gt;简单示例&lt;/h3&gt;&lt;p&gt;以下是经典的 “Hello, world” 示例：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.ioloop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; tornado.web&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MainHandler&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(tornado.web.RequestHandler)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        self.write(&lt;span class=&quot;string&quot;&gt;&quot;Hello, world&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;application = tornado.web.Application([&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    (&lt;span class=&quot;string&quot;&gt;r&quot;/&quot;&lt;/span&gt;, MainHandler),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&quot;__main__&quot;&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    application.listen(&lt;span class=&quot;number&quot;&gt;8888&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tornado.ioloop.IOLoop.instance().start()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -51,11 +269,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -97,11 +315,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -320,9 +538,9 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
       <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -1019,7 +1237,7 @@ res.output();
     <link href="https://iceziyao.github.io/2016/04/01/C/bin/pwd-ls/"/>
     <id>https://iceziyao.github.io/2016/04/01/C/bin/pwd-ls/</id>
     <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2016-09-13T22:10:32.960Z</updated>
+    <updated>2016-09-13T22:11:54.429Z</updated>
     
     <content type="html">&lt;h1 id=&quot;实现pwd&quot;&gt;&lt;a href=&quot;#实现pwd&quot; class=&quot;headerlink&quot; title=&quot;实现pwd&quot;&gt;&lt;/a&gt;实现pwd&lt;/h1&gt;&lt;p&gt;   实现pwd打印当前目录&lt;/p&gt;
 &lt;h2 id=&quot;所需函数-getcwd&quot;&gt;&lt;a href=&quot;#所需函数-getcwd&quot; class=&quot;headerlink&quot; title=&quot;所需函数 getcwd&quot;&gt;&lt;/a&gt;所需函数 getcwd&lt;/h2&gt;&lt;p&gt;函数原型：char *getcwd( char *buffer, int maxlen );&lt;/p&gt;
@@ -1160,743 +1378,6 @@ res.output();
       <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     
       <category term="lvs" scheme="https://iceziyao.github.io/tags/lvs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇1</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A401/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用集群01/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:31.530Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的主要优点&quot;&gt;&lt;a href=&quot;#集群系统的主要优点&quot; class=&quot;headerlink&quot; title=&quot;集群系统的主要优点:&quot;&gt;&lt;/a&gt;集群系统的主要优点:&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;(1)高可扩展性：&lt;br&gt;    (2)高可用性HA：集群中的一个节点失效，它的任务可传递给其他节点。可以有效防止单点失效。&lt;br&gt;    (3)高性能：负载平衡集群允许系统同时接入更多的用户。&lt;br&gt;    (4)高性价比：可以采用廉价的符合工业标准的硬件构造高性能的系统。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;集群系统的分类&quot;&gt;&lt;a href=&quot;#集群系统的分类&quot; class=&quot;headerlink&quot; title=&quot;集群系统的分类&quot;&gt;&lt;/a&gt;集群系统的分类&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;1)、高可用(High Availability)集群,简称HA集群。&lt;br&gt;    这类集群致力于提供高度可靠的服务。就是利用集群系统的容错性对外提供7*24小时不间断的服务，如高可用的文件服务器、数据库服务等关键应用。&lt;br&gt;    负载均衡集群：使任务可以在集群中尽可能平均地分摊不同的计算机进行处理，充分利用集群的处理能力，提高对任务的处理效率。&lt;br&gt;    在实际应用中这几种集群类型可能会混合使用，以提供更加高效稳定的服务。如在一个使用的网络流量负载均衡集群中，就会包含高可用的网络文件系统、高可用的网络服务。&lt;br&gt;    (2)、性能计算(High Perfermance Computing)集群，简称HPC集群，也称为科学计算集群。&lt;br&gt;    在这种集群上运行的是专门开发的并行应用程序，它可以把一个问题的数据分布到多台的计算机上，利用这些计算机的共同资源来完成计算任务，从而可以解决单机不能胜任的工作（如问题规模太大，单机计算速度太慢）。&lt;br&gt;    这类集群致力于提供单个计算机所不能提供的强大的计算能力。如天气预报、石油勘探与油藏模拟、分子模拟、生物计算等。  &lt;/p&gt;
-&lt;h3 id=&quot;什么是高可用性-HA&quot;&gt;&lt;a href=&quot;#什么是高可用性-HA&quot; class=&quot;headerlink&quot; title=&quot;什么是高可用性 (HA)&quot;&gt;&lt;/a&gt;什么是高可用性 (HA)&lt;/h3&gt;&lt;p&gt;计算机系统的可用性(availability)是通过系统的可靠性(reliability)和可维护性(maintainability)来度量的。工程上通常用平均无故障时间(MTTF)来度量系统的可靠性,用平均维修时间（MTTR）来度量系统的可维护性。于是可用性被定义为：MTTF/(MTTF+MTTR)*100%  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HA的容错备援运作过程  &lt;blockquote&gt;
-&lt;p&gt;自动侦测(Auto-Detect)阶段 由主机上的软件通过冗余侦测线，经由复杂的监听程序。逻辑判断，来相互侦测对方运行的情况，所检查的项目有：主机硬件(CPU和周边)、主机网络、主机操作系统、数据库引擎及其它应用程序、主机与磁盘阵列连线。为确保侦测的正确性，而防止错误的判断，可设定安全侦测时间，包括侦测时间间隔，侦测次数以调整安全系数，并且由主机的冗余通信连线，将所汇集的讯息记录下来，以供维护参考。&lt;br&gt;  自动切换(Auto-Switch)阶段 某一主机如果确认对方故障，则正常主机除继续进行原来的任务，还将依据各种容错备援模式接管预先设定的备援作业程序，并进行后续的程序及服务。&lt;br&gt;  自动恢复(Auto-Recovery)阶段 在正常主机代替故障主机工作后，故障主机可离线进行修复工作。在故障主机修复后，透过冗余通讯线与原正常主机连线，自动切换回修复完成的主机上。整个回复过程完成由EDI-HA自动完成，亦可依据预先配置，选择回复动作为半自动或不回复。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;HA三种工作方式：&quot;&gt;&lt;a href=&quot;#HA三种工作方式：&quot; class=&quot;headerlink&quot; title=&quot;HA三种工作方式：&quot;&gt;&lt;/a&gt;HA三种工作方式：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;（1）、主从方式 （非对称方式）&lt;br&gt;工作原理：主机工作，备机处于监控准备状况；当主机宕机时，备机接管主机的一切工作，待主机恢复正常后，按使用者的设定以自动或手动方式将服务切换到主机上运行，数据的一致性通过共享存储系统解决。&lt;br&gt;（2）、双机双工方式（互备互援）&lt;br&gt;工作原理：两台主机同时运行各自的服务工作且相互监测情况，当任一台主机宕机时，另一台主机立即接管它的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。&lt;br&gt;（3）、集群工作方式（多服务器互备方式）&lt;br&gt;工作原理：多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。  &lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;什么是集群&quot;&gt;&lt;a href=&quot;#什么是集群&quot; class=&quot;headerlink&quot; title=&quot;什么是集群?&quot;&gt;&lt;/a&gt;什么是集群?&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;集群（cluster）就是一组计算机，它们作为一个整体向用户提供一组网络资源。这些单个的计算机系统就是集群的节点（node）。一个理想的集群是，用户从来不会意识到集群系统底层的节点，在他/她们看来，集群是一个系统，而非多个计算机系统。并且集群系统的管理员可以随意增加和删改集群系统的节点。&lt;br&gt;　　更详细的说，集群（一组协同工作的计算机）是充分利用计算资源的一个重要概念，因为它能够将工作负载从一个超载的系统（或节点）迁移到集群中的另一个系统上。其处理能力是与专用计算机(小型机,大型机)可相比,但其性价比高于专用计算机.常见的硬件有:结点,网络,存储.软件有:机群系统,节点系统,应用支撑软件。&lt;br&gt;　　Cluster集群技术可如下定义：一组相互独立的服务器在网络中表现为单一的系统，并以单一系统的模式加以管理。此单一系统为客户工作站提供高可靠性的服务。大多数模式下，集群中所有的计算机拥有一个共同的名称，集群内任一系统上运行的服务可被所有的网络客户所使用。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高可用集群系列之基础篇2</title>
-    <link href="https://iceziyao.github.io/2016/01/16/HA/%E9%AB%98%E5%8F%AF%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
-    <id>https://iceziyao.github.io/2016/01/16/HA/高可用基础/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:28.516Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;心跳信息怎么传递&lt;br&gt;其实就是进程中的通信两台主机是没法通信的，只能利用网络功能，通过进程监听在某一套接字上，实现数据发送，数据请求，所以多台服务器就得运行同等的进程，这两个进程不停的进行通信，主节点(主服务器)不停的向对方同等的节点发送自己的心跳信息，那这个软件就叫高可用的集群的基准层次，也叫心跳信息传递层以及事物信息的传递层，这是运行在集群中的各节点上的进程，这个进程是个服务软件，关机后需要将其启动起来，主机间才可以传递信息的，一般是主节点传给备节点。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h3&gt;&lt;h4 id=&quot;什么是资源&quot;&gt;&lt;a href=&quot;#什么是资源&quot; class=&quot;headerlink&quot; title=&quot;什么是资源&quot;&gt;&lt;/a&gt;什么是资源&lt;/h4&gt;&lt;p&gt;其实资源就是启动一个服务需要的子项目&lt;br&gt;以web服务为例子,ip是资源,web服务是资源,共享存储是资源,网页,图片,session是资源.&lt;br&gt;如果主节点挂了，多个备节点怎么样来选择一个备节点来做为提供服务的一个节点呢，而这种应该选择哪个备用节点来做为提供服务的机制就叫做&lt;strong&gt; 集群事物决策 &lt;/strong&gt; 的过程。&lt;br&gt;&lt;strong&gt; 因此，实现一个高可用集群一般需要ip、服务（脚本）和文件系统（存储数据），当然有些高可用集群不需要存储设备的。&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;资源等级&quot;&gt;&lt;a href=&quot;#资源等级&quot; class=&quot;headerlink&quot; title=&quot;资源等级&quot;&gt;&lt;/a&gt;资源等级&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;primitive：可以理解为主资源，有时候看到的会是native，都是一个意思，该资源只在主节点上有。（当然备份节点一旦将资源夺过来了，也就成了主节点，因此，主节点是相对来说的）&lt;/li&gt;
-&lt;li&gt;group：组资源，将多个资源绑定在一个同一个组上面且运行在同一个节点上。&lt;/li&gt;
-&lt;li&gt;clone：是将primitive资源克隆n份且运行在每一个节点上&lt;/li&gt;
-&lt;li&gt;master/slave：也是将primitive克隆2份、其中master和slave节点各运行一份，且只能在这2个节点上运行。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源约束&quot;&gt;&lt;a href=&quot;#资源约束&quot; class=&quot;headerlink&quot; title=&quot;资源约束&quot;&gt;&lt;/a&gt;资源约束&lt;/h4&gt;&lt;p&gt;对于某些集群服务来说，启动相关的资源是有先后顺序的。例如启动一个mysql集群服务，首先应该先挂载共享存储设备，否则即时mysql服务启动起来了，用户也访问不了数据。因此,要对资源一个约束.  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;位置约束（location）：资源对节点的倾向程度，通常可以使用一个分数（score）来定义，当score为正值时，表示资源倾向与此节点；负值表示资源倾向逃离于此节点。也可以将score定义为-inf(负无穷大)和inf（正无穷大）。例如：有三个节点rs1、rs2、rs3当rs1是主节点且发生故障时，则比较rs2和rs3的score值，谁是正值，则资源将会转移到哪个节点上去。  &lt;/li&gt;
-&lt;li&gt;排列约束（colocation）：用来定义资源是否可以在一起，通常也是使用一个score来定义的。当score是正值表示资源可以在一起；否则表示不可以在一起。通过定义资源类型为group也可以来将所有资源绑定在一起。  &lt;/li&gt;
-&lt;li&gt;顺序约束（order）：用来定义资源启动和停止的顺序。web为例子,备用节点上线后,VIP必须先转移到本地,其次共享存储到位,最后才是开启web服务器.  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;资源转移&quot;&gt;&lt;a href=&quot;#资源转移&quot; class=&quot;headerlink&quot; title=&quot;资源转移&quot;&gt;&lt;/a&gt;资源转移&lt;/h4&gt;&lt;p&gt;将有故障节点的VIP设置到另一个节点上去，并在另一个节点启用相应的服务，挂载相应的存储设备等等都可以叫做资源转移。  &lt;/p&gt;
-&lt;h2 id=&quot;HA实现原理&quot;&gt;&lt;a href=&quot;#HA实现原理&quot; class=&quot;headerlink&quot; title=&quot;HA实现原理&quot;&gt;&lt;/a&gt;HA实现原理&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;在高可用集群的各节点中定义了一个抽象层,信息传递层(Messaing Layer),用来传递集群之间的事务(Transaction)信息.事务信息中包含了节点的心跳信息(是否在线),节点的主机名、IP等一系列信息&lt;/li&gt;
-&lt;li&gt;通过一个程序获取信息传递层的信息，进行服务调配，资源管理.(资源管理层)&lt;/li&gt;
-&lt;li&gt;服务代理，通过策略代理各节点服务。(资源代理层)&lt;br&gt;信息层传递信息，资源管理层通过监听信息层的信息进行相应规则的资源调配和服务迁移。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;Messaging-Layer（信息传递层）&quot;&gt;&lt;a href=&quot;#Messaging-Layer（信息传递层）&quot; class=&quot;headerlink&quot; title=&quot;Messaging  Layer（信息传递层）&quot;&gt;&lt;/a&gt;Messaging  Layer（信息传递层）&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;主要的作用是传递当前节点的心跳信息，并告知给对方，这样对方就知道其他节点是否在线。如果不在线，则可以实现资源转移，这样另一台节点就可以充当主节点，并正常提供服务。传递心跳信息一般使用一根心跳线连接，该线接口可以使用串行接口也可以是以太网接口来连接。每一个节点上都包含信息层。&lt;br&gt;常见软件:  &lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;hearbeat&lt;/li&gt;
-&lt;li&gt;keepalived&lt;/li&gt;
-&lt;li&gt;ultramonkey&lt;/li&gt;
-&lt;li&gt;Corosync&lt;/li&gt;
-&lt;li&gt;cman&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;ha-aware-CRM-资源管理层&quot;&gt;&lt;a href=&quot;#ha-aware-CRM-资源管理层&quot; class=&quot;headerlink&quot; title=&quot;ha-aware/CRM (资源管理层)&quot;&gt;&lt;/a&gt;ha-aware/CRM (资源管理层)&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Cluster  Resource Messager,资源管理器，它主要是用来提供那些不具有高可用的服务提供高可用性的。它需要借助Messaging  Layer来实现工作，因此工作在Messaging Layer上层。&lt;/li&gt;
-&lt;li&gt;资源管理器的主要工作是根据messaging Layer传递的健康信息来决定服务的启动、停止和资源转移、资源的定义和资源分配。在每一个节点上都包含一个CRM，且每个CRM都维护这一个CIB（Cluster Internet  Base，集群信息库），只有在主节点上的CIB是可以修改的，其他节点上的CIB都是从主节点那里复制而来的。在CRM中还包含LRM和DC等组件。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;CIB&quot;&gt;&lt;a href=&quot;#CIB&quot; class=&quot;headerlink&quot; title=&quot;CIB&quot;&gt;&lt;/a&gt;CIB&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;集群信息库 XML文档&lt;br&gt;集群资源管理器必须借助于Messageing Layer通告给每一个节点，自动的广播或组播给每一个节点，这样就保证了每一个节点上的信息都是一样的，而这些数据在计算机中又怎么样来交互数据的呢，这里就要基于扩展标记语言来实现数据的格式传递的，这种叫半结构化数据基于XML的，所以在各节点之间实现配置信息保存都是通过XML文件保存的，而要能够理解这个XML文件保存的信息使用到一个工具叫CIB(Cluster Information Base集群信息库)；只要能连接到CRM上都可以去配置这个XML文件，首先它会先保存到DC的XML中，然后再由DC同步支每个节点上的XML文件中去的；&lt;br&gt;对于CIB，只有工作在DC（主节点）上的文档是可以修改的，其他CIB都是复制DC上的那个文档而来的。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;LRM&quot;&gt;&lt;a href=&quot;#LRM&quot; class=&quot;headerlink&quot; title=&quot;LRM&quot;&gt;&lt;/a&gt;LRM&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Local Resource  Messager，叫做本地资源管理器，它是CRM的一个子组件，用来获取某个资源的状态，并且管理本地资源的。&lt;br&gt;对于LRM,是执行CRM传递过来的在本地执行某个资源的执行和停止的具体执行人，当某个节点发生故障之后，是由DC通过PE（策略引擎）和TE（实施引擎）来决定是否抢夺资源。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;DC&quot;&gt;&lt;a href=&quot;#DC&quot; class=&quot;headerlink&quot; title=&quot;DC&quot;&gt;&lt;/a&gt;DC&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;事务调节员.当DC所在的主机挂了就会先选出一个DC，再由DC做出事物的决策。&lt;br&gt;任何DC上会额外运行两个进程，一个叫PE(Policy Engine策略引擎)，所谓策略引擎就是将底层信息层收集整个集群中所有节点上的信息在本地生成一个大图big pic来策略节点运行在哪个节点上，并通知其实节点上的资源管理器来实现资源的启动和关闭等操作；一个叫TE(Transition Engine 实施引擎)，它主要是把PE做出的决策通告给对应节点的CRM；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;PE和TE是DC的子组件&lt;/p&gt;
-&lt;h4 id=&quot;PE（策略引擎）&quot;&gt;&lt;a href=&quot;#PE（策略引擎）&quot; class=&quot;headerlink&quot; title=&quot;PE（策略引擎）&quot;&gt;&lt;/a&gt;PE（策略引擎）&lt;/h4&gt;&lt;p&gt;来定义资源转移的一整套转移方式，但只是做策略者，并不亲自来参加资源转移的过程，而是让TE来执行自己的策略。&lt;/p&gt;
-&lt;h4 id=&quot;TE-实施引擎）&quot;&gt;&lt;a href=&quot;#TE-实施引擎）&quot; class=&quot;headerlink&quot; title=&quot;TE (实施引擎）&quot;&gt;&lt;/a&gt;TE (实施引擎）&lt;/h4&gt;&lt;p&gt;执行PE做出的策略的并且只有DC上才运行PE和TE。&lt;/p&gt;
-&lt;h3 id=&quot;实施软件&quot;&gt;&lt;a href=&quot;#实施软件&quot; class=&quot;headerlink&quot; title=&quot;实施软件&quot;&gt;&lt;/a&gt;实施软件&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;可以提供CRM的软件有：  &lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;heartbeat v1自带的资源管理为haresource&lt;/li&gt;
-&lt;li&gt;heartbeat v2自带的资源管理有haresource和crm&lt;/li&gt;
-&lt;li&gt;Pacemaker  &lt;/li&gt;
-&lt;li&gt;Cman 是红帽开发的一个资源管理器,是红帽开发的一个资源管理器,6.x版本后红帽也开始使用强大的pacemaker  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;资源代理层（Resource-Agents）&quot;&gt;&lt;a href=&quot;#资源代理层（Resource-Agents）&quot; class=&quot;headerlink&quot; title=&quot;资源代理层（Resource Agents）&quot;&gt;&lt;/a&gt;资源代理层（Resource Agents）&lt;/h2&gt;&lt;p&gt;集群资源代理(能够管理本节点上的属于集群资源的某一资源的启动，停止和状态信息的脚本)&lt;/p&gt;
-&lt;h3 id=&quot;LSB&quot;&gt;&lt;a href=&quot;#LSB&quot; class=&quot;headerlink&quot; title=&quot;LSB&quot;&gt;&lt;/a&gt;LSB&lt;/h3&gt;&lt;p&gt;常见的如/etc/init.d/下的标准linux脚本风格。&lt;/p&gt;
-&lt;h3 id=&quot;OCF&quot;&gt;&lt;a href=&quot;#OCF&quot; class=&quot;headerlink&quot; title=&quot;OCF&quot;&gt;&lt;/a&gt;OCF&lt;/h3&gt;&lt;p&gt;比LSB更高级  &lt;/p&gt;
-&lt;h3 id=&quot;Legacy-heartbeat&quot;&gt;&lt;a href=&quot;#Legacy-heartbeat&quot; class=&quot;headerlink&quot; title=&quot;Legacy heartbeat&quot;&gt;&lt;/a&gt;Legacy heartbeat&lt;/h3&gt;&lt;p&gt;heartbeat自带的  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h2&gt;&lt;h3 id=&quot;心跳&quot;&gt;&lt;a href=&quot;#心跳&quot; class=&quot;headerlink&quot; title=&quot;心跳&quot;&gt;&lt;/a&gt;心跳&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是心跳&lt;br&gt;就是将多台服务器用网络连接起来，而后每一台服务器都不停的将自己依然在线的信息很简短很小的通告给同一个网络中的备用服务器的主机，告诉其实主机自己依然在线，其它服务器收到这个心跳信息就认为本机是在线的。所谓心跳就是一群人在深夜行走，相互看不见对方，每个人隔一段时间呼唤一声，告诉同伴自己的状况.
-    
-    </summary>
-    
-      <category term="集群" scheme="https://iceziyao.github.io/categories/%E9%9B%86%E7%BE%A4/"/>
-    
-    
-      <category term="HA" scheme="https://iceziyao.github.io/tags/HA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Haproxy负载均衡</title>
-    <link href="https://iceziyao.github.io/2016/01/16/server/haproxy/"/>
-    <id>https://iceziyao.github.io/2016/01/16/server/haproxy/</id>
-    <published>2016-01-15T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:04.539Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;HAProxy是免费、极速且可靠的用于为TCP和基于HTTP应用程序提供高可用、负载均衡和代理服务的解决方案，尤其适用于高负载且需要持久连接或7层处理机制的web站点。&lt;br&gt;1.1 HAProxy目前主要有两个版本&lt;br&gt;1.1.1  提供较好的弹性：衍生于1.2版本，并提供了额外的新特性，其中大多数是期待已久的。&lt;br&gt;    客户端侧的长连接(client-side keep-alive)&lt;br&gt;    TCP加速(TCP speedups)&lt;br&gt;    响应池(response buffering)&lt;br&gt;    RDP协议&lt;br&gt;    基于源的粘性(source-based stickiness)&lt;br&gt;    更好的统计数据接口(a much better stats interfaces)&lt;br&gt;    更详细的健康状态检测机制(more verbose health checks)&lt;br&gt;    基于流量的健康评估机制(traffic-based health)&lt;br&gt;    支持HTTP认证&lt;br&gt;    服务器管理命令行接口(server management from the CLI)&lt;br&gt;    基于ACL的持久性(ACL-based persistence)&lt;br&gt;    日志分析器&lt;br&gt;  1.1.2 内容交换和超强负载：&lt;br&gt;  衍生于1.2版本，并提供了额外的新特性。&lt;br&gt;    内容交换(content switching)：基于任何请求标准挑选服务器池；&lt;br&gt;    ACL：编写内容交换规则；&lt;br&gt;    负载均衡算法(load-balancing algorithms)：更多的算法支持；&lt;br&gt;    内容探测(content inspection)：阻止非授权协议；&lt;br&gt;    透明代理(transparent proxy)：在Linux系统上允许使用客户端IP直接连入服务器；&lt;br&gt;    内核TCP拼接(kernel TCP splicing)：无copy方式在客户端和服务端之间转发数据以实现数G级别的数据速率；&lt;br&gt;    分层设计(layered design)：分别实现套接字、TCP、HTTP处理以提供更好的健壮性、更快的处理机制及便捷的演进能力；&lt;br&gt;    快速、公平调度器(fast and fair scheduler)：为某些任务指定优先级可实现理好的QoS；&lt;br&gt;    会话速率限制(session rate limiting)：适用于托管环境；&lt;br&gt;1.2 性能&lt;br&gt;HAProxy借助于OS上几种常见的技术来实现性能的最大化。&lt;br&gt;    单进程、事件驱动模型显著降低了上下文切换的开销及内存占用。&lt;br&gt;    O(1)事件检查器(event checker)允许其在高并发连接中对任何连接的任何事件实现即时探测。&lt;br&gt;    在任何可用的情况下，单缓冲(single buffering)机制能以不复制任何数据的方式完成读写操作，这会节约大量的CPU时钟周期及内存带宽；&lt;br&gt;    借助于Linux 2.6 (&amp;gt;= 2.6.27.19)上的splice()系统调用，HAProxy可以实现零复制转发(Zero-copy forwarding)，在Linux 3.5及以上的OS中还可以实现零复制启动(zero-starting)；&lt;br&gt;    MRU内存分配器在固定大小的内存池中可实现即时内存分配，这能够显著减少创建一个会话的时长；&lt;br&gt;    树型存储：侧重于使用作者多年前开发的弹性二叉树，实现了以O(log(N))的低开销来保持计时器命令、保持运行队列命令及管理轮询及最少连接队列；&lt;br&gt;    优化的HTTP首部分析：优化的首部分析功能避免了在HTTP首部分析过程中重读任何内存区域；&lt;br&gt;    精心地降低了昂贵的系统调用，大部分工作都在用户空间完成，如时间读取、缓冲聚合及文件描述符的启用和禁用等；&lt;br&gt;所有的这些细微之处的优化实现了在中等规模负载之上依然有着相当低的CPU负载，甚至于在非常高的负载场景中，5%的用户空间占用率和95%的系统空间占用率也是非常普遍的现象，这意味着HAProxy进程消耗比系统空间消耗低20倍以上。因此，对OS进行性能调优是非常重要的。即使用户空间的占用率提高一倍，其CPU占用率也仅为10%，这也解释了为何7层处理对性能影响有限这一现象。由此，在高端系统上HAProxy的7层性能可轻易超过硬件负载均衡设备。&lt;br&gt;在生产环境中，在7层处理上使用HAProxy作为昂贵的高端硬件负载均衡设备故障故障时的紧急解决方案也时长可见。硬件负载均衡设备在“报文”级别处理请求，这在支持跨报文请求(request across multiple packets)有着较高的难度，并且它们不缓冲任何数据，因此有着较长的响应时间。对应地，软件负载均衡设备使用TCP缓冲，可建立极长的请求，且有着较大的响应时间。&lt;br&gt;可以从三个因素来评估负载均衡器的性能：&lt;br&gt;(1)    会话率&lt;br&gt;(2)    会话并发能力&lt;br&gt;(3) 数据率  &lt;/p&gt;
-&lt;h4 id=&quot;配置HAProxy&quot;&gt;&lt;a href=&quot;#配置HAProxy&quot; class=&quot;headerlink&quot; title=&quot;配置HAProxy&quot;&gt;&lt;/a&gt;配置HAProxy&lt;/h4&gt;&lt;p&gt;2.1 配置文件格式&lt;br&gt;HAProxy的配置处理3类来主要参数来源：&lt;br&gt;    ——最优先处理的命令行参数，&lt;br&gt;    ——“global”配置段，用于设定全局配置参数；&lt;br&gt;    ——proxy相关配置段，如“defaults”、“listen”、“frontend”和“backend”；&lt;br&gt;2.2 时间格式&lt;br&gt;一些包含了值的参数表示时间，如超时时长。这些值一般以毫秒为单位，但也可以使用其它的时间单位后缀。&lt;br&gt;    us: 微秒(microseconds)，即1/1000000秒；&lt;br&gt;    ms: 毫秒(milliseconds)，即1/1000秒；&lt;br&gt;    s: 秒(seconds)；&lt;br&gt;    m: 分钟(minutes)；&lt;br&gt;    h：小时(hours)；&lt;br&gt;    d: 天(days)；&lt;br&gt;2.3 例子&lt;br&gt;下面的例子配置了一个监听在所有接口的80端口上HTTP proxy服务，它转发所有的请求至后端监听在127.0.0.1:8000上的”server”。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-    global
-    daemon
-    maxconn 25600
-defaults
-    mode http
-    timeout connect 5000ms
-    timeout client 50000ms
-    timeout server 50000ms
-frontend http-in
-    bind *:80
-    default_backend servers
-backend servers
-    server server1 127.0.0.1:8080 maxconn 32
-&lt;/code&gt;&lt;/pre&gt;
-2.4 全局配置
-&quot;&quot;“global”配置中的参数为进程级别的参数，且通常与其运行的OS相关。  
- \* 进程管理及安全相关的参数  
-   \- chroot &lt;jail dir=&quot;&quot;&gt;：修改haproxy的工作目录至指定的目录并在放弃权限之前执行chroot()操作，可以提升haproxy的安全级别，不过需要注意的是要确保指定的目录为空目录且任何用户均不能有写权限；  
-   \- daemon：让haproxy以守护进程的方式工作于后台，其等同于“-D”选项的功能，当然，也可以在命令行中以“-db”选项将其禁用；  
-   \- gid &lt;number&gt;：以指定的GID运行haproxy，建议使用专用于运行haproxy的GID，以免因权限问题带来风险；  
-   \- group &lt;group name=&quot;&quot;&gt;：同gid，不过指定的组名；  
-   \- log  &lt;address&gt; &lt;facility&gt; [max level [min level]]：定义全局的syslog服务器，最多可以定义两个；  
-   \- log-send-hostname [&lt;string&gt;]：在syslog信息的首部添加当前主机名，可以为“string”指定的名称，也可以缺省使用当前主机名；  
-   \- nbproc &lt;number&gt;：指定启动的haproxy进程个数，只能用于守护进程模式的haproxy；默认只启动一个进程，鉴于调试困难等多方面的原因，一般只在单进程仅能打开少数文件描述符的场景中才使用多进程模式；  
-   \- pidfile：  
-   \- uid：以指定的UID身份运行haproxy进程；  
-   \- ulimit-n：设定每进程所能够打开的最大文件描述符数目，默认情况下其会自动进行计算，因此不推荐修改此选项；  
-   \- user：同uid，但使用的是用户名；  
-   \- stats：  
-   \- node：定义当前节点的名称，用于HA场景中多haproxy进程共享同一个IP地址时；  
-   \- description：当前实例的描述信息；  
- \* 性能调整相关的参数  
-   \- maxconn &lt;number&gt;：设定每个haproxy进程所接受的最大并发连接数，其等同于命令行选项“-n”；“ulimit -n”自动计算的结果正是参照此参数设定的；  
-   \- maxpipes &lt;number&gt;：haproxy使用pipe完成基于内核的tcp报文重组，此选项则用于设定每进程所允许使用的最大pipe个数；每个pipe会打开两个文件描述符，因此，“ulimit -n”自动计算时会根据需要调大此值；默认为maxconn/4，其通常会显得过大；  
-   \- noepoll：在Linux系统上禁用epoll机制；  
-   \- nokqueue：在BSE系统上禁用kqueue机制；  
-   \- nopoll：禁用poll机制；  
-   \- nosepoll：在Linux禁用启发式epoll机制；  
-   \- nosplice：禁止在Linux套接字上使用内核tcp重组，这会导致更多的recv/send系统调用；不过，在Linux 2.6.25-28系列的内核上，tcp重组功能有bug存在；  
-   \- spread-checks &lt;0..50, in=&quot;&quot; percent=&quot;&quot;&gt;：在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；  
-   \- tune.bufsize &lt;number&gt;：设定buffer的大小，同样的内存条件小，较小的值可以让haproxy有能力接受更多的并发连接，较大的值可以让某些应用程序使用较大的cookie信息；默认为16384，其可以在编译时修改，不过强烈建议使用默认值；  
-   \- tune.chksize &lt;number&gt;：设定检查缓冲区的大小，单位为字节；更大的值有助于在较大的页面中完成基于字符串或模式的文本查找，但也会占用更多的系统资源；不建议修改；  
-   \- tune.maxaccept &lt;number&gt;：设定haproxy进程内核调度运行时一次性可以接受的连接的个数，较大的值可以带来较大的吞吐率，默认在单进程模式下为100，多进程模式下为8，设定为-1可以禁止此限制；一般不建议修改；  
-   \- tune.maxpollevents  &lt;number&gt;：设定一次系统调用可以处理的事件最大数，默认值取决于OS；其值小于200时可节约带宽，但会略微增大网络延迟，而大于200时会降低延迟，但会稍稍增加网络带宽的占用量；  
-   \- tune.maxrewrite &lt;number&gt;：设定为首部重写或追加而预留的缓冲空间，建议使用1024左右的大小；在需要使用更大的空间时，haproxy会自动增加其值；  
-   \- tune.rcvbuf.client &lt;number&gt;：  
-   \- tune.rcvbuf.server &lt;number&gt;：设定内核套接字中服务端或客户端接收缓冲的大小，单位为字节；强烈推荐使用默认值；  
-   \- tune.sndbuf.client：  
-   \- tune.sndbuf.server：  
- \* Debug相关的参数  
-   \- debug  
-   \- quiet   
-2.5 代理  
-代理相关的配置可以如下配置段中。
- (1) defaults name  
- (2) frontend name  
- (3) backend  name  
- (4) listen   name  
- “defaults”段用于为所有其它配置段提供默认参数，这配置默认配置参数可由下一个“defaults”所重新设定。
- “frontend”段用于定义一系列监听的套接字，这些套stats_auth接字可接受客户端请求并与之建立连接。  
- “backend”段用于定义一系列“后端”服务器，代理将会将对应客户端的请求转发至这些服务器。  
- “listen”段通过关联“前端”和“后端”定义了一个完整的代理，通常只对TCP流量有用。  
- 所有代理的名称只能使用大写字母、小写字母、数字、-(中线)、\_(下划线)、\.(点号)和\:(冒号)。此外，ACL名称会区分字母大小写。  
-
-### 配置文件中的关键字参考  
-3.1 balance  
-`balance &lt;algorithm&gt; [ &lt;arguments&gt; ]`    
-`balance url_param &lt;param&gt; [check_post   [&lt;max_wait&gt;]]`    
-3.2 bind  
-`bind [&lt;address&gt;]:&lt;port_range&gt; [, ...]`  
-`bind [&lt;address&gt;]:&lt;port_range&gt; [, ...] interface &lt;interface&gt;`   
-\-此指令仅能用于frontend和listen区段，用于定义一个或几个监听的套接字。  
-`&lt;address&gt;`：可选选项，其可以为主机名、IPv4地址、IPv6地址或*；省略此选项、将其指定为*或0.0.0.0时，将监听当前系统的所有IPv4地址；
-`&lt;port_range&gt;`：可以是一个特定的TCP端口，也可是一个端口范围(如5005-5010)，代理服务器将通过指定的端口来接收客户端请求；需要注意的是，每组监听的套接字&lt;address:port&gt;在同一个实例上只能使用一次，而且小于1024的端口需要有特定权限的用户才能使用，这可能需要通过uid参数来定义；
-`&lt;interface&gt;：`指定物理接口的名称，仅能在Linux系统上使用；其不能使用接口别名，而仅能使用物理接口名称，而且只有管理有权限指定绑定的物理接口；  
-3.3 mode  
-`mode { tcp|http|health } `
-设定实例的运行模式或协议。当实现内容交换时，前端和后端必须工作于同一种模式(一般说来都是HTTP模式)，否则将无法启动实例。  
-tcp：实例运行于纯TCP模式，在客户端和服务器端之间将建立一个全双工的连接，且不会对7层报文做任何类型的检查；此为默认模式，通常用于SSL、SSH、SMTP等应用；  
-http：实例运行于HTTP模式，客户端请求在转发至后端服务器之前将被深度分析，所有不与RFC格式兼容的请求都会被拒绝；  
-health：实例工作于health模式，其对入站请求仅响应“OK”信息并关闭连接，且不会记录任何日志信息；此模式将用于响应外部组件的健康状态检查请求；目前业讲，此模式已经废弃，因为tcp或http模式中的monitor关键字可完成类似功能；  
-3.4 hash-type
-`hash-type &lt;method&gt;`  
-定义用于将hash码映射至后端服务器的方法；其不能用于frontend区段；可用方法有map-based和consistent，在大多数场景下推荐使用默认的map-based方法  
-map-based：hash表是一个包含了所有在线服务器的静态数组。其hash值将会非常平滑，会将权重考虑在列，但其为静态方法，对在线服务器的权重进行调整将不会生效，这意味着其不支持慢速启动。此外，挑选服务器是根据其在数组中的位置进行的，因此，当一台服务器宕机或添加了一台新的服务器时，大多数连接将会被重新派发至一个与此前不同的服务器上，对于缓存服务器的工作场景来说，此方法不甚适用。  
-consistent：hash表是一个由各服务器填充而成的树状结构；基于hash键在hash树中查找相应的服务器时，最近的服务器将被选中。此方法是动态的，支持在运行时修改服务器权重，因此兼容慢速启动的特性。添加一个新的服务器时，仅会对一小部分请求产生影响，因此，尤其适用于后端服务器为cache的场景。不过，此算法不甚平滑，派发至各服务器的请求未必能达到理想的均衡效果，因此，可能需要不时的调整服务器的权重以获得更好的均衡性。  
-3.5 log  
-`log global`  
-`log &lt;address&gt; &lt;facility&gt; [&lt;level&gt; [&lt;minlevel&gt;]]`  
-为每个实例启用事件和流量日志，因此可用于所有区段。每个实例最多可以指定两个log参数，不过，如果使用了“log global”且&quot;global&quot;段已经定了两个log参数时，多余了log参数将被忽略。  
-global：当前实例的日志系统参数同&quot;global&quot;段中的定义时，将使用此格式；每个实例仅能定义一次“log global”语句，且其没有任何额外参数；  
-`&lt;address&gt;`：定义日志发往的位置，其格式之一可以为`&lt;ipv4_address:port&gt;`，其中的port为UDP协议端口，默认为514；格式之二为Unix套接字文件路径，但需要留心chroot应用及用户的读写权限；  
-`&lt;facility&gt;`：可以为syslog系统的标准facility之一；
-`&lt;level&gt;`：定义日志级别，即输出信息过滤器，默认为所有信息；指定级别时，所有等于或高于此别的日志信息将会被发送；   
-3.6 maxconn  
-`maxconn &lt;conns&gt;`  
-设定一个前端的最大并发连接数，因此，其不能用于backend区段。对于大型站点来说，可以尽可能提高此值以便让haproxy管理连接队列，从而避免无法应答用户请求。当然，此最大值不能超出“global”段中的定义。此外，需要留心的是，haproxy会为每个连接维持两个缓冲，每个缓冲的大小为8KB，再加上其它的数据，每个连接将大约占用17KB的RAM空间。这意味着经过适当优化后，有着1GB的可用RAM空间时将能维护40000-50000并发连接。  
-如果为`&lt;conns&gt;`指定了一个过大值，极端场景下，其最终占据的空间可能会超出当前主机的可用内存，这可能会带来意想不到的结果；因此，将其设定了一个可接受值方为明智决定。其默认为2000。  
-3.7 default_backend  
-default_backend `&lt;backend&gt;`  
-在没有匹配的&quot;use_backend&quot;规则时为实例指定使用的默认后端，因此，其不可应用于backend区段。在&quot;frontend&quot;和&quot;backend&quot;之间进行内容交换时，通常使用&quot;use\-backend&quot;定义其匹配规则；而没有被规则匹配到的请求将由此参数指定的后端接收。  
-`&lt;backend&gt;`：指定使用的后端的名称；  
-使用案例：  
-&lt;pre&gt;&lt;code&gt;
-use_backend     dynamic  if  url_dyn
-use_backend     static   if  url_css url_img extension_img
-default_backend dynamic
-&lt;/code&gt;&lt;/pre&gt;  
-3.8 服务  
-&lt;pre&gt;&lt;code&gt;
-server &lt;name&gt; &lt;address&gt;[:port] [param*]
-为后端声明一个server，因此，不能用于defaults和frontend区段。
-&lt;name&gt;：为此服务器指定的内部名称，其将出现在日志及警告信息中；如果设定了&quot;http-send-server-name&quot;，它还将被添加至发往此服务器的请求首部中；
-&lt;address&gt;：此服务器的的IPv4地址，也支持使用可解析的主机名，只不过在启动时需要解析主机名至相应的IPv4地址；
-[:port]：指定将连接请求所发往的此服务器时的目标端口，其为可选项；未设定时，将使用客户端请求时的同一相端口；
-[param*]：为此服务器设定的一系参数；其可用的参数非常多，具体请参考官方文档中的说明，下面仅说明几个常用的参数；
-服务器或默认服务器参数：
-backup：设定为备用服务器，仅在负载均衡场景中的其它server均不可用于启用此server；
-check：启动对此server执行健康状态检查，其可以借助于额外的其它参数完成更精细的设定，如：
-    inter &lt;delay&gt;：设定健康状态检查的时间间隔，单位为毫秒，默认为2000；也可以使用fastinter和downinter来根据服务器端状态优化此时间延迟；
-    rise &lt;count&gt;：设定健康状态检查中，某离线的server从离线状态转换至正常状态需要成功检查的次数；
-    fall &lt;count&gt;：确认server从正常状态转换为不可用状态需要检查的次数；
-cookie &lt;value&gt;：为指定server设定cookie值，此处指定的值将在请求入站时被检查，第一次为此值挑选的server将在后续的请求中被选中，其目的在于实现持久连接的功能；
-maxconn &lt;maxconn&gt;：指定此服务器接受的最大并发连接数；如果发往此服务器的连接数目高于此处指定的值，其将被放置于请求队列，以等待其它连接被释放；
-maxqueue &lt;maxqueue&gt;：设定请求队列的最大长度；
-observe &lt;mode&gt;：通过观察服务器的通信状况来判定其健康状态，默认为禁用，其支持的类型有“layer4”和“layer7”，“layer7”仅能用于http代理场景；
-redir &lt;prefix&gt;：启用重定向功能，将发往此服务器的GET和HEAD请求均以302状态码响应；需要注意的是，在prefix后面不能使用/，且不能使用相对地址，以免造成循环；例如：
-    server srv1 172.16.100.6:80 redir http://imageserver.magedu.com check
-weight &lt;weight&gt;：权重，默认为1，最大值为256，0表示不参与负载均衡；
-检查方法：
-option httpchk
-option httpchk &lt;uri&gt;
-option httpchk &lt;method&gt; &lt;uri&gt;
-option httpchk &lt;method&gt; &lt;uri&gt; &lt;version&gt;：不能用于frontend段，例如：
-backend https_relay
-    mode tcp
-    option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www.magedu.com
-    server apache1 192.168.1.1:443 check port 80
-使用案例：
-server first  172.16.100.7:1080 cookie first  check inter 1000
-server second 172.16.100.8:1080 cookie second check inter 1000
-&lt;/version&gt;&lt;/uri&gt;&lt;/method&gt;&lt;/uri&gt;&lt;/method&gt;&lt;/uri&gt;&lt;/weight&gt;&lt;/prefix&gt;&lt;/mode&gt;&lt;/maxqueue&gt;&lt;/maxconn&gt;&lt;/value&gt;&lt;/count&gt;&lt;/count&gt;&lt;/delay&gt;&lt;/address&gt;&lt;/name&gt;&lt;/address&gt;&lt;/name&gt;&lt;/code&gt;&lt;/pre&gt;  
-3.9 capture request header  
-&lt;pre&gt;&lt;code&gt;
-capture request header &lt;name&gt; len &lt;length&gt;
-捕获并记录指定的请求首部最近一次出现时的第一个值，仅能用于“frontend”和“listen”区段。捕获的首部值使用花括号{}括起来后添加进日志中。如果需要捕获多个首部值，它们将以指定的次序出现在日志文件中，并以竖线“|”作为分隔符。不存在的首部记录为空字符串，最常需要捕获的首部包括在虚拟主机环境中使用的“Host”、上传请求首部中的“Content-length”、快速区别真实用户和网络机器人的“User-agent”，以及代理环境中记录真实请求来源的“X-Forward-For”。
-&lt;name&gt;：要捕获的首部的名称，此名称不区分字符大小写，但建议与它们出现在首部中的格式相同，比如大写首字母。需要注意的是，记录在日志中的是首部对应的值，而非首部名称。
-&lt;length&gt;：指定记录首部值时所记录的精确长度，超出的部分将会被忽略。
-可以捕获的请求首部的个数没有限制，但每个捕获最多只能记录64个字符。为了保证同一个frontend中日志格式的统一性，首部捕获仅能在frontend中定义。
-&lt;/length&gt;&lt;/name&gt;&lt;/length&gt;&lt;/name&gt;&lt;/code&gt;&lt;/pre&gt;
-3.10 capture response header  
-&lt;pre&gt;&lt;code&gt;
-capture response header &lt;name&gt; len &lt;length&gt;
-捕获并记录响应首部，其格式和要点同请求首部。
-&lt;/length&gt;&lt;/name&gt;&lt;/code&gt;&lt;/pre&gt;  
-3.11 stats enable
-&lt;pre&gt;&lt;code&gt;
-启用基于程序编译时默认设置的统计报告，不能用于“frontend”区段。只要没有另外的其它设定，它们就会使用如下的配置：
-  \- stats uri   : /haproxy?stats
-  \- stats realm : &quot;HAProxy Statistics&quot;
-  \- stats auth  : no authentication
-  \- stats scope : no restriction   
-尽管“stats enable”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。  
-  backend public_www
-    server websrv1 172.16.100.11:80
-    stats enable
-    stats hide-version
-    stats scope   .
-    stats uri     /haproxyadmin?stats
-    stats realm   Haproxy\ Statistics
-    stats auth    statsadmin:password
-    stats auth    statsmaster:password
-&lt;/code&gt;&lt;/pre&gt;  
-3.12 stats hide-version
-&lt;pre&gt;&lt;code&gt;
-stats hide-version  
-启用统计报告并隐藏HAProxy版本报告，不能用于“frontend”区段。默认情况下，统计页面会显示一些有用信息，包括HAProxy的版本号，然而，向所有人公开HAProxy的精确版本号是非常有风险的，因为它能帮助恶意用户快速定位版本的缺陷和漏洞。尽管“stats hide-version”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。具体请参照“stats enable”一节的说明。
-&lt;/code&gt;&lt;/pre&gt;
-3.13 stats realm  
-&lt;pre&gt;&lt;code&gt;
-stats realm &lt;realm&gt;
-启用统计报告并高精认证领域，不能用于“frontend”区段。haproxy在读取realm时会将其视作一个单词，因此，中间的任何空白字符都必须使用反斜线进行转义。此参数仅在与“stats auth”配置使用时有意义。
-&lt;realm&gt;：实现HTTP基本认证时显示在浏览器中的领域名称，用于提示用户输入一个用户名和密码。
-尽管“stats realm”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。具体请参照“stats enable”一节的说明。
-&lt;/realm&gt;&lt;/realm&gt;&lt;/code&gt;&lt;/pre&gt;
-3.14 stats scope  
-&lt;pre&gt;&lt;code&gt;
-stats scope { &lt;name&gt; | &quot;.&quot; }
-启用统计报告并限定报告的区段，不能用于“frontend”区段。当指定此语句时，统计报告将仅显示其列举出区段的报告信息，所有其它区段的信息将被隐藏。如果需要显示多个区段的统计报告，此语句可以定义多次。需要注意的是，区段名称检测仅仅是以字符串比较的方式进行，它不会真检测指定的区段是否真正存在。
-name&gt;：可以是一个“listen”、“frontend”或“backend”区段的名称，而“.”则表示stats scope语句所定义的当前区段。  
-尽管“stats scope”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。下面是一个配置案例。
-backend private_monitoring
-    stats enable
-    stats uri     /haproxyadmin?stats
-    stats refresh 10s
-&lt;/name&gt;&lt;/code&gt;&lt;/pre&gt;
-3.15 stats auth  
-&lt;pre&gt;&lt;code&gt;
-stats auth &lt;user&gt;:&lt;passwd&gt;
-启用带认证的统计报告功能并授权一个用户帐号，其不能用于“frontend”区段。
-&lt;user&gt;：授权进行访问的用户名；
-&lt;passwd&gt;：此用户的访问密码，明文格式；
-此语句将基于默认设定启用统计报告功能，并仅允许其定义的用户访问，其也可以定义多次以授权多个用户帐号。可以结合“stats realm”参数在提示用户认证时给出一个领域说明信息。在使用非法用户访问统计功能时，其将会响应一个“401 Forbidden”页面。其认证方式为HTTP Basic认证，密码传输会以明文方式进行，因此，配置文件中也使用明文方式存储以说明其非保密信息故此不能相同于其它关键性帐号的密码。
-尽管“stats auth”一条就能够启用统计报告，但还是建议设定其它所有的参数，以免其依赖于默认设定而带来非期后果。
-&lt;/passwd&gt;&lt;/user&gt;&lt;/passwd&gt;&lt;/user&gt;&lt;/code&gt;&lt;/pre&gt;
-3.16 stats admin  
-&lt;pre&gt;&lt;code&gt;
-stats admin { if | unless } &lt;cond&gt;
-在指定的条件满足时启用统计报告页面的管理级别功能，它允许通过web接口启用或禁用服务器，不过，基于安全的角度考虑，统计报告页面应该尽可能为只读的。此外，如果启用了HAProxy的多进程模式，启用此管理级别将有可能导致异常行为。
-目前来说，POST请求方法被限制于仅能使用缓冲区减去保留部分之外的空间，因此，服务器列表不能过长，否则，此请求将无法正常工作。因此，建议一次仅调整少数几个服务器。下面是两个案例，第一个限制了仅能在本机打开报告页面时启用管理级别功能，第二个定义了仅允许通过认证的用户使用管理级别功能。
-backend stats_localhost
-    stats enable
-    stats admin if LOCALHOST
-backend stats_auth
-    stats enable
-    stats auth  haproxyadmin:password
-    stats admin if TRUE
-&lt;/cond&gt;&lt;/code&gt;&lt;/pre&gt;
-3.17 option httplog  
-&lt;pre&gt;&lt;code&gt;
-option httplog [ clf ]
-启用记录HTTP请求、会话状态和计时器的功能。
-clf：使用CLF格式来代替HAProxy默认的HTTP格式，通常在使用仅支持CLF格式的特定日志分析器时才需要使用此格式。
-默认情况下，日志输入格式非常简陋，因为其仅包括源地址、目标地址和实例名称，而“option httplog”参数将会使得日志格式变得丰富许多，其通常包括但不限于HTTP请求、连接计时器、会话状态、连接数、捕获的首部及cookie、“frontend”、“backend”及服务器名称，当然也包括源地址和端口号等。
-&lt;/code&gt;&lt;/pre&gt;
-3.18 option logasap  
-&lt;pre&gt;&lt;code&gt;
-        option logasap  
-    no option logasap  
-启用或禁用提前将HTTP请求记入日志，不能用于“backend”区段。  
-默认情况下，HTTP请求是在请求结束时进行记录以便能将其整体传输时长和字节数记入日志，由此，传较大的对象时，其记入日志的时长可能会略有延迟。“option logasap”参数能够在服务器发送complete首部时即时记录日志，只不过，此时将不记录整体传输时长和字节数。此情形下，捕获“Content-Length”响应首部来记录传输的字节数是一个较好选择。下面是一个例子。  
-  listen http_proxy 0.0.0.0:80
-      mode http
-      option httplog
-      option logasap
-      log 172.16.100.9 local2
-&lt;/code&gt;&lt;/pre&gt;
-3.19 option forwardfor  
-&lt;pre&gt;&lt;code&gt;
-option forwardfor [ except &lt;network&gt; ] [ header &lt;name&gt; ] [ if-none ]
-允许在发往服务器的请求首部中插入“X-Forwarded-For”首部。  
-&lt;network&gt;：可选参数，当指定时，源地址为匹配至此网络中的请求都禁用此功能。  
-&lt;name&gt;：可选参数，可使用一个自定义的首部，如“X-Client”来替代“X-Forwarded-For”。有些独特的web服务器的确需要用于一个独特的首部
-if-none：仅在此首部不存在时才将其添加至请求报文问道中
-HAProxy工作于反向代理模式，其发往服务器的请求中的客户端IP均为HAProxy主机的地址而非真正客户端的地址，这会使得服务器端的日志信息记录不了真正的请求来源，“X-Forwarded-For”首部则可用于解决此问题。HAProxy可以向每个发往服务器的请求上添加此首部，并以客户端IP为其value
-需要注意的是，HAProxy工作于隧道模式，其仅检查每一个连接的第一个请求，因此，仅第一个请求报文被附加此首部。如果想为每一个请求都附加此首部，请确保同时使用了“option httpclose”、“option forceclose”和“option http-server-close”几个option。  
-下面是一个例子
-frontend www
-    mode http
-    option forwardfor except 127.0.0.1
-&lt;/name&gt;&lt;/network&gt;&lt;/name&gt;&lt;/network&gt;&lt;/code&gt;&lt;/pre&gt;
-3.20 errorfile  
-&lt;pre&gt;&lt;code&gt;
-errorfile &lt;code&gt; &lt;file&gt;
-在用户请求不存在的页面时，返回一个页面文件给客户端而非由haproxy生成的错误代码；可用于所有段中
-&lt;code&gt;：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有200、400、403、408、500、502、503和504；
-&lt;file&gt;：指定用于响应的页面文件；
-例如
-errorfile 400 /etc/haproxy/errorpages/400badreq.http
-errorfile 403 /etc/haproxy/errorpages/403forbid.http
-errorfile 503 /etc/haproxy/errorpages/503sorry.http
-&lt;/file&gt;&lt;/code&gt;&lt;/file&gt;&lt;/code&gt;&lt;/code&gt;&lt;/pre&gt;
-3.21 errorloc 和 errorloc302  
-&lt;pre&gt;&lt;code&gt;
-errorloc &lt;code&gt; &lt;url&gt;
-errorloc302 &lt;code&gt; &lt;url&gt;
-请求错误时，返回一个HTTP重定向至某URL的信息；可用于所有配置段中。
-&lt;code&gt;：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有200、400、403、408、500、502、503和504；
-&lt;url&gt;：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；
-需要留意的是，这两个关键字都会返回302状态吗，这将使得客户端使用同样的HTTP方法获取指定的URL，对于非GET法的场景(如POST)来说会产生问题，因为返回客户的URL是不允许使用GET以外的其它方法的。如果的确有这种问题，可以使用errorloc303来返回303状态码给客户端。
-&lt;/url&gt;&lt;/code&gt;&lt;/url&gt;&lt;/code&gt;&lt;/url&gt;&lt;/code&gt;&lt;/code&gt;&lt;/pre&gt;
-3.22 errorloc303
-&lt;pre&gt;&lt;code&gt;
-`errorloc303 &lt;code&gt; &lt;url&gt;`  
-请求错误时，返回一个HTTP重定向至某URL的信息给客户端；可用于所有配置段中。  
-`&lt;code&gt;`：指定对HTTP的哪些状态码返回指定的页面；这里可用的状态码有400、403、408、500、502、503和504；  
-&lt;url&gt;：Location首部中指定的页面位置的具体路径，可以是在当前服务器上的页面的相对路径，也可以使用绝对路径；需要注意的是，如果URI自身错误时产生某特定状态码信息的话，有可能会导致循环定向；  
-例如：
-backend webserver
-  server 172.16.100.6 172.16.100.6:80 check maxconn 3000 cookie srv01
-  server 172.16.100.7 172.16.100.7:80 check maxconn 3000 cookie srv02
-  errorloc 403 /etc/haproxy/errorpages/sorry.htm
-  errorloc 503 /etc/haproxy/errorpages/sorry.htm
-&lt;/url&gt;&lt;/code&gt;&lt;/url&gt;&lt;/code&gt;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一个配置示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-\#---------------------------------------------------------------------
-\# Global settings
-\#---------------------------------------------------------------------
-global
-    # to have these messages end up in /var/log/haproxy.log you will
-    # need to:
-    #
-    # 1) configure syslog to accept network log events.  This is done
-    #    by adding the &#39;-r&#39; option to the SYSLOGD_OPTIONS in
-    #    /etc/sysconfig/syslog
-    #
-    # 2) configure local2 events to go to the /var/log/haproxy.log
-    #   file. A line like the following can be added to
-    #   /etc/sysconfig/syslog
-    #
-    #    local2.*                       /var/log/haproxy.log
-    #
-    log         127.0.0.1 local2
-    chroot      /var/lib/haproxy
-    pidfile     /var/run/haproxy.pid
-    maxconn     4000
-    user        haproxy
-    group       haproxy
-    daemon
-defaults
-    mode                    http
-    log                     global
-    option                  httplog
-    option                  dontlognull
-    option http-server-close
-    option forwardfor       except 127.0.0.0/8
-    option                  redispatch
-    retries                 3
-    timeout http-request    10s
-    timeout queue           1m
-    timeout connect         10s
-    timeout client          1m
-    timeout server          1m
-    timeout http-keep-alive 10s
-    timeout check           10s
-    maxconn                 30000
-listen stats
-    mode http
-    bind 0.0.0.0:1080
-    stats enable
-    stats hide-version
-    stats uri     /haproxyadmin?stats
-    stats realm   Haproxy\ Statistics
-    stats auth    admin:admin
-    stats admin   if TRUE
-frontend http-in
-    bind \*:80
-    mode http
-    log global
-    option httpclose
-    option logasap
-    option dontlognull
-    capture request  header Host len 20
-    capture request  header Referer len 60
-    default_backend servers
-frontend healthcheck
-    bind :1099
-    mode http
-    option httpclose
-    option forwardfor
-    default_backend servers
-backend servers
-    balance roundrobin
-    server websrv1 192.168.10.11:80 check maxconn 2000
-    server websrv2 192.168.10.12:80 check maxconn 2000
-&lt;/code&gt;&lt;/pre&gt;  
-负载均衡MySQL服务的配置示例  
-&lt;pre&gt;&lt;code&gt;
-\#---------------------------------------------------------------------
-\# Global settings
-\#---------------------------------------------------------------------
-global
-    \# to have these messages end up in /var/log/haproxy.log you will
-    \# need to:
-    \#
-    \# 1) configure syslog to accept network log events.  This is done
-    \#    by adding the &#39;-r&#39; option to the SYSLOGD_OPTIONS in
-    \#    /etc/sysconfig/syslog
-    \#
-    \# 2) configure local2 events to go to the /var/log/haproxy.log
-    \#   file. A line like the following can be added to
-    \#   /etc/sysconfig/syslog
-    \#
-    \#    local2.*                       /var/log/haproxy.log
-    \#
-    log         127.0.0.1 local2
-    chroot      /var/lib/haproxy
-    pidfile     /var/run/haproxy.pid
-    maxconn     4000
-    user        haproxy
-    group       haproxy
-    daemon
-defaults
-    mode                    tcp
-    log                     global
-    option                  httplog
-    option                  dontlognull
-    retries                 3
-    timeout http-request    10s
-    timeout queue           1m
-    timeout connect         10s
-    timeout client          1m
-    timeout server          1m
-    timeout http-keep-alive 10s
-    timeout check           10s
-    maxconn                 600
-listen stats
-    mode http
-    bind 0.0.0.0:1080
-    stats enable
-    stats hide-version
-    stats uri     /haproxyadmin?stats
-    stats realm   Haproxy\ Statistics
-    stats auth    admin:admin
-    stats admin if TRUE
-frontend mysql
-    bind \*:3306
-    mode tcp
-    log global
-    default_backend mysqlservers
-backend mysqlservers
-    balance leastconn
-    server dbsrv1 192.168.10.11:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
-    server dbsrv2 192.168.10.12:3306 check port 3306 intval 2 rise 1 fall 2 maxconn 300
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/backend&gt;&lt;/backend&gt;&lt;/conns&gt;&lt;/conns&gt;&lt;/level&gt;&lt;/facility&gt;&lt;/ipv4_address:port&gt;&lt;/address&gt;&lt;/minlevel&gt;&lt;/level&gt;&lt;/facility&gt;&lt;/address&gt;&lt;/method&gt;&lt;/interface&gt;&lt;/address:port&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/interface&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/port_range&gt;&lt;/address&gt;&lt;/max_wait&gt;&lt;/arguments&gt;&lt;/algorithm&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/0..50,&gt;&lt;/number&gt;&lt;/number&gt;&lt;/number&gt;&lt;/string&gt;&lt;/facility&gt;&lt;/address&gt;&lt;/group&gt;&lt;/number&gt;&lt;/jail&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;HAProxy简介&quot;&gt;&lt;a href=&quot;#HAProxy简介&quot; class=&quot;headerlink&quot; title=&quot;HAProxy简介&quot;&gt;&lt;/a&gt;HAProxy简介&lt;/h4&gt;&lt;p&gt;&lt;em&gt;HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.&lt;/em&gt;&lt;br&gt;&lt;em&gt;HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。&lt;/em&gt;&lt;br&gt;————百度百科
-    
-    </summary>
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/categories/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Memcached简介</title>
-    <link href="https://iceziyao.github.io/2016/01/01/lnmp/Memcached/"/>
-    <id>https://iceziyao.github.io/2016/01/01/lnmp/Memcached/</id>
-    <published>2016-01-01T13:49:33.000Z</published>
-    <updated>2016-08-06T14:50:03.790Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;memcached是以LiveJournal旗下Danga Interactive 公司的Brad Fitzpatric 为首开发的一款软件。现在&lt;br&gt;已成为mixi、hatena、Facebook、Vox、LiveJournal等众多服务中提高Web应用扩展性的重要因素。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Memcached是一款开发工具，它既不是一个代码加速器，也不是数据库中间件。其设计哲学思想主要反映在如下方面：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;简单key/value存储：服务器不关心数据本身的意义及结构，只要是可序列化数据即可。存储项由“键、过期时间、可选的标志及数据”四个部分组成；  &lt;/li&gt;
-&lt;li&gt;功能的实现一半依赖于客户端，一半基于服务器端：客户负责发送存储项至服务器端、从服务端获取数据以及无法连接至服务器时采用相应的动作；服务端负责接收、存储数据，并负责数据项的超时过期；  &lt;/li&gt;
-&lt;li&gt;各服务器间彼此无视：不在服务器间进行数据同步；  &lt;/li&gt;
-&lt;li&gt;O(1)的执行效率  &lt;/li&gt;
-&lt;li&gt;清理超期数据：默认情况下，Memcached是一个LRU缓存，同时，它按事先预订的时长清理超期数据；&lt;br&gt;但事实上，memcached不会删除任何已缓存数据，只是在其过期之后不再为客户所见；&lt;br&gt;而且，memcached也不会真正按期限清理缓存，而仅是当get命令到达时检查其时长；   &lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Memcached提供了为数不多的几个命令来完成与服务器端的交互，这些命令基于memcached的协议实现。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;存储类命令：set, add, replace, append, prepend&lt;br&gt;获取数据类命令：get, delete, incr/decr&lt;br&gt;统计类命令：stats, stats items, stats slabs, stats sizes&lt;br&gt;清理命令： flush_all  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;一、安装libevent&lt;br&gt;memcached依赖于libevent API，因此要事先安装之，项目主页：&lt;a href=&quot;http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://libevent.org/，读者可自行选择需要的版本下载。本文采用的是目前最新版本的源码包libevent-2.0.16-stable.tar.gz。安装过程：&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-# tar xf libevent-2.0.20-stable.tar.gz
-# cd libevent-2.0.20
-# ./configure --prefix=/usr/local/libevent
-# make &amp;&amp; make install
-
-# echo &quot;/usr/local/libevent/lib&quot; &gt; /etc/ld.so.conf.d/libevent.conf
-# ldconfig
-&lt;/code&gt;&lt;/pre&gt;
-二、安装配置memcached
-
-1. 安装memcached
-&lt;pre&gt;&lt;code&gt;
-# tar xf memcached-1.4.15.tar.gz
-# cd memcached-1.4.15
-# ./configure --prefix=/usr/local/memcached --with-libevent=/usr/local/libevent
-# make &amp;&amp; make install
-&lt;/code&gt;&lt;/pre&gt;
-2. memcached SysV的startup脚本代码如下所示，将其建立为/etc/init.d/memcached文件：
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;58&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;59&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;60&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;61&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;62&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;63&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;65&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;66&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;67&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;68&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;69&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;70&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;71&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;72&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;73&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#!/bin/bash&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# Init file for memcached&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# chkconfig: - 86 14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# description: Distributed memory caching daemon&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# processname: memcached&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# config: /etc/sysconfig/memcached&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;. /etc/rc.d/init.d/functions&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## Default variables&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PORT=&amp;quot;11211&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;USER=&amp;quot;nobody&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;MAXCONN=&amp;quot;1024&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CACHESIZE=&amp;quot;64&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OPTIONS=&amp;quot;&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RETVAL=0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;prog=&amp;quot;/usr/local/memcached/bin/memcached&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;desc=&amp;quot;Distributed memory caching&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;lockfile=&amp;quot;/var/lock/subsys/memcached&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;start() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo -n $&amp;quot;Starting $desc (memcached): &amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        daemon $prog -d -p $PORT -u $USER -c $MAXCONN -m $CACHESIZE -o &amp;quot;$OPTIONS&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=$?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; touch $lockfile&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return $RETVAL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;stop() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo -n $&amp;quot;Shutting down $desc (memcached): &amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        killproc $prog&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=$?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; rm -f $lockfile&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return $RETVAL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;restart() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        stop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        start&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;reload() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo -n $&amp;quot;Reloading $desc ($prog): &amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        killproc $prog -HUP&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=$?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return $RETVAL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;case &amp;quot;$1&amp;quot; in&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  start)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        start&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  stop)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        stop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  restart)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        restart&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  condrestart)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        [ -e $lockfile ] &amp;amp;&amp;amp; restart&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=$?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;       &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  reload)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        reload&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  status)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        status $prog&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=$?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        ;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   \*)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        echo $&amp;quot;Usage: $0 &amp;#123;start|stop|restart|condrestart|status&amp;#125;&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        RETVAL=1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;esac&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;exit $RETVAL&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-使用如下命令配置memcached成为系统服务：
-&lt;pre&gt;&lt;code&gt;
-# chmod +x /etc/init.d/memcached
-# chkconfig --add memcached
-# service memcached start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;使用telnet命令测试memcached的使用&lt;br&gt;Memcached提供一组基本命令用于基于命令行调用其服务或查看服务器状态等。&lt;br&gt;&lt;code&gt;telnet 127.0.0.1 11211&lt;/code&gt;  &lt;blockquote&gt;
-&lt;p&gt;add命令：&lt;br&gt;add keyname flag  timeout  datasize&lt;br&gt;如：&lt;br&gt;add mykey 0 10 12&lt;br&gt;Hello world!&lt;br&gt;get命令：&lt;br&gt;get keyname&lt;br&gt;如：get mykey&lt;br&gt;VALUE mykey 0 12&lt;br&gt;Hello world!&lt;br&gt;END  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;4.memcached的常用选项说明&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
--l &lt;ip_addr&gt;：指定进程监听的地址；
--d: 以服务模式运行；
--u &lt;username&gt;：以指定的用户身份运行memcached进程；
--m &lt;num&gt;：用于缓存数据的最大内存空间，单位为MB，默认为64MB；
--c &lt;num&gt;：最大支持的并发连接数，默认为1024；
--p &lt;num&gt;: 指定监听的TCP端口，默认为11211；
--U &lt;num&gt;：指定监听的UDP端口，默认为11211，0表示关闭UDP端口；
--t &lt;threads&gt;：用于处理入站请求的最大线程数，仅在memcached编译时开启了支持线程才有效；
--f &lt;num&gt;：设定Slab Allocator定义预先分配内存空间大小固定的块时使用的增长因子；
--M：当内存空间不够使用时返回错误信息，而不是按LRU算法利用空间；
--n: 指定最小的slab chunk大小；单位是字节；
--S: 启用sasl进行用户认证；
-&lt;/num&gt;&lt;/threads&gt;&lt;/num&gt;&lt;/num&gt;&lt;/num&gt;&lt;/num&gt;&lt;/username&gt;&lt;/ip_addr&gt;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;三、安装Memcache的PHP扩展&lt;/p&gt;
-&lt;p&gt;①安装PHP的memcache扩展&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-# tar xf memcache-2.2.5.tgz
-# cd memcache-2.2.5
-/usr/local/php/bin/phpize
-# ./configure --with-php-config=/usr/local/php/bin/php-config --enable-memcache
-# make &amp;&amp; make install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上述安装完后会有类似以下的提示：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;②编辑/usr/local/php/lib/php.ini，在“动态模块”相关的位置添加如下一行来载入memcache扩展：&lt;br&gt;extension=/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/memcache.so&lt;br&gt;而后对memcached功能进行测试，在网站目录中建立测试页面test.php，添加如下内容：  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;?php
-$mem = new Memcache;
-$mem-&gt;connect(&quot;127.0.0.1&quot;, 11211)  or die(&quot;Could not connect&quot;);
-$version = $mem-&gt;getVersion();
-echo &quot;Server&#39;s version: &quot;.$version.&quot;&lt;br&gt;\n&quot;;
-$mem-&gt;set(&#39;testkey&#39;, &#39;Hello World&#39;, 0, 600) or die(&quot;Failed to save data at the memcached server&quot;);
-echo &quot;Store data in the cache (data will expire in 600 seconds)&lt;br&gt;\n&quot;;
-$get_result = $mem-&gt;get(&#39;testkey&#39;);
-echo &quot;$get_result is from memcached server.&quot;;         
-?&gt;
-&lt;/code&gt;&lt;/pre&gt;  
-
-&lt;p&gt;如果有输出”Hello World is from memcached”&lt;br&gt;等信息，则表明memcache已经能够正常工作&lt;/p&gt;
-&lt;p&gt;四. 使用libmemcached的客户端工具:&lt;/p&gt;
-&lt;p&gt;访问memcached的传统方法是使用基于perl语言开发的Cache::memcached模块，这个模块在大多数perl代码中都能良好的工作，但也有着众所周知的性能方面的问题。libMemcached则是基于C语言开发的开源的C/C++代码访问memcached的库文件，同时，它还提供了数个可以远程使用的memcached管理工具，如memcat, memping，memstat，memslap等。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;编译安装libmemcached&lt;pre&gt;&lt;code&gt;
-# tar xf libmemcached-1.0.2.tar.gz
-# cd libmemcached-1.0.2
-# ./configure
-# make &amp;&amp; make install
-# ldconfig
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;客户端工具&lt;pre&gt;&lt;code&gt;
-# memcat --servers=127.0.0.1:11211 mykey
-# memping
-# memslap
-# memstat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;五. Nginx整合memcached:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-server {
-        listen       80;
-        server_name  www.magedu.com;
-        #charset koi8-r;
-        #access_log  logs/host.access.log  main;
-        location / {
-                set $memcached_key $uri;
-                memcached_pass     127.0.0.1:11211;
-                default_type       text/html;
-                error_page         404 @fallback;
-        }
-        location @fallback {
-                proxy_pass http://172.16.0.1;
-        }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="缓存" scheme="https://iceziyao.github.io/categories/%E7%BC%93%E5%AD%98/"/>
-    
-    
-      <category term="缓存" scheme="https://iceziyao.github.io/tags/%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
