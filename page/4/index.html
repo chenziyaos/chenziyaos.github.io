@@ -204,6 +204,89 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
+        <a href="/2015/12/25/Net/tcp10/" title="link to Tcp协议概述">Tcp协议概述</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2015-12-25" class="post-list__meta--date date">2015-12-25</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h4 id="tcp协议族位于传输层"><a href="#tcp协议族位于传输层" class="headerlink" title="tcp协议族位于传输层"></a>tcp协议族位于传输层</h4><h2 id="tcp报文格式"><a href="#tcp报文格式" class="headerlink" title="tcp报文格式"></a>tcp报文格式</h2><ul>
+<li>TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2015/12/23/lnmp/nginx负载均衡/" title="link to nginx负载均衡">nginx负载均衡</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2015-12-23" class="post-list__meta--date date">2015-12-23</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html">lnmp架构</a></p>
+<ol>
+<li>nginx 反向代理<br>nginx的负载均衡基于反向代理
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2015/12/23/lnmp/nginx配置文件详解/" title="link to nginx配置文件详解">nginx配置文件详解</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2015-12-23" class="post-list__meta--date date">2015-12-23</time> 
+      </div>
+
+      <div class="excerpt">
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2015/12/06/Net/tcp4/" title="link to 多播和广播">多播和广播</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2015-12-06" class="post-list__meta--date date">2015-12-06</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h3 id="单播-unicast"><a href="#单播-unicast" class="headerlink" title="单播(unicast)"></a>单播(unicast)</h3><blockquote>
+<p>单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。<br>这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，<br>就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。<br>现在的具有路由功能的主机应该可以将单播数据定向转发，<br>而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。</p>
+</blockquote>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
         <a href="/2015/12/04/Net/tcp3/" title="link to IP协议,ARP协议和RARP协议">IP协议,ARP协议和RARP协议</a>
       </h2>
 
@@ -344,71 +427,6 @@ classes that you can use:
       <hr class="post-list__divider" />
     </li>
     
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/10/11/shell/shell编程/" title="link to shell编程基础">shell编程基础</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-10-11" class="post-list__meta--date date">2015-10-11</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h4 id="Shell与Shell语言"><a href="#Shell与Shell语言" class="headerlink" title="Shell与Shell语言"></a>Shell与Shell语言</h4><p>Shell, 实际上这里所说的Shell是一种应用程序, 它负责解释执行你编写的Shell脚本, linux默认就自带了sh/bash/csh/zsh/tcsh/ksh, 你可以这样查看cat /etc/shells<br>
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/10/06/shell/linux基础/" title="link to Linux基础">Linux基础</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-10-06" class="post-list__meta--date date">2015-10-06</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h3 id="如何在linux上活下去"><a href="#如何在linux上活下去" class="headerlink" title="如何在linux上活下去"></a>如何在linux上活下去</h3><p>1.cd 命令<br>用于切换当前目录，它的参数是要切换到的目录的路径，可以是绝对路径，也可以是相对路径。</p>
-<blockquote>
-<p>cd /mnt          进入/mnt<br>cd ~           进入用户家目录<br>cd 绝对路径 or 相对路径<br>
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/01/02/前端/ajax/" title="link to ajax初探">ajax初探</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-01-02" class="post-list__meta--date date">2015-01-02</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h4 id="ajax简介"><a href="#ajax简介" class="headerlink" title="ajax简介"></a>ajax简介</h4><ul>
-<li>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </li>
-<li>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </li>
-<li>AJAX 是一种用于创建快速动态网页的技术。
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
   </ol>
 
   <hr class="post-list__divider " />
@@ -416,12 +434,14 @@ classes that you can use:
 <nav class="pagination" role="navigation">
     
     	
-          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/page/3/">&larr; 上一页 </a>
+          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/page/3/">&larr; 上一頁 </a>
         
     
 
-    <span class="pagination__page-number"> 4 / 4</span>
+    <span class="pagination__page-number"> 4 / 5</span>
     
+    
+        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/5/">下一頁 &rarr;</a>
     
 </nav>
 

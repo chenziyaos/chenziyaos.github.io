@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      top命令 | 羽非衣 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="陈子瑶">
+    
+    
+
+    <meta name="description" content="uptime系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：　　- 它没有在等待I/O操作的结果　　- 它没有主动进入等待状态(也就是没有调用’wait’)　　- 没有被停止(例如：等待终止)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="top命令 | 羽非衣">
+<meta property="og:url" content="https://iceziyao.github.io/2017/01/14/shell/top/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="uptime系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：　　- 它没有在等待I/O操作的结果　　- 它没有主动进入等待状态(也就是没有调用’wait’)　　- 没有被停止(例如：等待终止)">
+<meta property="og:updated_time" content="2017-02-05T14:54:28.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="top命令 | 羽非衣">
+<meta name="twitter:description" content="uptime系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：　　- 它没有在等待I/O操作的结果　　- 它没有主动进入等待状态(也就是没有调用’wait’)　　- 没有被停止(例如：等待终止)">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">羽非衣</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          心静如水
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/guestbook" title="" class="">留言</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/iceziYao" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">top命令</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-14" class="post-meta__date date">2017-01-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Linux/">Linux</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/常用命令/">常用命令</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h1><p>系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：<br>　　- 它没有在等待I/O操作的结果<br>　　- 它没有主动进入等待状态(也就是没有调用’wait’)<br>　　- 没有被停止(例如：等待终止)<br><a id="more"></a></p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">18:58:01 up  1:43,  3 users,  load average: 0.04, 0.18, 0.26</div><div class="line">一般来说只要每个CPU的当前活动进程数不大于3那么系统的性能就是良好的，如果每个CPU的任务数大于5，</div><div class="line">那么就表示这台机器的性能有严重问题。</div></pre></td></tr></table></figure>
+<h1 id="top"><a href="#top" class="headerlink" title="top"></a>top</h1><p>top,linux下的进程管理器.top显示系统当前的进程和其他状况,是一个动态显示过程</p>
+<h2 id="命令使用"><a href="#命令使用" class="headerlink" title="命令使用"></a>命令使用</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。</div><div class="line">p 通过指定监控进程ID来仅仅监控某个进程的状态。  top -p 1</div><div class="line">S 指定累计模式</div><div class="line">s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。</div><div class="line">i 只显示活跃状态  </div><div class="line">c 显示整个命令行而不只是显示命令名</div><div class="line">n 刷新n次，然后退出</div></pre></td></tr></table></figure>
+<h3 id="交互命令，即在top展示界面，与top进行交互的"><a href="#交互命令，即在top展示界面，与top进行交互的" class="headerlink" title="交互命令，即在top展示界面，与top进行交互的"></a>交互命令，即在top展示界面，与top进行交互的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">h或者? 显示帮助画面，给出一些简短的命令总结说明。</div><div class="line">k  终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号</div><div class="line">i 忽略闲置和僵死进程。这是一个开关式命令。</div><div class="line">q 退出程序。</div><div class="line">r 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。</div><div class="line">S 切换到累计模式。</div><div class="line">s 改变两次刷新之间的延迟时间</div><div class="line">f或者F 从当前显示中添加或者删除项目。</div><div class="line">o或者O 改变显示项目的顺序。</div><div class="line">l 切换显示平均负载和启动时间信息。</div><div class="line">m 切换显示内存信息。</div><div class="line">t 切换显示进程和CPU状态信息。</div><div class="line">M 根据驻留内存大小进行排序。</div><div class="line">c 切换显示命令名称和完整命令行。</div><div class="line">P 根据CPU使用百分比大小进行排序。</div><div class="line">T 根据时间/累计时间进行排序。</div></pre></td></tr></table></figure>
+<h2 id="命令显示"><a href="#命令显示" class="headerlink" title="命令显示"></a>命令显示</h2><h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">top - 15:47:10 up  6:16,  3 users,  load average: 0.12, 0.09, 0.16</div><div class="line">Tasks: 234 total,   1 running, 233 sleeping,   0 stopped,   0 zombie</div><div class="line">%Cpu(s):  0.2 us,  0.2 sy,  0.0 ni, 99.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</div><div class="line">KiB Mem :  3764312 total,  1285504 free,  1193768 used,  1285040 buff/cache</div><div class="line">KiB Swap:  3948540 total,  3948540 free,        0 used.  2038756 avail Mem</div><div class="line"></div><div class="line">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND           </div><div class="line">```   </div><div class="line"></div><div class="line">### . 相关说明</div><div class="line">1. 统计信息区</div><div class="line">前五行是系统整体的统计信息。第一行是任务队列信息，同 uptime 命令的执行结果。其内容如下：</div></pre></td></tr></table></figure>
+<p>01:06:48 当前时间<br>up 1:22  系统运行时间，格式为时:分<br>1 user   当前登录用户数<br>load average: 0.06, 0.60, 0.48 系统负载，即任务队列的平均长度。<br>三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">第二行为进程统计信息。当有多个CPU时，这些内容可能会超过两行。内容如下：</div></pre></td></tr></table></figure></p>
+<p>Tasks: 234 total 进程总数<br>1 running 正在运行的进程数<br>233 sleeping 睡眠的进程数<br>0 stopped 停止的进程数<br>0 zombie 僵尸进程数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">第三行显示CPU信息</div></pre></td></tr></table></figure></p>
+<p>Cpu(s): 0.2% us 用户空间占用CPU百分比<br>0.2% sy 内核空间占用CPU百分比<br>0.0% ni 用户进程空间内改变过优先级的进程占用CPU百分比<br>99.5% id 空闲CPU百分比<br>0.0% wa 等待输入输出的CPU时间百分比<br>0.0% hi<br>0.0% si<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">第四,五行为内存信息，与free命令输出内容相同。内容如下：</div></pre></td></tr></table></figure></p>
+<p>Mem: 191272k total 物理内存总量<br>173656k used 使用的物理内存总量<br>17616k free 空闲内存总量<br>22052k buffers 用作内核缓存的内存量<br>Swap: 192772k total 交换区总量<br>0k used 使用的交换区总量<br>192772k free 空闲交换区总量<br>123988k cached 缓冲的交换区总量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">**备注：**</div><div class="line">第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少     </div><div class="line">五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用    </div><div class="line"></div><div class="line">2. 命令输入区</div><div class="line">    输入交互命令</div><div class="line"></div><div class="line">3. 进程信息区</div></pre></td></tr></table></figure></p>
+<pre><code>PID 进程id
+PPID 父进程id
+RUSER Real user name
+UID 进程所有者的用户id
+USER 进程所有者的用户名
+GROUP 进程所有者的组名
+TTY 启动进程的终端名。不是从终端启动的进程则显示为 ?
+PR 优先级
+NI nice值。负值表示高优先级，正值表示低优先级
+P 最后使用的CPU，仅在多CPU环境下有意义
+%CPU 上次更新到现在的CPU时间占用百分比
+TIME 进程使用的CPU时间总计，单位秒
+TIME+ 进程使用的CPU时间总计，单位1/100秒
+%MEM 进程使用的物理内存百分比
+VIRT 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES
+SWAP 进程使用的虚拟内存中，被换出的大小，单位kb。
+RES 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA
+CODE 可执行代码占用的物理内存大小，单位kb
+DATA 可执行代码以外的部分(数据段+栈)占用的物理内存大小，单位kb
+SHR 共享内存大小，单位kb
+nFLT 页面错误次数
+nDRT 最后一次写入到现在，被修改过的页面数。
+S 进程状态。
+COMMAND 命令名/命令行
+WCHAN 若该进程在睡眠，则显示睡眠中的系统函数名
+Flags 任务标志，参考 sched.h
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 常用命令</div></pre></td></tr></table></figure>
+<p>top   //每隔5秒显式所有进程的资源占用情况<br>top -d 2  //每隔2秒显式所有进程的资源占用情况<br>top -c  //每隔5秒显式进程的资源占用情况，并显示进程的命令行参数(默认只有进程名)<br>top -p 12345 -p 6789//每隔5秒显示pid是12345和pid是6789的两个进程的资源占用情况<br>top -d 2 -c -p 123456 //每隔2秒显示pid是12345的进程的资源使用情况，并显式该进程启动的命令行参数<br>top -d 1 -n 1 &gt; top.back<br>```</p>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/01/14/shell/top/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"chenziyao"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

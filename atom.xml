@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iceziyao.github.io/"/>
-  <updated>2016-11-23T23:09:53.428Z</updated>
+  <updated>2017-02-05T14:57:52.756Z</updated>
   <id>https://iceziyao.github.io/</id>
   
   <author>
@@ -14,6 +14,274 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux命令分类总结</title>
+    <link href="https://iceziyao.github.io/2017/01/23/shell/%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/"/>
+    <id>https://iceziyao.github.io/2017/01/23/shell/命令总结/</id>
+    <published>2017-01-22T16:00:00.000Z</published>
+    <updated>2017-02-05T14:57:52.756Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;一-常用命令&quot;&gt;&lt;a href=&quot;#一-常用命令&quot; class=&quot;headerlink&quot; title=&quot;一. 常用命令&quot;&gt;&lt;/a&gt;一. 常用命令&lt;/h1&gt;&lt;h2 id=&quot;文件目录操作&quot;&gt;&lt;a href=&quot;#文件目录操作&quot; class=&quot;headerlink&quot; title=&quot;文件目录操作&quot;&gt;&lt;/a&gt;文件目录操作&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;cd 切换目录&lt;br&gt;&lt;code&gt;cd dirname&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;ls 显示文件/目录属性&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;常见参数：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-l ：列出长数据串，包含文件的属性与权限数据等  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-d ：仅列出目录本身，而不是列出目录的文件数据  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-h ：将文件容量以较易读的方式（GB，kB等）列出来  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例： ls -l /tmp&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. pwd 显示当前路径  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`pwd`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4. mkdir 创建目录&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;mkdir  newdir&lt;br&gt;mkdir  -p  newdir/newdir   #递归创建目录&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;5. touch创建文件    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`touch filename`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6. cp&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;常见参数：&lt;br&gt;-r： 递归复制&lt;br&gt;-p： 保持属性复制&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;7. mv移动文件/重命名&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;mv filename dirname  移动文件&lt;br&gt;mv oldfilename newfilename 对文件重命名&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;8. rm 删除文件&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;-i： 交互式&lt;br&gt;-r： 递归&lt;br&gt;-f： 强制&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;9. ln创建链接&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ln /etc/passwd passwd  创建硬链接&lt;br&gt;ln -s 创建软链接&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;10. chown 更改文件拥有者&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;chown [-R] user dir/file&lt;br&gt;chown [-R] user:group dir/file&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;11. chgrp 更改文件拥有组&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;chgrp [-R] groupname dir/file&lt;br&gt;参数：&lt;br&gt;-R： 递归更改&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;12. chmod 更改文件权限&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;r=4,w=2,x=1&lt;br&gt;chmod xxx filename&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 日常开关机  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;禁止在线上服务器使用    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. shutdown&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;-r             关机重启&lt;br&gt;-h             关机不重启&lt;br&gt; now            立刻关机&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. halt               关机&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. reboot             重启&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4. 切换执行等级： init&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Linux共有七种执行等级：&lt;br&gt;–run level 0 :关机&lt;br&gt;–run level 3 :纯文本模式&lt;br&gt;–run level 5 :含有图形接口模式&lt;br&gt;–run level 6 :重新启动&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;## 用户管理&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. useradd /adduser  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;用法： useradd [-u|-g|-m|-d|-s] *username*&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;参数说明：&lt;br&gt;-u： 指定用户id&lt;br&gt;-g： 指定用户组id&lt;br&gt;-d： 指定用户家目录&lt;br&gt;-m/M：创建家目录/M 不创建&lt;br&gt;-s： 指定用户登陆的shell&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. userdel   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;用法： userdel [-r] *username*&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. usermod   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4. passwd   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;用法： passwd *username* 或者  echo *password* | passwd *username* --stdin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 搜索命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 寻找【执行挡】：which&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;which ls  寻找ls命令所在位置&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 寻找特定档案：whereis&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;whereis-ls&quot;&gt;&lt;a href=&quot;#whereis-ls&quot; class=&quot;headerlink&quot; title=&quot;whereis ls&quot;&gt;&lt;/a&gt;whereis ls&lt;/h1&gt;&lt;p&gt;ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz /usr/share/man/man1p/ls.1p.gz&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;3. 寻找特定档案：locate&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;locate passwd&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;4. 寻找特定档案：find&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;用法： find [PATH] [option] [action]&lt;br&gt;find支持正则匹配&lt;br&gt;-name   按照文件名查找文件。&lt;br&gt;-perm   按照文件权限来查找文件。&lt;br&gt;-user   按照文件属主来查找文件。&lt;br&gt;-group  按照文件所属的组来查找文件。&lt;br&gt;-mtime -n +n  按照文件的更改时间来查找文件&lt;br&gt;-type  查找某一类型的文件&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;实例：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;find / -name &lt;em&gt;.txt&lt;br&gt;find . -name &lt;/em&gt;.pyc exec rm -rf {}\; 找出 pyc文件并删除&lt;br&gt;find . -type d  查找目录&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 二. 文本操作&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 1. 全文查看 cat/tac&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 语法： cat/tac filename&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 2. 分页查看 less/more&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 语法： less/more filename&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 3. 头尾查看 head/tail&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 语法： hean filename   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常见用法：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;head -10 /etc/passwd  查看文件前10行&lt;br&gt;tail -5 /etc/passwd  查看文件后5行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 4. 统计命令wc&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1.  wc语法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;wc [-lwm]&lt;br&gt;选项：&lt;br&gt;-l  ：仅列出行；&lt;br&gt;-w  ：仅列出多少字(英文单字)；&lt;br&gt;-m  ：多少字符；&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常见用法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;wc-etc-passwd&quot;&gt;&lt;a href=&quot;#wc-etc-passwd&quot; class=&quot;headerlink&quot; title=&quot;wc /etc/passwd&quot;&gt;&lt;/a&gt;wc /etc/passwd&lt;/h1&gt;&lt;p&gt;  50   94   2550 /etc/passwd&lt;br&gt;  行数 单词数 字节数&lt;/p&gt;
+&lt;h1 id=&quot;wc-l-etc-passwd-统计行数很常用&quot;&gt;&lt;a href=&quot;#wc-l-etc-passwd-统计行数很常用&quot; class=&quot;headerlink&quot; title=&quot;wc -l /etc/passwd   #统计行数很常用&quot;&gt;&lt;/a&gt;wc -l /etc/passwd   #统计行数很常用&lt;/h1&gt;&lt;h1 id=&quot;wc-w-etc-passwd-统计单词出现次数&quot;&gt;&lt;a href=&quot;#wc-w-etc-passwd-统计单词出现次数&quot; class=&quot;headerlink&quot; title=&quot;wc -w /etc/passwd   #统计单词出现次数&quot;&gt;&lt;/a&gt;wc -w /etc/passwd   #统计单词出现次数&lt;/h1&gt;&lt;h1 id=&quot;wc-m-etc-passwd-统计文件的字节数&quot;&gt;&lt;a href=&quot;#wc-m-etc-passwd-统计文件的字节数&quot; class=&quot;headerlink&quot; title=&quot;wc -m /etc/passwd   #统计文件的字节数&quot;&gt;&lt;/a&gt;wc -m /etc/passwd   #统计文件的字节数&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 5. 切分命令 cut&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. cut语法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;cut  [-bn] [file] 或 cut [-c] [file]  或  cut [-df] [file]&lt;br&gt;　　主要参数&lt;br&gt;　　-b ：以字节为单位进行分割。这些字节位置将忽略多字节字符边界，除非也指定了 -n 标志。&lt;br&gt;　　-c ：以字符为单位进行分割。&lt;br&gt;　　-d ：自定义分隔符，默认为制表符。&lt;br&gt;　　-f ：与-d一起使用，指定显示哪个区域。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;$ cat /etc/passwd|head -n 5|cut -d : -f 1,3-5&lt;br&gt;root:0:0:root&lt;br&gt;bin:1:1:bin&lt;br&gt;daemon:2:2:daemon&lt;br&gt;adm:3:4:adm&lt;br&gt;lp:4:7:lp&lt;br&gt;$ cat /etc/passwd|head -n 5|cut -d : -f 1,3-5,7&lt;br&gt;root:0:0:root:/bin/bash&lt;br&gt;bin:1:1:bin:/sbin/nologin&lt;br&gt;daemon:2:2:daemon:/sbin/nologin&lt;br&gt;adm:3:4:adm:/sbin/nologin&lt;br&gt;lp:4:7:lp:/sbin/nologin&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 6. 排序命令 sort&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 语法：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;sort [-bcfMnrtk][源文件][-o 输出文件]&lt;br&gt;　　参数：&lt;br&gt;　　-b   忽略每行前面开始出的空格字符。&lt;br&gt;　　-c   检查文件是否已经按照顺序排序。&lt;br&gt;　　-f   排序时，忽略大小写字母。&lt;br&gt;　　-M   将前面3个字母依照月份的缩写进行排序。&lt;br&gt;　　-n   依照数值的大小排序。&lt;br&gt;　　-o   将排序后的结果存入指定的文件。&lt;br&gt;　　-r   以相反的顺序来排序。&lt;br&gt;　　-t  &amp;lt;分隔符&amp;gt;   指定排序时所用的栏位分隔字符。&lt;br&gt;　　-k  选择以哪个区间进行排序。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 按文本排序&lt;br&gt;sort filename&lt;br&gt;2 按数字排序&lt;br&gt;sort -n&lt;br&gt;3 在输出内容中去除重复行&lt;br&gt;sort -u&lt;br&gt;4 反序&lt;br&gt;sort -r&lt;br&gt;5 指定列排序&lt;br&gt;sort -k 列号 -t 分隔符&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 7. 去重命令——uniq&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;**uniq命令可以去除排序过的文件中的重复行，因此uniq经常和sort合用。也就是说，为了使uniq起作用，所有的重复行必须是相邻的。**  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 语法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;uniq-icu&quot;&gt;&lt;a href=&quot;#uniq-icu&quot; class=&quot;headerlink&quot; title=&quot;uniq [-icu]&quot;&gt;&lt;/a&gt;uniq [-icu]&lt;/h1&gt;&lt;p&gt;选项与参数：&lt;br&gt;-i   ：忽略大小写字符的不同；&lt;br&gt;-c  ：进行计数&lt;br&gt;-u  ：只显示唯一的行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常见用法&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 去重&lt;br&gt;cat words | sort |uniq&lt;br&gt;2 排序之后删除了重复行，同时在行首位置输出该行重复的次数:&lt;/p&gt;
+&lt;p&gt;#sort testfile | uniq -c&lt;br&gt;3 仅显示存在重复的行，并在行首显示该行重复的次数:&lt;/p&gt;
+&lt;p&gt;#sort testfile | uniq -dc&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;## 8. 查找命令——grep  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 用法 ： grep [options]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;　　主要参数&lt;br&gt;　　[options]主要参数：&lt;br&gt;　　－c：只输出匹配行的计数。&lt;br&gt;　　－I：不区分大 小写(只适用于单字符)。&lt;br&gt;　　－h：查询多文件时不显示文件名。&lt;br&gt;　　－l：查询多文件时只输出包含匹配字符的文件名。&lt;br&gt;　　－n：显示匹配行及 行号。&lt;br&gt;　　－s：不显示不存在或无匹配文本的错误信息。&lt;br&gt;　　－v：显示不包含匹配文本的所有行。&lt;br&gt;　　pattern正则表达式主要参数：&lt;br&gt;　　\： 忽略正则表达式中特殊字符的原有含义。&lt;br&gt;　　^：匹配正则表达式的开始行。&lt;br&gt;　　$: 匹配正则表达式的结束行。&lt;br&gt;　　\&amp;lt;：从匹配正则表达 式的行开始。&lt;br&gt;　　&gt;：到匹配正则表达式的行结束。&lt;br&gt;　　[ ]：单个字符，如[A]即A符合要求 。&lt;br&gt;　　[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。&lt;br&gt;　　。：所有的单个字符。&lt;br&gt;　　* ：有字符，长度可以为0。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常见使用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 grep root /etc/passwd   匹配文件中有root的行&lt;br&gt;2 grep ^root /etc/passwd  匹配文件中以root开头的行&lt;br&gt;3 grep -v root /etc/passwd 匹配文件中无root的行&lt;br&gt;4 grep -v ^$   test   过滤文件中的空行&lt;br&gt;5 grep ‘[239].’ data      #输出所有含有以2,3或9开头的，并且是两个数字的行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;## 9. 替换/查找/删除命令——sed&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 10. 强大的文本分析命令——awk&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 三. 任务操作&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 1. at  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在一个指定的时间执行一个指定任务，只能执行一次，且需要开启atd进程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;at[参数][时间]&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 三天后的下午5点钟执行date ： at 5pm+3 days date&lt;br&gt;2 删除定时任务：&lt;br&gt;    通过atq查看任务号&lt;br&gt;    atrm 任务号&lt;br&gt;3 显示定时任务内容&lt;br&gt;    at -c 任务号&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 2. crontab 定时任务  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;crond是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 使用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;vim /etc/crontab&lt;br&gt;文件格式：&lt;br&gt;minute   hour   day   month   week   command&lt;br&gt;其中：&lt;br&gt;    minute： 表示分钟，可以是从0到59之间的任何整数。&lt;br&gt;    hour：表示小时，可以是从0到23之间的任何整数。&lt;br&gt;    day：表示日期，可以是从1到31之间的任何整数。&lt;br&gt;    month：表示月份，可以是从1到12之间的任何整数。&lt;br&gt;    week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。&lt;br&gt;    command：要执行的命令，可以是系统命令，脚本文件。&lt;br&gt;    特殊字符：&lt;br&gt;        星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。&lt;br&gt;        逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”&lt;br&gt;        中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”&lt;br&gt;        正斜线（/）：可以用正斜线指定时间的间隔频率&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 命令格式：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;crontab [-u user] file&lt;br&gt;crontab [-u user] [ -e | -l | -r ]&lt;br&gt;参数：&lt;br&gt;    -u user ： 指定循环定时任务的用户&lt;br&gt;    file ： cronttab格式的文件&lt;br&gt;    -e ： 编辑某个用户的crontab文件，默认当点用户&lt;br&gt;    -l ： 显示内容&lt;br&gt;    -r ： 从/var/spool/cron目录中删除某个用户的crontab文件&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;3. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 每1分钟执行一次command&lt;br&gt;命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* * * * * command
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2 每小时的第3和第15分钟执行&lt;br&gt;命令：&lt;br&gt;    3,15 &lt;em&gt; &lt;/em&gt; &lt;em&gt; &lt;/em&gt; command&lt;br&gt;3 在上午8点到11点的第3和第15分钟执行&lt;br&gt;命令：&lt;br&gt;    3,15 8-11 &lt;em&gt; &lt;/em&gt; &lt;em&gt; command&lt;br&gt;4 每隔两天的上午8点到11点的第3和第15分钟执行&lt;br&gt;命令：&lt;br&gt;    3,15 8-11 &lt;/em&gt;/2 &lt;em&gt; &lt;/em&gt; command&lt;br&gt;5 每个星期一的上午8点到11点的第3和第15分钟执行&lt;br&gt;命令：&lt;br&gt;    3,15 8-11 &lt;em&gt; &lt;/em&gt; 1 command&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 3. 任务调度 &amp;amp; / nuhup  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;将任务打入后台&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;python test.py&amp;amp;&lt;br&gt;nuhup python test.py&amp;amp;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 四. 系统管理&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 1. uptime 系统负载&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 用法： uptime  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 显示：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;19:38:23 up 53 min,  2 users,  load average: 0.11, 0.13, 0.16&lt;br&gt;开机时间  运行时长      在线用户    负载：        1min  5min  15min&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 2. free 显示内存使用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 用法：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt; free [-b|k|m|g]&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 显示：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;total       used       free       shared       buffers   cached
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Mem:       1885320     494352    1390968      17080        688     207632&lt;br&gt;-/+ buffers/cache:     286032    1599288&lt;br&gt;Swap:            0          0          0&lt;br&gt;第一行：    内存总计      已经使用      空闲       多个进程共享的内存总额    缓冲     缓存&lt;br&gt;第二行：    除去缓冲缓存&lt;br&gt;第三行：    swap空间使用情况&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 3. vmstat&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;vmstat是Linux中监控内存的常用工具，可对操作系统的虚拟内存、进程、CPU等的整体情况进行监视.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;` vmstat -t 间隔 -d 次数`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 显示：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;procs ———–memory———- —swap– —–io—- -system– ——cpu—–&lt;br&gt; r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st&lt;br&gt; 1  0      0 1183708   2340 1374156    0    0   214    21  220  899  4  1 93  1  0&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 4. ps&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 用法：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ps [option]&lt;br&gt;-A ：所有的进程均显示出来&lt;br&gt;-a ：不与terminal有关的所有进程&lt;br&gt;-u ：有效用户的相关进程&lt;br&gt;-x ：一般与a连用 可列出较完整的信息&lt;br&gt;-l ：以长列表形式显示&lt;br&gt;-o ：自定义显示&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ps -aux/-ef  显示所有进程信息&lt;br&gt;ps -ax -o pid,%cpu,%mem –sort=-%cpu,-%mem | head -10 显示cpu以及内存占用最高的10个进程&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 5. top&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;top [option]&lt;br&gt;参数：&lt;br&gt;d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。&lt;br&gt;p 通过指定监控进程ID来仅仅监控某个进程的状态。&lt;br&gt;S 指定累计模式&lt;br&gt;s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。&lt;br&gt;i 使top不显示任何闲置或者僵死进程&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用命令&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;h或者? 显示帮助画面，给出一些简短的命令总结说明。&lt;br&gt;k       终止一个进程。&lt;br&gt;i 忽略闲置和僵死进程。&lt;br&gt;q 退出程序。&lt;br&gt;r 重新安排一个进程的优先级别&lt;br&gt;s 改变两次刷新之间的延迟时间&lt;br&gt;M 根据驻留内存大小进行排序。&lt;br&gt;P 根据CPU使用百分比大小进行排序。&lt;br&gt;T 根据时间/累计时间进行排序。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;3. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;top   //每隔5秒显式所有进程的资源占用情况&lt;br&gt;top -d 2  //每隔2秒显式所有进程的资源占用情况&lt;br&gt;top -c  //每隔5秒显式进程的资源占用情况&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 6. sar  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sar（System Activity Reporter系统活动情况报告）是目前 Linux 上最为全面的系统性能分析工具之一，可以从多方面对系统的活动进行报告，包括：文件的读写情况、系统调用的使用情况、磁盘I/O、CPU效率、内存使用状况、进程活动及IPC有关的活动等  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;常用参数：&lt;br&gt;-A：所有报告的总和。&lt;br&gt;-u：CPU利用率&lt;br&gt;-v：进程、I节点、文件和锁表状态。&lt;br&gt;-d：硬盘使用报告。&lt;br&gt;-r：没有使用的内存页面和硬盘块。&lt;br&gt;-g：串口I/O的情况。&lt;br&gt;-b：缓冲区使用情况。&lt;br&gt;-a：文件读写情况。&lt;br&gt;-c：系统调用情况。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;(1) sar -b 5 5        // IO传送速率&lt;br&gt;(2) sar -B 5 5        // 页交换速率&lt;br&gt;(3) sar -c 5 5        // 进程创建的速率&lt;br&gt;(4) sar -d 5 5        // 块设备的活跃信息&lt;br&gt;(5) sar -n DEV 5 5    // 网路设备的状态信息&lt;br&gt;(6) sar -n SOCK 5 5   // SOCK的使用情况&lt;br&gt;(7) sar -n ALL 5 5    // 所有的网络状态信息&lt;br&gt;(8) sar -r 5 5       // 内存和swap空间使用情况&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## IO相关&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. iostat&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. iotop&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 五. 网络相关&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 1. ifconfig 查看设置网卡参数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 命令格式：   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`ifconfig [网络设备] [参数] `&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ifconfig eth0 up/down   启用或关闭指定网卡&lt;br&gt;ifconfig eth0      显示网卡信息&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;## 2. ping 测试网络连通性  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Ping命令通过发送Internet控制消息协议（ICMP）回响请求消息来验证与另一台TCP/IP计算机的IP级连接&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ping [参数] [主机名或IP地址]&lt;br&gt;参数：&lt;br&gt;    -d 使用Socket的SO_DEBUG功能。&lt;br&gt;    -f  极限检测。大量且快速地送网络封包给一台机器，看它的回应。&lt;br&gt;    -n 只输出数值。&lt;br&gt;    -q 不显示任何传送封包的信息，只显示最后的结果。&lt;br&gt;    -r 忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。&lt;br&gt;    -R 记录路由过程。&lt;br&gt;    -v 详细显示指令的执行过程。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt; ping www.163.com&lt;br&gt; ping -R www.163.com&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 3. netstat 查看网络状态  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;netstat [option]&lt;br&gt;参数：&lt;br&gt;    -a： 显示所有&lt;br&gt;    -n： 以ip形式显示&lt;br&gt;    -p： 显示进程&lt;br&gt;    -r： 显示路由表&lt;br&gt;    -t： 只显示tcp&lt;br&gt;    -u： 只显示udp&lt;br&gt;    -i： 显示网络接口&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;1 netstat&lt;br&gt;2 netstat -nu 只显示udp / -t只显示tcp&lt;br&gt;3 netstat -r  显示路由表，作用同route&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 4. ss 查看网络状态&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ss与netstat命令作用相同，但比netstat更高效，采用的是tcp协议栈中tcp_diag.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;使用方法参考netstat，且基本参数相同  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 常用：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ss  -s  我想查看当前服务器的网络连接统计&lt;br&gt;ss -l   我想查看所有打开的网络端口&lt;br&gt;ss -a   查看这台服务器上所有的socket连接&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 5. ip 查看设置网卡参数  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 6. route 查看路由以及添加路由&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;route [option] [action]&lt;br&gt;参数：&lt;br&gt;    -n 不解析名字&lt;br&gt;    -v 显示详细的处理信息&lt;br&gt;    -f 清除所有网关入口的路由表。&lt;br&gt;    -p 与 add 命令一起使用时使路由具有永久性。&lt;br&gt;    add:添加一条新路由。&lt;br&gt;    del:删除一条路由。&lt;br&gt;    -net:目标地址是一个网络。&lt;br&gt;    -host:目标地址是一个主机。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;route -n  显示路由表&lt;br&gt;route add/del default gw 192.168.120.1  删除和添加设置默认网关&lt;br&gt;route add -net 172.25.0.0 netmask 255.255.0.0 dev eth0 添加网关&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 7. traceroute 查看路由轨迹  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;traceroute追踪网络数据包的路由途径  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;traceroute[参数][主机]&lt;br&gt;参数：&lt;br&gt;    -I 使用ICMP回应取代UDP资料信息。&lt;br&gt;    -d 使用Socket层级的排错功能。&lt;br&gt;    -s 设置本地主机送出数据包的IP地址。&lt;br&gt;    -n 只显示IP&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;traceroute www.163.com&lt;br&gt;traceroute -n www.163.com  显示IP地址，不查主机名&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 8. nslookup，dns查看  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;nslookup命令用于查询DNS的记录，查看域名解析是否正常，在网络故障的时候用来诊断网络问题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;nslookup [-qt=type] domain [dns-server]&lt;br&gt;type为 dns的解析记录&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;2. 常用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;nslookup  baidu.com&lt;br&gt;nslookup -qt=mx 163.com 8.8.8.8&lt;br&gt;```&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一-常用命令&quot;&gt;&lt;a href=&quot;#一-常用命令&quot; class=&quot;headerlink&quot; title=&quot;一. 常用命令&quot;&gt;&lt;/a&gt;一. 常用命令&lt;/h1&gt;&lt;h2 id=&quot;文件目录操作&quot;&gt;&lt;a href=&quot;#文件目录操作&quot; class=&quot;headerlink&quot; ti
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="常用命令" scheme="https://iceziyao.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本处理命令</title>
+    <link href="https://iceziyao.github.io/2017/01/21/shell/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/"/>
+    <id>https://iceziyao.github.io/2017/01/21/shell/文本处理/</id>
+    <published>2017-01-20T16:00:00.000Z</published>
+    <updated>2017-02-05T14:56:17.270Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;grep命令详解&quot;&gt;&lt;a href=&quot;#grep命令详解&quot; class=&quot;headerlink&quot; title=&quot;grep命令详解&quot;&gt;&lt;/a&gt;grep命令详解&lt;/h1&gt;&lt;h2 id=&quot;grep命令&quot;&gt;&lt;a href=&quot;#grep命令&quot; class=&quot;headerlink&quot; title=&quot;grep命令&quot;&gt;&lt;/a&gt;grep命令&lt;/h2&gt;&lt;p&gt;grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;p&gt;&lt;code&gt;grep [option] [] in_put&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;常用参数&quot;&gt;&lt;a href=&quot;#常用参数&quot; class=&quot;headerlink&quot; title=&quot;常用参数&quot;&gt;&lt;/a&gt;常用参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;    -v 过滤匹配文本&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -i 忽略大小写&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -o 显示匹配文本&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -n 显示匹配行以及行号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -c 只输出匹配行的计数&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -e 查找多个模式&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -w或--word-regexp   只显示全字符合的列。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -x或--line-regexp   只显示全列符合的列。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -E 使用扩展正则表达式&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -P 兼容perl 正则&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    -r 在当前目录以及子目录下递归搜索匹配的文本信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;元字符：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    .：所有的单个字符。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　 *：有字符，长度可以为0。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;常用正则表达式参数&quot;&gt;&lt;a href=&quot;#常用正则表达式参数&quot; class=&quot;headerlink&quot; title=&quot;常用正则表达式参数&quot;&gt;&lt;/a&gt;常用正则表达式参数&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;   \： 忽略正则表达式中特殊字符的原有含义。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　^：匹配正则表达式的开始行。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　$: 匹配正则表达式的结束行。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　\&amp;lt;：从匹配正则表达 式的行开始。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　\&amp;gt;：到匹配正则表达式的行结束。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　[ ]：单个字符，如[A]即A符合要求 。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;　　[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    *：匹配前面的字符零次或多次。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    +：匹配前面的字符一次或多次。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ?：匹配前面的子表达式零次或一次。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;n&amp;#125;：n 是一个非负整数。匹配确定的 n 次。o&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;n,&amp;#125;：n 是一个非负整数。至少匹配n 次。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;n,m&amp;#125;：m 和 n 均为非负整数，其中n &amp;lt;= m。最少匹配 n 次且最多匹配 m 次。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    x|y： 匹配 x 或 y&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [^a-z] ：匹配任何不在指定范围内的任意字符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## grep 常用示例&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 过滤空行   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;` grep -v &amp;quot;^$&amp;quot; filename`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 过滤配置文件的注释    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;` grep -v ^# filename`   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. grep -c 来计算匹配的数量    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;` grep -c &amp;quot;root&amp;quot; /etc/passwd `&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4. 显示行号   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;` grep -n  &amp;quot;root&amp;quot; /etc/passwd `&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5. 输出匹配指定模式行的前或者后面N行&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;(1) 使用-B参数输出匹配行的前4行
+    grep -B 4 &amp;quot;root&amp;quot; /etc/passwd
+(2) 使用-A参数输出匹配行的后4行
+    grep -A 4 &amp;quot;root&amp;quot; /etc/passwd  
+(3) 使用-C参数输出匹配行的前后4行  
+    grep -C 4 &amp;quot;root&amp;quot; /etc/passwd  
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;6. 获取网卡信息&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;(1) 获取eth0的信息
+    ifconfig | grep &amp;quot;eth0&amp;quot; –A 4
+(2) 获取开放的网卡
+    ifconfig | grep  -B 2 UP
+(3) 过滤掉ipv6
+    ifconfig | grep -v inet6
+(4) 获取ip信息
+    ifconfig | grep -ioE &amp;quot;inet\ [0-9].*?&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;7. 扩展正则表达式的使用&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;获取ip
+    ifconfig | grep -ioP &amp;quot;\d{1,3}\.\d{1,3}\.\d{1,3}\.[1-2]\d{0,2}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# sed命令详解   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sed是一种流编辑器，处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 处理流程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt;1.读入新的一行内容到缓存空间；   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2.从指定的操作指令中取出第一条指令，判断是否匹配pattern；  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3.如果不匹配，则忽略后续的编辑命令，回到第2步继续取出下一条指令；    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4.如果匹配，则针对缓存的行执行后续的编辑命令；完成后，回到第2步继续取出下一条指令；    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5.当所有指令都应用之后，输出缓存行的内容；回到第1步继续读入下一行内容；     &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6.当所有行都处理完之后，结束；     &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 语法&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 格式&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;sed [options] &amp;apos;command&amp;apos; file（s）
+sed [options] -f scriptfile file（s） 执行sed脚本
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;### 选项&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;   -e command, –expression=command&lt;br&gt;　　允许多台编辑。&lt;br&gt;　　-h, –help&lt;br&gt;　　打印帮助，并显示bug列表的地址。&lt;br&gt;　　-n, –quiet, –silent&lt;br&gt;　　取消默认输出。&lt;br&gt;　　-f, –filer=script-file&lt;br&gt;　　引导sed脚本文件名。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;### 常用参数&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;a   ∶新增， a 的后面可以接字串，而这些字串会在新的一行出现
+i   ∶插入， i 的后面可以接字串，而这些字串会在新的一行出现
+c   ∶取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d   ∶删除
+p   ∶打印，
+s   :替换  sed &amp;quot;s/匹配内容/替换内容/g&amp;quot; g代表全部
+!   :表示后面的命令对所有没有被选定的行发生作用。
+=   :打印当前行号码。
+#   :把注释扩展到下一个换行符以前。
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 常用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 将文章进行左对齐   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;s/^[ \t]*//&amp;apos; File`  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 将文本中每行结尾的空白字符、制表符删除   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;s/[ \t]*$//&amp;apos; File`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. 插入   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;1i test&amp;apos; File`  首行插入&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;$a test&amp;apos; File`  末行插入&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4. 删除文本中的所有空行&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;/^$/d&amp;apos; File`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5. 删除所有偶数行   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;n;d&amp;apos; File`   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6. 删除文件最后一行：   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;$d&amp;apos; File`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7. 删除注释行  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;/^#/d&amp;apos; File`   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8. 删除所有不以test开头的行   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;/^test/d&amp;apos; File`   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9. 删除2到10行    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;`sed &amp;apos;2,10d&amp;apos; File`   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## sed 高级应用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。保持空间用于保存模式空间的内容，模式空间的内容可以复制到保持空间，同样地保持空间的内容可以复制回模式空间   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### n命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;n命令简单来说就是提前读取下一行，覆盖模型空间前一行（并没有删除，因此依然打印至标准输出），如果命令未执行成功（并非跳过：前端条件不匹配），则放弃之后的任何命令，并对新读取的内容，重头执行sed。    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### N命令   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;N命令简单来说就是追加下一行到模式空间，同时将两行看做一行，但是两行之间依然含有\n换行符，如果命令未执行成功，则放弃之后任何命令，并对新读取的内容，重头执行sed。  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### d命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;d命令是删除当前模式空间内容  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### D命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;D命令是删除当前模式空间开端至\n的内容,放弃之后的命令，但是对剩余模式空间重新执行sed。      &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### h命令，H命令，g命令，G命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;h命令是将当前模式空间中内容覆盖至保持空间，H命令是将当前模式空间中的内容追加至保持空间   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;g命令是将当前保持空间中内容覆盖至模式空间，G命令是将当前保持空间中的内容追加至模式空间    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;示例：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;将文本中的内容倒序显示，实现tac的功能
+    sed &amp;apos;1!G;h;$!d&amp;apos; File
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id=&quot;awk命令详解&quot;&gt;&lt;a href=&quot;#awk命令详解&quot; class=&quot;headerlink&quot; title=&quot;awk命令详解&quot;&gt;&lt;/a&gt;awk命令详解&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;grep命令详解&quot;&gt;&lt;a href=&quot;#grep命令详解&quot; class=&quot;headerlink&quot; title=&quot;grep命令详解&quot;&gt;&lt;/a&gt;grep命令详解&lt;/h1&gt;&lt;h2 id=&quot;grep命令&quot;&gt;&lt;a href=&quot;#grep命令&quot; class=&quot;headerlink&quot; title=&quot;grep命令&quot;&gt;&lt;/a&gt;grep命令&lt;/h2&gt;&lt;p&gt;grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="常用命令" scheme="https://iceziyao.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>top命令</title>
+    <link href="https://iceziyao.github.io/2017/01/14/shell/top/"/>
+    <id>https://iceziyao.github.io/2017/01/14/shell/top/</id>
+    <published>2017-01-13T16:00:00.000Z</published>
+    <updated>2017-02-05T14:54:28.627Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;uptime&quot;&gt;&lt;a href=&quot;#uptime&quot; class=&quot;headerlink&quot; title=&quot;uptime&quot;&gt;&lt;/a&gt;uptime&lt;/h1&gt;&lt;p&gt;系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：&lt;br&gt;　　- 它没有在等待I/O操作的结果&lt;br&gt;　　- 它没有主动进入等待状态(也就是没有调用’wait’)&lt;br&gt;　　- 没有被停止(例如：等待终止)&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;解析&quot;&gt;&lt;a href=&quot;#解析&quot; class=&quot;headerlink&quot; title=&quot;解析&quot;&gt;&lt;/a&gt;解析&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;18:58:01 up  1:43,  3 users,  load average: 0.04, 0.18, 0.26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;一般来说只要每个CPU的当前活动进程数不大于3那么系统的性能就是良好的，如果每个CPU的任务数大于5，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;那么就表示这台机器的性能有严重问题。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;top&quot;&gt;&lt;a href=&quot;#top&quot; class=&quot;headerlink&quot; title=&quot;top&quot;&gt;&lt;/a&gt;top&lt;/h1&gt;&lt;p&gt;top,linux下的进程管理器.top显示系统当前的进程和其他状况,是一个动态显示过程&lt;/p&gt;
+&lt;h2 id=&quot;命令使用&quot;&gt;&lt;a href=&quot;#命令使用&quot; class=&quot;headerlink&quot; title=&quot;命令使用&quot;&gt;&lt;/a&gt;命令使用&lt;/h2&gt;&lt;h3 id=&quot;格式&quot;&gt;&lt;a href=&quot;#格式&quot; class=&quot;headerlink&quot; title=&quot;格式&quot;&gt;&lt;/a&gt;格式&lt;/h3&gt;&lt;h3 id=&quot;参数说明&quot;&gt;&lt;a href=&quot;#参数说明&quot; class=&quot;headerlink&quot; title=&quot;参数说明&quot;&gt;&lt;/a&gt;参数说明&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;p 通过指定监控进程ID来仅仅监控某个进程的状态。  top -p 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;S 指定累计模式&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;i 只显示活跃状态  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;c 显示整个命令行而不只是显示命令名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;n 刷新n次，然后退出&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;交互命令，即在top展示界面，与top进行交互的&quot;&gt;&lt;a href=&quot;#交互命令，即在top展示界面，与top进行交互的&quot; class=&quot;headerlink&quot; title=&quot;交互命令，即在top展示界面，与top进行交互的&quot;&gt;&lt;/a&gt;交互命令，即在top展示界面，与top进行交互的&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;h或者? 显示帮助画面，给出一些简短的命令总结说明。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;k  终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;i 忽略闲置和僵死进程。这是一个开关式命令。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;q 退出程序。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;r 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;S 切换到累计模式。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;s 改变两次刷新之间的延迟时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;f或者F 从当前显示中添加或者删除项目。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;o或者O 改变显示项目的顺序。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;l 切换显示平均负载和启动时间信息。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;m 切换显示内存信息。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;t 切换显示进程和CPU状态信息。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;M 根据驻留内存大小进行排序。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;c 切换显示命令名称和完整命令行。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;P 根据CPU使用百分比大小进行排序。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;T 根据时间/累计时间进行排序。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;命令显示&quot;&gt;&lt;a href=&quot;#命令显示&quot; class=&quot;headerlink&quot; title=&quot;命令显示&quot;&gt;&lt;/a&gt;命令显示&lt;/h2&gt;&lt;h3 id=&quot;显示&quot;&gt;&lt;a href=&quot;#显示&quot; class=&quot;headerlink&quot; title=&quot;显示&quot;&gt;&lt;/a&gt;显示&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;top - 15:47:10 up  6:16,  3 users,  load average: 0.12, 0.09, 0.16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Tasks: 234 total,   1 running, 233 sleeping,   0 stopped,   0 zombie&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;%Cpu(s):  0.2 us,  0.2 sy,  0.0 ni, 99.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;KiB Mem :  3764312 total,  1285504 free,  1193768 used,  1285040 buff/cache&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;KiB Swap:  3948540 total,  3948540 free,        0 used.  2038756 avail Mem&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND           &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;```   &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### . 相关说明&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1. 统计信息区&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;前五行是系统整体的统计信息。第一行是任务队列信息，同 uptime 命令的执行结果。其内容如下：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;01:06:48 当前时间&lt;br&gt;up 1:22  系统运行时间，格式为时:分&lt;br&gt;1 user   当前登录用户数&lt;br&gt;load average: 0.06, 0.60, 0.48 系统负载，即任务队列的平均长度。&lt;br&gt;三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第二行为进程统计信息。当有多个CPU时，这些内容可能会超过两行。内容如下：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Tasks: 234 total 进程总数&lt;br&gt;1 running 正在运行的进程数&lt;br&gt;233 sleeping 睡眠的进程数&lt;br&gt;0 stopped 停止的进程数&lt;br&gt;0 zombie 僵尸进程数&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;第三行显示CPU信息&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Cpu(s): 0.2% us 用户空间占用CPU百分比&lt;br&gt;0.2% sy 内核空间占用CPU百分比&lt;br&gt;0.0% ni 用户进程空间内改变过优先级的进程占用CPU百分比&lt;br&gt;99.5% id 空闲CPU百分比&lt;br&gt;0.0% wa 等待输入输出的CPU时间百分比&lt;br&gt;0.0% hi&lt;br&gt;0.0% si&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第四,五行为内存信息，与free命令输出内容相同。内容如下：&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Mem: 191272k total 物理内存总量&lt;br&gt;173656k used 使用的物理内存总量&lt;br&gt;17616k free 空闲内存总量&lt;br&gt;22052k buffers 用作内核缓存的内存量&lt;br&gt;Swap: 192772k total 交换区总量&lt;br&gt;0k used 使用的交换区总量&lt;br&gt;192772k free 空闲交换区总量&lt;br&gt;123988k cached 缓冲的交换区总量。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;**备注：**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少     &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用    &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2. 命令输入区&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    输入交互命令&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3. 进程信息区&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PID 进程id
+PPID 父进程id
+RUSER Real user name
+UID 进程所有者的用户id
+USER 进程所有者的用户名
+GROUP 进程所有者的组名
+TTY 启动进程的终端名。不是从终端启动的进程则显示为 ?
+PR 优先级
+NI nice值。负值表示高优先级，正值表示低优先级
+P 最后使用的CPU，仅在多CPU环境下有意义
+%CPU 上次更新到现在的CPU时间占用百分比
+TIME 进程使用的CPU时间总计，单位秒
+TIME+ 进程使用的CPU时间总计，单位1/100秒
+%MEM 进程使用的物理内存百分比
+VIRT 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES
+SWAP 进程使用的虚拟内存中，被换出的大小，单位kb。
+RES 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA
+CODE 可执行代码占用的物理内存大小，单位kb
+DATA 可执行代码以外的部分(数据段+栈)占用的物理内存大小，单位kb
+SHR 共享内存大小，单位kb
+nFLT 页面错误次数
+nDRT 最后一次写入到现在，被修改过的页面数。
+S 进程状态。
+COMMAND 命令名/命令行
+WCHAN 若该进程在睡眠，则显示睡眠中的系统函数名
+Flags 任务标志，参考 sched.h
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 常用命令&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;top   //每隔5秒显式所有进程的资源占用情况&lt;br&gt;top -d 2  //每隔2秒显式所有进程的资源占用情况&lt;br&gt;top -c  //每隔5秒显式进程的资源占用情况，并显示进程的命令行参数(默认只有进程名)&lt;br&gt;top -p 12345 -p 6789//每隔5秒显示pid是12345和pid是6789的两个进程的资源占用情况&lt;br&gt;top -d 2 -c -p 123456 //每隔2秒显示pid是12345的进程的资源使用情况，并显式该进程启动的命令行参数&lt;br&gt;top -d 1 -n 1 &amp;gt; top.back&lt;br&gt;```&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;uptime&quot;&gt;&lt;a href=&quot;#uptime&quot; class=&quot;headerlink&quot; title=&quot;uptime&quot;&gt;&lt;/a&gt;uptime&lt;/h1&gt;&lt;p&gt;系统平均负载被定义为在特定时间间隔内运行队列中的平均任务数。如果一个进程满足以下条件则其就会位于运行队列中：&lt;br&gt;　　- 它没有在等待I/O操作的结果&lt;br&gt;　　- 它没有主动进入等待状态(也就是没有调用’wait’)&lt;br&gt;　　- 没有被停止(例如：等待终止)&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="常用命令" scheme="https://iceziyao.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ps命令</title>
+    <link href="https://iceziyao.github.io/2017/01/12/shell/ps/"/>
+    <id>https://iceziyao.github.io/2017/01/12/shell/ps/</id>
+    <published>2017-01-11T16:00:00.000Z</published>
+    <updated>2017-02-05T14:53:25.232Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;命令详解&quot;&gt;&lt;a href=&quot;#命令详解&quot; class=&quot;headerlink&quot; title=&quot;命令详解&quot;&gt;&lt;/a&gt;命令详解&lt;/h2&gt;&lt;p&gt;ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;linux上进程有5种状态:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;运行(正在运行或在运行队列中等待)&lt;/li&gt;
+&lt;li&gt;中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)&lt;/li&gt;
+&lt;li&gt;不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)&lt;/li&gt;
+&lt;li&gt;僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)&lt;/li&gt;
+&lt;li&gt;停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ps工具标识进程的5种状态码:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;D 不可中断 uninterruptible sleep (usually IO)&lt;br&gt;R 运行 runnable (on run queue)&lt;br&gt;S 中断 sleeping&lt;br&gt;T 停止 traced or stopped&lt;br&gt;Z 僵死&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;命令格式&quot;&gt;&lt;a href=&quot;#命令格式&quot; class=&quot;headerlink&quot; title=&quot;命令格式&quot;&gt;&lt;/a&gt;命令格式&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ps [options]&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;常见参数&quot;&gt;&lt;a href=&quot;#常见参数&quot; class=&quot;headerlink&quot; title=&quot;常见参数&quot;&gt;&lt;/a&gt;常见参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;-A    列出所有的进程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-w    显示加宽可以显示较多的资讯&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-au   显示较详细的资讯&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-aux  显示所有包含其他使用者的行程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;常用参数：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-A 显示所有进程（等价于-e）(utility)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-a 显示一个终端的所有进程，除了会话引线&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-N 忽略选择。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-d 显示所有进程，但省略所有的会话引线(utility)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-x 显示没有控制终端的进程，同时显示各个命令的具体路径。dx不可合用。（utility）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-p pid 进程使用cpu的时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-u uid or username 选择有效的用户id或者是用户名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-g gid or groupname 显示组的所有进程。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-f 全部列出，通常和其他选项联用。如：ps -fa or ps -fx and so on.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-l 长格式（有F,wchan,C 等字段）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-m 显示所有的线程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-H 显示进程的层次&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;显示数据&quot;&gt;&lt;a href=&quot;#显示数据&quot; class=&quot;headerlink&quot; title=&quot;显示数据&quot;&gt;&lt;/a&gt;显示数据&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;执行 px -aux&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;root         1  0.0  0.1 123704  4300 ?        Ss   22:30   0:01 /usr/lib/systemd/systemd&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;说明&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;USER: 进程拥有者&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PID ： 进程号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;%CPU：进程使用掉的 CPU 资源百分比&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;%MEM：进程所占用的物理内存百分比&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;VSZ ：进程使用掉的虚拟内存量 (Kbytes)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;RSS ：进程占用的固定的内存量 (Kbytes)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TTY ：进程是在那个终端机上面运作，若与终端机无关，则显示 ?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;STAT：该程序目前的状态，主要的状态有&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    R ：进程目前正在运作，或者是可被运作&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    S ：进程目前正在睡眠当中 。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    T ：进程目前正在侦测或者是停止了&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Z ：进程应该已经终止，但是其父程序却无法正常的终止他，造成 zombie (疆尸) 程序的状态&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;START：进程 被触发启动的时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;TIME ：进程 实际使用 CPU 运作的时间&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;COMMAND：进程的实际指令&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;常见用法&quot;&gt;&lt;a href=&quot;#常见用法&quot; class=&quot;headerlink&quot; title=&quot;常见用法&quot;&gt;&lt;/a&gt;常见用法&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;ps aux&lt;br&gt; 显示现行终端机下的所有程序，包括其他用户的程序。&lt;/li&gt;
+&lt;li&gt;ps -aux&lt;br&gt; 显示所有进程。&lt;/li&gt;
+&lt;li&gt;ps -ef&lt;br&gt; 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。&lt;/li&gt;
+&lt;li&gt;ps -ax -o pid,%cpu,%mem –sort=-%cpu,-%mem | head -10&lt;br&gt; 显示cpu以及内存占用最高的10个进程&lt;/li&gt;
+&lt;li&gt;ps -axjf = pstree&lt;br&gt; 树形显示&lt;/li&gt;
+&lt;li&gt;watch -n 1 &lt;code&gt;ps -aux --sort -pmem, -pcpu&lt;/code&gt;&lt;br&gt; 定时监控进程&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;命令详解&quot;&gt;&lt;a href=&quot;#命令详解&quot; class=&quot;headerlink&quot; title=&quot;命令详解&quot;&gt;&lt;/a&gt;命令详解&lt;/h2&gt;&lt;p&gt;ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://iceziyao.github.io/categories/Linux/"/>
+    
+    
+      <category term="常用命令" scheme="https://iceziyao.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>架构的演变</title>
@@ -269,11 +537,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -315,11 +583,11 @@
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="ansible" scheme="https://iceziyao.github.io/tags/ansible/"/>
     
       <category term="python" scheme="https://iceziyao.github.io/tags/python/"/>
+    
+      <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
@@ -538,87 +806,7 @@ if __name__ == &amp;quot;__main__&amp;quot;:
       <category term="运维" scheme="https://iceziyao.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
-    
       <category term="自动化运维" scheme="https://iceziyao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python的内存管理机制</title>
-    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
-    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
-    <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-08-06T14:49:28.945Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;引用计数减少情况  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&gt;&gt; import sys
-&gt;&gt; x = 1
-&gt;&gt; sys.getrefcount(x)
-599
-&gt;&gt; y = x
-&gt;&gt; sys.getrefcount(x)
-600
-&gt;&gt; del y
-&gt;&gt; sys.getrefcount(x)
-599
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
-　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
-　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;原因  &lt;ul&gt;
-&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
-    
     
       <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
     
@@ -701,6 +889,86 @@ if __name__ == &amp;quot;__main__&amp;quot;:
 &lt;p&gt;In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;一个防止多线程并发执行机器码的一个Mutex&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://iceziyao.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://iceziyao.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python的内存管理机制</title>
+    <link href="https://iceziyao.github.io/2016/05/21/Python/python01/"/>
+    <id>https://iceziyao.github.io/2016/05/21/Python/python01/</id>
+    <published>2016-05-20T16:00:00.000Z</published>
+    <updated>2016-08-06T14:49:28.945Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;浅析引用计数&quot;&gt;&lt;a href=&quot;#浅析引用计数&quot; class=&quot;headerlink&quot; title=&quot;浅析引用计数&quot;&gt;&lt;/a&gt;浅析引用计数&lt;/h2&gt;&lt;p&gt;python内部使用引用计数，来保持追踪内存中的对象，Python内部记录了对象有多少个引用，即引用计数，当对象被创建时就创建了一个引用计数，当对象不再需要时，这个对象的引用计数为0时，它被垃圾回收。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用计数增加的情况：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.对象被创建：x=4&lt;br&gt;2.另外的别人被创建：y=x&lt;br&gt;3.被作为参数传递给函数：foo(x)&lt;br&gt;4.作为容器对象的一个元素：a=[1,x,’33’]  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;引用计数减少情况  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。&lt;br&gt;2.对象的别名被显式的销毁：del x ；或者del y&lt;br&gt;3.对象的一个别名被赋值给其他对象：x=789&lt;br&gt;4.对象从一个窗口对象中移除：myList.remove(x)&lt;br&gt;5.窗口对象本身被销毁：del myList，或者窗口对象本身离开了作用域。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如何获取一个变量的引用计数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&gt;&gt; import sys
+&gt;&gt; x = 1
+&gt;&gt; sys.getrefcount(x)
+599
+&gt;&gt; y = x
+&gt;&gt; sys.getrefcount(x)
+600
+&gt;&gt; del y
+&gt;&gt; sys.getrefcount(x)
+599
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;垃圾回收&quot;&gt;&lt;a href=&quot;#垃圾回收&quot; class=&quot;headerlink&quot; title=&quot;垃圾回收&quot;&gt;&lt;/a&gt;垃圾回收&lt;/h2&gt;&lt;p&gt;python的垃圾回收机制以引用计数为主，标记-清除和分代收集为辅。  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;引用计数&lt;br&gt;优点：“实时性”，任何内存，一旦没有指向它的引用，就会立即被回收。&lt;br&gt;缺点：&lt;br&gt;(1). 效率底下：引用计数机制带来的计数操作，与引用赋值成正比。频繁的技术操作，会给CPU带来大量消耗。&lt;br&gt;(2). 循环引用：也就是两个对象相互引用，这样的话，两个对象的引用计数永远不会为0，及它们永远不被清除。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;标记-清除&lt;br&gt;标记-清除是为了解决循环引用的问题。可以包含其他对象引用的容器对象（比如：list，set，dict，class，instance）都可能产生循环引用。&lt;br&gt;2.1 假设&lt;br&gt;如果两个对象的引用计数都为1的话，但仅仅存在它们之间的相互引用，那么，我们可以认为这两个对象的实际引用计数为0.如果我们将这个引用循环去掉，那么它们的实际引用计数才会显现。&lt;br&gt;案例：有循环引用的A,B两个对象，从A出发，因为它有一个对B的引用，则将B的引用计数减1；然后顺着引用达到B，因为B有一个对A的引用，同样将A的引用减1，这样，就完成了循环引用对象间环摘除。&lt;br&gt;问题：如果A,B间没有循环引用，但A引用了B，B没有以用A，贸然的将B计数引用减1，而A没有被回收，这将导致在未来的某个时刻出现一个对B的悬空引用，类似与C的空指针异常。这就要求我们必须在A没有被删除的情况下复原B的引用计数，那么维护引用计数的复杂度将成倍增加。&lt;br&gt;2.2 标记-清除的原理&lt;br&gt;原理：&lt;br&gt;我们并不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。&lt;br&gt;这个计数副本的唯一作用是寻找root object集合（该集合中的对象是不能被回收的）。当成功寻找到root object集合之后，首先将现在的内存链表一分为二，一条链表中维护root object集合，成为root链表，而另外一条链表中维护剩下的对象，成为unreachable链表。之所以要剖成两个链表，是基于这样的一种考虑：现在的unreachable可能存在被root链表中的对象，直接或间接引用的对象，这些对象是不能被回收的，一旦在标记的过程中，发现这样的对象，就将其从unreachable链表中移到root链表中；当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象了，接下来的垃圾回收只需限制在unreachable链表中即可。&lt;br&gt;效率分析：&lt;br&gt;从垃圾收集机制来看，这种垃圾收集机制所带来的额外操作实际上与系统中总的内存块的数量是相关的，当需要回收的内存块越多时，垃圾检测带来的额外操作就越多，而垃圾回收带来的额外操作就越少；反之，当需回收的内存块越少时，垃圾检测就将比垃圾回收带来更少的额外操作。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分代回收&lt;br&gt;3.1 理论：&lt;br&gt;无论使用何种语言开发，无论开发的是何种类型，何种规模的程序，都存在这样一点相同之处。即：一定比例的内存块的生存周期都比较短，通常是几百万条机器指令的时间，而剩下的内存块，起生存周期比较长，甚至会从程序开始一直持续到程序结束。&lt;br&gt;3.2 原理：&lt;br&gt;将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。也就是说，活得越长的对象，就越不可能是垃圾，就应该减少对它的垃圾收集频率。那么如何来衡量这个存活时间：通常是利用几次垃圾收集动作来衡量，如果一个对象经过的垃圾收集次数越多，可以得出：该对象存活时间就越长。也就是符合马太福音，存活久的让它继续存活下去。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;内存池机制&quot;&gt;&lt;a href=&quot;#内存池机制&quot; class=&quot;headerlink&quot; title=&quot;内存池机制&quot;&gt;&lt;/a&gt;内存池机制&lt;/h2&gt;&lt;p&gt;Python的内存机制以金字塔层次：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内存分配层次：  &lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;　　-1，-2层主要有操作系统进行操作，  
+　&lt;/em&gt;　第0层是C中的malloc，free等内存分配和释放函数进行操作；&lt;br&gt;　&lt;em&gt;　第1层和第2层是内存池，有Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存；  
+　&lt;/em&gt; 　第3层是最上层，也就是我们对Python对象的直接操作；  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;原因  &lt;ul&gt;
+&lt;li&gt;在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;具现化&lt;br&gt;Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。&lt;br&gt;　　Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。另外Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。&lt;br&gt;　　在Python中，许多时候申请的内存都是小块的内存，这些小块内存在申请后，很快又会被释放，由于这些内存的申请并不是为了创建对象，所以并没有对象一级的内存池机制。这就意味着Python在运行期间会大量地执行malloc和free的操作，频繁地在用户态和核心态之间进行切换，这将严重影响 Python的执行效率。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。这也就是之前提到的 Pymalloc机制。&lt;br&gt;　　Pymalloc 关于释放内存方面，当一个对象的 引用计数变为0时，python就会调用它的析构函数。在析构时，也采用了内存池机制，从内存池来的内存会被归还到内存池中，以避免频繁地释放动作。&lt;br&gt;　　Pymalloc分配一系列256KB的内存块，称之为arena。每个arena分割为4KB大小的内存池Pool，每个Pool再切分为固定大小的Block。在内存分配时，分配给进程的就是这些Blocks。&lt;br&gt;&lt;a href=&quot;http://nodefe.com/implement-of-pymalloc-from-source/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需要了解Pymalloc的看这篇博文&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;a href=&quot;#python的内存管理分为三个方面：&quot; class=&quot;headerlink&quot; title=&quot;python的内存管理分为三个方面：&quot;&gt;&lt;/a&gt;python的内存管理分为三个方面：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;引用计数&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;垃圾回收&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;内存池机制&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -1096,288 +1364,6 @@ res.output();
     
     
       <category term="docker" scheme="https://iceziyao.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浅析docker使用</title>
-    <link href="https://iceziyao.github.io/2016/04/03/Docker/docker01/"/>
-    <id>https://iceziyao.github.io/2016/04/03/Docker/docker01/</id>
-    <published>2016-04-02T16:00:00.000Z</published>
-    <updated>2016-08-06T14:50:42.253Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
-&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核   &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;普通虚拟机将整个操作系统运行在虚拟的硬件平台上, 进而提供完整的运行环境供应用程序运行, 而Docker则直接在宿主平台上加载运行应用程序. 本质上他在底层使用LXC启动一个Linux Container,通过cgroup等机制对不同的container内运行的应用程序进行隔离,权限管理和quota分配等  &lt;/li&gt;
-&lt;li&gt;每个container拥有自己独立的各种命名空间(亦即资源)包括:&lt;br&gt;PID 进程, MNT 文件系统, NET 网络, IPC , UTS 主机名 等&lt;br&gt;与任何容器技术一样，就该程序而言，它有自己的文件系统、存储系统、处理器和内存等部件。容器与虚拟机之间的区别主要在于，虚拟机管理程序对整个设备进行抽象处理，而容器只是对操作系统内核进行抽象处理。  &lt;/li&gt;
-&lt;li&gt;虚拟机管理程序能做容器做不了的一件事就是，使kernel-3.10.0-229.el7.x86_64用不同的操作系统或内核。所以，举例说，你可以使用微软Azure，同时运行Windows Server2012的实例和SUSE Linux企业级服务器的实例。至于Docker，所有容器都必须使用同样的操作系统和内核。&lt;/li&gt;
-&lt;li&gt;Docker 概念及相互作用&lt;/li&gt;
-&lt;li&gt;主机， 运行容器的机器。&lt;/li&gt;
-&lt;li&gt;镜像，文件的层次结构，以及包含如何运行容器的元数据&lt;/li&gt;
-&lt;li&gt;容器，一个从镜像中启动，包含正在运行的程序的进程&lt;/li&gt;
-&lt;li&gt;Registry， 镜像仓库&lt;/li&gt;
-&lt;li&gt;卷，容器外的存储  &lt;/li&gt;
-&lt;li&gt;Dockerfile， 用于创建镜像的脚本  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;docker能用来干什么？&quot;&gt;&lt;a href=&quot;#docker能用来干什么？&quot; class=&quot;headerlink&quot; title=&quot;docker能用来干什么？&quot;&gt;&lt;/a&gt;docker能用来干什么？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;快速交付你的应用程序&lt;br&gt;Docker可以为你的开发过程提供完美的帮助。Docker允许开发者在本地包含了应用程序和服务的容器进行开发，之后可以集成到连续的一体化和部署工作流中。&lt;/li&gt;
-&lt;li&gt;开发和拓展更加简单&lt;br&gt;Docker的以容器为基础的平台允许高度可移植的工作。Docker容器可以在开发者机器上运行，也可以在实体或者虚拟机上运行，也可以在云平台上运行。&lt;br&gt;Docker的可移植、轻量特性同样让动态地管理负载更加简单。你可以用Docker快速地增加应用规模或者关闭应用程序和服务。Docker的快速意味着变动几乎是实时的。&lt;/li&gt;
-&lt;li&gt;达到高密度和更多负载&lt;br&gt;Docker轻巧快速，它提供了一个可行的、 符合成本效益的替代基于虚拟机管理程序的虚拟机。这在高密度的环境下尤其有用。例如，构建你自己的云平台或者PaaS，在中小的部署环境下同样可以获取到更多的资源性能。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;docker主要组成有哪些？&quot;&gt;&lt;a href=&quot;#docker主要组成有哪些？&quot; class=&quot;headerlink&quot; title=&quot;docker主要组成有哪些？&quot;&gt;&lt;/a&gt;docker主要组成有哪些？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Docker有两个主要的部件：  &lt;blockquote&gt;
-&lt;p&gt;Docker: 开源的容器虚拟化平台。&lt;br&gt;Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Docker的内部&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker镜像 (Docker images)。&lt;/li&gt;
-&lt;li&gt;Docker仓库 (Docker registeries)。&lt;/li&gt;
-&lt;li&gt;Docker容器(Docker containers)。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Docker镜像&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker镜像是一个只读的模板。举个例子，一个镜像可以包含一个运行在Apache上的Web应用和其使用的Ubuntu操作系统。&lt;/li&gt;
-&lt;li&gt;镜像是用来创建容器的。Docker提供了简单的放来来建立新的镜像或者升级现有的镜像，你也可以下载别人已经创建好的镜像。Docker镜像是Docker的 构造 部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Docker仓库&lt;blockquote&gt;
-&lt;p&gt;Docker仓库用来保存镜像。可以理解为代码控制中的代码仓库。同样的，Docker仓库也有公有和私有的概念。公有的Docker仓库名字是Docker Hub。Docker Hub提供了庞大的镜像集合供使用。这些镜像可以是你自己创建的，或者你也可以在别人的镜像基础上创建。Docker仓库是Docker的 分发 部分。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Docker容器&lt;blockquote&gt;
-&lt;p&gt;Docker容器和文件夹很类似。一个Docker容器包含了所有的某个应用运行所需要的环境。每一个Docker容器都是从Docker镜像创建 的。Docker容器可以运行、开始、停止、移动和删除。每一个Docker容器都是独立和安全的应用平台。Docker容器是Docker的 运行 部分。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;安装docker&quot;&gt;&lt;a href=&quot;#安装docker&quot; class=&quot;headerlink&quot; title=&quot;安装docker&quot;&gt;&lt;/a&gt;安装docker&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;首先更新yum源，添加rhel7.1的iso镜像，来更新内核kernel(因为docker对内核有要求，rhel7.0时启动慢)  &lt;blockquote&gt;
-&lt;p&gt;1.自己下载cestos7.1的镜像，构建本地yum&lt;br&gt;2.使用163或者网易的yum源&lt;br&gt;yum update kernel -y&lt;br&gt;rpm -q kernel&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;kernel-3.10.0-123.el7.x86_64&lt;br&gt;kernel-3.10.0-229.el7.x86_64  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;重启，选择kernel-3.10.0-229.el7.x86_64进入系统&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;更新相关组件  &lt;blockquote&gt;
-&lt;p&gt;yum update device-mapper -y&lt;br&gt;rpm -qa | grep device-mapper&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;device-mapper-persistent-data-0.3.2-1.el7.x86_64&lt;br&gt;device-mapper-libs-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-multipath-0.4.9-66.el7.x86_64&lt;br&gt;device-mapper-event-libs-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-multipath-libs-0.4.9-66.el7.x86_64&lt;br&gt;device-mapper-event-1.02.93-3.el7.x86_64&lt;br&gt;device-mapper-1.02.93-3.el7.x86_64  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;安装docker  &lt;blockquote&gt;
-&lt;p&gt;3.1 执行Docker安装脚本&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; curl -sSL &lt;a href=&quot;https://get.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://get.docker.com/&lt;/a&gt; | sh&lt;br&gt;yum install -y docker-selinux&lt;br&gt;这个脚本会添加 docker.repo 配置并安装Docker。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;3.2 自动添加添加yum仓库&lt;br&gt;&lt;pre&gt;&lt;code&gt;&lt;br&gt;cat &amp;gt;/etc/yum.repos.d/docker.repo &amp;lt;&amp;lt;-EOF&lt;br&gt;[dockerrepo]&lt;br&gt;name=Docker Repository&lt;br&gt;baseurl=&lt;a href=&quot;https://yum.dockerproject.org/repo/main/centos/7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://yum.dockerproject.org/repo/main/centos/7&lt;/a&gt;&lt;br&gt;enabled=1&lt;br&gt;gpgcheck=1&lt;br&gt;gpgkey=&lt;a href=&quot;https://yum.dockerproject.org/gpg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://yum.dockerproject.org/gpg&lt;/a&gt;&lt;br&gt;EOF&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;安装Docker包&lt;br&gt;yum install -y docker-engine&lt;br&gt;yum install -y docker-selinux&lt;br&gt;yum list installed | grep docker  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;docker-engine.x86_64             1.8.1-1.el7.centos                    @dockerrepo&lt;br&gt;docker-selinux.x86_64            1.7.1-108.el7.centos                  @extras  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;3.3 rpm安装&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;yum install docker-engine-1.8.3-1.el7.centos.x86_64.rpm  -y&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;启动docker&lt;blockquote&gt;
-&lt;p&gt;systemctl start docker&lt;br&gt;docker version   &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Client:&lt;br&gt;Version:      1.8.1&lt;br&gt;API version:  1.20&lt;br&gt;Go version:   go1.4.2&lt;br&gt;Git commit:   d12ea79&lt;br&gt;Built:        Thu Aug 13 02:19:43 UTC 2015&lt;br&gt;OS/Arch:      linux/amd64  &lt;/p&gt;
-&lt;p&gt;Server:&lt;br&gt;Version:      1.8.1&lt;br&gt;API version:  1.20&lt;br&gt;Go version:   go1.4.2&lt;br&gt;Git commit:   d12ea79&lt;br&gt;Built:        Thu Aug 13 02:19:43 UTC 2015&lt;br&gt;OS/Arch:      linux/amd64  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;docker使用&quot;&gt;&lt;a href=&quot;#docker使用&quot; class=&quot;headerlink&quot; title=&quot;docker使用&quot;&gt;&lt;/a&gt;docker使用&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;有关镜像的操作  &lt;blockquote&gt;
-&lt;p&gt;$ docker images  # 查看所有镜像.&lt;br&gt;$ docker import  # 从tarball创建镜像&lt;br&gt;$ docker build   # 通过Dockerfile创建镜像&lt;br&gt;$ docker commit  # 从容器中创建镜像&lt;br&gt;$ docker rmi     # 删除镜像&lt;br&gt;$ docker history # 列出镜像的变更历史  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;运行的容器  &lt;blockquote&gt;
-&lt;p&gt;$ docker create  # 创建一个容器，但不启动它&lt;br&gt;$ docker run     #  创建并启动一个容器&lt;br&gt;$ docker stop    # 停止容器&lt;br&gt;$ docker start   #  启动容器&lt;br&gt;$ docker restart # 重启容器&lt;br&gt;$ docker rm      # 删除容器&lt;br&gt;$ docker kill    #  给容器发送kill信号&lt;br&gt;$ docker attach  # 连接到正在运行的容器中&lt;br&gt;$ docker wait    # 阻塞直到容器停止为止&lt;br&gt;$ docker exec    # 在运行的容器中执行一条命令  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;检查容器  &lt;blockquote&gt;
-&lt;p&gt;$ docker ps      # 显示运行的容器&lt;br&gt;$ docker inspect # 显示容器信息（包括ip地址）&lt;br&gt;$ docker logs    # 获取容器中的日志&lt;br&gt;$ docker events  # 获取容器事件&lt;br&gt;$ docker port    # 显示容器的公开端口&lt;br&gt;$ docker top     # 显示容器中运行的进程&lt;br&gt;$ docker diff    # 查看容器文件系统中改变的文件&lt;br&gt;$ docker stats   # 查看各种纬度数据、内存、CPU、文件系统等  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;之后的会继续更新博客&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;docker是什么？&quot;&gt;&lt;a href=&quot;#docker是什么？&quot; class=&quot;headerlink&quot; title=&quot;docker是什么？&quot;&gt;&lt;/a&gt;docker是什么？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案&lt;br&gt;Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器&lt;/li&gt;
-&lt;li&gt;Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核
-    
-    </summary>
-    
-      <category term="docker" scheme="https://iceziyao.github.io/categories/docker/"/>
-    
-    
-      <category term="docker" scheme="https://iceziyao.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言实现pwd,ls命令</title>
-    <link href="https://iceziyao.github.io/2016/04/01/C/bin/pwd-ls/"/>
-    <id>https://iceziyao.github.io/2016/04/01/C/bin/pwd-ls/</id>
-    <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2016-09-13T22:11:54.429Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;实现pwd&quot;&gt;&lt;a href=&quot;#实现pwd&quot; class=&quot;headerlink&quot; title=&quot;实现pwd&quot;&gt;&lt;/a&gt;实现pwd&lt;/h1&gt;&lt;p&gt;   实现pwd打印当前目录&lt;/p&gt;
-&lt;h2 id=&quot;所需函数-getcwd&quot;&gt;&lt;a href=&quot;#所需函数-getcwd&quot; class=&quot;headerlink&quot; title=&quot;所需函数 getcwd&quot;&gt;&lt;/a&gt;所需函数 getcwd&lt;/h2&gt;&lt;p&gt;函数原型：char *getcwd( char *buffer, int maxlen );&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;功 能：获取当前工作目录&lt;/li&gt;
-&lt;li&gt;参数说明：getcwd()会将当前工作目录的绝对路径复制到参数buffer所指的内存空间中,参数maxlen为buffer的空间大小。&lt;/li&gt;
-&lt;li&gt;返 回 值：成功则返回当前工作目录，失败返回 FALSE。&lt;/li&gt;
-&lt;li&gt;在某些 Unix 的变种下，如果任何父目录没有设定可读或搜索模式，即使当前目录设定了，getcwd()还是会返回 FALSE。有关模式与权限的更多信息见 chmod()。&lt;/li&gt;
-&lt;li&gt;头文件：unistd.h（windows下为direct.h）&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;unistd.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int main(void)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    printf(&amp;quot;%s\n&amp;quot;,getcwd(NULL,0));  //输出获取路径&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;实现ls&quot;&gt;&lt;a href=&quot;#实现ls&quot; class=&quot;headerlink&quot; title=&quot;实现ls&quot;&gt;&lt;/a&gt;实现ls&lt;/h1&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;实现pwd&quot;&gt;&lt;a href=&quot;#实现pwd&quot; class=&quot;headerlink&quot; title=&quot;实现pwd&quot;&gt;&lt;/a&gt;实现pwd&lt;/h1&gt;&lt;p&gt;   实现pwd打印当前目录&lt;/p&gt;
-&lt;h2 id=&quot;所需函数-getcwd&quot;&gt;&lt;a href=&quot;#所需函数-getcwd&quot; class=&quot;headerlink&quot; title=&quot;所需函数 getcwd&quot;&gt;&lt;/a&gt;所需函数 getcwd&lt;/h2&gt;&lt;p&gt;函数原型：char *getcwd( char *buffer, int maxlen );&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;功 能：获取当前工作目录&lt;/li&gt;
-&lt;li&gt;参数说明：getcwd()会将当前工作目录的绝对路径复制到参数buffer所指的内存空间中,参数maxlen为buffer的空间大小。&lt;/li&gt;
-&lt;li&gt;返 回 值：成功则返回当前工作目录，失败返回 FALSE。&lt;/li&gt;
-&lt;li&gt;在某些 Unix 的变种下，如果任何父目录没有设定可读或搜索模式，即使当前目录设定了，getcwd()还是会返回 FALSE。有关模式与权限的更多信息见 chmod()。&lt;/li&gt;
-&lt;li&gt;头文件：unistd.h（windows下为direct.h）
-    
-    </summary>
-    
-      <category term="C" scheme="https://iceziyao.github.io/categories/C/"/>
-    
-    
-      <category term="Linux" scheme="https://iceziyao.github.io/tags/Linux/"/>
-    
-      <category term="C" scheme="https://iceziyao.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入了解LVS</title>
-    <link href="https://iceziyao.github.io/2016/02/12/Lvs/LVS2/"/>
-    <id>https://iceziyao.github.io/2016/02/12/Lvs/LVS2/</id>
-    <published>2016-02-11T16:00:00.000Z</published>
-    <updated>2016-08-29T23:22:02.334Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;工作原理&quot;&gt;&lt;a href=&quot;#工作原理&quot; class=&quot;headerlink&quot; title=&quot;工作原理&quot;&gt;&lt;/a&gt;工作原理&lt;/h2&gt;&lt;p&gt;LVS分为两个部件：ipvs和ipvsadm&lt;br&gt;      ipvs ： 工作于内核空间，主要用于使用户定义的策略生效；&lt;br&gt;      ipvsadm : 工作于用户空间，主要用于用户定义和管理集群服务的工具；&lt;/p&gt;
-&lt;h3 id=&quot;LVS内核模型&quot;&gt;&lt;a href=&quot;#LVS内核模型&quot; class=&quot;headerlink&quot; title=&quot;LVS内核模型&quot;&gt;&lt;/a&gt;LVS内核模型&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/upload/lvs.png&quot; alt=&quot;lvs内核模型&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;当客户端的请求到达负载均衡器的内核空间时，首先会到达PREROUTING链。&lt;/li&gt;
-&lt;li&gt;当内核发现请求数据包的目的地址是本机时，将数据包送往INPUT链。&lt;/li&gt;
-&lt;li&gt;LVS由用户空间的ipvsadm和内核空间的IPVS组成，ipvsadm用来定义规则，IPVS利用ipvsadm定义的规则工作，IPVS工作在INPUT链上,当数据包到达INPUT链时，首先会被IPVS检查，如果数据包里面的目的地址及端口没有在规则里面，那么这条数据包将被放行至用户空间。&lt;/li&gt;
-&lt;li&gt;如果数据包里面的目的地址及端口在规则里面，那么这条数据报文将被修改目的地址为事先定义好的后端服务器，并送往POSTROUTING链。&lt;/li&gt;
-&lt;li&gt;最后经由POSTROUTING链发往后端服务器。  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;LVS对-IP包的处理模式&quot;&gt;&lt;a href=&quot;#LVS对-IP包的处理模式&quot; class=&quot;headerlink&quot; title=&quot;LVS对 IP包的处理模式&quot;&gt;&lt;/a&gt;LVS对 IP包的处理模式&lt;/h3&gt;&lt;p&gt;IP包处理用Linux内核的Netfilter框架完成&lt;br&gt;通俗的说，netfilter的架构就是在整个网络流程的若干位置放置了一些检测点（HOOK），而在每个检测点上上登记了一些处理函数进行处理（如包过滤，NAT等，甚至可以是用户自定义的功能）。&lt;br&gt;&amp;gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NF_IP_PRE_ROUTING：刚刚进入网络层的数据包通过此点（刚刚进行完版本号，校验和等检测），源地址转换在此点进行;  &lt;/li&gt;
-&lt;li&gt;NF_IP_LOCAL_IN：经路由查找后，送往本机的通过此检查点,INPUT包过滤在此点进行;  &lt;/li&gt;
-&lt;li&gt;NF_IP_FORWARD：要转发的包通过此检测点,FORWORD包过滤在此点进行;  &lt;/li&gt;
-&lt;li&gt;NF_IP_LOCAL_OUT：本机进程发出的包通过此检测点，OUTPUT包过滤在此点进行;  &lt;/li&gt;
-&lt;li&gt;NF_IP_POST_ROUTING：所有马上便要通过网络设备出去的包通过此检测点，内置的目的地址转换功能（包括地址伪装）在此点进行。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;LVS中Netfiler的实现&quot;&gt;&lt;a href=&quot;#LVS中Netfiler的实现&quot; class=&quot;headerlink&quot; title=&quot;LVS中Netfiler的实现&quot;&gt;&lt;/a&gt;LVS中Netfiler的实现&lt;/h4&gt;&lt;p&gt;　　利用Netfilter，LVS处理数据报从左边进入系统，进行IP校验以后，数据报经过第一个钩子函数NF_IP_PRE_ROUTING [HOOK1]进行处理；然后进行路由选择，决定该数据报是需要转发还是发给本机；若该数据报是发被本机的，则该数据经过钩子函数 NF_IP_LOCAL_IN[HOOK2]处理后传递给上层协议；若该数据报应该被转发，则它被NF_IP_FORWARD[HOOK3]处理；经过转发的数据报经过最后一个钩子函数NF_IP_POST_ROUTING[HOOK4]处理以后，再传输到网络上。本地产生的数据经过钩子函数 NF_IP_LOCAL_OUT[HOOK5]处理后，进行路由选择处理，然后经过NF_IP_POST_ROUTING[HOOK4]处理后发送到网络上。&lt;br&gt;　　当启动IPVS加载ip_vs模块时，模块的初始化函数ip_vs_init( )注册了NF_IP_LOCAL_IN[HOOK2]、NF_IP_FORWARD[HOOK3]、NF_IP_POST_ROUTING[HOOK4] 钩子函数用于处理进出的数据报。  &lt;/p&gt;
-&lt;h4 id=&quot;NF-IP-LOCAL-IN处理过程&quot;&gt;&lt;a href=&quot;#NF-IP-LOCAL-IN处理过程&quot; class=&quot;headerlink&quot; title=&quot;NF_IP_LOCAL_IN处理过程&quot;&gt;&lt;/a&gt;NF_IP_LOCAL_IN处理过程&lt;/h4&gt;&lt;p&gt;　　用户向虚拟服务器发起请求，数据报经过NF_IP_LOCAL_IN[HOOK2],进入ip_vs_in( )进行处理。如果传入的是icmp数据报，则调用ip_vs_in_icmp( )；否则继续判断是否为tcp/udp数据报，如果不是tcp/udp数据报，则函数返回NF_ACCEPT(让内核继续处理该数据报)；余下情况便是处理tcp/udp数据报。首先，调用ip_vs_header_check( )检查报头，如果异常，则函数返回NF_DROP(丢弃该数据报)。接着，调用ip_vs_conn_in_get( )去ip_vs_conn_tab表中查找是否存在这样的连接：它的客户机和虚拟服务器的ip地址和端口号以及协议类型均与数据报中的相应信息一致。如果不存在相应连接，则意味着连接尚未建立，此时如果数据报为tcp的sync报文或udp数据报则查找相应的虚拟服务器；如果相应虚拟服务器存在但是已经满负荷，则返回NF_DROP；如果相应虚拟服务器存在并且未满负荷，那么调用ip_vs_schedule( )调度一个RS并创建一个新的连接，如果调度失败则调用ip_vs_leave( )继续传递或者丢弃数据报。如果存在相应连接，首先判断连接上的RS是否可用，如果不可用则处理相关信息后返回NF_DROP。找到已存在的连接或建立新的连接后，修改系统记录的相关信息如传入的数据报的个数等。如果这个连接在创建时绑定了特定的数据报传输函数，调用这个函数传输数据报，否则返回 NF_ACCEPT。&lt;/p&gt;
-&lt;p&gt;　　ip_vs_in()调用的ip_vs_in_icmp( )处理icmp报文。函数开始时检查数据报的长度，如果异常则返回NF_DROP。函数只处理由tcp/udp报文传送错误引起的目的不可达、源端被关闭或超时的icmp报文，其他情况则让内核处理。针对上述三类报文，首先检查检验和。如果检验和错误，直接返回NF_DROP；否则，分析返回的icmp差错信息，查找相应的连接是否存在。如果连接不存在，返回NF_ACCEPT；如果连接存在，根据连接信息，依次修改差错信息包头的ip地址与端口号及 ICMP数据报包头的ip地址，并重新计算和修改各个包头中的检验和，之后查找路由调用ip_send( )发送修改过的数据报，并返回NF_STOLEN(退出数据报的处理过程)。&lt;/p&gt;
-&lt;p&gt;　　ip_vs_in()调用的函数ip_vs_schedule( )为虚拟服务器调度可用的RS并建立相应连接。它将根据虚拟服务器绑定的调度算法分配一个RS，如果成功，则调用ip_vs_conn_new( )建立连接。ip_vs_conn_new( )将进行一系列初始化操作：设置连接的协议、ip地址、端口号、协议超时信息，绑定application helper、RS和数据报传输函数，最后调用ip_vs_conn_hash( )将这个连接插入哈希表ip_vs_conn_tab中。一个连接绑定的数据报传输函数，依据IPVS工作方式可分为ip_vs_nat_xmit( )、ip_vs_tunnel_xmit( )、ip_vs_dr_xmit( )。例如ip_vs_nat_xmit( )的主要操作是：修改报文的目的地址和目的端口为RS信息，重新计算并设置检验和，调用ip_send( )发送修改后的数据报。&lt;/p&gt;
-&lt;h4 id=&quot;NF-IP-FORWARD处理过程&quot;&gt;&lt;a href=&quot;#NF-IP-FORWARD处理过程&quot; class=&quot;headerlink&quot; title=&quot;NF_IP_FORWARD处理过程&quot;&gt;&lt;/a&gt;NF_IP_FORWARD处理过程&lt;/h4&gt;&lt;p&gt;　　数据报进入NF_IP_FORWARD后，将进入ip_vs_out( )进行处理。这个函数只在NAT方式下被调用。它首先判断数据报类型，如果为icmp数据报则直接调用ip_vs_out_icmp( )；其次判断是否为tcp/udp数据报，如果不是这二者则返回NF_ACCEPT。余下就是tcp/udp数据报的处理。首先，调用 ip_vs_header_check( )检查报头，如果异常则返回NF_DROP。其次，调用ip_vs_conn_out_get( )判断是否存在相应的连接。若不存在相应连接：调用ip_vs_lookup_real_service( )去哈希表中查找发送数据报的RS是否仍然存在，如果RS存在且报文是tcp非复位报文或udp 报文，则调用icmp_send( )给RS发送目的不可达icmp报文并返回NF_STOLEN；其余情况下均返回NF_ACCEPT。若存在相应连接：检查数据报的检验和，如果错误则返回NF_DROP，如果正确，修改数据报，将源地址修改为虚拟服务器ip地址，源端口修改为虚拟服务器端口号，重新计算并设置检验和，并返回 NF_ACCEPT。&lt;/p&gt;
-&lt;p&gt;　　ip_vs_out_icmp( )的流程与ip_vs_in_icmp( )类似，只是修改数据报时有所区别：ip报头的源地址和差错信息中udp或tcp报头的目的地址均修改为虚拟服务器地址，差错信息中udp或tcp报头的目的端口号修改为虚拟服务器的端口号。&lt;/p&gt;
-&lt;h4 id=&quot;NF-IP-POST-ROUTING处理过程&quot;&gt;&lt;a href=&quot;#NF-IP-POST-ROUTING处理过程&quot; class=&quot;headerlink&quot; title=&quot;NF_IP_POST_ROUTING处理过程&quot;&gt;&lt;/a&gt;NF_IP_POST_ROUTING处理过程&lt;/h4&gt;&lt;p&gt;　　NF_IP_POST_ROUTING钩子函数只在NAT方式下使用。数据报进入NF_IP_POST_ROUTING后,由 ip_vs_post_routing( )进行处理。它首先判断数据报是否经过IPVS，如果未经过则返回NF_ACCEPT；否则立刻传输数据报，函数返回NF_STOLEN，防止数据报被 iptable的规则修改。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;LVS的工作原理&quot;&gt;&lt;a href=&quot;#LVS的工作原理&quot; class=&quot;headerlink&quot; title=&quot;LVS的工作原理&quot;&gt;&lt;/a&gt;LVS的工作原理&lt;/h2&gt;&lt;p&gt;LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/categories/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-      <category term="lvs" scheme="https://iceziyao.github.io/tags/lvs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lvs负载均衡</title>
-    <link href="https://iceziyao.github.io/2016/02/01/Lvs/lvs1/"/>
-    <id>https://iceziyao.github.io/2016/02/01/Lvs/lvs1/</id>
-    <published>2016-01-31T16:00:00.000Z</published>
-    <updated>2016-08-29T21:12:12.802Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。&lt;br&gt;使用LVS技术要达到的目标是:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;LVS体系结构&quot;&gt;&lt;a href=&quot;#LVS体系结构&quot; class=&quot;headerlink&quot; title=&quot;LVS体系结构&quot;&gt;&lt;/a&gt;LVS体系结构&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;LVS体系结构下图所示：&lt;br&gt;&lt;img src=&quot;/upload/Lvs.png&quot; alt=&quot;Lvs&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;LVS 集群分为三层结构:  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;负载调度器(load balancer)：它是整个LVS 集群对外的前端机器，负责将client请求发送到一组服务器[多台LB IP]上执行，而client端认为是返回来一个同一个IP【通常把这个IP 称为虚拟IP/VIP】&lt;/li&gt;
-&lt;li&gt;服务器池(server pool)：一组真正执行client&lt;/li&gt;
-&lt;li&gt;共享存储(shared stored)：它为 server pool 提供了一个共享的存储区，很容易让服务器池拥有相同的内容，提供相同的服务&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;工作模式&quot;&gt;&lt;a href=&quot;#工作模式&quot; class=&quot;headerlink&quot; title=&quot;工作模式&quot;&gt;&lt;/a&gt;工作模式&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;DR&lt;/li&gt;
-&lt;li&gt;NAT&lt;/li&gt;
-&lt;li&gt;隧道模式&lt;/li&gt;
-&lt;li&gt;FULL NAT 模式&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;算法&quot;&gt;&lt;a href=&quot;#算法&quot; class=&quot;headerlink&quot; title=&quot;算法&quot;&gt;&lt;/a&gt;算法&lt;/h2&gt;&lt;p&gt;目前系统有八种负载均衡调度算法，具体如下:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;rr：轮循调度(Round-Robin) 它将请求依次分配不同的RS，也就是在RS中均摊请求。这种算法简单，但是只适合于RS处理性能相差不大的情况。&lt;/li&gt;
-&lt;li&gt;wrr：加权轮循调度(Weighted Round-Robin) 它将依据不同RS的权值分配任务。权值较高的RS将优先获得任务，并且分配到的连接数将比权值较低的RS更多。相同权值的RS得到相同数目的连接数。&lt;/li&gt;
-&lt;li&gt;dh：目的地址哈希调度 (Destination Hashing) 以目的地址为关键字查找一个静态hash表来获得需要的RS。&lt;/li&gt;
-&lt;li&gt;sh：源地址哈希调度(Source Hashing) 以源地址为关键字查找一个静态hash表来获得需要的RS。&lt;/li&gt;
-&lt;li&gt;Lc：最小连接数调度(Least-Connection) IPVS表存储了所有的活动的连接。把新的连接请求发送到当前连接数最小的RS。&lt;/li&gt;
-&lt;li&gt;Wlc：加权最小连接数调度(Weighted Least-Connection) 假设各台RS的权值依次为Wi（I = 1..n），当前的TCP连接数依次为Ti（I＝1..n），依次选取Ti/Wi为最小的RS作为下一个分配的RS。&lt;/li&gt;
-&lt;li&gt;Lblc：基于地址的最小连接数调度(Locality-Based Least-Connection) 将来自同一目的地址的请求分配给同一台RS如果这台服务器尚未满负荷，否则分配给连接数最小的RS，并以它为下一次分配的首先考虑。&lt;/li&gt;
-&lt;li&gt;Lblcr：基于地址的带重复最小连接数调度(Locality-Based Least-Connection with Replication) 对于某一目的地址，对应有一个RS子集。对此地址的请求，为它分配子集中连接数最小的RS；如果子集中所有的服务器均已满负荷，则从集群中选择一个连接数较小的服务器，将它加入到此子集并分配连接；若一定时间内，这个子集未被做任何修改，则将子集中负载最大的节点从子集删除。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。&lt;br&gt;在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。&lt;br&gt;使用LVS技术要达到的目标是:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/categories/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-    
-      <category term="负载均衡" scheme="https://iceziyao.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-      <category term="lvs" scheme="https://iceziyao.github.io/tags/lvs/"/>
     
   </entry>
   

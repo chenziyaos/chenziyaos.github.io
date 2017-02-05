@@ -204,6 +204,117 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
+        <a href="/2016/04/03/Docker/docker01/" title="link to 浅析docker使用">浅析docker使用</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-04-03" class="post-list__meta--date date">2016-04-03</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul>
+<li>简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案<br>Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器</li>
+<li>Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/04/01/C/bin/pwd-ls/" title="link to C语言实现pwd,ls命令">C语言实现pwd,ls命令</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-04-01" class="post-list__meta--date date">2016-04-01</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h1 id="实现pwd"><a href="#实现pwd" class="headerlink" title="实现pwd"></a>实现pwd</h1><p>   实现pwd打印当前目录</p>
+<h2 id="所需函数-getcwd"><a href="#所需函数-getcwd" class="headerlink" title="所需函数 getcwd"></a>所需函数 getcwd</h2><p>函数原型：char *getcwd( char *buffer, int maxlen );</p>
+<ul>
+<li>功 能：获取当前工作目录</li>
+<li>参数说明：getcwd()会将当前工作目录的绝对路径复制到参数buffer所指的内存空间中,参数maxlen为buffer的空间大小。</li>
+<li>返 回 值：成功则返回当前工作目录，失败返回 FALSE。</li>
+<li>在某些 Unix 的变种下，如果任何父目录没有设定可读或搜索模式，即使当前目录设定了，getcwd()还是会返回 FALSE。有关模式与权限的更多信息见 chmod()。</li>
+<li>头文件：unistd.h（windows下为direct.h）
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/02/12/Lvs/LVS2/" title="link to 深入了解LVS">深入了解LVS</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-02-12" class="post-list__meta--date date">2016-02-12</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="LVS的工作原理"><a href="#LVS的工作原理" class="headerlink" title="LVS的工作原理"></a>LVS的工作原理</h2><p>LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。<br>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/02/01/Lvs/lvs1/" title="link to Lvs负载均衡">Lvs负载均衡</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-02-01" class="post-list__meta--date date">2016-02-01</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。<br>在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。<br>使用LVS技术要达到的目标是:</p>
+<blockquote>
+<p>通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。<br>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/01/16/server/haproxy/" title="link to Haproxy负载均衡">Haproxy负载均衡</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-01-16" class="post-list__meta--date date">2016-01-16</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h4 id="HAProxy简介"><a href="#HAProxy简介" class="headerlink" title="HAProxy简介"></a>HAProxy简介</h4><p><em>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.</em><br><em>HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</em><br>————百度百科
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
         <a href="/2016/01/16/HA/高可用集群01/" title="link to 高可用集群系列之基础篇1">高可用集群系列之基础篇1</a>
       </h2>
 
@@ -246,26 +357,6 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
-        <a href="/2016/01/16/server/haproxy/" title="link to Haproxy负载均衡">Haproxy负载均衡</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-01-16" class="post-list__meta--date date">2016-01-16</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h4 id="HAProxy简介"><a href="#HAProxy简介" class="headerlink" title="HAProxy简介"></a>HAProxy简介</h4><p><em>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。HAProxy运行在时下的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.</em><br><em>HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户端(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</em><br>————百度百科
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
         <a href="/2016/01/01/lnmp/Memcached/" title="link to Memcached简介">Memcached简介</a>
       </h2>
 
@@ -278,26 +369,6 @@ classes that you can use:
         
           <ul>
 <li><p>Memcached是一款开源、高性能、分布式内存对象缓存系统，可应用各种需要缓存的场景，其主要目的是通过降低对Database的访问来加速web应用程序。它是一个基于内存的“键值对”存储，用于存储数据库调用、API调用或页面引用结果的直接数据，如字符串、对象等。</p>
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/01/01/Net/Tcp11/" title="link to TCP连接的建立与中止">TCP连接的建立与中止</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-01-01" class="post-list__meta--date date">2016-01-01</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。<br>TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。<br>
         
       </div>
 
@@ -325,80 +396,17 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
-        <a href="/2015/12/25/Net/tcp10/" title="link to Tcp协议概述">Tcp协议概述</a>
+        <a href="/2016/01/01/Net/Tcp11/" title="link to TCP连接的建立与中止">TCP连接的建立与中止</a>
       </h2>
 
       <div class="post-list__meta">
 
-        <time datetime="2015-12-25" class="post-list__meta--date date">2015-12-25</time> 
+        <time datetime="2016-01-01" class="post-list__meta--date date">2016-01-01</time> 
       </div>
 
       <div class="excerpt">
         
-          <h4 id="tcp协议族位于传输层"><a href="#tcp协议族位于传输层" class="headerlink" title="tcp协议族位于传输层"></a>tcp协议族位于传输层</h4><h2 id="tcp报文格式"><a href="#tcp报文格式" class="headerlink" title="tcp报文格式"></a>tcp报文格式</h2><ul>
-<li>TCP是一种可靠的、面向连接的字节流服务。源主机在传送数据前需要先和目标主机建立连接。然后，在此连接上，被编号的数据段按序收发。同时，要求对每个数据段进行确认，保证了可靠性。如果在指定的时间内没有收到目标主机对所发数据段的确认，源主机将再次发送该数据段.
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/12/23/lnmp/nginx配置文件详解/" title="link to nginx配置文件详解">nginx配置文件详解</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-12-23" class="post-list__meta--date date">2015-12-23</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/12/23/lnmp/nginx负载均衡/" title="link to nginx负载均衡">nginx负载均衡</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-12-23" class="post-list__meta--date date">2015-12-23</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>请参考<a href="http://www.yaolinux.cn/blog/lnmp%25E6%259E%25B6%25E6%259E%2584.html">lnmp架构</a></p>
-<ol>
-<li>nginx 反向代理<br>nginx的负载均衡基于反向代理
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2015/12/06/Net/tcp4/" title="link to 多播和广播">多播和广播</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2015-12-06" class="post-list__meta--date date">2015-12-06</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h3 id="单播-unicast"><a href="#单播-unicast" class="headerlink" title="单播(unicast)"></a>单播(unicast)</h3><blockquote>
-<p>单播是说，对特定的主机进行数据传送。例如给某一个主机发送IP数据包。<br>这时候，数据链路层给出的数据头里面是非常具体的目的地址，对于以太网来 说，<br>就是网卡的MAC地址（不是FF-FF-FF-FF-FF-FF这样的地址）。<br>现在的具有路由功能的主机应该可以将单播数据定向转发，<br>而目的主机的网络接口则可以过滤掉和自己MAC地址不一致的数据。</p>
-</blockquote>
+          <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP是一个面向连接的协议，所以在连接双方发送数据之前，都需要首先建立一条连接。这和前面讲到的协议完全不同。前面讲的所有协议都只是发送数据而已，大多数都不关心发送的数据是不是送到，UDP尤其明显，从编程的角度来说，UDP编程也要简单的多，UDP都不用考虑数据分片。<br>TCP/IP协议详解一书中用telnet登陆退出来解释TCP协议连接的建立和中止的过程，可以看到，TCP连接的建立可以简单的称为三次握手，而连接的中止则可以叫做四次握手。<br>
         
       </div>
 
@@ -412,14 +420,14 @@ classes that you can use:
 <nav class="pagination" role="navigation">
     
     	
-          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/page/2/">&larr; 上一页 </a>
+          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/page/2/">&larr; 上一頁 </a>
         
     
 
-    <span class="pagination__page-number"> 3 / 4</span>
+    <span class="pagination__page-number"> 3 / 5</span>
     
     
-        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/4/">下一页 &rarr;</a>
+        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/4/">下一頁 &rarr;</a>
     
 </nav>
 

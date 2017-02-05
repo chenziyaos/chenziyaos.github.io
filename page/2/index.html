@@ -204,6 +204,66 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
+        <a href="/2016/06/28/Auto/salt-api/" title="link to SaltApi安装使用">SaltApi安装使用</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-06-28" class="post-list__meta--date date">2016-06-28</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="Salt-API安装配置及使用"><a href="#Salt-API安装配置及使用" class="headerlink" title="Salt-API安装配置及使用"></a>Salt-API安装配置及使用</h2><p>SaltStack 官方提供有REST API格式的 salt-api 项目，将使Salt与第三方系统集成变得尤为简单。本文讲带你了解如何安装配置Salt-API, 如何利用Salt-API获取想要的信息。<br>具体使用请参考:<a href="http://salt-api.readthedocs.org/en/latest/">salt-api手册</a><br>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/06/23/Auto/salt1/" title="link to Saltstack安装使用">Saltstack安装使用</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-06-23" class="post-list__meta--date date">2016-06-23</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="什么是Saltstack-？"><a href="#什么是Saltstack-？" class="headerlink" title="什么是Saltstack ？"></a>什么是Saltstack ？</h2><p>Saltstack 是一个具备puppet 与func 功能为一身的集中化管理平台，saltstack 基于python实现，功能十分强大，各模块融合度及复用性极高，官方极力推荐作为云计算平台的基础架构。<br>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/06/17/Auto/Ycm自动化运维/" title="link to Ycm，我的自动化运维之路">Ycm，我的自动化运维之路</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-06-17" class="post-list__meta--date date">2016-06-17</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h3 id="我的运维之路"><a href="#我的运维之路" class="headerlink" title="我的运维之路"></a>我的运维之路</h3><p>最开始的运维，就是在终端连接一台主机，远程操作。其次就是一些脚本，解放了重复。之后就是各种python脚本，python提供很多第三方库，可以提高运维效率。<br>接触到自动化运维工具：ansible，pupple，puppet，Func, Saltstack等一系列监控工具<br>但所有的资源都是分散的，所以，就要做一款自己的运维平台<br>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
         <a href="/2016/05/21/Python/Python_GIL/" title="link to Python GIL那些事">Python GIL那些事</a>
       </h2>
 
@@ -222,6 +282,30 @@ classes that you can use:
 <p>In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)</p>
 </blockquote>
 <p>一个防止多线程并发执行机器码的一个Mutex</p>
+        
+      </div>
+
+      <hr class="post-list__divider" />
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2016/05/21/Python/python01/" title="link to Python的内存管理机制">Python的内存管理机制</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2016-05-21" class="post-list__meta--date date">2016-05-21</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <h2 id="python的内存管理分为三个方面："><a href="#python的内存管理分为三个方面：" class="headerlink" title="python的内存管理分为三个方面："></a>python的内存管理分为三个方面：</h2><ul>
+<li><em>引用计数</em></li>
+<li><em>垃圾回收</em></li>
+<li><em>内存池机制</em></li>
+</ul>
         
       </div>
 
@@ -353,97 +437,6 @@ classes that you can use:
       <hr class="post-list__divider" />
     </li>
     
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/04/03/Docker/docker01/" title="link to 浅析docker使用">浅析docker使用</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-04-03" class="post-list__meta--date date">2016-04-03</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h2 id="docker是什么？"><a href="#docker是什么？" class="headerlink" title="docker是什么？"></a>docker是什么？</h2><ul>
-<li>简单的说Docker是一个构建在LXC之上的,基于进程容器(Processcontainer)的轻量级VM解决方案<br>Docker的初衷也就是将各种应用程序和他们所依赖的运行环境打包成标准的Container/image,进而发布到不同的平台上运行。  也是由go写成的轻量级容器</li>
-<li>Docker container和普通的虚拟机Image相比, 最大的区别是它并不包含操作系统内核
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/04/01/C/bin/pwd-ls/" title="link to C语言实现pwd,ls命令">C语言实现pwd,ls命令</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-04-01" class="post-list__meta--date date">2016-04-01</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h1 id="实现pwd"><a href="#实现pwd" class="headerlink" title="实现pwd"></a>实现pwd</h1><p>   实现pwd打印当前目录</p>
-<h2 id="所需函数-getcwd"><a href="#所需函数-getcwd" class="headerlink" title="所需函数 getcwd"></a>所需函数 getcwd</h2><p>函数原型：char *getcwd( char *buffer, int maxlen );</p>
-<ul>
-<li>功 能：获取当前工作目录</li>
-<li>参数说明：getcwd()会将当前工作目录的绝对路径复制到参数buffer所指的内存空间中,参数maxlen为buffer的空间大小。</li>
-<li>返 回 值：成功则返回当前工作目录，失败返回 FALSE。</li>
-<li>在某些 Unix 的变种下，如果任何父目录没有设定可读或搜索模式，即使当前目录设定了，getcwd()还是会返回 FALSE。有关模式与权限的更多信息见 chmod()。</li>
-<li>头文件：unistd.h（windows下为direct.h）
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/02/12/Lvs/LVS2/" title="link to 深入了解LVS">深入了解LVS</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-02-12" class="post-list__meta--date date">2016-02-12</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h2 id="LVS的工作原理"><a href="#LVS的工作原理" class="headerlink" title="LVS的工作原理"></a>LVS的工作原理</h2><p>LVS的IP负载均衡技术是通过ipvs内核模块来实现的，ipvs是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问集群服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是ipvs实现的重点技术，ipvs实现负载均衡机制有四种，分别是NAT、TUN和DR以及后来经淘宝开发的FullNat。下面将详细介绍这四种机制的工作模型。<br>
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/02/01/Lvs/lvs1/" title="link to Lvs负载均衡">Lvs负载均衡</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-02-01" class="post-list__meta--date date">2016-02-01</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目。<br>在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。<br>使用LVS技术要达到的目标是:</p>
-<blockquote>
-<p>通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。<br>
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
   </ol>
 
   <hr class="post-list__divider " />
@@ -451,14 +444,14 @@ classes that you can use:
 <nav class="pagination" role="navigation">
     
     	
-          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/#blog">&larr; 上一页 </a>
+          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/#blog">&larr; 上一頁 </a>
         
     
 
-    <span class="pagination__page-number"> 2 / 4</span>
+    <span class="pagination__page-number"> 2 / 5</span>
     
     
-        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/3/">下一页 &rarr;</a>
+        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/3/">下一頁 &rarr;</a>
     
 </nav>
 

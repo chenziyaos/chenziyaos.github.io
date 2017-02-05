@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ps命令 | 羽非衣 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="陈子瑶">
+    
+    
+
+    <meta name="description" content="命令详解ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ps命令 | 羽非衣">
+<meta property="og:url" content="https://iceziyao.github.io/2017/01/12/shell/ps/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="命令详解ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态">
+<meta property="og:updated_time" content="2017-02-05T14:53:25.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ps命令 | 羽非衣">
+<meta name="twitter:description" content="命令详解ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">羽非衣</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          心静如水
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/guestbook" title="" class="">留言</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/iceziYao" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ps命令</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-12" class="post-meta__date date">2017-01-12</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Linux/">Linux</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/常用命令/">常用命令</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><p>ps命令能够给出当前系统中进程的快照。它能捕获系统在某一事件的进程状态<br><a id="more"></a></p>
+<blockquote>
+<p>linux上进程有5种状态:</p>
+<blockquote>
+<ol>
+<li>运行(正在运行或在运行队列中等待)</li>
+<li>中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)</li>
+<li>不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)</li>
+<li>僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)</li>
+<li>停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)</li>
+</ol>
+</blockquote>
+<p>ps工具标识进程的5种状态码:</p>
+<blockquote>
+<p>D 不可中断 uninterruptible sleep (usually IO)<br>R 运行 runnable (on run queue)<br>S 中断 sleeping<br>T 停止 traced or stopped<br>Z 僵死</p>
+</blockquote>
+</blockquote>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><p><code>ps [options]</code></p>
+<h3 id="常见参数"><a href="#常见参数" class="headerlink" title="常见参数"></a>常见参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">-A    列出所有的进程</div><div class="line">-w    显示加宽可以显示较多的资讯</div><div class="line">-au   显示较详细的资讯</div><div class="line">-aux  显示所有包含其他使用者的行程</div><div class="line">常用参数：</div><div class="line">-A 显示所有进程（等价于-e）(utility)</div><div class="line">-a 显示一个终端的所有进程，除了会话引线</div><div class="line">-N 忽略选择。</div><div class="line">-d 显示所有进程，但省略所有的会话引线(utility)</div><div class="line">-x 显示没有控制终端的进程，同时显示各个命令的具体路径。dx不可合用。（utility）</div><div class="line">-p pid 进程使用cpu的时间</div><div class="line">-u uid or username 选择有效的用户id或者是用户名</div><div class="line">-g gid or groupname 显示组的所有进程。</div><div class="line">-f 全部列出，通常和其他选项联用。如：ps -fa or ps -fx and so on.</div><div class="line">-l 长格式（有F,wchan,C 等字段）</div><div class="line">-m 显示所有的线程</div><div class="line">-H 显示进程的层次</div></pre></td></tr></table></figure>
+<h2 id="显示数据"><a href="#显示数据" class="headerlink" title="显示数据"></a>显示数据</h2><ol>
+<li><p>执行 px -aux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</div><div class="line">root         1  0.0  0.1 123704  4300 ?        Ss   22:30   0:01 /usr/lib/systemd/systemd</div></pre></td></tr></table></figure>
+</li>
+<li><p>说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">USER: 进程拥有者</div><div class="line">PID ： 进程号</div><div class="line">%CPU：进程使用掉的 CPU 资源百分比</div><div class="line">%MEM：进程所占用的物理内存百分比</div><div class="line">VSZ ：进程使用掉的虚拟内存量 (Kbytes)</div><div class="line">RSS ：进程占用的固定的内存量 (Kbytes)</div><div class="line">TTY ：进程是在那个终端机上面运作，若与终端机无关，则显示 ?</div><div class="line">STAT：该程序目前的状态，主要的状态有</div><div class="line">    R ：进程目前正在运作，或者是可被运作</div><div class="line">    S ：进程目前正在睡眠当中 。</div><div class="line">    T ：进程目前正在侦测或者是停止了</div><div class="line">    Z ：进程应该已经终止，但是其父程序却无法正常的终止他，造成 zombie (疆尸) 程序的状态</div><div class="line">START：进程 被触发启动的时间</div><div class="line">TIME ：进程 实际使用 CPU 运作的时间</div><div class="line">COMMAND：进程的实际指令</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h2><ol>
+<li>ps aux<br> 显示现行终端机下的所有程序，包括其他用户的程序。</li>
+<li>ps -aux<br> 显示所有进程。</li>
+<li>ps -ef<br> 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。</li>
+<li>ps -ax -o pid,%cpu,%mem –sort=-%cpu,-%mem | head -10<br> 显示cpu以及内存占用最高的10个进程</li>
+<li>ps -axjf = pstree<br> 树形显示</li>
+<li>watch -n 1 <code>ps -aux --sort -pmem, -pcpu</code><br> 定时监控进程</li>
+</ol>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/01/12/shell/ps/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"chenziyao"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

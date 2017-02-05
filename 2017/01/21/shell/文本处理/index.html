@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      文本处理命令 | 羽非衣 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="陈子瑶">
+    
+    
+
+    <meta name="description" content="grep命令详解grep命令grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文本处理命令 | 羽非衣">
+<meta property="og:url" content="https://iceziyao.github.io/2017/01/21/shell/文本处理/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="grep命令详解grep命令grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。">
+<meta property="og:updated_time" content="2017-02-05T14:56:17.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文本处理命令 | 羽非衣">
+<meta name="twitter:description" content="grep命令详解grep命令grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">羽非衣</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          心静如水
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/guestbook" title="" class="">留言</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/iceziYao" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">文本处理命令</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-21" class="post-meta__date date">2017-01-21</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Linux/">Linux</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/常用命令/">常用命令</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="grep命令详解"><a href="#grep命令详解" class="headerlink" title="grep命令详解"></a>grep命令详解</h1><h2 id="grep命令"><a href="#grep命令" class="headerlink" title="grep命令"></a>grep命令</h2><p>grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。<br><a id="more"></a></p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><code>grep [option] [] in_put</code></p>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">    -v 过滤匹配文本</div><div class="line">    -i 忽略大小写</div><div class="line">    -o 显示匹配文本</div><div class="line">    -n 显示匹配行以及行号</div><div class="line">    -c 只输出匹配行的计数</div><div class="line">    -e 查找多个模式</div><div class="line">    -w或--word-regexp   只显示全字符合的列。</div><div class="line">    -x或--line-regexp   只显示全列符合的列。</div><div class="line">    -E 使用扩展正则表达式</div><div class="line">    -P 兼容perl 正则</div><div class="line">    -r 在当前目录以及子目录下递归搜索匹配的文本信息</div><div class="line">元字符：</div><div class="line">    .：所有的单个字符。</div><div class="line">　　 *：有字符，长度可以为0。</div></pre></td></tr></table></figure>
+<h2 id="常用正则表达式参数"><a href="#常用正则表达式参数" class="headerlink" title="常用正则表达式参数"></a>常用正则表达式参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">   \： 忽略正则表达式中特殊字符的原有含义。</div><div class="line">　　^：匹配正则表达式的开始行。</div><div class="line">　　$: 匹配正则表达式的结束行。</div><div class="line">　　\&lt;：从匹配正则表达 式的行开始。</div><div class="line">　　\&gt;：到匹配正则表达式的行结束。</div><div class="line">　　[ ]：单个字符，如[A]即A符合要求 。</div><div class="line">　　[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。</div><div class="line">    *：匹配前面的字符零次或多次。</div><div class="line">    +：匹配前面的字符一次或多次。</div><div class="line">    ?：匹配前面的子表达式零次或一次。</div><div class="line">    &#123;n&#125;：n 是一个非负整数。匹配确定的 n 次。o</div><div class="line">    &#123;n,&#125;：n 是一个非负整数。至少匹配n 次。</div><div class="line">    &#123;n,m&#125;：m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。</div><div class="line">    x|y： 匹配 x 或 y</div><div class="line">    [^a-z] ：匹配任何不在指定范围内的任意字符</div><div class="line">```  </div><div class="line"></div><div class="line">## grep 常用示例</div><div class="line"></div><div class="line">1. 过滤空行   </div><div class="line">` grep -v &quot;^$&quot; filename`</div><div class="line">2. 过滤配置文件的注释    </div><div class="line">` grep -v ^# filename`   </div><div class="line">3. grep -c 来计算匹配的数量    </div><div class="line">` grep -c &quot;root&quot; /etc/passwd `</div><div class="line">4. 显示行号   </div><div class="line">` grep -n  &quot;root&quot; /etc/passwd `</div><div class="line">5. 输出匹配指定模式行的前或者后面N行</div></pre></td></tr></table></figure>
+<pre><code>(1) 使用-B参数输出匹配行的前4行
+    grep -B 4 &quot;root&quot; /etc/passwd
+(2) 使用-A参数输出匹配行的后4行
+    grep -A 4 &quot;root&quot; /etc/passwd  
+(3) 使用-C参数输出匹配行的前后4行  
+    grep -C 4 &quot;root&quot; /etc/passwd  
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. 获取网卡信息</div></pre></td></tr></table></figure>
+<pre><code>(1) 获取eth0的信息
+    ifconfig | grep &quot;eth0&quot; –A 4
+(2) 获取开放的网卡
+    ifconfig | grep  -B 2 UP
+(3) 过滤掉ipv6
+    ifconfig | grep -v inet6
+(4) 获取ip信息
+    ifconfig | grep -ioE &quot;inet\ [0-9].*?&quot;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. 扩展正则表达式的使用</div></pre></td></tr></table></figure>
+<pre><code>获取ip
+    ifconfig | grep -ioP &quot;\d{1,3}\.\d{1,3}\.\d{1,3}\.[1-2]\d{0,2}&quot;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># sed命令详解   </div><div class="line">sed是一种流编辑器，处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。</div><div class="line">## 处理流程</div><div class="line">&gt;1.读入新的一行内容到缓存空间；   </div><div class="line">2.从指定的操作指令中取出第一条指令，判断是否匹配pattern；  </div><div class="line">3.如果不匹配，则忽略后续的编辑命令，回到第2步继续取出下一条指令；    </div><div class="line">4.如果匹配，则针对缓存的行执行后续的编辑命令；完成后，回到第2步继续取出下一条指令；    </div><div class="line">5.当所有指令都应用之后，输出缓存行的内容；回到第1步继续读入下一行内容；     </div><div class="line">6.当所有行都处理完之后，结束；     </div><div class="line"></div><div class="line"></div><div class="line">## 语法</div><div class="line">### 格式</div></pre></td></tr></table></figure>
+<pre><code>sed [options] &apos;command&apos; file（s）
+sed [options] -f scriptfile file（s） 执行sed脚本
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">### 选项</div></pre></td></tr></table></figure>
+<p>   -e command, –expression=command<br>　　允许多台编辑。<br>　　-h, –help<br>　　打印帮助，并显示bug列表的地址。<br>　　-n, –quiet, –silent<br>　　取消默认输出。<br>　　-f, –filer=script-file<br>　　引导sed脚本文件名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">### 常用参数</div></pre></td></tr></table></figure></p>
+<pre><code>a   ∶新增， a 的后面可以接字串，而这些字串会在新的一行出现
+i   ∶插入， i 的后面可以接字串，而这些字串会在新的一行出现
+c   ∶取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d   ∶删除
+p   ∶打印，
+s   :替换  sed &quot;s/匹配内容/替换内容/g&quot; g代表全部
+!   :表示后面的命令对所有没有被选定的行发生作用。
+=   :打印当前行号码。
+#   :把注释扩展到下一个换行符以前。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 常用</div><div class="line">1. 将文章进行左对齐   </div><div class="line">`sed &apos;s/^[ \t]*//&apos; File`  </div><div class="line">2. 将文本中每行结尾的空白字符、制表符删除   </div><div class="line">`sed &apos;s/[ \t]*$//&apos; File`</div><div class="line">3. 插入   </div><div class="line">`sed &apos;1i test&apos; File`  首行插入</div><div class="line">`sed &apos;$a test&apos; File`  末行插入</div><div class="line">4. 删除文本中的所有空行</div><div class="line">`sed &apos;/^$/d&apos; File`</div><div class="line">5. 删除所有偶数行   </div><div class="line">`sed &apos;n;d&apos; File`   </div><div class="line">6. 删除文件最后一行：   </div><div class="line">`sed &apos;$d&apos; File`</div><div class="line">7. 删除注释行  </div><div class="line">`sed &apos;/^#/d&apos; File`   </div><div class="line">8. 删除所有不以test开头的行   </div><div class="line">`sed &apos;/^test/d&apos; File`   </div><div class="line">9. 删除2到10行    </div><div class="line">`sed &apos;2,10d&apos; File`   </div><div class="line"></div><div class="line"></div><div class="line">## sed 高级应用</div><div class="line">在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。保持空间用于保存模式空间的内容，模式空间的内容可以复制到保持空间，同样地保持空间的内容可以复制回模式空间   </div><div class="line"></div><div class="line">### n命令</div><div class="line">n命令简单来说就是提前读取下一行，覆盖模型空间前一行（并没有删除，因此依然打印至标准输出），如果命令未执行成功（并非跳过：前端条件不匹配），则放弃之后的任何命令，并对新读取的内容，重头执行sed。    </div><div class="line"></div><div class="line">### N命令   </div><div class="line">N命令简单来说就是追加下一行到模式空间，同时将两行看做一行，但是两行之间依然含有\n换行符，如果命令未执行成功，则放弃之后任何命令，并对新读取的内容，重头执行sed。  </div><div class="line"></div><div class="line">### d命令</div><div class="line">d命令是删除当前模式空间内容  </div><div class="line"></div><div class="line">### D命令</div><div class="line">D命令是删除当前模式空间开端至\n的内容,放弃之后的命令，但是对剩余模式空间重新执行sed。      </div><div class="line"></div><div class="line">### h命令，H命令，g命令，G命令</div><div class="line">h命令是将当前模式空间中内容覆盖至保持空间，H命令是将当前模式空间中的内容追加至保持空间   </div><div class="line">g命令是将当前保持空间中内容覆盖至模式空间，G命令是将当前保持空间中的内容追加至模式空间    </div><div class="line">示例：</div></pre></td></tr></table></figure>
+<pre><code>将文本中的内容倒序显示，实现tac的功能
+    sed &apos;1!G;h;$!d&apos; File
+</code></pre><p>```</p>
+<h1 id="awk命令详解"><a href="#awk命令详解" class="headerlink" title="awk命令详解"></a>awk命令详解</h1>
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/01/21/shell/文本处理/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"chenziyao"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

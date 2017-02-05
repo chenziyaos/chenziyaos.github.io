@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      linux命令分类总结 | 羽非衣 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="陈子瑶">
+    
+    
+
+    <meta name="description" content="一. 常用命令文件目录操作
+cd 切换目录cd dirname
+ls 显示文件/目录属性1234567891011常见参数：-l ：列出长数据串，包含文件的属性与权限数据等  -a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  -d ：仅列出目录本身，而不是列出目录的文件数据  -h ：将文件容量以较易读的方式（GB，kB等）列出来  -R ：连同子目录的内容一起列出（递归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux命令分类总结 | 羽非衣">
+<meta property="og:url" content="https://iceziyao.github.io/2017/01/23/shell/命令总结/index.html">
+<meta property="og:site_name" content="羽非衣">
+<meta property="og:description" content="一. 常用命令文件目录操作
+cd 切换目录cd dirname
+ls 显示文件/目录属性1234567891011常见参数：-l ：列出长数据串，包含文件的属性与权限数据等  -a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  -d ：仅列出目录本身，而不是列出目录的文件数据  -h ：将文件容量以较易读的方式（GB，kB等）列出来  -R ：连同子目录的内容一起列出（递归">
+<meta property="og:updated_time" content="2017-02-05T14:57:52.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux命令分类总结 | 羽非衣">
+<meta name="twitter:description" content="一. 常用命令文件目录操作
+cd 切换目录cd dirname
+ls 显示文件/目录属性1234567891011常见参数：-l ：列出长数据串，包含文件的属性与权限数据等  -a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  -d ：仅列出目录本身，而不是列出目录的文件数据  -h ：将文件容量以较易读的方式（GB，kB等）列出来  -R ：连同子目录的内容一起列出（递归">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">羽非衣</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          心静如水
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/guestbook" title="" class="">留言</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/iceziYao" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">linux命令分类总结</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-23" class="post-meta__date date">2017-01-23</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Linux/">Linux</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/常用命令/">常用命令</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="一-常用命令"><a href="#一-常用命令" class="headerlink" title="一. 常用命令"></a>一. 常用命令</h1><h2 id="文件目录操作"><a href="#文件目录操作" class="headerlink" title="文件目录操作"></a>文件目录操作</h2><ol>
+<li>cd 切换目录<br><code>cd dirname</code></li>
+<li>ls 显示文件/目录属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">常见参数：</div><div class="line">-l ：列出长数据串，包含文件的属性与权限数据等  </div><div class="line">-a ：列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）  </div><div class="line">-d ：仅列出目录本身，而不是列出目录的文件数据  </div><div class="line">-h ：将文件容量以较易读的方式（GB，kB等）列出来  </div><div class="line">-R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来  </div><div class="line">示例： ls -l /tmp</div><div class="line">```  </div><div class="line">3. pwd 显示当前路径  </div><div class="line">`pwd`</div><div class="line">4. mkdir 创建目录</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>mkdir  newdir<br>mkdir  -p  newdir/newdir   #递归创建目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">5. touch创建文件    </div><div class="line">`touch filename`</div><div class="line">6. cp</div></pre></td></tr></table></figure></p>
+<p>常见参数：<br>-r： 递归复制<br>-p： 保持属性复制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. mv移动文件/重命名</div></pre></td></tr></table></figure></p>
+<p>mv filename dirname  移动文件<br>mv oldfilename newfilename 对文件重命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">8. rm 删除文件</div></pre></td></tr></table></figure></p>
+<p>-i： 交互式<br>-r： 递归<br>-f： 强制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">9. ln创建链接</div></pre></td></tr></table></figure></p>
+<p>ln /etc/passwd passwd  创建硬链接<br>ln -s 创建软链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10. chown 更改文件拥有者</div></pre></td></tr></table></figure></p>
+<p>chown [-R] user dir/file<br>chown [-R] user:group dir/file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">11. chgrp 更改文件拥有组</div></pre></td></tr></table></figure></p>
+<p>chgrp [-R] groupname dir/file<br>参数：<br>-R： 递归更改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">12. chmod 更改文件权限</div></pre></td></tr></table></figure></p>
+<p>r=4,w=2,x=1<br>chmod xxx filename<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 日常开关机  </div><div class="line">禁止在线上服务器使用    </div><div class="line"></div><div class="line">1. shutdown</div></pre></td></tr></table></figure></p>
+<p>-r             关机重启<br>-h             关机不重启<br> now            立刻关机<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2. halt               关机</div><div class="line">3. reboot             重启</div><div class="line">4. 切换执行等级： init</div></pre></td></tr></table></figure></p>
+<p>Linux共有七种执行等级：<br>–run level 0 :关机<br>–run level 3 :纯文本模式<br>–run level 5 :含有图形接口模式<br>–run level 6 :重新启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 用户管理</div><div class="line">1. useradd /adduser  </div><div class="line">用法： useradd [-u|-g|-m|-d|-s] *username*</div></pre></td></tr></table></figure></p>
+<p>参数说明：<br>-u： 指定用户id<br>-g： 指定用户组id<br>-d： 指定用户家目录<br>-m/M：创建家目录/M 不创建<br>-s： 指定用户登陆的shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">2. userdel   </div><div class="line">用法： userdel [-r] *username*</div><div class="line">3. usermod   </div><div class="line">4. passwd   </div><div class="line">用法： passwd *username* 或者  echo *password* | passwd *username* --stdin</div><div class="line"></div><div class="line">## 搜索命令</div><div class="line">1. 寻找【执行挡】：which</div></pre></td></tr></table></figure></p>
+<p>which ls  寻找ls命令所在位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 寻找特定档案：whereis</div></pre></td></tr></table></figure></p>
+<h1 id="whereis-ls"><a href="#whereis-ls" class="headerlink" title="whereis ls"></a>whereis ls</h1><p>ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz /usr/share/man/man1p/ls.1p.gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. 寻找特定档案：locate</div></pre></td></tr></table></figure></p>
+<p>locate passwd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. 寻找特定档案：find</div></pre></td></tr></table></figure></p>
+<p>用法： find [PATH] [option] [action]<br>find支持正则匹配<br>-name   按照文件名查找文件。<br>-perm   按照文件权限来查找文件。<br>-user   按照文件属主来查找文件。<br>-group  按照文件所属的组来查找文件。<br>-mtime -n +n  按照文件的更改时间来查找文件<br>-type  查找某一类型的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">实例：</div></pre></td></tr></table></figure></p>
+<p>find / -name <em>.txt<br>find . -name </em>.pyc exec rm -rf {}\; 找出 pyc文件并删除<br>find . -type d  查找目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 二. 文本操作</div><div class="line">## 1. 全文查看 cat/tac</div><div class="line">1. 语法： cat/tac filename</div><div class="line"></div><div class="line">## 2. 分页查看 less/more</div><div class="line">1. 语法： less/more filename</div><div class="line"></div><div class="line">## 3. 头尾查看 head/tail</div><div class="line">1. 语法： hean filename   </div><div class="line">2. 常见用法：</div></pre></td></tr></table></figure></p>
+<p>head -10 /etc/passwd  查看文件前10行<br>tail -5 /etc/passwd  查看文件后5行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 4. 统计命令wc</div><div class="line">1.  wc语法</div></pre></td></tr></table></figure></p>
+<p>wc [-lwm]<br>选项：<br>-l  ：仅列出行；<br>-w  ：仅列出多少字(英文单字)；<br>-m  ：多少字符；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2. 常见用法</div></pre></td></tr></table></figure></p>
+<h1 id="wc-etc-passwd"><a href="#wc-etc-passwd" class="headerlink" title="wc /etc/passwd"></a>wc /etc/passwd</h1><p>  50   94   2550 /etc/passwd<br>  行数 单词数 字节数</p>
+<h1 id="wc-l-etc-passwd-统计行数很常用"><a href="#wc-l-etc-passwd-统计行数很常用" class="headerlink" title="wc -l /etc/passwd   #统计行数很常用"></a>wc -l /etc/passwd   #统计行数很常用</h1><h1 id="wc-w-etc-passwd-统计单词出现次数"><a href="#wc-w-etc-passwd-统计单词出现次数" class="headerlink" title="wc -w /etc/passwd   #统计单词出现次数"></a>wc -w /etc/passwd   #统计单词出现次数</h1><h1 id="wc-m-etc-passwd-统计文件的字节数"><a href="#wc-m-etc-passwd-统计文件的字节数" class="headerlink" title="wc -m /etc/passwd   #统计文件的字节数"></a>wc -m /etc/passwd   #统计文件的字节数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 5. 切分命令 cut</div><div class="line">1. cut语法</div></pre></td></tr></table></figure>
+<p>cut  [-bn] [file] 或 cut [-c] [file]  或  cut [-df] [file]<br>　　主要参数<br>　　-b ：以字节为单位进行分割。这些字节位置将忽略多字节字符边界，除非也指定了 -n 标志。<br>　　-c ：以字符为单位进行分割。<br>　　-d ：自定义分隔符，默认为制表符。<br>　　-f ：与-d一起使用，指定显示哪个区域。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>$ cat /etc/passwd|head -n 5|cut -d : -f 1,3-5<br>root:0:0:root<br>bin:1:1:bin<br>daemon:2:2:daemon<br>adm:3:4:adm<br>lp:4:7:lp<br>$ cat /etc/passwd|head -n 5|cut -d : -f 1,3-5,7<br>root:0:0:root:/bin/bash<br>bin:1:1:bin:/sbin/nologin<br>daemon:2:2:daemon:/sbin/nologin<br>adm:3:4:adm:/sbin/nologin<br>lp:4:7:lp:/sbin/nologin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 6. 排序命令 sort</div><div class="line">1. 语法：</div></pre></td></tr></table></figure></p>
+<p>sort [-bcfMnrtk][源文件][-o 输出文件]<br>　　参数：<br>　　-b   忽略每行前面开始出的空格字符。<br>　　-c   检查文件是否已经按照顺序排序。<br>　　-f   排序时，忽略大小写字母。<br>　　-M   将前面3个字母依照月份的缩写进行排序。<br>　　-n   依照数值的大小排序。<br>　　-o   将排序后的结果存入指定的文件。<br>　　-r   以相反的顺序来排序。<br>　　-t  &lt;分隔符&gt;   指定排序时所用的栏位分隔字符。<br>　　-k  选择以哪个区间进行排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>1 按文本排序<br>sort filename<br>2 按数字排序<br>sort -n<br>3 在输出内容中去除重复行<br>sort -u<br>4 反序<br>sort -r<br>5 指定列排序<br>sort -k 列号 -t 分隔符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 7. 去重命令——uniq</div><div class="line">**uniq命令可以去除排序过的文件中的重复行，因此uniq经常和sort合用。也就是说，为了使uniq起作用，所有的重复行必须是相邻的。**  </div><div class="line">1. 语法</div></pre></td></tr></table></figure></p>
+<h1 id="uniq-icu"><a href="#uniq-icu" class="headerlink" title="uniq [-icu]"></a>uniq [-icu]</h1><p>选项与参数：<br>-i   ：忽略大小写字符的不同；<br>-c  ：进行计数<br>-u  ：只显示唯一的行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常见用法</div></pre></td></tr></table></figure></p>
+<p>1 去重<br>cat words | sort |uniq<br>2 排序之后删除了重复行，同时在行首位置输出该行重复的次数:</p>
+<p>#sort testfile | uniq -c<br>3 仅显示存在重复的行，并在行首显示该行重复的次数:</p>
+<p>#sort testfile | uniq -dc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## 8. 查找命令——grep  </div><div class="line">1. 用法 ： grep [options]</div></pre></td></tr></table></figure></p>
+<p>　　主要参数<br>　　[options]主要参数：<br>　　－c：只输出匹配行的计数。<br>　　－I：不区分大 小写(只适用于单字符)。<br>　　－h：查询多文件时不显示文件名。<br>　　－l：查询多文件时只输出包含匹配字符的文件名。<br>　　－n：显示匹配行及 行号。<br>　　－s：不显示不存在或无匹配文本的错误信息。<br>　　－v：显示不包含匹配文本的所有行。<br>　　pattern正则表达式主要参数：<br>　　\： 忽略正则表达式中特殊字符的原有含义。<br>　　^：匹配正则表达式的开始行。<br>　　$: 匹配正则表达式的结束行。<br>　　\&lt;：从匹配正则表达 式的行开始。<br>　　>：到匹配正则表达式的行结束。<br>　　[ ]：单个字符，如[A]即A符合要求 。<br>　　[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。<br>　　。：所有的单个字符。<br>　　* ：有字符，长度可以为0。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常见使用：</div></pre></td></tr></table></figure></p>
+<p>1 grep root /etc/passwd   匹配文件中有root的行<br>2 grep ^root /etc/passwd  匹配文件中以root开头的行<br>3 grep -v root /etc/passwd 匹配文件中无root的行<br>4 grep -v ^$   test   过滤文件中的空行<br>5 grep ‘[239].’ data      #输出所有含有以2,3或9开头的，并且是两个数字的行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">## 9. 替换/查找/删除命令——sed</div><div class="line">## 10. 强大的文本分析命令——awk</div><div class="line"></div><div class="line"># 三. 任务操作</div><div class="line">## 1. at  </div><div class="line">在一个指定的时间执行一个指定任务，只能执行一次，且需要开启atd进程</div><div class="line">1. 格式：</div></pre></td></tr></table></figure></p>
+<p>at[参数][时间]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用：</div></pre></td></tr></table></figure></p>
+<p>1 三天后的下午5点钟执行date ： at 5pm+3 days date<br>2 删除定时任务：<br>    通过atq查看任务号<br>    atrm 任务号<br>3 显示定时任务内容<br>    at -c 任务号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 2. crontab 定时任务  </div><div class="line">crond是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程  </div><div class="line">1. 使用</div></pre></td></tr></table></figure></p>
+<p>vim /etc/crontab<br>文件格式：<br>minute   hour   day   month   week   command<br>其中：<br>    minute： 表示分钟，可以是从0到59之间的任何整数。<br>    hour：表示小时，可以是从0到23之间的任何整数。<br>    day：表示日期，可以是从1到31之间的任何整数。<br>    month：表示月份，可以是从1到12之间的任何整数。<br>    week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。<br>    command：要执行的命令，可以是系统命令，脚本文件。<br>    特殊字符：<br>        星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。<br>        逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”<br>        中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”<br>        正斜线（/）：可以用正斜线指定时间的间隔频率<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2. 命令格式：</div></pre></td></tr></table></figure></p>
+<p>crontab [-u user] file<br>crontab [-u user] [ -e | -l | -r ]<br>参数：<br>    -u user ： 指定循环定时任务的用户<br>    file ： cronttab格式的文件<br>    -e ： 编辑某个用户的crontab文件，默认当点用户<br>    -l ： 显示内容<br>    -r ： 从/var/spool/cron目录中删除某个用户的crontab文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. 常用</div></pre></td></tr></table></figure></p>
+<p>1 每1分钟执行一次command<br>命令：</p>
+<pre><code>* * * * * command
+</code></pre><p>2 每小时的第3和第15分钟执行<br>命令：<br>    3,15 <em> </em> <em> </em> command<br>3 在上午8点到11点的第3和第15分钟执行<br>命令：<br>    3,15 8-11 <em> </em> <em> command<br>4 每隔两天的上午8点到11点的第3和第15分钟执行<br>命令：<br>    3,15 8-11 </em>/2 <em> </em> command<br>5 每个星期一的上午8点到11点的第3和第15分钟执行<br>命令：<br>    3,15 8-11 <em> </em> 1 command<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 3. 任务调度 &amp; / nuhup  </div><div class="line">将任务打入后台</div><div class="line">示例：</div></pre></td></tr></table></figure></p>
+<p>python test.py&amp;<br>nuhup python test.py&amp;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># 四. 系统管理</div><div class="line"></div><div class="line">## 1. uptime 系统负载</div><div class="line">1. 用法： uptime  </div><div class="line">2. 显示：</div></pre></td></tr></table></figure></p>
+<p>19:38:23 up 53 min,  2 users,  load average: 0.11, 0.13, 0.16<br>开机时间  运行时长      在线用户    负载：        1min  5min  15min<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 2. free 显示内存使用</div><div class="line">1. 用法：</div></pre></td></tr></table></figure></p>
+<p> free [-b|k|m|g]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 显示：</div></pre></td></tr></table></figure></p>
+<pre><code>total       used       free       shared       buffers   cached
+</code></pre><p>Mem:       1885320     494352    1390968      17080        688     207632<br>-/+ buffers/cache:     286032    1599288<br>Swap:            0          0          0<br>第一行：    内存总计      已经使用      空闲       多个进程共享的内存总额    缓冲     缓存<br>第二行：    除去缓冲缓存<br>第三行：    swap空间使用情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 3. vmstat</div><div class="line">vmstat是Linux中监控内存的常用工具，可对操作系统的虚拟内存、进程、CPU等的整体情况进行监视.</div><div class="line">1. 格式</div><div class="line">` vmstat -t 间隔 -d 次数`</div><div class="line"></div><div class="line">2. 显示：</div></pre></td></tr></table></figure></p>
+<p>procs ———–memory———- —swap– —–io—- -system– ——cpu—–<br> r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st<br> 1  0      0 1183708   2340 1374156    0    0   214    21  220  899  4  1 93  1  0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 4. ps</div><div class="line">1. 用法：</div></pre></td></tr></table></figure></p>
+<p>ps [option]<br>-A ：所有的进程均显示出来<br>-a ：不与terminal有关的所有进程<br>-u ：有效用户的相关进程<br>-x ：一般与a连用 可列出较完整的信息<br>-l ：以长列表形式显示<br>-o ：自定义显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用：</div></pre></td></tr></table></figure></p>
+<p>ps -aux/-ef  显示所有进程信息<br>ps -ax -o pid,%cpu,%mem –sort=-%cpu,-%mem | head -10 显示cpu以及内存占用最高的10个进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 5. top</div><div class="line">1. 格式</div></pre></td></tr></table></figure></p>
+<p>top [option]<br>参数：<br>d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。<br>p 通过指定监控进程ID来仅仅监控某个进程的状态。<br>S 指定累计模式<br>s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。<br>i 使top不显示任何闲置或者僵死进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用命令</div></pre></td></tr></table></figure></p>
+<p>h或者? 显示帮助画面，给出一些简短的命令总结说明。<br>k       终止一个进程。<br>i 忽略闲置和僵死进程。<br>q 退出程序。<br>r 重新安排一个进程的优先级别<br>s 改变两次刷新之间的延迟时间<br>M 根据驻留内存大小进行排序。<br>P 根据CPU使用百分比大小进行排序。<br>T 根据时间/累计时间进行排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. 常用</div></pre></td></tr></table></figure></p>
+<p>top   //每隔5秒显式所有进程的资源占用情况<br>top -d 2  //每隔2秒显式所有进程的资源占用情况<br>top -c  //每隔5秒显式进程的资源占用情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 6. sar  </div><div class="line">sar（System Activity Reporter系统活动情况报告）是目前 Linux 上最为全面的系统性能分析工具之一，可以从多方面对系统的活动进行报告，包括：文件的读写情况、系统调用的使用情况、磁盘I/O、CPU效率、内存使用状况、进程活动及IPC有关的活动等  </div><div class="line">1. 格式：</div></pre></td></tr></table></figure></p>
+<p>常用参数：<br>-A：所有报告的总和。<br>-u：CPU利用率<br>-v：进程、I节点、文件和锁表状态。<br>-d：硬盘使用报告。<br>-r：没有使用的内存页面和硬盘块。<br>-g：串口I/O的情况。<br>-b：缓冲区使用情况。<br>-a：文件读写情况。<br>-c：系统调用情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用：</div></pre></td></tr></table></figure></p>
+<p>(1) sar -b 5 5        // IO传送速率<br>(2) sar -B 5 5        // 页交换速率<br>(3) sar -c 5 5        // 进程创建的速率<br>(4) sar -d 5 5        // 块设备的活跃信息<br>(5) sar -n DEV 5 5    // 网路设备的状态信息<br>(6) sar -n SOCK 5 5   // SOCK的使用情况<br>(7) sar -n ALL 5 5    // 所有的网络状态信息<br>(8) sar -r 5 5       // 内存和swap空间使用情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## IO相关</div><div class="line">1. iostat</div><div class="line">2. iotop</div><div class="line"></div><div class="line"></div><div class="line"># 五. 网络相关</div><div class="line">## 1. ifconfig 查看设置网卡参数</div><div class="line">1. 命令格式：   </div><div class="line">`ifconfig [网络设备] [参数] `</div><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>ifconfig eth0 up/down   启用或关闭指定网卡<br>ifconfig eth0      显示网卡信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 2. ping 测试网络连通性  </div><div class="line">Ping命令通过发送Internet控制消息协议（ICMP）回响请求消息来验证与另一台TCP/IP计算机的IP级连接</div><div class="line">1. 格式：</div></pre></td></tr></table></figure></p>
+<p>ping [参数] [主机名或IP地址]<br>参数：<br>    -d 使用Socket的SO_DEBUG功能。<br>    -f  极限检测。大量且快速地送网络封包给一台机器，看它的回应。<br>    -n 只输出数值。<br>    -q 不显示任何传送封包的信息，只显示最后的结果。<br>    -r 忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。<br>    -R 记录路由过程。<br>    -v 详细显示指令的执行过程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p> ping www.163.com<br> ping -R www.163.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">## 3. netstat 查看网络状态  </div><div class="line">1. 格式</div></pre></td></tr></table></figure></p>
+<p>netstat [option]<br>参数：<br>    -a： 显示所有<br>    -n： 以ip形式显示<br>    -p： 显示进程<br>    -r： 显示路由表<br>    -t： 只显示tcp<br>    -u： 只显示udp<br>    -i： 显示网络接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用：</div></pre></td></tr></table></figure></p>
+<p>1 netstat<br>2 netstat -nu 只显示udp / -t只显示tcp<br>3 netstat -r  显示路由表，作用同route<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 4. ss 查看网络状态</div><div class="line">ss与netstat命令作用相同，但比netstat更高效，采用的是tcp协议栈中tcp_diag.</div><div class="line">使用方法参考netstat，且基本参数相同  </div><div class="line">1. 常用：</div></pre></td></tr></table></figure></p>
+<p>ss  -s  我想查看当前服务器的网络连接统计<br>ss -l   我想查看所有打开的网络端口<br>ss -a   查看这台服务器上所有的socket连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 5. ip 查看设置网卡参数  </div><div class="line"></div><div class="line">## 6. route 查看路由以及添加路由</div><div class="line">1. 格式</div></pre></td></tr></table></figure></p>
+<p>route [option] [action]<br>参数：<br>    -n 不解析名字<br>    -v 显示详细的处理信息<br>    -f 清除所有网关入口的路由表。<br>    -p 与 add 命令一起使用时使路由具有永久性。<br>    add:添加一条新路由。<br>    del:删除一条路由。<br>    -net:目标地址是一个网络。<br>    -host:目标地址是一个主机。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>route -n  显示路由表<br>route add/del default gw 192.168.120.1  删除和添加设置默认网关<br>route add -net 172.25.0.0 netmask 255.255.0.0 dev eth0 添加网关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 7. traceroute 查看路由轨迹  </div><div class="line">traceroute追踪网络数据包的路由途径  </div><div class="line">1. 格式</div></pre></td></tr></table></figure></p>
+<p>traceroute[参数][主机]<br>参数：<br>    -I 使用ICMP回应取代UDP资料信息。<br>    -d 使用Socket层级的排错功能。<br>    -s 设置本地主机送出数据包的IP地址。<br>    -n 只显示IP<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>traceroute www.163.com<br>traceroute -n www.163.com  显示IP地址，不查主机名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 8. nslookup，dns查看  </div><div class="line">nslookup命令用于查询DNS的记录，查看域名解析是否正常，在网络故障的时候用来诊断网络问题</div><div class="line">1. 格式</div></pre></td></tr></table></figure></p>
+<p>nslookup [-qt=type] domain [dns-server]<br>type为 dns的解析记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 常用</div></pre></td></tr></table></figure></p>
+<p>nslookup  baidu.com<br>nslookup -qt=mx 163.com 8.8.8.8<br>```</p>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/01/23/shell/命令总结/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"chenziyao"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
