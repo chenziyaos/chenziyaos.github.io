@@ -17,32 +17,53 @@ COLAB = "https://colab.research.google.com/github/chenziyaos"
 
 SERIES = [
     {
+        "repo": "zero-to-llm",
+        "name": "从零掌握大模型",
+        "wide": True,
+        "desc": "从矩阵乘法一路讲到推理服务、RAG、Agent 和工程交付，七层由浅入深。每个技术决策都落到效果、显存、时延、成本四笔账上算清楚；正文里的表格和结论都来自代码的真实输出。",
+        "book": "{n} 篇正文 + 1 篇总览（ZTL-00）",
+        "code": "{ex} 段可运行代码，<code>tools/verify.py</code> 逐段运行并和正文贴出的输出逐字核对",
+        "meta": [
+            ("运行环境", "只要 CPU；Python ≥ 3.10，部分篇要 PyTorch CPU 版，其余只要 NumPy 或标准库"),
+            ("注意", "后半部分案例里的准确率、时延、成本读数是示意，不是实测，正文已标明"),
+        ],
+        "btn3": ("看核对脚本", "https://github.com/chenziyaos/zero-to-llm/blob/main/tools/verify.py"),
+    },
+    {
         "repo": "zero-to-vllm",
         "name": "从 0 开始 vLLM",
         "desc": "按章拆 vLLM：显存账本、调度与抢占、Paged KV、前缀缓存、PD 分离、LoRA，再到 DeepSeek / Qwen 部署实战和 Embedding / Rerank 服务。",
-        "baseline": "vLLM v0.32.0，主干提交 <code>0d6f92a</code>（2026-10-29）",
-        "runtime": "<code>sim_*.py</code> 在 CPU 上跑（Python ≥ 3.11）；<code>gpu_*.py</code> 和起服脚本要 GPU",
+        "meta": [
+            ("版本基线", "vLLM v0.32.0，主干提交 <code>0d6f92a</code>（2026-10-29）"),
+            ("运行环境", "<code>sim_*.py</code> 在 CPU 上跑（Python ≥ 3.11）；<code>gpu_*.py</code> 和起服脚本要 GPU"),
+        ],
     },
     {
         "repo": "zero-to-sglang",
         "name": "从 0 开始 SGLang",
         "desc": "按章拆 SGLang：内存池与页表、RadixAttention、overlap 调度与 CUDA Graph、HiCache 三层 KV 缓存、PD 分离、Embedding / Rerank 服务。",
-        "baseline": "SGLang v0.5.22，主干提交 <code>8fabf5e</code>（2026-10-28）",
-        "runtime": "CPU 练习需要 Python ≥ 3.10 + numpy",
+        "meta": [
+            ("版本基线", "SGLang v0.5.22，主干提交 <code>8fabf5e</code>（2026-10-28）"),
+            ("运行环境", "CPU 练习需要 Python ≥ 3.10 + numpy"),
+        ],
     },
     {
         "repo": "zero-to-llama",
         "name": "从 0 开始 llama.cpp",
         "desc": "按章拆 llama.cpp：GGUF / GGML 结构、内存与带宽预测器、量化对照、CPU 调优、投机解码。实测数字来自一台 4 vCPU / 8 GB、没有 GPU 的机器。",
-        "baseline": "llama.cpp v0.8.0，主干提交 <code>0ec4027</code>（2026-10-30），ggml 0.28.0",
-        "runtime": "Python ≥ 3.9 标准库，不装 <code>gguf</code> 包也能读 GGUF",
+        "meta": [
+            ("版本基线", "llama.cpp v0.8.0，主干提交 <code>0ec4027</code>（2026-10-30），ggml 0.28.0"),
+            ("运行环境", "Python ≥ 3.9 标准库，不装 <code>gguf</code> 包也能读 GGUF"),
+        ],
     },
     {
         "repo": "zero-to-gpu",
         "name": "从 0 开始 GPU 优化",
         "desc": "从硬件到集群：性能账本、访存与 GEMM、Tensor Core、PCIe / NVLink / RDMA、NCCL、K8s 调度、可靠性、MoE 专家并行和推理系统。",
-        "baseline": "CUDA 13.4 Update 2，PyTorch 2.15.0，NCCL 2.32.3",
-        "runtime": "<code>sim_*.py</code> 在 CPU 上跑（Python ≥ 3.10 + numpy）；<code>*.cu</code> 和 <code>gpu_*.py</code> 要 GPU",
+        "meta": [
+            ("版本基线", "CUDA 13.4 Update 2，PyTorch 2.15.0，NCCL 2.32.3"),
+            ("运行环境", "<code>sim_*.py</code> 在 CPU 上跑（Python ≥ 3.10 + numpy）；<code>*.cu</code> 和 <code>gpu_*.py</code> 要 GPU"),
+        ],
     },
 ]
 
@@ -72,6 +93,17 @@ def series_card(s):
     rows = chapters(repo)
     notebooks = {p.stem for p in (ROOT / repo / "colab").glob("*.ipynb")}
     code_dirs = [p for p in (ROOT / repo).glob("[0-9]*") if p.is_dir()]
+    if "code" in s:
+        code = s["code"].format(ex=len(list((ROOT / repo).glob("[0-9]*/ex*.py"))))
+    else:
+        code = f"{len(code_dirs)} 个章节目录，{len(notebooks)} 个 Colab notebook"
+    book = s.get("book", "{n} 章").format(n=len(rows))
+    meta = [("书稿", book), ("配套代码", code), *s["meta"]]
+    meta_html = "".join(f"<li><span>{k}</span><span>{v}</span></li>" for k, v in meta)
+    btn3_label, btn3_href = s.get(
+        "btn3", ("在 Colab 打开第 2 章", f"{COLAB}/{repo}/blob/main/colab/02-ledger.ipynb")
+    )
+    wide = " wide" if s.get("wide") else ""
     items = []
     for stem, no, stage, title in rows:
         link = f'<a href="{GH}/{repo}/blob/main/book/{stem}.md">{escape(title)}</a>'
@@ -86,20 +118,15 @@ def series_card(s):
         )
     tags = "".join(f"<li>{escape(t)}</li>" for t in stages(rows))
     return f"""
-      <article class="card series">
-        <h3><a href="{GH}/{repo}">{repo}</a></h3>
+      <article class="card series{wide}">
+        <h3><a href="{GH}/{repo}">{repo}</a> <small>{s["name"]}</small></h3>
         <p class="desc">{s["desc"]}</p>
         <ul class="tags">{tags}</ul>
-        <ul class="meta">
-          <li><span>书稿</span><span>{len(rows)} 章</span></li>
-          <li><span>配套代码</span><span>{len(code_dirs)} 个章节目录，{len(notebooks)} 个 Colab notebook</span></li>
-          <li><span>版本基线</span><span>{s["baseline"]}</span></li>
-          <li><span>运行环境</span><span>{s["runtime"]}</span></li>
-        </ul>
+        <ul class="meta">{meta_html}</ul>
         <div class="btns">
           <a class="btn primary" href="{GH}/{repo}/blob/main/book/README.md">读书稿</a>
           <a class="btn" href="{GH}/{repo}">配套代码</a>
-          <a class="btn" href="{COLAB}/{repo}/blob/main/colab/02-ledger.ipynb">在 Colab 打开第 2 章</a>
+          <a class="btn" href="{btn3_href}">{btn3_label}</a>
         </div>
         <details>
           <summary>章节目录（{len(rows)} 章）</summary>
@@ -113,17 +140,18 @@ def series_card(s):
 def totals():
     book = sum(len(chapters(s["repo"])) for s in SERIES)
     nb = sum(len(list((ROOT / s["repo"] / "colab").glob("*.ipynb"))) for s in SERIES)
-    return book, nb
+    return len(SERIES), book, nb
 
 
 def main():
-    book, nb = totals()
+    n, book, nb = totals()
     cards = "".join(series_card(s) for s in SERIES)
     tpl = (TOOLS / "index.tpl.html").read_text(encoding="utf-8")
     html = (
         tpl.replace("{{SERIES_CARDS}}", cards)
         .replace("{{BOOK_TOTAL}}", str(book))
         .replace("{{NB_TOTAL}}", str(nb))
+        .replace("{{SERIES_TOTAL}}", str(n))
     )
     (OUT / "index.html").write_text(html, encoding="utf-8")
     print(f"index.html written: {book} chapters, {nb} notebooks")

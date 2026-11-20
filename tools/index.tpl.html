@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>chenziyaos · 项目</title>
-  <meta name="description" content="陈子瑶（chenziyaos）的项目主页：从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化四套配套代码，以及管理 agent 上下文的画布工具 Weft。" />
+  <meta name="description" content="陈子瑶（chenziyaos）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，以及管理 agent 上下文的画布工具 Weft。" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -27,17 +27,17 @@
       <h1>陈子瑶<span class="handle">chenziyaos</span></h1>
       <p class="lead">
         我是一名 SRE，日常做线上稳定性：容灾演练、存储高可用治理、稳定性数据。
-        业余按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；另做了一个管理 agent 上下文的画布工具 Weft。
+        业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；另做了一个管理 agent 上下文的画布工具 Weft。
       </p>
       <ul class="stats">
-        <li><b>4 套</b>「从 0 开始」系列</li>
+        <li><b>{{SERIES_TOTAL}} 套</b>「从 0 开始」系列</li>
         <li><b>{{BOOK_TOTAL}} 章</b>书稿（Markdown）</li>
         <li><b>{{NB_TOTAL}} 个</b>Colab notebook</li>
         <li><b>1 个</b>agent 上下文画布</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="https://chenziyaos.github.io/weft/">Weft 在线演示</a>
-        <a class="btn" href="#series">看四套系列</a>
+        <a class="btn" href="#series">看「从 0 开始」系列</a>
         <a class="btn" href="https://github.com/chenziyaos">GitHub 主页</a>
       </div>
     </div>
@@ -76,7 +76,7 @@ weft serve   <span class="c"># http://localhost:3001</span></pre>
   <section id="series">
     <div class="wrap">
       <h2>「从 0 开始」系列</h2>
-      <p class="sub">四套按章拆解的学习材料。每章一个代码目录，配一个能在 CPU 上跑的模拟器或实验脚本、单元测试和 Colab notebook；书稿是 Markdown，放在各仓库的 <code>book/</code> 下。</p>
+      <p class="sub">按章拆解的学习材料，书稿是 Markdown，放在各仓库的 <code>book/</code> 下。zero-to-llm 是从数学到交付的大模型基础课，正文代码可以逐字复算；另外四套拆推理引擎和 GPU，每章一个代码目录，配能在 CPU 上跑的模拟器或实验脚本、单元测试和 Colab notebook。</p>
       <div class="grid">{{SERIES_CARDS}}
       </div>
     </div>
@@ -85,7 +85,7 @@ weft serve   <span class="c"># http://localhost:3001</span></pre>
   <section id="try">
     <div class="wrap">
       <h2>30 秒试一下</h2>
-      <p class="sub">不需要 GPU，也不需要装 vLLM。</p>
+      <p class="sub">不需要 GPU，也不需要装推理引擎。</p>
       <div class="two">
         <div class="card">
           <h3>算一张 H100 上 vLLM 能分到多少 KV 缓存</h3>
@@ -100,16 +100,29 @@ python3 sim_ledger.py --model qwen3-8b --gpu h100-sxm</pre>
   = KV 可用          55.43 GiB  ← 对照日志 Available KV cache memory</pre>
         </div>
         <div class="card">
-          <h3>不想在本地装环境</h3>
-          <p>每章的 notebook 依次做四件事：克隆仓库、装 <code>requirements-cpu.txt</code>、跑本章单元测试、跑正文里的 CPU 命令。</p>
-          <div class="btns">
-            <a class="btn primary" href="https://colab.research.google.com/github/chenziyaos/zero-to-vllm/blob/main/colab/02-ledger.ipynb">vLLM 第 2 章</a>
-            <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-sglang/blob/main/colab/02-ledger.ipynb">SGLang 第 2 章</a>
-            <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-llama/blob/main/colab/02-ledger.ipynb">llama.cpp 第 2 章</a>
-            <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-gpu/blob/main/colab/02-ledger.ipynb">GPU 第 2 章</a>
-          </div>
-          <p class="note">各章 notebook 的入口也在上面每套系列的「章节目录」里。</p>
+          <h3>算四个代表模型每个词元占多少 KV 缓存</h3>
+          <pre>git clone https://github.com/chenziyaos/zero-to-llm.git
+cd zero-to-llm
+python3 01-matmul/ex07.py      <span class="c"># 只用标准库</span>
+python3 tools/verify.py 01     <span class="c"># 第 01 篇全部代码和正文输出逐字核对；需要 NumPy</span></pre>
+          <p>期望输出的开头：</p>
+          <pre>Qwen3-32B     262144 B/token =  256.0 KiB/token
+Qwen3.8-27B    65536 B/token =   64.0 KiB/token
+DeepSeek-V3    70272 B/token =   68.6 KiB/token
+Kimi K3        27648 B/token =   27.0 KiB/token
+...</pre>
         </div>
+      </div>
+      <div class="card" style="margin-top: 20px">
+        <h3>不想在本地装环境：四套引擎和 GPU 系列有 Colab</h3>
+        <p>每章的 notebook 依次做四件事：克隆仓库、装 <code>requirements-cpu.txt</code>、跑本章单元测试、跑正文里的 CPU 命令。</p>
+        <div class="btns">
+          <a class="btn primary" href="https://colab.research.google.com/github/chenziyaos/zero-to-vllm/blob/main/colab/02-ledger.ipynb">vLLM 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-sglang/blob/main/colab/02-ledger.ipynb">SGLang 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-llama/blob/main/colab/02-ledger.ipynb">llama.cpp 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-gpu/blob/main/colab/02-ledger.ipynb">GPU 第 2 章</a>
+        </div>
+        <p class="note">各章 notebook 的入口也在上面每套系列的「章节目录」里。</p>
       </div>
     </div>
   </section>
@@ -119,7 +132,8 @@ python3 sim_ledger.py --model qwen3-8b --gpu h100-sxm</pre>
       <h2>使用前要知道的</h2>
       <div class="card">
         <ul class="plain">
-          <li><b>zero-to-* 是学习用的配套代码，不是库。</b>模拟器复现的是引擎主干里的关键账本，结果要和真实日志对账才算数。每个仓库的 README 写了版本基线（具体到 commit），换了版本数字可能对不上。</li>
+          <li><b>zero-to-* 是学习用的配套代码，不是库。</b>模拟器复现的是引擎主干里的关键账本，结果要和真实日志对账才算数。四个引擎和 GPU 仓库的 README 写了版本基线（具体到 commit），换了版本数字可能对不上。</li>
+          <li><b>zero-to-llm 后半部分的案例读数是假设读数。</b>准确率、时延、成本这些案例数字是示意用的，不是实测；能复算的是代码输出和公式推导，正文里都标明了。这个仓库没有 Colab notebook。</li>
           <li><b>Colab notebook 只放 CPU 能跑的命令。</b>要 GPU、模型文件或运行中服务的命令没有放进去，要自己找机器跑。</li>
           <li><b>部分大模型章节还没有 GPU 实测。</b>例如 llama.cpp 系列的双模型部署层只做启动前的字节推算，实测前标为 <code>pending_gpu_measurement</code>；以各章正文的说明为准。</li>
           <li><b>Weft 的画布数据存在浏览器 IndexedDB 里</b>，没有同步也没有账号，用「导出备份（.json）」备份。桌面安装包未签名，限制和排障见它的 <a href="https://github.com/chenziyaos/weft/blob/main/README_ZH.md#限制">README</a>。</li>

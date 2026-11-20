@@ -179,3 +179,9 @@ footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top:
   .hero { padding-top: 48px; }
   .hero h1 { font-size: 32px; }
 }
+
+.series h3 small { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 6px; }
+.series.wide { grid-column: 1 / -1; }
+.series.wide ol.chapters { columns: 2; column-gap: 32px; }
+.series.wide ol.chapters li { break-inside: avoid; }
+@media (max-width: 860px) { .series.wide ol.chapters { columns: 1; } }
