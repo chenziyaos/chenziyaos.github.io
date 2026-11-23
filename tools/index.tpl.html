@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>chenziyaos · 项目</title>
-  <meta name="description" content="陈子瑶（chenziyaos）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，以及管理 agent 上下文的画布工具 Weft。" />
+  <meta name="description" content="陈子瑶（chenziyaos）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，基于 nginx 1.31.9 源码的运维篇与开发篇，以及管理 agent 上下文的画布工具 Weft。" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -15,6 +15,7 @@
       <ul>
         <li><a href="#weft">Weft</a></li>
         <li><a href="#series">「从 0 开始」系列</a></li>
+        <li><a href="#nginx">nginx</a></li>
         <li><a href="#try">30 秒试一下</a></li>
         <li><a href="#limits">使用前要知道的</a></li>
         <li><a href="https://github.com/chenziyaos">GitHub</a></li>
@@ -27,12 +28,13 @@
       <h1>陈子瑶<span class="handle">chenziyaos</span></h1>
       <p class="lead">
         我是一名 SRE，日常做线上稳定性：容灾演练、存储高可用治理、稳定性数据。
-        业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；另做了一个管理 agent 上下文的画布工具 Weft。
+        业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；按 nginx 1.31.9 源码写了一套运维篇与开发篇；另做了一个管理 agent 上下文的画布工具 Weft。
       </p>
       <ul class="stats">
         <li><b>{{SERIES_TOTAL}} 套</b>「从 0 开始」系列</li>
-        <li><b>{{BOOK_TOTAL}} 章</b>书稿（Markdown）</li>
+        <li><b>{{BOOK_TOTAL}} 章</b>书稿，可在线阅读</li>
         <li><b>{{NB_TOTAL}} 个</b>Colab notebook</li>
+        <li><b>1 套</b>nginx 源码教程</li>
         <li><b>1 个</b>agent 上下文画布</li>
       </ul>
       <div class="btns">
@@ -76,8 +78,32 @@ weft serve   <span class="c"># http://localhost:3001</span></pre>
   <section id="series">
     <div class="wrap">
       <h2>「从 0 开始」系列</h2>
-      <p class="sub">按章拆解的学习材料，书稿是 Markdown，放在各仓库的 <code>book/</code> 下。zero-to-llm 是从数学到交付的大模型基础课，正文代码可以逐字复算；另外四套拆推理引擎和 GPU，每章一个代码目录，配能在 CPU 上跑的模拟器或实验脚本、单元测试和 Colab notebook。</p>
+      <p class="sub">按章拆解的学习材料。每套都有在线阅读版（侧边目录、全文搜索），「章节目录」里的链接直接打开对应章节；Markdown 原稿在各仓库的 <code>book/</code> 下。zero-to-llm 是从数学到交付的大模型基础课，正文代码可以逐字复算；另外四套拆推理引擎和 GPU，每章一个代码目录，配能在 CPU 上跑的模拟器或实验脚本、单元测试和 Colab notebook。</p>
       <div class="grid">{{SERIES_CARDS}}
+      </div>
+    </div>
+  </section>
+
+  <section id="nginx">
+    <div class="wrap">
+      <h2>nginx 与运维工具</h2>
+      <p class="sub">nginx-devops 是 2018 年旧教程的重写，按 1.31.9 源码讲配置在源码里怎么生效，每章配一个本机可复现的实验。另外两个是 2017 年前后的老项目，2026 年 11 月按当前版本重新整理过。</p>
+      <div class="grid">{{NGINX_CARD}}
+      </div>
+      <div class="two" style="margin-top: 20px">
+        <div class="card">
+          <h3><a href="https://github.com/chenziyaos/ngx_stream_upstream_check_module">ngx_stream_upstream_check_module</a></h3>
+          <p>给 nginx <code>stream</code>（四层 TCP/UDP 代理）加主动健康检查：按间隔探测 upstream 里的每个 server，连续失败 <code>fall</code> 次摘除、连续成功 <code>rise</code> 次恢复；支持 TCP、UDP、HTTP 三种探测，带一个输出 HTML / CSV / JSON 的状态页。开源 nginx 的 stream 只有被动检查。</p>
+          <p class="note">核心补丁按版本分三份，覆盖 1.24–1.31（1.27 没有补丁）；CI 在 1.22–1.31 的六个版本上编译并跑集成测试。</p>
+          <div class="btns"><a class="btn" href="https://github.com/chenziyaos/ngx_stream_upstream_check_module">GitHub</a></div>
+        </div>
+        <div class="card">
+          <h3><a href="https://github.com/chenziyaos/onssh">onssh</a></h3>
+          <p>在浏览器里登录 Linux 服务器的 SSH 终端：Python 3（tornado + paramiko）加 xterm.js，能跑 vim、top，窗口大小随浏览器变化。带主机密钥校验和目标白名单，默认只监听本机。</p>
+          <pre>uv run onssh   <span class="c"># http://127.0.0.1:8000/，需要 Python ≥ 3.10</span></pre>
+          <p class="note">不是堡垒机：只支持密码登录，没有用户体系、审计和录屏。</p>
+          <div class="btns"><a class="btn" href="https://github.com/chenziyaos/onssh">GitHub</a></div>
+        </div>
       </div>
     </div>
   </section>
@@ -137,10 +163,8 @@ Kimi K3        27648 B/token =   27.0 KiB/token
           <li><b>Colab notebook 只放 CPU 能跑的命令。</b>要 GPU、模型文件或运行中服务的命令没有放进去，要自己找机器跑。</li>
           <li><b>部分大模型章节还没有 GPU 实测。</b>例如 llama.cpp 系列的双模型部署层只做启动前的字节推算，实测前标为 <code>pending_gpu_measurement</code>；以各章正文的说明为准。</li>
           <li><b>Weft 的画布数据存在浏览器 IndexedDB 里</b>，没有同步也没有账号，用「导出备份（.json）」备份。桌面安装包未签名，限制和排障见它的 <a href="https://github.com/chenziyaos/weft/blob/main/README_ZH.md#限制">README</a>。</li>
-          <li><b>2015–2020 的仓库不再维护：</b>
-            <a href="https://github.com/chenziyaos/ngx_stream_upstream_check_module">ngx_stream_upstream_check_module</a>（Nginx stream 模块的 TCP 健康检查）、
-            <a href="https://github.com/chenziyaos/onssh">onssh</a>（基于 SSH 的 Web 终端，Python 2.7 + Tornado）、
-            <a href="https://github.com/chenziyaos/nginx-devops">nginx-devops</a>。</li>
+          <li><b>在线阅读版由 MkDocs 从各仓库的 Markdown 生成</b>，推送到主分支后自动更新，内容和 GitHub 上的原稿一致；只有用到公式的系列会从 jsDelivr 加载 KaTeX。</li>
+          <li><b>nginx-devops 的实验只在 macOS arm64 上跑过。</b>Linux 上事件模块是 epoll，debug 日志和页大小相关的数字会不同；图从 spec 生成，生成引擎没有公开。</li>
         </ul>
       </div>
     </div>
