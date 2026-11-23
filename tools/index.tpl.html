@@ -3,29 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>chenziyaos · 项目</title>
-  <meta name="description" content="陈子瑶（chenziyaos）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，基于 nginx 1.31.9 源码的运维篇与开发篇，以及管理 agent 上下文的画布工具 Weft。" />
+  <title>zyaochen · 项目</title>
+  <meta name="description" content="陈子瑶（zyaochen）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，基于 nginx 1.31.9 源码的运维篇与开发篇，以及管理 agent 上下文的画布工具 Weft。" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="nav">
     <div class="wrap">
-      <a class="brand" href="#">chenziyaos</a>
+      <a class="brand" href="#">zyaochen</a>
       <ul>
         <li><a href="#weft">Weft</a></li>
         <li><a href="#series">「从 0 开始」系列</a></li>
         <li><a href="#nginx">nginx</a></li>
         <li><a href="#try">30 秒试一下</a></li>
         <li><a href="#limits">使用前要知道的</a></li>
-        <li><a href="https://github.com/chenziyaos">GitHub</a></li>
+        <li><a href="https://github.com/zyaochen">GitHub</a></li>
       </ul>
     </div>
   </nav>
 
   <header class="hero">
     <div class="wrap">
-      <h1>陈子瑶<span class="handle">chenziyaos</span></h1>
+      <h1>陈子瑶<span class="handle">zyaochen</span></h1>
       <p class="lead">
         我是一名 SRE，日常做线上稳定性：容灾演练、存储高可用治理、稳定性数据。
         业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；按 nginx 1.31.9 源码写了一套运维篇与开发篇；另做了一个管理 agent 上下文的画布工具 Weft。
@@ -38,9 +38,9 @@
         <li><b>1 个</b>agent 上下文画布</li>
       </ul>
       <div class="btns">
-        <a class="btn primary" href="https://chenziyaos.github.io/weft/">Weft 在线演示</a>
+        <a class="btn primary" href="https://zyaochen.github.io/weft/">Weft 在线演示</a>
         <a class="btn" href="#series">看「从 0 开始」系列</a>
-        <a class="btn" href="https://github.com/chenziyaos">GitHub 主页</a>
+        <a class="btn" href="https://github.com/zyaochen">GitHub 主页</a>
       </div>
     </div>
   </header>
@@ -50,7 +50,7 @@
       <h2>Weft</h2>
       <p class="sub">让模型读到的上下文看得见、改得动。</p>
       <div class="card feature">
-        <a href="https://chenziyaos.github.io/weft/"><img src="assets/weft-hero.png" alt="Weft 画布：对话节点之间的连线就是下一轮的上下文" loading="lazy" /></a>
+        <a href="https://zyaochen.github.io/weft/"><img src="assets/weft-hero.png" alt="Weft 画布：对话节点之间的连线就是下一轮的上下文" loading="lazy" /></a>
         <div>
           <h3>无限画布上的对话，连线就是上下文</h3>
           <p class="tagline">每次问答是画布上的一个节点；节点能看到的，恰好是沿箭头流进来的内容。剪掉一条线，下一次回答就变了。</p>
@@ -64,9 +64,9 @@
 npm install -g weft-canvas
 weft serve   <span class="c"># http://localhost:3001</span></pre>
           <div class="btns">
-            <a class="btn primary" href="https://chenziyaos.github.io/weft/">在线演示</a>
-            <a class="btn" href="https://chenziyaos.github.io/weft/docs/zh/">文档站</a>
-            <a class="btn" href="https://github.com/chenziyaos/weft">GitHub</a>
+            <a class="btn primary" href="https://zyaochen.github.io/weft/">在线演示</a>
+            <a class="btn" href="https://zyaochen.github.io/weft/docs/zh/">文档站</a>
+            <a class="btn" href="https://github.com/zyaochen/weft">GitHub</a>
             <a class="btn" href="https://www.npmjs.com/package/weft-canvas">npm</a>
           </div>
           <p class="note">Weft fork 自 Xia Chen 的 <a href="https://github.com/chenxiachan/thoughtdag">ThoughtDAG</a>（MIT）：画布本身来自上游，本仓库新增了 <code>weft</code> 命令、Agent Skill 和让终端 agent 改画布的实时桥。</p>
@@ -92,17 +92,17 @@ weft serve   <span class="c"># http://localhost:3001</span></pre>
       </div>
       <div class="two" style="margin-top: 20px">
         <div class="card">
-          <h3><a href="https://github.com/chenziyaos/ngx_stream_upstream_check_module">ngx_stream_upstream_check_module</a></h3>
+          <h3><a href="https://github.com/zyaochen/ngx_stream_upstream_check_module">ngx_stream_upstream_check_module</a></h3>
           <p>给 nginx <code>stream</code>（四层 TCP/UDP 代理）加主动健康检查：按间隔探测 upstream 里的每个 server，连续失败 <code>fall</code> 次摘除、连续成功 <code>rise</code> 次恢复；支持 TCP、UDP、HTTP 三种探测，带一个输出 HTML / CSV / JSON 的状态页。开源 nginx 的 stream 只有被动检查。</p>
           <p class="note">核心补丁按版本分三份，覆盖 1.24–1.31（1.27 没有补丁）；CI 在 1.22–1.31 的六个版本上编译并跑集成测试。</p>
-          <div class="btns"><a class="btn" href="https://github.com/chenziyaos/ngx_stream_upstream_check_module">GitHub</a></div>
+          <div class="btns"><a class="btn" href="https://github.com/zyaochen/ngx_stream_upstream_check_module">GitHub</a></div>
         </div>
         <div class="card">
-          <h3><a href="https://github.com/chenziyaos/onssh">onssh</a></h3>
+          <h3><a href="https://github.com/zyaochen/onssh">onssh</a></h3>
           <p>在浏览器里登录 Linux 服务器的 SSH 终端：Python 3（tornado + paramiko）加 xterm.js，能跑 vim、top，窗口大小随浏览器变化。带主机密钥校验和目标白名单，默认只监听本机。</p>
           <pre>uv run onssh   <span class="c"># http://127.0.0.1:8000/，需要 Python ≥ 3.10</span></pre>
           <p class="note">不是堡垒机：只支持密码登录，没有用户体系、审计和录屏。</p>
-          <div class="btns"><a class="btn" href="https://github.com/chenziyaos/onssh">GitHub</a></div>
+          <div class="btns"><a class="btn" href="https://github.com/zyaochen/onssh">GitHub</a></div>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@ weft serve   <span class="c"># http://localhost:3001</span></pre>
       <div class="two">
         <div class="card">
           <h3>算一张 H100 上 vLLM 能分到多少 KV 缓存</h3>
-          <pre>git clone https://github.com/chenziyaos/zero-to-vllm.git
+          <pre>git clone https://github.com/zyaochen/zero-to-vllm.git
 cd zero-to-vllm/02-ledger
 python3 sim_ledger.py --model qwen3-8b --gpu h100-sxm</pre>
           <p>期望输出的开头：</p>
@@ -127,7 +127,7 @@ python3 sim_ledger.py --model qwen3-8b --gpu h100-sxm</pre>
         </div>
         <div class="card">
           <h3>算四个代表模型每个词元占多少 KV 缓存</h3>
-          <pre>git clone https://github.com/chenziyaos/zero-to-llm.git
+          <pre>git clone https://github.com/zyaochen/zero-to-llm.git
 cd zero-to-llm
 python3 01-matmul/ex07.py      <span class="c"># 只用标准库</span>
 python3 tools/verify.py 01     <span class="c"># 第 01 篇全部代码和正文输出逐字核对；需要 NumPy</span></pre>
@@ -143,10 +143,10 @@ Kimi K3        27648 B/token =   27.0 KiB/token
         <h3>不想在本地装环境：四套引擎和 GPU 系列有 Colab</h3>
         <p>每章的 notebook 依次做四件事：克隆仓库、装 <code>requirements-cpu.txt</code>、跑本章单元测试、跑正文里的 CPU 命令。</p>
         <div class="btns">
-          <a class="btn primary" href="https://colab.research.google.com/github/chenziyaos/zero-to-vllm/blob/main/colab/02-ledger.ipynb">vLLM 第 2 章</a>
-          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-sglang/blob/main/colab/02-ledger.ipynb">SGLang 第 2 章</a>
-          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-llama/blob/main/colab/02-ledger.ipynb">llama.cpp 第 2 章</a>
-          <a class="btn" href="https://colab.research.google.com/github/chenziyaos/zero-to-gpu/blob/main/colab/02-ledger.ipynb">GPU 第 2 章</a>
+          <a class="btn primary" href="https://colab.research.google.com/github/zyaochen/zero-to-vllm/blob/main/colab/02-ledger.ipynb">vLLM 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/zyaochen/zero-to-sglang/blob/main/colab/02-ledger.ipynb">SGLang 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/zyaochen/zero-to-llama/blob/main/colab/02-ledger.ipynb">llama.cpp 第 2 章</a>
+          <a class="btn" href="https://colab.research.google.com/github/zyaochen/zero-to-gpu/blob/main/colab/02-ledger.ipynb">GPU 第 2 章</a>
         </div>
         <p class="note">各章 notebook 的入口也在上面每套系列的「章节目录」里。</p>
       </div>
@@ -162,7 +162,7 @@ Kimi K3        27648 B/token =   27.0 KiB/token
           <li><b>zero-to-llm 后半部分的案例读数是假设读数。</b>准确率、时延、成本这些案例数字是示意用的，不是实测；能复算的是代码输出和公式推导，正文里都标明了。这个仓库没有 Colab notebook。</li>
           <li><b>Colab notebook 只放 CPU 能跑的命令。</b>要 GPU、模型文件或运行中服务的命令没有放进去，要自己找机器跑。</li>
           <li><b>部分大模型章节还没有 GPU 实测。</b>例如 llama.cpp 系列的双模型部署层只做启动前的字节推算，实测前标为 <code>pending_gpu_measurement</code>；以各章正文的说明为准。</li>
-          <li><b>Weft 的画布数据存在浏览器 IndexedDB 里</b>，没有同步也没有账号，用「导出备份（.json）」备份。桌面安装包未签名，限制和排障见它的 <a href="https://github.com/chenziyaos/weft/blob/main/README_ZH.md#限制">README</a>。</li>
+          <li><b>Weft 的画布数据存在浏览器 IndexedDB 里</b>，没有同步也没有账号，用「导出备份（.json）」备份。桌面安装包未签名，限制和排障见它的 <a href="https://github.com/zyaochen/weft/blob/main/README_ZH.md#限制">README</a>。</li>
           <li><b>在线阅读版由 MkDocs 从各仓库的 Markdown 生成</b>，推送到主分支后自动更新，内容和 GitHub 上的原稿一致；只有用到公式的系列会从 jsDelivr 加载 KaTeX。</li>
           <li><b>nginx-devops 的实验只在 macOS arm64 上跑过。</b>Linux 上事件模块是 epoll，debug 日志和页大小相关的数字会不同；图从 spec 生成，生成引擎没有公开。</li>
         </ul>
@@ -172,7 +172,7 @@ Kimi K3        27648 B/token =   27.0 KiB/token
 
   <footer>
     <div class="wrap">
-      对哪个仓库有问题，直接在那个仓库开 issue。 · <a href="https://github.com/chenziyaos">github.com/chenziyaos</a>
+      对哪个仓库有问题，直接在那个仓库开 issue。 · <a href="https://github.com/zyaochen">github.com/zyaochen</a>
     </div>
   </footer>
 </body>

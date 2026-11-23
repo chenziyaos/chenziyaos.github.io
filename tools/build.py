@@ -4,7 +4,7 @@
 Usage: python3 tools/build.py <dir-containing-zero-to-*-and-nginx-devops-clones>
 
 Chapter links point to each repo's online edition (MkDocs on GitHub Pages,
-https://chenziyaos.github.io/<repo>/<chapter>/), not to the Markdown on GitHub.
+https://zyaochen.github.io/<repo>/<chapter>/), not to the Markdown on GitHub.
 """
 
 import sys
@@ -16,9 +16,9 @@ if len(sys.argv) != 2:
 ROOT = Path(sys.argv[1]).resolve()
 TOOLS = Path(__file__).resolve().parent
 OUT = TOOLS.parent
-GH = "https://github.com/chenziyaos"
-COLAB = "https://colab.research.google.com/github/chenziyaos"
-SITE = "https://chenziyaos.github.io"
+GH = "https://github.com/zyaochen"
+COLAB = "https://colab.research.google.com/github/zyaochen"
+SITE = "https://zyaochen.github.io"
 
 SERIES = [
     {
@@ -37,7 +37,7 @@ SERIES = [
         ],
         "btn3": (
             "看核对脚本",
-            "https://github.com/chenziyaos/zero-to-llm/blob/main/tools/verify.py",
+            "https://github.com/zyaochen/zero-to-llm/blob/main/tools/verify.py",
         ),
     },
     {
@@ -103,7 +103,7 @@ NGINX = {
             "C 编译器、make、OpenSSL 3 和 PCRE2；实验只在 macOS arm64 上跑过，不支持 Windows",
         ),
     ],
-    "btn3": ("看实验", "https://github.com/chenziyaos/nginx-devops/tree/master/labs"),
+    "btn3": ("看实验", "https://github.com/zyaochen/nginx-devops/tree/master/labs"),
 }
 
 
