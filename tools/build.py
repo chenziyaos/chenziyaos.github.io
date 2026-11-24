@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the showcase index.html from local clones of the series repos.
 
-Usage: python3 tools/build.py <dir-containing-zero-to-*-and-nginx-devops-clones>
+Usage: python3 tools/build.py <dir-containing-zero-to-*-llm-atlas-and-nginx-devops-clones>
 
 Chapter links point to each repo's online edition (MkDocs on GitHub Pages,
 https://zyaochen.github.io/<repo>/<chapter>/), not to the Markdown on GitHub.
@@ -106,6 +106,20 @@ NGINX = {
     "btn3": ("看实验", "https://github.com/zyaochen/nginx-devops/tree/master/labs"),
 }
 
+ATLAS = {
+    "repo": "llm-atlas",
+    "name": "LLM 系列",
+    "wide": True,
+    "desc": "从原理到工程的中文长文：地基层讲 token、注意力和数学，系统层讲训练、推理与部署，工程层讲 Agent、RAG、评测和安全，场景层落到运维等具体业务，另有论文清单和效率全景图两篇索引。每篇自成一体，配大量示意图。",
+    "book": "{n} 篇 + 1 篇总览（LLM-00）",
+    "code": None,
+    "meta": [
+        ("配图", "{figs} 张，绝大多数由飞书画板导出"),
+        ("注意", "工作中的内部案例没有收录，编号保留空缺；LLM-04、LLM-09 是两本书的精读笔记"),
+    ],
+    "btn3": ("必读论文清单", f"{SITE}/llm-atlas/15-papers/"),
+}
+
 
 def chapters(s):
     """Return [(path, number, stage, title)] parsed from the chapter headings.
@@ -144,7 +158,9 @@ def series_card(s):
     rows = chapters(s)
     notebooks = {p.stem for p in (ROOT / repo / "colab").glob("*.ipynb")}
     code_dirs = [p for p in (ROOT / repo).glob("[0-9]*") if p.is_dir()]
-    if "code" in s:
+    if "code" in s and s["code"] is None:
+        code = None
+    elif "code" in s:
         code = s["code"].format(
             ex=len(list((ROOT / repo).glob("[0-9]*/ex*.py"))),
             labs=len([p for p in (ROOT / repo / "labs").glob("*-*") if p.is_dir()]),
@@ -152,7 +168,9 @@ def series_card(s):
     else:
         code = f"{len(code_dirs)} 个章节目录，{len(notebooks)} 个 Colab notebook"
     book = s.get("book", "{n} 章").format(n=len(rows))
-    meta = [("书稿", book), ("配套代码", code), *s["meta"]]
+    figs = len(list((ROOT / repo / "book" / "assets").glob("*/*.*")))
+    extra = [(k, v.format(figs=figs)) for k, v in s["meta"]]
+    meta = [("书稿", book), *([("配套代码", code)] if code else []), *extra]
     meta_html = "".join(f"<li><span>{k}</span><span>{v}</span></li>" for k, v in meta)
     btn3_label, btn3_href = s.get(
         "btn3", ("在 Colab 打开第 2 章", f"{COLAB}/{repo}/blob/main/colab/02-ledger.ipynb")
@@ -179,7 +197,7 @@ def series_card(s):
         <ul class="meta">{meta_html}</ul>
         <div class="btns">
           <a class="btn primary" href="{site}">在线阅读</a>
-          <a class="btn" href="{GH}/{repo}">配套代码</a>
+          <a class="btn" href="{GH}/{repo}">{"配套代码" if code else "GitHub"}</a>
           <a class="btn" href="{btn3_href}">{btn3_label}</a>
         </div>
         <details>
@@ -192,7 +210,7 @@ def series_card(s):
 
 
 def totals():
-    book = sum(len(chapters(s)) for s in [*SERIES, NGINX])
+    book = sum(len(chapters(s)) for s in [*SERIES, ATLAS, NGINX])
     nb = sum(len(list((ROOT / s["repo"] / "colab").glob("*.ipynb"))) for s in SERIES)
     return len(SERIES), book, nb
 
@@ -203,10 +221,12 @@ def main():
     tpl = (TOOLS / "index.tpl.html").read_text(encoding="utf-8")
     html = (
         tpl.replace("{{SERIES_CARDS}}", cards)
+        .replace("{{ATLAS_CARD}}", series_card(ATLAS))
         .replace("{{NGINX_CARD}}", series_card(NGINX))
         .replace("{{BOOK_TOTAL}}", str(book))
         .replace("{{NB_TOTAL}}", str(nb))
         .replace("{{SERIES_TOTAL}}", str(n))
+        .replace("{{ATLAS_TOTAL}}", str(len(chapters(ATLAS))))
     )
     (OUT / "index.html").write_text(html, encoding="utf-8")
     print(f"index.html written: {book} chapters, {nb} notebooks")
