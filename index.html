@@ -6,6 +6,9 @@
   <title>zyaochen · 项目</title>
   <meta name="description" content="陈子瑶（zyaochen）的项目主页：从零掌握大模型，从 0 开始 vLLM / SGLang / llama.cpp / GPU 优化的书稿与配套代码，基于 nginx 1.31.10 源码的运维篇、开发篇与云原生篇，以及管理 agent 上下文的画布工具 Weft。" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script>
+    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,6 +16,7 @@
     <div class="wrap">
       <a class="brand" href="#">zyaochen</a>
       <ul>
+        <li><a href="#read">在线阅读</a></li>
         <li><a href="#weft">Weft</a></li>
         <li><a href="#series">「从 0 开始」系列</a></li>
         <li><a href="#atlas">LLM 系列</a></li>
@@ -21,6 +25,10 @@
         <li><a href="#limits">使用前要知道的</a></li>
         <li><a href="https://github.com/zyaochen">GitHub</a></li>
       </ul>
+      <button class="theme" type="button" aria-label="切换深浅色" title="切换深浅色">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
     </div>
   </nav>
 
@@ -28,8 +36,7 @@
     <div class="wrap">
       <h1>陈子瑶<span class="handle">zyaochen</span></h1>
       <p class="lead">
-        我是一名 SRE，日常做线上稳定性：全球高可用机房架构探索、数据面高可用、可靠性度量。
-        业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；写了 65 篇从原理到工程的 LLM 长文；按 nginx 1.31.10 源码写了一套运维篇、开发篇与云原生篇；另做了一个管理 agent 上下文的画布工具 Weft。
+        我是一名 SRE，日常做线上稳定性：全球高可用机房架构探索、数据面高可用、可靠性度量。业余从零学大模型、按章拆 LLM 推理引擎和 GPU 优化，配套代码在 CPU 上就能跑；写了 65 篇从原理到工程的 LLM 长文；按 nginx 1.31.10 源码写了一套运维篇、开发篇与云原生篇；另做了一个管理 agent 上下文的画布工具 Weft。
       </p>
       <ul class="stats">
         <li><b>5 套</b>「从 0 开始」系列</li>
@@ -41,11 +48,19 @@
       </ul>
       <div class="btns">
         <a class="btn primary" href="https://zyaochen.github.io/weft/">Weft 在线演示</a>
-        <a class="btn" href="#series">看「从 0 开始」系列</a>
+        <a class="btn" href="#read">在线阅读书稿</a>
         <a class="btn" href="https://github.com/zyaochen">GitHub 主页</a>
       </div>
     </div>
   </header>
+
+  <section id="read">
+    <div class="wrap">
+      <h2>在线阅读</h2>
+      <p class="sub">七套书稿都有在线版，带侧边目录、全文搜索和深浅色切换；点开直接从总览读起。</p>
+      <ul class="shelf"><li><a href="https://zyaochen.github.io/zero-to-llm/"><span class="name">从零掌握大模型</span><span class="repo">zero-to-llm</span><span class="count">30 篇</span></a></li><li><a href="https://zyaochen.github.io/zero-to-vllm/"><span class="name">从 0 开始 vLLM</span><span class="repo">zero-to-vllm</span><span class="count">26 章</span></a></li><li><a href="https://zyaochen.github.io/zero-to-sglang/"><span class="name">从 0 开始 SGLang</span><span class="repo">zero-to-sglang</span><span class="count">25 章</span></a></li><li><a href="https://zyaochen.github.io/zero-to-llama/"><span class="name">从 0 开始 llama.cpp</span><span class="repo">zero-to-llama</span><span class="count">22 章</span></a></li><li><a href="https://zyaochen.github.io/zero-to-gpu/"><span class="name">从 0 开始 GPU 优化</span><span class="repo">zero-to-gpu</span><span class="count">33 章</span></a></li><li><a href="https://zyaochen.github.io/llm-atlas/"><span class="name">LLM 系列</span><span class="repo">llm-atlas</span><span class="count">65 篇</span></a></li><li><a href="https://zyaochen.github.io/nginx-devops/"><span class="name">nginx 运维篇、开发篇与云原生篇</span><span class="repo">nginx-devops</span><span class="count">31 章</span></a></li></ul>
+    </div>
+  </section>
 
   <section id="weft">
     <div class="wrap">
@@ -305,5 +320,27 @@ Kimi K3        27648 B/token =   27.0 KiB/token
       对哪个仓库有问题，直接在那个仓库开 issue。 · <a href="https://github.com/zyaochen">github.com/zyaochen</a>
     </div>
   </footer>
+  <script>
+    // Theme toggle: remember an explicit choice; without one the page follows the system.
+    document.querySelector(".theme").addEventListener("click", function () {
+      var root = document.documentElement;
+      var dark = root.dataset.theme
+        ? root.dataset.theme === "dark"
+        : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    });
+    // Highlight the nav link of the section in view.
+    var links = {};
+    document.querySelectorAll('.nav ul a[href^="#"]').forEach(function (a) { links[a.hash.slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting || !links[e.target.id]) return;
+        Object.values(links).forEach(function (a) { a.removeAttribute("aria-current"); });
+        links[e.target.id].setAttribute("aria-current", "true");
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll("section[id]").forEach(function (s) { spy.observe(s); });
+  </script>
 </body>
 </html>
