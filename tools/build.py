@@ -24,6 +24,7 @@ SERIES = [
     {
         "repo": "zero-to-llm",
         "name": "从零掌握大模型",
+        "unit": "篇",
         "wide": True,
         "desc": "从矩阵乘法一路讲到推理服务、RAG、Agent 和工程交付，七层由浅入深。每个技术决策都落到效果、显存、时延、成本四笔账上算清楚；正文里的表格和结论都来自代码的真实输出。",
         "book": "{n} 篇正文 + 1 篇总览（ZTL-00）",
@@ -109,6 +110,7 @@ NGINX = {
 ATLAS = {
     "repo": "llm-atlas",
     "name": "LLM 系列",
+    "unit": "篇",
     "wide": True,
     "desc": "从原理到工程的中文长文：地基层讲 token、注意力和数学，系统层讲训练、推理与部署，工程层讲 Agent、RAG、评测和安全，场景层落到运维等具体业务，另有论文清单和效率全景图两篇索引。每篇自成一体，配大量示意图。",
     "book": "{n} 篇 + 1 篇总览（LLM-00）",
@@ -209,6 +211,19 @@ def series_card(s):
       </article>"""
 
 
+def shelf():
+    """Compact links to every online edition, listed in page order."""
+    items = []
+    for s in [*SERIES, ATLAS, NGINX]:
+        n = len(chapters(s))
+        unit = s.get("unit", "章")
+        items.append(
+            f'<li><a href="{SITE}/{s["repo"]}/"><span class="name">{s["name"]}</span>'
+            f'<span class="repo">{s["repo"]}</span><span class="count">{n} {unit}</span></a></li>'
+        )
+    return "".join(items)
+
+
 def totals():
     book = sum(len(chapters(s)) for s in [*SERIES, ATLAS, NGINX])
     nb = sum(len(list((ROOT / s["repo"] / "colab").glob("*.ipynb"))) for s in SERIES)
@@ -221,6 +236,7 @@ def main():
     tpl = (TOOLS / "index.tpl.html").read_text(encoding="utf-8")
     html = (
         tpl.replace("{{SERIES_CARDS}}", cards)
+        .replace("{{SHELF}}", shelf())
         .replace("{{ATLAS_CARD}}", series_card(ATLAS))
         .replace("{{NGINX_CARD}}", series_card(NGINX))
         .replace("{{BOOK_TOTAL}}", str(book))
