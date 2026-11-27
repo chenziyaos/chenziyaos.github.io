@@ -89,18 +89,18 @@ SERIES = [
 
 NGINX = {
     "repo": "nginx-devops",
-    "name": "nginx 运维篇与开发篇",
+    "name": "nginx 运维篇、开发篇与云原生篇",
     "wide": True,
     "branch": "master",
-    "folders": [("ops", "运维篇"), ("dev", "开发篇")],
-    "desc": "按 nginx 1.31.9 源码讲清配置在源码里实际怎么生效：运维篇从安装、路由、反向代理、负载均衡、缓存、限流讲到四层代理和排障，开发篇从源码地图、内存池、事件循环、HTTP 阶段讲到自己写一个模块。",
-    "book": "{n} 章：运维篇 13 章、开发篇 10 章",
-    "code": "{labs} 个实验目录，每章一个；<code>tools/verify_labs.sh</code> 运行实验并和正文引用的输出逐行比对",
+    "folders": [("ops", "运维篇"), ("dev", "开发篇"), ("cloud", "云原生篇")],
+    "desc": "按 nginx 1.31.10 源码讲清配置在源码里实际怎么生效：运维篇从安装、路由、反向代理、负载均衡、缓存、限流讲到四层代理和排障，开发篇从源码地图、内存池、事件循环、HTTP 阶段讲到自己写一个模块，云原生篇把 nginx 放进 Kubernetes，讲容器、服务发现、Gateway API、配置下发、证书、可观测和扩展。",
+    "book": "{n} 章：运维篇 13 章、开发篇 10 章、云原生篇 7 章",
+    "code": "{labs} 个实验目录，每章一个，另有云原生篇的冒烟实验；<code>tools/verify_labs.sh</code> 运行实验并和正文引用的输出逐行比对",
     "meta": [
-        ("版本基线", "nginx 1.31.9（mainline，2026-11-18），引用的源码片段逐行核对过"),
+        ("版本基线", "nginx 1.31.10（mainline，2026-11-23），引用的源码片段逐行核对过"),
         (
             "运行环境",
-            "C 编译器、make、OpenSSL 3 和 PCRE2；实验只在 macOS arm64 上跑过，不支持 Windows",
+            "C 编译器、make、OpenSSL 3 和 PCRE2，运维篇和开发篇的实验只在 macOS arm64 上跑过，不支持 Windows；云原生篇的实验要一台装了 docker 和 kind 的 Linux 机器",
         ),
     ],
     "btn3": ("看实验", "https://github.com/zyaochen/nginx-devops/tree/master/labs"),
@@ -163,7 +163,7 @@ def series_card(s):
     elif "code" in s:
         code = s["code"].format(
             ex=len(list((ROOT / repo).glob("[0-9]*/ex*.py"))),
-            labs=len([p for p in (ROOT / repo / "labs").glob("*-*") if p.is_dir()]),
+            labs=len([p for p in (ROOT / repo / "labs").glob("*-*") if (p / "run.sh").is_file()]),
         )
     else:
         code = f"{len(code_dirs)} 个章节目录，{len(notebooks)} 个 Colab notebook"
